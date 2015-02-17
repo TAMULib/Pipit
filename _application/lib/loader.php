@@ -23,7 +23,7 @@ if (isset($config['usecas']) && $config['usecas']) {
 $out = '';
 //load admin controller if user is logged in and an admin page
 //if (isset($accesslevel) && ($accesslevel == 1)) {
-if ($pages[$controller] || $controller == 'user') {
+if (array_key_exists($controller,$pages) || $controller == 'user') {
 	if (!empty($pages[$controller]['admin']) && $pages[$controller]['admin'] == true) {
 		//if the user is an admin, load the admin controller, otherwise, redirect to the home page
 		if ($globaluser->isAdmin()) {
