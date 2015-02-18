@@ -5,7 +5,8 @@ session_start();
 //don't recommend using, sanitizing in case someone does
 $_SERVER['PHP_SELF'] = htmlentities($_SERVER['PHP_SELF']);
 
-$config['app_name'] = 'The Seed App';
+$config['app']['name'] = 'The Seed App';
+$config['app']['directory'] = 'PHPSeedApp';
 
 //server paths
 $config['path_root'] = "";
@@ -22,7 +23,6 @@ $config['path_css'] = "{$config['path_http']}_application/css/";
 $config['path_js'] = "{$config['path_http']}_application/js/";
 $config['path_images'] = "{$config['path_http']}_application/images/";
 $config['usecas'] = true;
-$config['passwordsalt'] = '';
 
 //ldap config
 $config['ldap']['url'];

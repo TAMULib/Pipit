@@ -32,19 +32,21 @@ class user extends dbobject {
 	}
 
 	private function hash($plaintext) {
-		return md5($this->passSalt.$plaintext);
+		return password_hash($plaintext, PASSWORD_DEFAULT);
 	}
 
 	public function logIn($username,$password) {
-		$sql = "SELECT * FROM {$this->primaryTable} WHERE username=:username AND password=:password";
-		if ($result = $this->executeQuery($sql,array(":username"=>$username,":password"=>$this->hash($password)))) {
-			$this->sessionName = "keymstr".time();
-			$_SESSION['sessionName'] = $this->sessionName;
-			foreach ($result[0] as $field=>$value) {
-				$_SESSION[$this->sessionName]['user'][$field] = $value;
+		$sql = "SELECT * FROM {$this->primaryTable} WHERE username=:username";
+		if ($result = $this->executeQuery($sql,array(":username"=>$username))) {
+			if (password_verify($password,$result[0]['password'])) {
+				$this->sessionName = "app".time();
+				$_SESSION['sessionName'] = $this->sessionName;
+				foreach ($result[0] as $field=>$value) {
+					$_SESSION[$this->sessionName]['user'][$field] = $value;
+				}
+				$this->buildProfile();
+				return true;			
 			}
-			$this->buildProfile();
-			return true;			
 		}
 		return false;
 	}
