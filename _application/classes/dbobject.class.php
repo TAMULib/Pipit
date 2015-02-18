@@ -8,15 +8,15 @@ class db {
 
     private function __construct() {
 	
-		if (strtolower($GLOBALS['dbconfig']['dbtype']) == 'mssql') {
-        	$dsn = 'sqlsrv:Server='.$GLOBALS['dbconfig']['host'].
-               ';Database='    .$GLOBALS['dbconfig']['database'];        
+		if (strtolower($GLOBALS['config']['db']['type']) == 'mssql') {
+        	$dsn = 'sqlsrv:Server='.$GLOBALS['config']['db']['host'].
+               ';Database='    .$GLOBALS['config']['db']['database'];        
 		} else {
-			$dsn = 'mysql:host='.$GLOBALS['dbconfig']['host'].
-               ';dbname='    .$GLOBALS['dbconfig']['database'];		
+			$dsn = 'mysql:host='.$GLOBALS['config']['db']['host'].
+               ';dbname='    .$GLOBALS['config']['db']['database'];		
 		}			
 		try {
-        	$this->handle = new PDO($dsn, $GLOBALS['dbconfig']['user'], $GLOBALS['dbconfig']['password']);
+        	$this->handle = new PDO($dsn, $GLOBALS['config']['db']['user'], $GLOBALS['config']['db']['password']);
 		} catch (PDOException $e) {
 			if ($GLOBALS['debugDb']) {
 				echo '<pre>';

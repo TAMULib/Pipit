@@ -1,5 +1,10 @@
 <?php
+session_start();
+//don't recommend using, sanitizing in case someone does
+$_SERVER['PHP_SELF'] = htmlentities($_SERVER['PHP_SELF']);
+
 require_once "{$config['path_lib']}functions.php";
+
 $pages = array(
 			"widgets" => array("name"=>"widgets","path"=>"widgets"),
 			"users" => array("name"=>"users","path"=>"users","admin"=>true));
@@ -22,7 +27,6 @@ if (isset($config['usecas']) && $config['usecas']) {
 }
 $out = '';
 //load admin controller if user is logged in and an admin page
-//if (isset($accesslevel) && ($accesslevel == 1)) {
 if (array_key_exists($controller,$pages) || $controller == 'user') {
 	if (!empty($pages[$controller]['admin']) && $pages[$controller]['admin'] == true) {
 		//if the user is an admin, load the admin controller, otherwise, redirect to the home page
