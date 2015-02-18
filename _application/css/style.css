@@ -155,6 +155,7 @@ header h1 {
 .navigation {
 	font-size: 1.2em;
 	background-color: #efefef;
+	min-height: 42px;
 }
 
 .navigation a {

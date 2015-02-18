@@ -55,18 +55,20 @@ if (is_file("{$config['path_app']}js/{$controller}.js")) {
         </header>
         <div class="navigation">
 <?php
-foreach ($pages as $nav) {
-    if (!empty($nav['admin']) && ($nav['admin'] == true && $globaluser->isAdmin())) {
-        if ($controller == $nav['path']) {
-           echo "<a class=\"capitalize current\" href=\"{$config['path_http']}admin/{$nav['path']}/\">{$nav['name']}</a>";
-        } else {
-            echo "<a class=\"capitalize\" href=\"{$config['path_http']}admin/{$nav['path']}/\">{$nav['name']}</a>";
-        }
-    } elseif (empty($nav['admin'])) {
-        if ($controller == $nav['path']) {
-           echo "<a class=\"capitalize current\" href=\"{$config['path_http']}{$nav['path']}/\">{$nav['name']}</a>";
-        } else {
-            echo "<a class=\"capitalize\" href=\"{$config['path_http']}{$nav['path']}/\">{$nav['name']}</a>";
+if ($globaluser->isLoggedIn()) {
+    foreach ($pages as $nav) {
+        if (!empty($nav['admin']) && ($nav['admin'] == true && $globaluser->isAdmin())) {
+            if ($controller == $nav['path']) {
+               echo "<a class=\"capitalize current\" href=\"{$config['path_http']}admin/{$nav['path']}/\">{$nav['name']}</a>";
+            } else {
+                echo "<a class=\"capitalize\" href=\"{$config['path_http']}admin/{$nav['path']}/\">{$nav['name']}</a>";
+            }
+        } elseif (empty($nav['admin'])) {
+            if ($controller == $nav['path']) {
+               echo "<a class=\"capitalize current\" href=\"{$config['path_http']}{$nav['path']}/\">{$nav['name']}</a>";
+            } else {
+                echo "<a class=\"capitalize\" href=\"{$config['path_http']}{$nav['path']}/\">{$nav['name']}</a>";
+            }
         }
     }
 }
