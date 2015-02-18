@@ -67,6 +67,7 @@ $(document).ready(function() {
 		}).done(function(data) {
 			updateSystemOutput(data);
 			$(".sysMsg").html($($(data).filter("#systemBar").find(".sysMsg")).html());
+			setTimeout("$(\".sysMsg h4\").fadeOut(\"slow\")",6000);
 			$(".do-results").load(app_http+" #modalContent .do-results > *",$(this).serialize(),function() {
 				$("#theModal .do-close").click();
 			});
