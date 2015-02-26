@@ -33,8 +33,8 @@ if (!empty($_POST['user'])) {
 	}
 } elseif (!empty($_POST['config'])) {
 	$config = $_POST['config'];
-	$config['path_http'] = $config['path_http'].$config['app_dir'].'/';
-	$config['path_file'] = $config['path_root'].$config['app_dir'].'/';
+	$config['path_http'] = $config['path_http'].$config['app']['directory'].'/';
+	$config['path_file'] = $config['path_root'].$config['app']['directory'].'/';
 	$config['path_app'] = "{$config['path_file']}_application/";
 	$config['path_lib'] = "{$config['path_app']}lib/";
 	$config['path_classes'] = "{$config['path_app']}classes/";
@@ -191,7 +191,9 @@ if (!empty($_POST['user'])) {
 			<h4>1) Test MySQL Connection:</h4>
 			<div class="help">
 				<ul>
-					<li>Enter an existing MySQL user that can create databases and users.</li>
+					<li>Enter an existing MySQL user</li>
+					<li>If you need a new database created, the user should be able to create databases and users.</li>
+					<li>If your database is already set up, the user should have privileges on it.</li>
 				</ul>
 			</div>
 			<form id="testConnection" name="testconnection" method="POST">
@@ -214,6 +216,7 @@ if (!empty($_POST['user'])) {
 				</ul>
 			</div>
 			<form class="hidden" id="dbInstaller" name="installer" method="POST">
+				<a id="skipDb" href="#">No thanks, my database is already set up.</a>
 				<label for="dbcreate[newuser]">New User</label>
 				<input id="dbCreateUser" type="text" name="dbcreate[newuser]" />
 				<label for="dbcreate[password]">New User Password</label>
@@ -253,11 +256,13 @@ for($x=($index-2);$x>0;$x--) {
 				<input type="text" name="config[path_root]" value="<?php echo $paths['docroot'];?>" />
 				<label for="config[path_http]">Base Domain</label>
 				<input id="pathHttp" type="text" name="config[path_http]" value="http://" />
-				<label for="config[app_dir]">App Directory</label>
-				<input id="pathAppDir" type="text" name="config[app_dir]" value="<?php echo $paths['web'];?>"/>
-				<input type="text" name="config[title]" value="PHP Seed App" />
+				<label for="config[app][directory]">App Directory</label>
+				<input id="pathAppDir" type="text" name="config[app][directory]" value="<?php echo $paths['web'];?>"/>
+				<label for="config[app][title]">App Title</label>
+				<input type="text" name="config[app][title]" value="PHP Seed App" />
+				<label for="config[db][database]">Database</label>
+				<input class="db-database" id="configDatabase" type="text" name="config[db][database]" />
 				<input class="db-host" id="configHost" type="hidden" name="config[db][host]" />
-				<input class="db-database" id="configDatabase" type="hidden" name="config[db][database]" />
 				<input class="db-new-user" id="configUser" type="hidden" name="config[db][user]" />
 				<input class="db-new-password" id="configPassword" type="hidden" name="config[db][password]" />
 				<input type="submit" name="submitconfig" value="Generate Config File" />
@@ -271,6 +276,7 @@ for($x=($index-2);$x>0;$x--) {
 				</ul>
 			</div>
 			<form class="hidden" id="createUser" name="createuser" method="POST">
+				<a id="skipToLogin" href="">No, thanks. Just take me to the app.</a>
 				<label for="user[username]">User Name</label>
 				<input type="text" name="user[username]" />
 				<label for="user[password]">Password</label>
@@ -289,6 +295,16 @@ for($x=($index-2);$x>0;$x--) {
 		</div>
 		<script type="text/javascript">
 			$(document).ready(function() {
+				$("#skipDb").click(function(e) {
+					e.preventDefault();
+					$(".db-host").val($("#dbConfigHost").val());
+					$(".db-new-user").val($("#dbConfigUser").val());
+					$(".db-new-password").val($("#dbConfigPassword").val());
+					$("#dbInstaller").fadeOut("fast",function() {
+						$("#configApp").fadeIn("fast");
+					});
+				});
+
 				$("#createUser").submit(function() {
 					if ($("#password").val() == $("#confirmPassword").val()) {
 						$.ajax({type:"POST",url:"<?php echo $_SERVER['PHP_SELF'];?>",data:$(this).serialize()}).done(function(data) {
@@ -297,7 +313,7 @@ for($x=($index-2);$x>0;$x--) {
 								if (parseInt(user.result) == 1) {
 									message = "User added!";
 									$("#createUser").fadeOut("fast",function() {
-										$("#goLogin a").attr("href",$("#pathHttp").val()+$("#pathAppDir").val()+"/login.php");
+										$("#goLogin a").attr("href",$("#pathHttp").val()+$("#pathAppDir").val());
 										$("#goLogin").fadeIn("fast");
 									});
 								} else {
@@ -322,6 +338,7 @@ for($x=($index-2);$x>0;$x--) {
 								message = "Configuration file generated!";
 								$("#configApp").fadeOut("fast");
 								$("#createUser").fadeIn("fast");
+								$("#skipToLogin").attr("href",$("#pathHttp").val()+$("#pathAppDir").val());
 							} else {
 								message = "There was an error building the configuration file...";
 							}
