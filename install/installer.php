@@ -140,6 +140,10 @@ if (!empty($_POST['user'])) {
 				margin-top: 4px;
 			}
 
+			.inline {
+				display: inline;
+			}
+
 			.column {
 				display: inline-block;
 				vertical-align: top;
@@ -265,6 +269,20 @@ for($x=($index-2);$x>0;$x--) {
 				<input class="db-host" id="configHost" type="hidden" name="config[db][host]" />
 				<input class="db-new-user" id="configUser" type="hidden" name="config[db][user]" />
 				<input class="db-new-password" id="configPassword" type="hidden" name="config[db][password]" />
+				<label for="config[usecas]">CAS Login</label>
+				<input class="inline" type="radio" name="config[usecas]" value="1" /> On
+				<input class="inline" type="radio" name="config[usecas]" value="0" /> Off
+				<label for="config[db][debug]">Database Debug</label>
+				<input class="inline" type="radio" name="config[db][debug]" value="1" /> On
+				<input class="inline" type="radio" name="config[db][debug]" value="0" /> Off
+				<label for="config[ldap][url]">LDAP URL</label>
+				<input type="text" name="config[ldap][url]" />
+				<label for="config[ldap][port]">LDAP Port</label>
+				<input type="text" name="config[ldap][port]" />
+				<label for="config[ldap][user]">LDAP User</label>
+				<input type="text" name="config[ldap][user]" />
+				<label for="config[ldap][pasword]">LDAP Password</label>
+				<input type="text" name="config[ldap][password]" />
 				<input type="submit" name="submitconfig" value="Generate Config File" />
 			</form>
 		</div>

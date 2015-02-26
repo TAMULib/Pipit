@@ -18,7 +18,7 @@ class db {
 		try {
         	$this->handle = new PDO($dsn, $GLOBALS['config']['db']['user'], $GLOBALS['config']['db']['password']);
 		} catch (PDOException $e) {
-			if ($GLOBALS['debugDb']) {
+			if ($GLOBALS['config']['db']['debug']) {
 				echo '<pre>';
 				print_r($e);
 				echo '</pre>';
@@ -85,7 +85,7 @@ class dbobject {
 		$result = $this->db->handle->prepare($sql);
 		if ($result->execute($bindparams)) {
 			return $result->fetchAll(PDO::FETCH_ASSOC);
-		} elseif (isset($GLOBALS['debugDb']) && $GLOBALS['debugDb']) {
+		} elseif (isset($GLOBALS['config']['db']['debug']) && $GLOBALS['config']['db']['debug']) {
 			print_r($result->errorInfo());
 		}
 		return false;
@@ -95,7 +95,7 @@ class dbobject {
 		$result = $this->db->handle->prepare($sql);
 		if ($result->execute($bindparams)) {
 			return true;
-		} elseif (isset($GLOBALS['debugDb']) && $GLOBALS['debugDb']) {
+		} elseif (isset($GLOBALS['config']['db']['debug']) && $GLOBALS['config']['db']['debug']) {
 			print_r($result->errorInfo());
 		}
 		return false;
