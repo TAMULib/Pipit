@@ -7,7 +7,7 @@ class widgets extends dbobject {
 	}
 
 	public function getWidgets() {
-		$sql = "SELECT * FROM `widgets` ORDER BY `name`";
+		$sql = "SELECT * FROM `{$this->primaryTable}` ORDER BY `name`";
 		return $this->queryWithIndex($sql,"id");
 	}
 
