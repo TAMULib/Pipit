@@ -47,6 +47,7 @@ if (array_key_exists($controller,$pages) || $controller == 'user') {
 } else {
 	$filename = "{$config['path_controllers']}default.control.php";
 }
+
 //try to load the controller
 if (!empty($filename) && is_file($filename)) {
 	include $filename;
@@ -57,17 +58,18 @@ if (!empty($filename) && is_file($filename)) {
 		} else {
 			$viewpath = loadView($viewfile);
 		}
-		if (isset($viewpath) && $viewpath) {
-			include $viewpath;
-		} else {
-			$system[] = 'Error loading view';
-		}
 	}
 } else {
 	$system[] = 'Error loading content';
 }
+
+
 //display the content
 include "{$config['path_app']}layouts/header.lo.php";
-echo $out;
+if (isset($viewpath) && $viewpath) {
+	include $viewpath;
+} else {
+	$system[] = 'Error loading view';
+}
 include "{$config['path_app']}layouts/footer.lo.php";
 ?>

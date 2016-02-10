@@ -1,7 +1,7 @@
 <?php
-$out .= '<div class="do-results">';
+echo '<div class="do-results">';
 if ($users) {
-	$out .= '<table class="list">
+	echo '<table class="list">
 				<tr>
 					<th>Last Name</th>
 					<th>First Name</th>
@@ -16,7 +16,7 @@ if ($users) {
 			$rowClass = null;
 			$enableToggle = 'disable';
 		}
-		$out .= "<tr{$rowClass}>
+		echo "<tr{$rowClass}>
 					<td>{$user['name_last']}</td>
 					<td>{$user['name_first']}</td>
 					<td>{$user['email']}</td>
@@ -26,9 +26,9 @@ if ($users) {
 					</td>
 				</tr>";
 	}
-	$out .= '</table>';
+	echo '</table>';
 } else {
-	$out .= 'No users, yet!';
+	echo 'No users, yet!';
 }
-$out .= '</div>';
+echo '</div>';
 ?>

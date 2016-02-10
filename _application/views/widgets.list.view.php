@@ -1,13 +1,15 @@
+<div class="do-results">
 <?php
-$out .= '<div class="do-results">';
 if ($widgets) {
-	$out .= '<table class="list">
-				<tr>
-					<th>Name</th>
-					<th>Actions</th>
-				</tr>';
+?>
+	<table class="list">
+		<tr>
+			<th>Name</th>
+			<th>Actions</th>
+		</tr>
+<?php
 	foreach ($widgets as $widget) {
-		$out .= "<tr>
+		echo "<tr>
 					<td>{$widget['name']}</td>
 					<td class=\"capitalize\">
 						<a class=\"do-loadmodal\" href=\"{$app_http}?action=edit&id={$widget['id']}\">Edit</a> | 
@@ -15,9 +17,11 @@ if ($widgets) {
 					</td>
 				</tr>";
 	}
-	$out .= '</table>';
-} else {
-	$out .= 'No widgets, yet!';
-}
-$out .= '</div>';
 ?>
+	</table>
+<?php
+} else {
+	echo 'No widgets, yet!';
+}
+?>
+</div>

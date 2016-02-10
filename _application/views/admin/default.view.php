@@ -1,3 +1,3 @@
 <?php
-$out .= 'Adminify!';
+echo 'Adminify!';
 ?>

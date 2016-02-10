@@ -1,5 +1,5 @@
 <?php
-$out .= '<form class="do-submit" name="editwidget" method="POST" action="'.$app_http.'">
+echo '<form class="do-submit" name="editwidget" method="POST" action="'.$app_http.'">
 			<input type="hidden" name="action" value="update" />
 			<input type="hidden" name="id" value="'.$widget['id'].'" />
 			<div class="column column-half">
