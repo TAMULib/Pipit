@@ -28,7 +28,7 @@ if (array_key_exists($controller,$pages) || $controller == 'user') {
 		//if the user is an admin, load the admin controller, otherwise, redirect to the home page
 		if ($globaluser->isAdmin()) {
 			if ($controller) {
-				$app_http = "{$config['path_http']}admin/{$controller}";
+				$app_http = "{$config['path_http']}admin/{$controller}/";
 				$filename = "{$config['path_controllers']}admin/{$controller}.control.php";
 			} else {
 				$app_http = "{$config['path_http']}admin/";
