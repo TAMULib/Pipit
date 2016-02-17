@@ -4,6 +4,7 @@ $page['navigation'] = array(
 						array("name"=>"list"),
 						array("name"=>"add","action"=>"add","modal"=>true));
 $page['search'] = true;
+$viewRenderer->setPage($page);
 $twidgets = new widgets();
 
 if (isset($data['action'])) {

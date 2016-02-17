@@ -2,17 +2,21 @@
 class htmlviewrenderer implements ViewRenderer {
 	private $variables = array();
 	private $viewFile = null;
+	private $appContext = null;
 
-	public function __construct(&$config,&$globaluser,&$pages) {
-		$this->registerViewVariable("config",$config);
-		$this->registerViewVariable("globaluser",$globaluser);
-		$this->registerViewVariable("pages",$pages);
+	public function __construct() {
+		$this->registerAppContextProperty("config", $GLOBALS['config']);
+		$this->registerAppContextProperty("globaluser", $GLOBALS['globaluser']);
+		$this->registerAppContextProperty("pages", $GLOBALS['pages']);
+		$this->registerAppContextProperty("system", $GLOBALS['system']);
 	}
 
 	public function renderView() {
-		$config = $this->getViewVariable("config");
-		$globaluser = $this->getViewVariable("globaluser");
-		$pages = $this->getViewVariable("pages");
+		$config =& $this->getAppContextProperty("config");
+		$globaluser =& $this->getAppContextProperty("globaluser");
+		$pages =& $this->getAppContextProperty("pages");
+		$system =& $this->getAppContextProperty("system");
+		$page =& $this->getAppContextProperty("page");
 		include "{$config['path_app']}layouts/header.lo.php";
 		if ($this->viewFile) {
 			$parameters = $this->getViewVariables();
@@ -24,7 +28,7 @@ class htmlviewrenderer implements ViewRenderer {
 	}
 
 	public function setView($viewFile,$isAdmin=false) {
-		$config = $this->getViewVariable("config");
+		$config = $this->getAppContextProperty("config");
 		$fullPath = "{$config['path_views']}".(($isAdmin) ? 'admin/':'')."{$viewFile}";
 		if (is_file($fullPath)) {
 			$this->viewFile = $fullPath;
@@ -45,6 +49,18 @@ class htmlviewrenderer implements ViewRenderer {
 
 	public function getViewVariable($name) {
 		return $this->variables[$name];
+	}
+
+	private function registerAppContextProperty($name,$data) {
+		$this->appContext[$name] =& $data;
+	}
+
+	public function getAppContextProperty($name) {
+		return $this->appContext[$name];
+	}
+
+	public function setPage($page) {
+		$this->registerAppContextProperty("page",$page);
 	}
 }
 ?>
