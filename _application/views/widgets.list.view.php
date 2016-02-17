@@ -1,6 +1,6 @@
 <div class="do-results">
 <?php
-if ($widgets) {
+if ($parameters['widgets']) {
 ?>
 	<table class="list">
 		<tr>
@@ -8,7 +8,7 @@ if ($widgets) {
 			<th>Actions</th>
 		</tr>
 <?php
-	foreach ($widgets as $widget) {
+	foreach ($parameters['widgets'] as $widget) {
 		echo "<tr>
 					<td>{$widget['name']}</td>
 					<td class=\"capitalize\">

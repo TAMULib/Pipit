@@ -20,7 +20,9 @@ if (isset($config['usecas']) && $config['usecas']) {
 } else {
 	$globaluser = new user();
 }
-$out = '';
+
+$viewRenderer = new htmlviewrenderer($config,$globaluser,$pages);
+
 //load admin controller if user is logged in and an admin page
 //if (isset($accesslevel) && ($accesslevel == 1)) {
 if (array_key_exists($controller,$pages) || $controller == 'user') {
@@ -38,7 +40,7 @@ if (array_key_exists($controller,$pages) || $controller == 'user') {
 			header("Location:{$config['path_http']}");
 		}
 	} elseif ($globaluser->isLoggedIn() || (!$globaluser->isLoggedIn() && $controller == 'user')) {
-	//load standard controller
+		//load standard controller
 		$app_http = "{$config['path_http']}{$controller}/";
 		$filename = "{$config['path_controllers']}{$controller}.control.php";
 	} else {
@@ -51,12 +53,12 @@ if (array_key_exists($controller,$pages) || $controller == 'user') {
 //try to load the controller
 if (!empty($filename) && is_file($filename)) {
 	include $filename;
-	//if the controller defined a $viewfile, try to load it
+	//if the controller defined a $viewfile, register it with the view renderer
 	if (isset($viewfile)) {
 		if (!empty($pages[$controller]['admin']) && $pages[$controller]['admin'] == true) {
-			$viewpath = loadView($viewfile,$globaluser->isAdmin());
+			$viewRenderer->setView($viewfile,$globaluser->isAdmin());
 		} else {
-			$viewpath = loadView($viewfile);
+			$viewRenderer->setView($viewfile);
 		}
 	}
 } else {
@@ -65,11 +67,5 @@ if (!empty($filename) && is_file($filename)) {
 
 
 //display the content
-include "{$config['path_app']}layouts/header.lo.php";
-if (isset($viewpath) && $viewpath) {
-	include $viewpath;
-} else {
-	$system[] = 'Error loading view';
-}
-include "{$config['path_app']}layouts/footer.lo.php";
+$viewRenderer->renderView();
 ?>

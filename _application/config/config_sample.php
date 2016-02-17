@@ -14,6 +14,7 @@ $config['path_file'] = "{$config['path_root']}app/";
 $config['path_app'] = "{$config['path_file']}_application/";
 $config['path_lib'] = "{$config['path_app']}lib/";
 $config['path_classes'] = "{$config['path_app']}classes/";
+$config['path_interfaces'] = "{$config['path_app']}interfaces/";
 $config['path_controllers'] = "{$config['path_app']}controllers/";
 $config['path_views'] = "{$config['path_app']}views/";
 

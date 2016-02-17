@@ -10,7 +10,7 @@ if (isset($data['action'])) {
 	switch ($data['action']) {
 		case 'search':
 			if (isset($data['term'])) {
- 				$widgets = $twidgets->searchWidgetsBasic($data['term']);
+ 				$viewRenderer->registerViewVariable("widgets",$twidgets->searchWidgetsBasic($data['term']));
 				$viewfile = "widgets.list.view.php";
 			} else {
 				$system[] = 'There was an error with the search';
@@ -44,12 +44,15 @@ if (isset($data['action'])) {
 		case 'edit':
 			$page['subtitle'] = 'Update Widget';
 			if (isset($data['id']) && is_numeric($data['id']) && ($widget = $twidgets->getWidgetById($data['id']))) {
+				$widget = $viewRenderer->registerViewVariable("widget",$widget);
 				$viewfile = "widgets.edit.view.php";
+			} else {
+				echo 'no stuff';
 			}
 		break;
 	}
 } else {
-	$widgets = $twidgets->getWidgets();
+	$viewRenderer->registerViewVariable("widgets", $twidgets->getWidgets());
 	$viewfile = "widgets.list.view.php";
 }
 ?>
