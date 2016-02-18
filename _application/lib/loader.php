@@ -25,7 +25,11 @@ if (isset($config['usecas']) && $config['usecas']) {
 	$globaluser = new user();
 }
 
-$viewRenderer = new htmlviewrenderer();
+if (isset($data['json']) && $data['json']) {
+	$viewRenderer = new jsonviewrenderer();
+} else {
+	$viewRenderer = new htmlviewrenderer();
+}
 
 //load admin controller if user is logged in and an admin page
 //if (isset($accesslevel) && ($accesslevel == 1)) {
