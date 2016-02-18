@@ -30,10 +30,12 @@ if (array_key_exists($controller,$pages) || $controller == 'user') {
 		//if the user is an admin, load the admin controller, otherwise, redirect to the home page
 		if ($globaluser->isAdmin()) {
 			if ($controller) {
-				$app_http = "{$config['path_http']}admin/{$controller}/";
+//				$app_http = "{$config['path_http']}admin/{$controller}/";
+				$viewRenderer->registerAppContextProperty("app_http", "{$config['path_http']}admin/{$controller}/");
 				$filename = "{$config['path_controllers']}admin/{$controller}.control.php";
 			} else {
-				$app_http = "{$config['path_http']}admin/";
+//				$app_http = "{$config['path_http']}admin/";
+				$viewRenderer->registerAppContextProperty("app_http", "{$config['path_http']}admin/");
 				$filename = "{$config['path_controllers']}admin/default.control.php";
 			}
 		} else {
@@ -41,7 +43,9 @@ if (array_key_exists($controller,$pages) || $controller == 'user') {
 		}
 	} elseif ($globaluser->isLoggedIn() || (!$globaluser->isLoggedIn() && $controller == 'user')) {
 		//load standard controller
-		$app_http = "{$config['path_http']}{$controller}/";
+//		$app_http = "{$config['path_http']}{$controller}/";
+		$viewRenderer->registerAppContextProperty("app_http", "{$config['path_http']}{$controller}/");
+
 		$filename = "{$config['path_controllers']}{$controller}.control.php";
 	} else {
 		header("Location:{$config['path_http']}");

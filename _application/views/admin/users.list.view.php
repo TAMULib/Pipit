@@ -1,4 +1,5 @@
 <?php
+$users = $parameters['users'];
 echo '<div class="do-results">';
 if ($users) {
 	echo '<table class="list">

@@ -1,5 +1,5 @@
 <?php
-echo '<form name="login" id="login" method="POST" action="'.$app['path_http'].'">
+echo '<form name="login" id="login" method="POST" action="'.$app_http.'">
 			<input type="hidden" name="action" value="login" />
 			<label for="user[username]">Username</label>
 			<input type="text" name="user[username]" />

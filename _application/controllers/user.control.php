@@ -1,5 +1,5 @@
 <?php
-$app['path_http'] = "{$config['path_http']}login.php";
+$viewRenderer->registerAppContextProperty("app_http", "{$config['path_http']}login.php");
 
 if (!empty($data['action'])) {
 	switch ($data['action']) {

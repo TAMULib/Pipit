@@ -17,6 +17,7 @@ class htmlviewrenderer implements ViewRenderer {
 		$pages =& $this->getAppContextProperty("pages");
 		$system =& $this->getAppContextProperty("system");
 		$page =& $this->getAppContextProperty("page");
+		$app_http =& $this->getAppContextProperty("app_http");
 		include "{$config['path_app']}layouts/header.lo.php";
 		if ($this->viewFile) {
 			$parameters = $this->getViewVariables();
@@ -51,7 +52,7 @@ class htmlviewrenderer implements ViewRenderer {
 		return $this->variables[$name];
 	}
 
-	private function registerAppContextProperty($name,$data) {
+	public function registerAppContextProperty($name,$data) {
 		$this->appContext[$name] =& $data;
 	}
 

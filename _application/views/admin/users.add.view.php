@@ -9,6 +9,6 @@ echo '<form class="do-submit" name="adduser" method="POST" action="'.$app_http.'
 				<label for="user[email]">Email</label>
 				<input type="text" name="user[email]" />
 			</div>
-			<input type="submit" name="submituser" value="Add Owner" />
+			<input type="submit" name="submituser" value="Add User" />
 		</form>';
 ?>

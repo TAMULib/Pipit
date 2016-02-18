@@ -1,3 +1,3 @@
 <?php
-$out .= 'default';
+echo 'default';
 ?>

@@ -21,10 +21,10 @@ if (isset($data['action'])) {
 		case 'search':
 			$page['subtitle'] = '<a href="'.$app['path_http'].'">New Search</a> | Results';
 			if (isset($data['term'])) {
- 				$users = $tusers->searchUsersBasic($data['term']);
+ 				$viewRenderer->registerViewVariable("users",$tusers->searchUsersBasic($data['term']));
 				$viewfile = "users.list.view.php";
 			} elseif (isset($data['advancedsearch'])) {
-				$users = $tusers->searchUsersAdvanced($data['advancedsearch']);
+ 				$viewRenderer->registerViewVariable("users",$tusers->searchUsersAdvanced($data['advancedsearch']));
 				$viewfile = "users.list.view.php";
 			} else {
 				$system[] = 'There was an error with the search';
@@ -65,15 +65,16 @@ if (isset($data['action'])) {
 		case 'edit':
 			$page['subtitle'] = 'Update User';
 			if (isset($data['id']) && is_numeric($data['id'])) {
-				$user = $tusers->getUserById($data['id']);
+ 				$viewRenderer->registerViewVariable("user",$tusers->getUserById($data['id']));
 				$viewfile = "users.edit.view.php";
 			}
 		break;
 	}
 } else {
 	$page['subtitle'] = 'Users';
-	$users = $tusers->getUsers();
+ 	$viewRenderer->registerViewVariable("users",$tusers->getUsers());
 	$viewfile = "users.list.view.php";
 }
+$viewRenderer->setPage($page);
 
 ?>
