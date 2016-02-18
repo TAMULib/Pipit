@@ -19,18 +19,13 @@ if (!empty($data['action'])) {
 		case 'login':
 			if ($data['user']['username'] && $data['user']['password']) {
 				if ($globaluser->logIn($data['user']['username'],$data['user']['password'])) {
-					if ($globaluser->isAdmin()) {
-						$redirectURL = "{$config['path_http']}admin/";
-					} else {
-						$redirectURL = "{$config['path_http']}";
-					}
-					header("Location:{$redirectURL}");
+					header("Location:{$config['path_http']}");
 				} else {
 					$system[] = 'Invalid username/password combination';
 					$viewfile = "user.login.view.php";
 				}
 			} else {
-				$system[] = 'Please provide both your username and passwor';
+				$system[] = 'Please provide both your username and password';
 			}
 		break;
 	}

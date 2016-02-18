@@ -4,7 +4,6 @@ $page['navigation'] = array(
 						array("name"=>"list"),
 						array("name"=>"add","action"=>"add","modal"=>true));
 $page['search'] = true;
-$viewRenderer->setPage($page);
 $twidgets = new widgets();
 
 if (isset($data['action'])) {
@@ -53,7 +52,10 @@ if (isset($data['action'])) {
 		break;
 	}
 } else {
+	$page['subtitle'] = 'Widgets';
 	$viewRenderer->registerViewVariable("widgets", $twidgets->getWidgets());
 	$viewfile = "widgets.list.view.php";
 }
+$viewRenderer->setPage($page);
+
 ?>

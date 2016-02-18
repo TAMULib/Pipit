@@ -16,11 +16,4 @@ spl_autoload_register(function ($name) {
 	}
 });
 
-function loadView($filename,$isadmin=false) {
-	$fullpath = "{$GLOBALS['config']['path_views']}".(($isadmin) ? 'admin/':'')."{$filename}";
-	if (is_file($fullpath)) {
-		return $fullpath;
-	}
-	return false;
-}
 ?>

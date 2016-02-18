@@ -1,3 +1,3 @@
 <?php
-echo 'default';
+$viewfile = "default.view.php";
 ?>
