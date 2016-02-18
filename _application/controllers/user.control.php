@@ -7,13 +7,13 @@ if (!empty($data['action'])) {
 			if ($globaluser->isLoggedIn()) {
 				if ($globaluser->logOut()) {
 					$system[] = "You've been logged out";
-					$viewfile = "user.login.view.php";
+					$viewName = "user.login";
 				} else {
 					$system[] = 'There was an error logging you out';
 				}
 			} else {
 				$system[] = "You don't seem to be logged in";
-				$viewfile = "user.login.view.php";
+				$viewName = "user.login";
 			}
 		break;
 		case 'login':
@@ -22,7 +22,7 @@ if (!empty($data['action'])) {
 					header("Location:{$config['path_http']}");
 				} else {
 					$system[] = 'Invalid username/password combination';
-					$viewfile = "user.login.view.php";
+					$viewName = "user.login";
 				}
 			} else {
 				$system[] = 'Please provide both your username and password';
@@ -31,9 +31,9 @@ if (!empty($data['action'])) {
 	}
 } else {
 	if ($globaluser->isLoggedIn()) {
-		$viewfile = "user.info.view.php";
+		$viewName = "user.info";
 	} else {
-		$viewfile = "user.login.view.php";
+		$viewName = "user.login";
 	}
 }
 ?>

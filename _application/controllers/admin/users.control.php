@@ -15,17 +15,17 @@ if (isset($data['action'])) {
 		case 'ldapsync':
 			$results = $tusers->syncWithLdap();
 			foreach ($results as $result) {
-				$out .= "<div>{$result}</div>";
+				echo "<div>{$result}</div>";
 			}
 		break;
 		case 'search':
 			$page['subtitle'] = '<a href="'.$app['path_http'].'">New Search</a> | Results';
 			if (isset($data['term'])) {
  				$viewRenderer->registerViewVariable("users",$tusers->searchUsersBasic($data['term']));
-				$viewfile = "users.list.view.php";
+				$viewName = "users.list";
 			} elseif (isset($data['advancedsearch'])) {
  				$viewRenderer->registerViewVariable("users",$tusers->searchUsersAdvanced($data['advancedsearch']));
-				$viewfile = "users.list.view.php";
+				$viewName = "users.list";
 			} else {
 				$system[] = 'There was an error with the search';
 			}
@@ -60,20 +60,20 @@ if (isset($data['action'])) {
 		break;
 		case 'add':
 			$page['subtitle'] = 'New User';
-			$viewfile = "users.add.view.php";
+			$viewName = "users.add";
 		break;
 		case 'edit':
 			$page['subtitle'] = 'Update User';
 			if (isset($data['id']) && is_numeric($data['id'])) {
  				$viewRenderer->registerViewVariable("user",$tusers->getUserById($data['id']));
-				$viewfile = "users.edit.view.php";
+				$viewName = "users.edit";
 			}
 		break;
 	}
 } else {
 	$page['subtitle'] = 'Users';
  	$viewRenderer->registerViewVariable("users",$tusers->getUsers());
-	$viewfile = "users.list.view.php";
+	$viewName = "users.list";
 }
 $viewRenderer->setPage($page);
 

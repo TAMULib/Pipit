@@ -59,11 +59,11 @@ if (array_key_exists($controller,$pages) || $controller == 'user') {
 if (!empty($filename) && is_file($filename)) {
 	include $filename;
 	//if the controller defined a $viewfile, register it with the view renderer
-	if (isset($viewfile)) {
+	if (isset($viewName)) {
 		if (!empty($pages[$controller]['admin']) && $pages[$controller]['admin'] == true) {
-			$viewRenderer->setView($viewfile,$globaluser->isAdmin());
+			$viewRenderer->setView($viewName,$globaluser->isAdmin());
 		} else {
-			$viewRenderer->setView($viewfile);
+			$viewRenderer->setView($viewName);
 		}
 	}
 } else {
