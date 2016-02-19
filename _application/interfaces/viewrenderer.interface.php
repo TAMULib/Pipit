@@ -1,5 +1,5 @@
 <?php
-interface ViewRenderer {
+interface viewrenderer {
 	public function renderView();
 	public function setViewVariables($data);
 	public function registerViewVariable($name,$data);

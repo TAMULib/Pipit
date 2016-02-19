@@ -1,5 +1,5 @@
 <?php
-class htmlviewrenderer implements ViewRenderer {
+class htmlviewrenderer implements viewrenderer {
 	private $variables = array();
 	private $viewFile = null;
 	private $appContext = null;

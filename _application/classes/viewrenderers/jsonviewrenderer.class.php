@@ -1,5 +1,5 @@
 <?php
-class jsonviewrenderer implements ViewRenderer {
+class jsonviewrenderer implements viewrenderer {
 	private $variables = array();
 	private $appContext = null;
 
