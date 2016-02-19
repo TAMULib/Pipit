@@ -29,7 +29,7 @@ class htmlviewrenderer implements ViewRenderer {
 
 	public function setView($viewFile,$isAdmin=false) {
 		$config = $this->getAppContextProperty("config");
-		$fullPath = "{$config['path_views']}".(($isAdmin) ? 'admin/':'')."{$viewFile}.view.php";
+		$fullPath = "{$config['path_views']}html/".(($isAdmin) ? 'admin/':'')."{$viewFile}.view.php";
 		if (is_file($fullPath)) {
 			$this->viewFile = $fullPath;
 		}
