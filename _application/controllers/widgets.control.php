@@ -11,7 +11,7 @@ if (isset($data['action'])) {
 		case 'search':
 			if (isset($data['term'])) {
  				$viewRenderer->registerViewVariable("widgets",$twidgets->searchWidgetsBasic($data['term']));
-				$viewName = "widgets";
+				$viewName = "widgets.list";
 			} else {
 				$system[] = 'There was an error with the search';
 			}
