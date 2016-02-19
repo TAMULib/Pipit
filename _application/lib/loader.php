@@ -74,6 +74,7 @@ if (!empty($filename) && is_file($filename)) {
 	$system[] = 'Error loading content';
 }
 
+$viewRenderer->registerAppContextProperty("system", $system);
 
 //display the content
 $viewRenderer->renderView();

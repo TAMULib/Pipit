@@ -8,7 +8,6 @@ class htmlviewrenderer implements ViewRenderer {
 		$this->registerAppContextProperty("config", $GLOBALS['config']);
 		$this->registerAppContextProperty("globaluser", $GLOBALS['globaluser']);
 		$this->registerAppContextProperty("pages", $GLOBALS['pages']);
-		$this->registerAppContextProperty("system", $GLOBALS['system']);
 	}
 
 	public function renderView() {
