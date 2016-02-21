@@ -1,5 +1,7 @@
 <?php
-class usercas extends user {
+namespace TAMU\Seed\Classes\Data;
+
+class UserCAS extends User {
 	private $casPaths;
 	private $serverInfo;
 

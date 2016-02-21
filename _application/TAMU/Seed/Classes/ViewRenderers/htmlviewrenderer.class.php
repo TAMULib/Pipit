@@ -1,5 +1,8 @@
 <?php
-class htmlviewrenderer implements viewrenderer {
+namespace TAMU\Seed\Classes\ViewRenderers;
+use TAMU\Seed\Interfaces as Interfaces;
+
+class htmlviewrenderer implements Interfaces\ViewRenderer {
 	private $variables = array();
 	private $viewFile = null;
 	private $appContext = null;

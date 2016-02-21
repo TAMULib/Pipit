@@ -1,4 +1,5 @@
 <?php
+namespace TAMU\Seed;
 if (isset($forceRedirectUrl) && !empty($forceRedirectUrl)) {
 	header("Location: {$forceRedirectUrl}");
 }
@@ -13,7 +14,7 @@ if (!isset($data)) {
 }
 
 if (isset($config['usecas']) && $config['usecas']) {
-	$globaluser = new usercas($config['path_http']);
+	$globaluser = new Classes\Data\UserCAS($config['path_http']);
 	if (!empty($_GET['ticket'])) {
 		if ($globaluser->processLogIn($_GET['ticket'])) {
 			header("Location:{$config['path_http']}");
@@ -22,13 +23,13 @@ if (isset($config['usecas']) && $config['usecas']) {
 		$globaluser->initiateLogIn();
 	}
 } else {
-	$globaluser = new user();
+	$globaluser = new Classes\Data\User();
 }
 
 if (isset($data['json']) && $data['json']) {
-	$viewRenderer = new jsonviewrenderer();
+	$viewRenderer = new Classes\ViewRenderers\jsonviewrenderer();
 } else {
-	$viewRenderer = new htmlviewrenderer();
+	$viewRenderer = new Classes\ViewRenderers\htmlviewrenderer();
 }
 
 //load admin controller if user is logged in and an admin page

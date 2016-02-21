@@ -1,5 +1,6 @@
 <?php
-
+namespace TAMU\Seed\Classes\Data;
+use \PDO;
 /* Provides a PDO DB connection to instances of dbobject and its descendants
 */
 class db {
@@ -38,7 +39,7 @@ class db {
 
 /* A base class to be extended by any class that needs to access the DB */
 
-class dbobject {
+class DBObject {
 	protected $db;
 	protected $primaryTable;
 	

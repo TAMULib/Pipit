@@ -1,4 +1,6 @@
 <?php
+namespace TAMU\Seed;
+
 $page['title'] = 'Manage Users';
 $page['navigation'] = array(
 						array("name"=>"list"),
@@ -8,7 +10,7 @@ if ($config['ldap']['url'] && $config['ldap']['port']) {
 }
 $page['search'] = array(array("name"=>"name_last","type"=>"text"),
 						array("name"=>"name_first","type"=>"text"));
-$tusers = new users();
+$tusers = new Classes\Data\Users();
 
 if (isset($data['action'])) {
 	switch ($data['action']) {

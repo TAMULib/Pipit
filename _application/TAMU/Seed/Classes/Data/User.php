@@ -1,5 +1,7 @@
 <?php
-class user extends dbobject {
+namespace TAMU\Seed\Classes\Data;
+
+class User extends DBObject {
 	private $sessionName;
 	private $profile;
 	private $passSalt;

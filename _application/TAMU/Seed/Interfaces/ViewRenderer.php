@@ -1,5 +1,6 @@
 <?php
-interface viewrenderer {
+namespace TAMU\Seed\Interfaces;
+interface ViewRenderer {
 	public function renderView();
 	public function setViewVariables($data);
 	public function registerViewVariable($name,$data);

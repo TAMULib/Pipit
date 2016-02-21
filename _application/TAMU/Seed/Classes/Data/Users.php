@@ -1,5 +1,7 @@
 <?php
-class users extends dbobject {
+namespace TAMU\Seed\Classes\Data;
+
+class Users extends DBObject {
 
 	public function __construct() {
 		$this->primaryTable = 'users';

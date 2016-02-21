@@ -1,10 +1,12 @@
 <?php
+namespace TAMU\Seed;
+
 $page['title'] = 'Manage Widgets';
 $page['navigation'] = array(
 						array("name"=>"list"),
 						array("name"=>"add","action"=>"add","modal"=>true));
 $page['search'] = true;
-$twidgets = new widgets();
+$twidgets = new Classes\Data\Widgets();
 
 if (isset($data['action'])) {
 	switch ($data['action']) {

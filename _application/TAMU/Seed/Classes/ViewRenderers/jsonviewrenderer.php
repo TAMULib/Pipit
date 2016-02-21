@@ -1,4 +1,6 @@
 <?php
+namespace TAMU\Seed\Classes\ViewRenderers;
+
 class jsonviewrenderer implements viewrenderer {
 	private $variables = array();
 	private $appContext = null;

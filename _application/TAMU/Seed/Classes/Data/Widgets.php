@@ -1,5 +1,7 @@
 <?php
-class widgets extends dbobject {
+namespace TAMU\Seed\Classes\Data;
+
+class Widgets extends DBObject {
 
 	public function __construct() {
 		$this->primaryTable = 'widgets';
