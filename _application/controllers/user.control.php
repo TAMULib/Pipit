@@ -1,7 +1,7 @@
 <?php
 namespace TAMU\Seed;
 
-$viewRenderer->registerAppContextProperty("app_http", "{$config['path_http']}login.php");
+$viewRenderer->registerAppContextProperty("app_http", "{$config['PATH_HTTP']}login.php");
 
 if (!empty($data['action'])) {
 	switch ($data['action']) {

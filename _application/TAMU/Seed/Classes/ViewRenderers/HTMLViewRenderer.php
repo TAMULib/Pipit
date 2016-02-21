@@ -61,7 +61,10 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 	}
 
 	public function getAppContextProperty($name) {
-		return $this->appContext[$name];
+		if (isset($this->appContext[$name])) {
+			return $this->appContext[$name];
+		}
+		return null;
 	}
 
 	public function setPage($page) {

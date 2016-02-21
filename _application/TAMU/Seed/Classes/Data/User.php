@@ -4,12 +4,10 @@ namespace TAMU\Seed\Classes\Data;
 class User extends DBObject {
 	private $sessionName;
 	private $profile;
-	private $passSalt;
 
 	public function __construct() {
 		parent::__construct();
 		$this->sessionName = isset($_SESSION['sessionName']) ? $_SESSION['sessionName']:NULL;
-		$this->passSalt = $GLOBALS['config']['passwordsalt'];
 		$this->primaryTable = 'users';
 		if ($this->isLoggedIn()) {
 			$this->buildProfile();

@@ -77,48 +77,51 @@ if ($globaluser->isLoggedIn()) {
         <div id="systemBar">
 <?php
 if ($globaluser->isLoggedIn()) {
-    echo '<div style="float:right;min-width: 5%;padding:12px 20px;">Hi '.$globaluser->getProfileValue('username').'! (<a href="'.$config['PATH_HTTP'].'logout.php">logout</a>)</div>';
+    echo '  <div style="float:right;min-width: 5%;padding:12px 20px;">Hi '.$globaluser->getProfileValue('username').'! (<a href="'.$config['PATH_HTTP'].'logout.php">logout</a>)</div>';
 }
 //present any system messages
-echo '  <div class="sysMsg">';
+echo '      <div class="sysMsg">';
 if (isset($system)) {
 	foreach ($system as $msg) {
-		echo "<h4>{$msg}</h4>";
+		echo "    <h4>{$msg}</h4>";
 	}
 }
-echo '  </div>';
+echo '      </div>';
 ?>
         </div>
         <div class="container">
 <?php
-if (isset($page['title'])) {
-	echo " <h1>{$page['title']}</h1>";
-}
-echo '     <div>';
-if (isset($page['navigation'])) {
-    $size = sizeof($page['navigation']);
-    $navWidth = 15*$size;
-    $btnWidth = $navWidth/($size*.8);
-    echo "      <div style=\"width:{$navWidth}%\" class=\"inline-block navigation subNav\">";
-	foreach ($page['navigation'] as $subnav) {
-        $isCurrent = (isset($data['action']) && isset($subnav['action']) && $subnav['action'] == $data['action']) || (!isset($data['action']) && !isset($subnav['action']));
-		echo "    <a style=\"width:{$btnWidth}%\" class=\"capitalize".($isCurrent ? ' current':'').(isset($subnav['modal']) ? ' do-loadmodal':'')."\" href=\"{$app_http}".((isset($subnav['action'])) ? "?action={$subnav['action']}":'')."\">{$subnav['name']}</a>";
-	}
-    echo '      </div>';
-}
+if (!empty($page)) {
+    if (isset($page['title'])) {
+    	echo "
+            <h1>{$page['title']}</h1>";
+    }
+    echo '  <div>';
+    if (isset($page['navigation'])) {
+        $size = sizeof($page['navigation']);
+        $navWidth = 15*$size;
+        $btnWidth = $navWidth/($size*.8);
+        echo "  <div style=\"width:{$navWidth}%\" class=\"inline-block navigation subNav\">";
+    	foreach ($page['navigation'] as $subnav) {
+            $isCurrent = (isset($data['action']) && isset($subnav['action']) && $subnav['action'] == $data['action']) || (!isset($data['action']) && !isset($subnav['action']));
+    		echo "<a style=\"width:{$btnWidth}%\" class=\"capitalize".($isCurrent ? ' current':'').(isset($subnav['modal']) ? ' do-loadmodal':'')."\" href=\"{$app_http}".((isset($subnav['action'])) ? "?action={$subnav['action']}":'')."\">{$subnav['name']}</a>";
+    	}
+        echo '  </div>';
+    }
 
-if (isset($page['search'])) {
-    echo '  <form id="doSearch" class="do-submit inline" name="search" method="POST" action="'.$app_http.'">
-                <input type="hidden" name="action" value="search" />
-                <input id="searchTerm" class="inline" type="text" name="term" />';
-    echo '      <input id="searchResults" class="inline" type="submit" name="submit" value="Search" />
-                <div class="inline" id="searchStatus">
-                    <a class="hidden" href="#clearSearch">clear search</a>
-                </div>
-            </form>';
+    if (isset($page['search'])) {
+        echo '  <form id="doSearch" class="do-submit inline" name="search" method="POST" action="'.$app_http.'">
+                    <input type="hidden" name="action" value="search" />
+                    <input id="searchTerm" class="inline" type="text" name="term" />';
+        echo '      <input id="searchResults" class="inline" type="submit" name="submit" value="Search" />
+                    <div class="inline" id="searchStatus">
+                        <a class="hidden" href="#clearSearch">clear search</a>
+                    </div>
+                </form>';
+    }
+    echo '    </div>';
 }
-echo '    </div>
-          <div id="modalContent">';
+echo '        <div id="modalContent">';
 if (isset($page['subtitle']) && $page['subtitle']) {
 	echo "     <h4 class=\"capitalize\">{$page['subtitle']}</h4>";
 }

@@ -5,7 +5,7 @@ $page['title'] = 'Manage Users';
 $page['navigation'] = array(
 						array("name"=>"list"),
 						array("name"=>"add","action"=>"add","modal"=>true));
-if ($config['ldap']['url'] && $config['ldap']['port']) {
+if ($config['LDAP_URL'] && $config['LDAP_PORT']) {
 	$page['navigation'][] =	array("name"=>"LDAP Sync","action"=>"ldapsync","modal"=>true);
 }
 $page['search'] = array(array("name"=>"name_last","type"=>"text"),
@@ -21,7 +21,6 @@ if (isset($data['action'])) {
 			}
 		break;
 		case 'search':
-			$page['subtitle'] = '<a href="'.$app['path_http'].'">New Search</a> | Results';
 			if (isset($data['term'])) {
  				$viewRenderer->registerViewVariable("users",$tusers->searchUsersBasic($data['term']));
 				$viewName = "users.list";
