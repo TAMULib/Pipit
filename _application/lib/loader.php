@@ -37,9 +37,9 @@ if (isset($config['usecas']) && $config['usecas']) {
 }
 
 if (isset($data['json']) && $data['json']) {
-	$viewRenderer = new Classes\ViewRenderers\jsonviewrenderer();
+	$viewRenderer = new Classes\ViewRenderers\JSONViewRenderer();
 } else {
-	$viewRenderer = new Classes\ViewRenderers\htmlviewrenderer();
+	$viewRenderer = new Classes\ViewRenderers\HTMLViewRenderer();
 }
 
 //load admin controller if user is logged in and an admin page
