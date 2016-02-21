@@ -22,14 +22,14 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 		$page =& $this->getAppContextProperty("page");
 		$app_http =& $this->getAppContextProperty("app_http");
 		$controller =& $this->getAppContextProperty("controller");
-		include "{$config['PATH_APP']}layouts/header.lo.php";
+		include "{$config['PATH_VIEWS']}html/layouts/header.lo.php";
 		if ($this->viewFile) {
 			$parameters = $this->getViewVariables();
 			include $this->viewFile;
 		} else {
 			echo 'Error loading view';
 		}
-		include "{$config['PATH_APP']}layouts/footer.lo.php";
+		include "{$config['PATH_VIEWS']}html/layouts/footer.lo.php";
 	}
 
 	public function setView($viewFile,$isAdmin=false) {
