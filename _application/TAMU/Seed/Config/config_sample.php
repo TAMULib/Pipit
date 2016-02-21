@@ -15,9 +15,9 @@ define('PATH_VIEWS', PATH_APP."views/");
 
 //web paths
 define('PATH_HTTP', "http://localhost/".APP_DIRECTORY."/");
-define('PATH_CSS', PATH_HTTP.APP_BASE."/css/");
-define('PATH_JS', PATH_HTTP.APP_BASE."/js/");
-define('PATH_IMAGES', PATH_HTTP.APP_BASE."/images/");
+define('PATH_CSS', PATH_HTTP."resources/css/");
+define('PATH_JS', PATH_HTTP."resources/js/");
+define('PATH_IMAGES', PATH_HTTP."resources/images/");
 
 define('USECAS', false);
 
