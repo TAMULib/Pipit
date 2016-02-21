@@ -1,7 +1,8 @@
 <?php
 namespace TAMU\Seed\Classes\ViewRenderers;
+use TAMU\Seed\Interfaces as Interfaces;
 
-class jsonviewrenderer implements viewrenderer {
+class jsonviewrenderer implements Interfaces\ViewRenderer {
 	private $variables = array();
 	private $appContext = null;
 
