@@ -1,5 +1,7 @@
 <?php
-class ldap {
+namespace \TAMU\Seed\Utilities;
+
+class LDAPConnector {
 	private $url;
 	private $port;
 
