@@ -3,28 +3,28 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title><?php echo $config['app']['name'];?></title>
+        <title><?php echo APP_NAME;?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <link rel="apple-touch-icon" href="iphone-icon.png" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $config['path_css'];?>style.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_CSS'];?>style.css" media="screen"/>
 <?php
-if (is_file("{$config['path_css']}{$controller}.css")) {
-    echo '<link rel="stylesheet" type="text/css" href="'.$config['path_css'].$controller.'.css" media="screen"/>';
+if (is_file("{$config['PATH_CSS']}{$controller}.css")) {
+    echo '<link rel="stylesheet" type="text/css" href="'.$config['PATH_CSS'].$controller.'.css" media="screen"/>';
 }
 ?>
-        <link rel="stylesheet" href="<?php echo $config['path_js'];?>jquery-ui-1.11.2.custom/jquery-ui.css">
-        <script type="text/javascript" src="<?php echo $config['path_js'];?>jquery.min.js"></script>
-        <script type="text/javascript" src="<?php echo $config['path_js'];?>jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+        <link rel="stylesheet" href="<?php echo $config['PATH_JS'];?>jquery-ui-1.11.2.custom/jquery-ui.css">
+        <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>jquery.min.js"></script>
+        <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>jquery-ui-1.11.2.custom/jquery-ui.js"></script>
         <script type="text/javascript">
             var app_http = '<?php echo $app_http;?>';
         </script>
-        <script type="text/javascript" src="<?php echo $config['path_js'];?>default.js"></script>
+        <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>default.js"></script>
 <?php
-if (is_file("{$config['path_app']}js/{$controller}.js")) {
-    echo '<script type="text/javascript" src="'.$config['path_js'].$controller.'.js"></script>';
+if (is_file("{$config['PATH_APP']}js/{$controller}.js")) {
+    echo '<script type="text/javascript" src="'.$config['PATH_APP'].$controller.'.js"></script>';
 }
 ?>
         <link rel="shortcut icon" href="ico/favicon.ico">
@@ -51,7 +51,7 @@ if (is_file("{$config['path_app']}js/{$controller}.js")) {
             </div>
         </div>
         <header>
-            <h1><?php echo $config['app']['name'];?></h1>
+            <h1><?php echo $config["APP_NAME"];?></h1>
         </header>
         <div class="navigation">
 <?php
@@ -59,15 +59,15 @@ if ($globaluser->isLoggedIn()) {
     foreach ($pages as $nav) {
         if (!empty($nav['admin']) && ($nav['admin'] == true && $globaluser->isAdmin())) {
             if ($controller == $nav['path']) {
-               echo "<a class=\"capitalize current\" href=\"{$config['path_http']}admin/{$nav['path']}/\">{$nav['name']}</a>";
+               echo "<a class=\"capitalize current\" href=\"{$config['PATH_HTTP']}admin/{$nav['path']}/\">{$nav['name']}</a>";
             } else {
-                echo "<a class=\"capitalize\" href=\"{$config['path_http']}admin/{$nav['path']}/\">{$nav['name']}</a>";
+                echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}admin/{$nav['path']}/\">{$nav['name']}</a>";
             }
         } elseif (empty($nav['admin'])) {
             if ($controller == $nav['path']) {
-               echo "<a class=\"capitalize current\" href=\"{$config['path_http']}{$nav['path']}/\">{$nav['name']}</a>";
+               echo "<a class=\"capitalize current\" href=\"{$config['PATH_HTTP']}{$nav['path']}/\">{$nav['name']}</a>";
             } else {
-                echo "<a class=\"capitalize\" href=\"{$config['path_http']}{$nav['path']}/\">{$nav['name']}</a>";
+                echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}{$nav['path']}/\">{$nav['name']}</a>";
             }
         }
     }
@@ -77,7 +77,7 @@ if ($globaluser->isLoggedIn()) {
         <div id="systemBar">
 <?php
 if ($globaluser->isLoggedIn()) {
-    echo '<div style="float:right;min-width: 5%;padding:12px 20px;">Hi '.$globaluser->getProfileValue('username').'! (<a href="'.$config['path_http'].'logout.php">logout</a>)</div>';
+    echo '<div style="float:right;min-width: 5%;padding:12px 20px;">Hi '.$globaluser->getProfileValue('username').'! (<a href="'.$config['PATH_HTTP'].'logout.php">logout</a>)</div>';
 }
 //present any system messages
 echo '  <div class="sysMsg">';

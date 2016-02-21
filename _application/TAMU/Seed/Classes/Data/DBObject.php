@@ -9,17 +9,17 @@ class db {
 
     private function __construct() {
 	
-		if (strtolower($GLOBALS['dbconfig']['dbtype']) == 'mssql') {
-        	$dsn = 'sqlsrv:Server='.$GLOBALS['dbconfig']['host'].
-               ';Database='    .$GLOBALS['dbconfig']['database'];        
+		if (strtolower($GLOBALS['config']['DB_TYPE']) == 'mssql') {
+        	$dsn = 'sqlsrv:Server='.$GLOBALS['config']['DB_HOST'].
+               ';Database='    .$GLOBALS['config']['DB_DATABASE'];        
 		} else {
-			$dsn = 'mysql:host='.$GLOBALS['dbconfig']['host'].
-               ';dbname='    .$GLOBALS['dbconfig']['database'];		
+			$dsn = 'mysql:host='.$GLOBALS['config']['DB_HOST'].
+               ';dbname='    .$GLOBALS['config']['DB_DATABASE'];		
 		}			
 		try {
-        	$this->handle = new PDO($dsn, $GLOBALS['dbconfig']['user'], $GLOBALS['dbconfig']['password']);
+        	$this->handle = new PDO($dsn, $GLOBALS['config']['DB_USER'], $GLOBALS['config']['DB_PASSWORD']);
 		} catch (PDOException $e) {
-			if ($GLOBALS['debugDb']) {
+			if ($GLOBALS['DB_DEBUG']) {
 				echo '<pre>';
 				print_r($e);
 				echo '</pre>';

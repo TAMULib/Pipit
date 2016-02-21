@@ -5,7 +5,7 @@ spl_autoload_register(function ($class) {
     $prefix = 'TAMU\\Seed\\';
 
     // base directory for the namespace prefix
-    $base_dir = "{$GLOBALS['config']['path_app']}";
+    $base_dir = PATH_APP;
     // does the class use the namespace prefix?
     $len = strlen($prefix);
     if (strncmp($prefix, $class, $len) !== 0) {

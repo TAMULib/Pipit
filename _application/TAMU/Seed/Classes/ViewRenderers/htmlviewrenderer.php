@@ -11,6 +11,7 @@ class htmlviewrenderer implements Interfaces\ViewRenderer {
 		$this->registerAppContextProperty("config", $GLOBALS['config']);
 		$this->registerAppContextProperty("globaluser", $GLOBALS['globaluser']);
 		$this->registerAppContextProperty("pages", $GLOBALS['pages']);
+		$this->registerAppContextProperty("controller", $GLOBALS['controller']);
 	}
 
 	public function renderView() {
@@ -20,19 +21,20 @@ class htmlviewrenderer implements Interfaces\ViewRenderer {
 		$system =& $this->getAppContextProperty("system");
 		$page =& $this->getAppContextProperty("page");
 		$app_http =& $this->getAppContextProperty("app_http");
-		include "{$config['path_app']}layouts/header.lo.php";
+		$controller =& $this->getAppContextProperty("controller");
+		include "{$config['PATH_APP']}layouts/header.lo.php";
 		if ($this->viewFile) {
 			$parameters = $this->getViewVariables();
 			include $this->viewFile;
 		} else {
 			echo 'Error loading view';
 		}
-		include "{$config['path_app']}layouts/footer.lo.php";
+		include "{$config['PATH_APP']}layouts/footer.lo.php";
 	}
 
 	public function setView($viewFile,$isAdmin=false) {
 		$config = $this->getAppContextProperty("config");
-		$fullPath = "{$config['path_views']}html/".(($isAdmin) ? 'admin/':'')."{$viewFile}.view.php";
+		$fullPath = "{$config['PATH_VIEWS']}html/".(($isAdmin) ? 'admin/':'')."{$viewFile}.view.php";
 		if (is_file($fullPath)) {
 			$this->viewFile = $fullPath;
 		}

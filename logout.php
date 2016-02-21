@@ -1,8 +1,8 @@
 <?php
-include "./_application/config/config.php";
+include "./_application/TAMU/Seed/Config/config.php";
 
 $controller = 'user';
 $data['action'] = 'logout';
 
-include "{$config['path_lib']}loader.php";
+include PATH_LIB."loader.php";
 ?>

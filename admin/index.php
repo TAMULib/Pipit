@@ -1,5 +1,5 @@
 <?php
-include "../_application/config/config.php";
+include "../_application/TAMU/Seed/Config/config.php";
 $forceRedirectUrl = "{$config['path_http']}";
-include "{$config['path_lib']}loader.php";
+include PATH_LIB."loader.php";
 ?>
