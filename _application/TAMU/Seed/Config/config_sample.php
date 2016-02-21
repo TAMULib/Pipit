@@ -10,7 +10,7 @@ define('PATH_APP', PATH_FILE.APP_BASE);
 define('PATH_LIB', PATH_APP."lib/");
 define('PATH_CLASSES', PATH_APP."classes/");
 define('PATH_INTERFACES', PATH_APP."interfaces/");
-define('PATH_CONTROLLERS', PATH_APP."controllers/");
+define('PATH_CONTROLLERS', PATH_APP."TAMU/Seed/Controllers/");
 define('PATH_VIEWS', PATH_APP."views/");
 
 //web paths
