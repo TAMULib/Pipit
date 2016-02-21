@@ -7,7 +7,7 @@ define('APP_BASE', '_application/');
 define('PATH_ROOT', '/'); 
 define('PATH_FILE', PATH_ROOT.APP_DIRECTORY.'/');
 define('PATH_APP', PATH_FILE.APP_BASE);
-define('PATH_LIB', PATH_APP."lib/");
+define('PATH_LIB', PATH_APP."TAMU/Seed/Lib/");
 define('PATH_CONTROLLERS', PATH_APP."TAMU/Seed/Controllers/");
 define('PATH_VIEWS', PATH_APP."TAMU/Seed/Views/");
 
