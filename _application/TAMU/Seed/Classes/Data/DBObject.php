@@ -49,7 +49,7 @@ class DBObject {
 	protected $db;
 	protected $primaryTable;
 	
-	public function __construct() {
+	protected function __construct() {
 		//get the DB connection
 		$this->db = db::getInstance();
 	}
