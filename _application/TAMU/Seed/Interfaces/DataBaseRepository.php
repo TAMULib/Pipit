@@ -7,12 +7,12 @@ namespace TAMU\Seed\Interfaces;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-interface DatabseRepository {
+interface DatabaseRepository {
 	public function get();
 	public function getById($id);
 	public function removeById($id);
 	public function search($data);
 	public function add($data);
-	public function update($data);
+	public function update($id,$data);
 }
 ?>
