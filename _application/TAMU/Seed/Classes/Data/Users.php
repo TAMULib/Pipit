@@ -8,19 +8,12 @@ use TAMU\Seed\Interfaces as Interfaces;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class Users extends DBObject implements Interfaces\DataBaseRepository {
-
+class Users extends AbstractDataBaseRepository {
 	public function __construct() {
-		$this->primaryTable = 'users';
-		parent::__construct();
+		parent::__construct('users','id','name_last');
 	}
 
-	public function get() {
-		$sql = "SELECT * FROM `{$this->primaryTable}` ORDER BY `name_last`";
-		return $this->queryWithIndex($sql,"id");
-	}
-
-/**	@todo Generalize and possibly move to separate utility */
+	/**	@todo Generalize and possibly move to separate utility */
 
 	public function syncWithLdap() {
 		$ldapWrap = new ldap($GLOBALS['config']['ldap']['url'],$GLOBALS['config']['ldap']['port'],$GLOBALS['config']['ldap']['user'],$GLOBALS['config']['ldap']['password']);
@@ -122,20 +115,6 @@ class Users extends DBObject implements Interfaces\DataBaseRepository {
 			return $result;
 		}
 		return false;
-	}
-
-	public function getById($id) {
-		$sql = "SELECT * FROM `{$this->primaryTable}` WHERE id=:id";
-		$temp = $this->executeQuery($sql,array(":id"=>$id));
-		return $temp[0];
-	}
-
-	public function add($data) {
-		return $this->buildInsertStatement($data);
-	}
-
-	public function update($id,$data) {
-		return $this->buildUpdateStatement($id,$data);
 	}
 
 	public function disableById($id) {
