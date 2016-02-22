@@ -1,5 +1,6 @@
 <?php
 namespace TAMU\Seed\Classes\Data;
+use TAMU\Seed\Interfaces as Interfaces;
 
 /** 
 *	Repo for managing application Users
@@ -7,14 +8,14 @@ namespace TAMU\Seed\Classes\Data;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class Users extends DBObject {
+class Users extends DBObject implements Interfaces\DataBaseRepository {
 
 	public function __construct() {
 		$this->primaryTable = 'users';
 		parent::__construct();
 	}
 
-	public function getUsers() {
+	public function get() {
 		$sql = "SELECT * FROM `{$this->primaryTable}` ORDER BY `name_last`";
 		return $this->queryWithIndex($sql,"id");
 	}
@@ -93,7 +94,7 @@ class Users extends DBObject {
 		return $this->searchUsersAdvanced(array("samaccountname"=>$accountname))[0];
 	}
 
-	public function searchUsersAdvanced($data) {
+	public function searchAdvanced($data) {
 		$sql = "SELECT * FROM `{$this->primaryTable}` u
 				LEFT JOIN `{$this->primaryTable}_ldap` lu ON lu.userid=u.id ";
 		$conj = "WHERE";
@@ -110,7 +111,7 @@ class Users extends DBObject {
 		return false;
 	}
 
-	public function searchUsersBasic($term) {
+	public function search($term) {
 		$sql = "SELECT * FROM `{$this->primaryTable}` WHERE 
 				`name_last` LIKE ? OR 
 				`name_first` LIKE ? OR
@@ -123,17 +124,33 @@ class Users extends DBObject {
 		return false;
 	}
 
-	public function getUserById($id) {
+	public function getById($id) {
 		$sql = "SELECT * FROM `{$this->primaryTable}` WHERE id=:id";
 		$temp = $this->executeQuery($sql,array(":id"=>$id));
 		return $temp[0];
 	}
 
-	public function insertUser($data) {
+	public function add($data) {
 		return $this->buildInsertStatement($data);
 	}
 
-	public function updateUser($id,$data) {
+	public function update($id,$data) {
 		return $this->buildUpdateStatement($id,$data);
+	}
+
+	public function disableById($id) {
+		return $this->update($id,array('inactive'=>1));
+	}
+
+	public function enableById($id) {
+		return $this->update($id,array('inactive'=>0));
+	}
+
+	/**
+	*	By default, the seed app only allows for disabling users.
+	*	See Widgets.php for a functional example of removeById
+	*/
+	public function removeById($id) {
+		return null;
 	}
 }
