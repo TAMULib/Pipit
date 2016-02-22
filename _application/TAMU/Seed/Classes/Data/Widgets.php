@@ -1,25 +1,25 @@
 <?php
 namespace TAMU\Seed\Classes\Data;
-
+use TAMU\Seed\Interfaces as Interfaces;
 /** 
 *	Repo for managing Widgets
 *	Intended as a starting point for developing application specific DAOs
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class Widgets extends DBObject {
+class Widgets extends DBObject implements Interfaces\DataBaseRepository {
 
 	public function __construct() {
 		$this->primaryTable = 'widgets';
 		parent::__construct();
 	}
 
-	public function getWidgets() {
+	public function get() {
 		$sql = "SELECT * FROM `{$this->primaryTable}` ORDER BY `name`";
 		return $this->queryWithIndex($sql,"id");
 	}
 
-	public function searchWidgetsBasic($term) {
+	public function search($term) {
 		$sql = "SELECT * FROM `{$this->primaryTable}` WHERE 
 				`name` LIKE ?";
 		$bindparams = array("%".$term."%");
@@ -29,22 +29,22 @@ class Widgets extends DBObject {
 		return false;
 	}
 
-	public function getWidgetById($id) {
+	public function getById($id) {
 		$sql = "SELECT * FROM `{$this->primaryTable}` WHERE id=:id";
 		$temp = $this->executeQuery($sql,array(":id"=>$id));
 		return $temp[0];
 	}
 
-	public function removeWidget($id) {
+	public function removeById($id) {
 		$sql = "DELETE FROM `{$this->primaryTable}` WHERE id=:id";
 		return $this->executeUpdate($sql,array(":id"=>$id));
 	}
 
-	public function insertWidget($data) {
+	public function add($data) {
 		return $this->buildInsertStatement($data);
 	}
 
-	public function updateWidget($id,$data) {
+	public function update($id,$data) {
 		return $this->buildUpdateStatement($id,$data);
 	}
 }
