@@ -2,6 +2,12 @@
 namespace TAMU\Seed\Classes\ViewRenderers;
 use TAMU\Seed\Interfaces as Interfaces;
 
+/** 
+*	An implementation of the ViewRenderer interface for rendering registered viewvariables as JSON
+*
+*	@author Jason Savell <jsavell@library.tamu.edu>
+*/
+
 class JSONViewRenderer implements Interfaces\ViewRenderer {
 	private $variables = array();
 	private $appContext = null;

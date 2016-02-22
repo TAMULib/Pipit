@@ -1,8 +1,11 @@
 <?php
 namespace TAMU\Seed\Classes\Data;
 use \PDO;
-/* Provides a PDO DB connection to instances of dbobject and its descendants
+/** 
+* 	Provides a PDO DB connection to instances of dbobject and its descendants
+*	@author Jason Savell <jsavell@library.tamu.edu>
 */
+
 class db {
 	public $handle;
 	private static $instance;
@@ -37,7 +40,10 @@ class db {
     }
 }
 
-/* A base class to be extended by any class that needs to access the DB */
+/** 
+*	A base class to be extended by any class that needs to access the DB
+*	@author Jason Savell <jsavell@library.tamu.edu>
+*/
 
 class DBObject {
 	protected $db;

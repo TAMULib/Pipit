@@ -1,6 +1,12 @@
 <?php
 namespace TAMU\Seed\Classes\Data;
 
+/** 
+*	Repo for managing Widgets
+*	Intended as a starting point for developing application specific DAOs
+*	@author Jason Savell <jsavell@library.tamu.edu>
+*/
+
 class Widgets extends DBObject {
 
 	public function __construct() {

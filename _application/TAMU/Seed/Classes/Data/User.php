@@ -1,6 +1,12 @@
 <?php
 namespace TAMU\Seed\Classes\Data;
 
+/** 
+*	Represents the application user
+*	Handles session management, authentication, and authorization
+*	@author Jason Savell <jsavell@library.tamu.edu>
+*/
+
 class User extends DBObject {
 	private $sessionName;
 	private $profile;

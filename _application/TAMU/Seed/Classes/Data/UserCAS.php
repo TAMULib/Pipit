@@ -1,6 +1,12 @@
 <?php
 namespace TAMU\Seed\Classes\Data;
 
+/** 
+*	Represents the application user
+*	Handles session management, authentication through CAS, and authorization
+*	@author Jason Savell <jsavell@library.tamu.edu>
+*/
+
 class UserCAS extends User {
 	private $casPaths;
 	private $serverInfo;

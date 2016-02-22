@@ -2,6 +2,15 @@
 namespace TAMU\Seed\Classes\ViewRenderers;
 use TAMU\Seed\Interfaces as Interfaces;
 
+/** 
+*	The default implementation of the ViewRenderer interface.
+*	Renders HTML with templated header and footer
+*	Would make a good starting point for integration with front end frameworks like Bootstrap
+*
+*	@author Jason Savell <jsavell@library.tamu.edu>
+*/
+
+
 class HTMLViewRenderer implements Interfaces\ViewRenderer {
 	private $variables = array();
 	private $viewFile = null;

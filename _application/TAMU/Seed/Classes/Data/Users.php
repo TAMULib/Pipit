@@ -1,6 +1,12 @@
 <?php
 namespace TAMU\Seed\Classes\Data;
 
+/** 
+*	Repo for managing application Users
+*
+*	@author Jason Savell <jsavell@library.tamu.edu>
+*/
+
 class Users extends DBObject {
 
 	public function __construct() {
@@ -12,6 +18,8 @@ class Users extends DBObject {
 		$sql = "SELECT * FROM `{$this->primaryTable}` ORDER BY `name_last`";
 		return $this->queryWithIndex($sql,"id");
 	}
+
+/**	@todo Generalize and possibly move to separate utility */
 
 	public function syncWithLdap() {
 		$ldapWrap = new ldap($GLOBALS['config']['ldap']['url'],$GLOBALS['config']['ldap']['port'],$GLOBALS['config']['ldap']['user'],$GLOBALS['config']['ldap']['password']);
