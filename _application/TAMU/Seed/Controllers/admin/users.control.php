@@ -22,38 +22,38 @@ if (isset($data['action'])) {
 		break;
 		case 'search':
 			if (isset($data['term'])) {
- 				$viewRenderer->registerViewVariable("users",$tusers->searchUsersBasic($data['term']));
+ 				$viewRenderer->registerViewVariable("users",$tusers->search($data['term']));
 				$viewName = "users.list";
 			} elseif (isset($data['advancedsearch'])) {
- 				$viewRenderer->registerViewVariable("users",$tusers->searchUsersAdvanced($data['advancedsearch']));
+ 				$viewRenderer->registerViewVariable("users",$tusers->searchAdvanced($data['advancedsearch']));
 				$viewName = "users.list";
 			} else {
 				$system[] = 'There was an error with the search';
 			}
 		break;
 		case 'disable':
-			if (isset($data['id']) && is_numeric($data['id']) && $tusers->updateUser($data['id'],array('inactive'=>1))) {
+			if (isset($data['id']) && is_numeric($data['id']) && $tusers->disableById($data['id'])) {
 				$system[] = 'User disabled';
 			} else {
 				$system[] = 'Error disabling user';
 			}
 		break;
 		case 'enable':
-			if (isset($data['id']) && is_numeric($data['id']) && $tusers->updateUser($data['id'],array('inactive'=>0))) {
+			if (isset($data['id']) && is_numeric($data['id']) && $tusers->enableById($data['id'])) {
 				$system[] = 'User enabled';
 			} else {
 				$system[] = 'Error enabling user';
 			}
 		break;
 		case 'insert':
-			if (isset($data['user']) && $tusers->insertUser($data['user'])) {
+			if (isset($data['user']) && $tusers->add($data['user'])) {
 				$system[] = 'User added';
 			} else {
 				$system[] = 'Error adding user';
 			}
 		break;
 		case 'update':
-			if (isset($data['user']) && (isset($data['id']) && is_numeric($data['id'])) && $tusers->updateUser($data['id'],$data['user'])) {
+			if (isset($data['user']) && (isset($data['id']) && is_numeric($data['id'])) && $tusers->update($data['id'],$data['user'])) {
 				$system[] = 'User updated';
 			} else {
 				$system[] = 'Error updating user';
@@ -66,14 +66,14 @@ if (isset($data['action'])) {
 		case 'edit':
 			$page['subtitle'] = 'Update User';
 			if (isset($data['id']) && is_numeric($data['id'])) {
- 				$viewRenderer->registerViewVariable("user",$tusers->getUserById($data['id']));
+ 				$viewRenderer->registerViewVariable("user",$tusers->getById($data['id']));
 				$viewName = "users.edit";
 			}
 		break;
 	}
 } else {
 	$page['subtitle'] = 'Users';
- 	$viewRenderer->registerViewVariable("users",$tusers->getUsers());
+ 	$viewRenderer->registerViewVariable("users",$tusers->get());
 	$viewName = "users.list";
 }
 $viewRenderer->setPage($page);
