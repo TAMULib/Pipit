@@ -116,19 +116,20 @@ header {
 	background: -ms-linear-gradient(top,  #52b152 10%,#008a00 93%); /* IE10+ */
 	background: linear-gradient(to bottom,  #52b152 10%,#008a00 93%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#52b152', endColorstr='#008a00',GradientType=0 ); /* IE6-9 */
-	height: 120px;
+	height: 100px;
 	position: relative;
-	font-size: 1.6em;
+	font-size: 1.5em;
 }
 
 header h1 {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	color: #fff;
 	position: absolute;
-	bottom: 0px;
-	left: 100px;
+	bottom: 10px;
+	left: 16%;
 }
+
 
 .sysMsg {
 	text-align: center;
@@ -162,6 +163,7 @@ header h1 {
 	border-left: 6px solid transparent;
 	display: inline-block;
 	width: 8%;
+	min-width: 100px;
 	text-decoration: none;
 	padding: 12px;
 	text-align: center;
@@ -178,11 +180,13 @@ header h1 {
 .subNav {
 	background-color: transparent;
 	font-size: 1.1em;
+	min-width: 240px;
 }
 
 .subNav a {
 	padding: 6px;
 	width: 4%;
+	min-width: 60px;
 }
 
 .subNav a:hover {
