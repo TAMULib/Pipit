@@ -168,7 +168,7 @@ class DBObject {
 		}
 		$sql_fields = rtrim($sql_fields,',');
 		$sql_values = rtrim($sql_values,',');
-		$sql = "INSERT INTO `{$table}` ({$sql_fields}) VALUES ({$sql_values})";
+		$sql = "INSERT INTO {$table} ({$sql_fields}) VALUES ({$sql_values})";
 		if ($this->executeUpdate($sql,$bindparams)) {
 			return $this->getLastInsertId();
 		}
@@ -193,7 +193,7 @@ class DBObject {
 			$sqlRows .= "({$sqlValues}),";
 			$x++;
 		}
-		$sql = "INSERT INTO `{$table}` ({$sqlFields}) VALUES ".rtrim($sqlRows,',');
+		$sql = "INSERT INTO {$table} ({$sqlFields}) VALUES ".rtrim($sqlRows,',');
 		return $this->executeUpdate($sql,$bindparams);
 	}
 
@@ -201,7 +201,7 @@ class DBObject {
 		if (!$table) {
 			$table = $this->primaryTable;
 		}
-		$sql = "UPDATE `{$table}` SET ";
+		$sql = "UPDATE {$table} SET ";
 		foreach ($data as $field=>$value) {
 			$sql .= "{$field}=:{$field},";
 			$bindparams[":{$field}"] = $value;
