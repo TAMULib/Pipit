@@ -25,13 +25,13 @@ define('LDAP_PORT', NULL);
 define('LDAP_USER', NULL);
 define('LDAP_PASSWORD', NULL);
 
-// options are mysql and mssql
-// mssql has only been tested on Windows 
-define('DB_TYPE', 'mysql');
 define('DB_USER', '');
 define('DB_PASSWORD', '');
 define('DB_HOST', '');
 define('DB_DATABASE', 'phpseedapp');
+define("DB_DSN", 'mysql:host='.DB_HOST.';dbname='.DB_DATABASE);
+// mssql has only been tested on Windows 
+//define("DB_PDO_DSN", 'sqlsrv:Server='.DB_HOST.';Database='.DB_DATABASE);
 
 //debug mode for PDO database queries
 define('DB_DEBUG', true);
