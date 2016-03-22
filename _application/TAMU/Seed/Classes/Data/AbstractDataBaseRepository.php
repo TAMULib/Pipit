@@ -22,16 +22,16 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	}
 
 	public function get() {
-		$sql = "SELECT * FROM `{$this->primaryTable}`";
+		$sql = "SELECT * FROM {$this->primaryTable}";
 		if ($this->defaultOrderBy) {
-			$sql .= " ORDER BY `{$this->defaultOrderBy}`";
+			$sql .= " ORDER BY {$this->defaultOrderBy}";
 		}
 		return $this->queryWithIndex($sql,$this->primaryKey);
 	}
 
 	public function search($term) {
-		$sql = "SELECT * FROM `{$this->primaryTable}` WHERE 
-				`name` LIKE ?";
+		$sql = "SELECT * FROM {$this->primaryTable} WHERE 
+				name LIKE ?";
 		$bindparams = array("%".$term."%");
 		if ($result = $this->executeQuery($sql,$bindparams)) {
 			return $result;
@@ -40,13 +40,13 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	}
 
 	public function getById($id) {
-		$sql = "SELECT * FROM `{$this->primaryTable}` WHERE id=:id";
+		$sql = "SELECT * FROM {$this->primaryTable} WHERE id=:id";
 		$temp = $this->executeQuery($sql,array(":id"=>$id));
 		return $temp[0];
 	}
 
 	public function removeById($id) {
-		$sql = "DELETE FROM `{$this->primaryTable}` WHERE {$this->primaryKey}=:id";
+		$sql = "DELETE FROM {$this->primaryTable} WHERE {$this->primaryKey}=:id";
 		return $this->executeUpdate($sql,array(":id"=>$id));
 	}
 

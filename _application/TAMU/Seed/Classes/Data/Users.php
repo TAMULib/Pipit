@@ -88,16 +88,16 @@ class Users extends AbstractDataBaseRepository {
 	}
 
 	public function searchAdvanced($data) {
-		$sql = "SELECT * FROM `{$this->primaryTable}` u
-				LEFT JOIN `{$this->primaryTable}_ldap` lu ON lu.userid=u.id ";
+		$sql = "SELECT * FROM {$this->primaryTable} u
+				LEFT JOIN {$this->primaryTable}_ldap lu ON lu.userid=u.id ";
 		$conj = "WHERE";
 		$bindparams = array();
 		foreach ($data as $field=>$value) {
-			$sql .= "{$conj} `{$field}`=:{$field} ";
+			$sql .= "{$conj} {$field}=:{$field} ";
 			$bindparams[":{$field}"] = $value;
 			$conj = "AND";
 		}
-		$sql .= " ORDER BY `name_last`";
+		$sql .= " ORDER BY name_last";
 		if ($result = $this->executeQuery($sql,$bindparams)) {
 			return $result;
 		}
@@ -105,11 +105,11 @@ class Users extends AbstractDataBaseRepository {
 	}
 
 	public function search($term) {
-		$sql = "SELECT * FROM `{$this->primaryTable}` WHERE 
-				`name_last` LIKE ? OR 
-				`name_first` LIKE ? OR
-				`email` LIKE ?
-				ORDER BY `name_last`";
+		$sql = "SELECT * FROM {$this->primaryTable} WHERE 
+				name_last LIKE ? OR 
+				name_first LIKE ? OR
+				email LIKE ?
+				ORDER BY name_last";
 		$bindparams = array("%".$term."%","%".$term."%","%".$term."%");
 		if ($result = $this->executeQuery($sql,$bindparams)) {
 			return $result;
@@ -127,7 +127,7 @@ class Users extends AbstractDataBaseRepository {
 
 	/**
 	*	By default, the seed app only allows for disabling users.
-	*	See Widgets.php for a functional example of removeById
+	*	See AbstractDataBaseRepository.php for a functional example of removeById
 	*/
 	public function removeById($id) {
 		return null;
