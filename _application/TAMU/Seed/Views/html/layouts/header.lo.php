@@ -110,11 +110,11 @@ if (!empty($page)) {
     }
 
     if (isset($page['search'])) {
-        echo '  <form id="doSearch" class="do-submit inline" name="search" method="POST" action="'.$app_http.'">
+        echo '  <form id="doSearch" class="do-submit inline-block" name="search" method="POST" action="'.$app_http.'">
                     <input type="hidden" name="action" value="search" />
                     <input id="searchTerm" class="inline" type="text" name="term" />';
         echo '      <input id="searchResults" class="inline" type="submit" name="submit" value="Search" />
-                    <div class="inline" id="searchStatus">
+                    <div class="inline-block" id="searchStatus">
                         <a class="hidden" href="#clearSearch">clear search</a>
                     </div>
                 </form>';
