@@ -41,27 +41,39 @@ class User extends DBObject {
 		return password_hash($plaintext, PASSWORD_DEFAULT);
 	}
 
+	private function updateSessionData($data) {
+		foreach ($data as $field=>$value) {
+			if ($field !== 'password') {
+				$_SESSION[$this->sessionName]['user'][$field] = $value;
+			}
+		}
+		$this->buildProfile();
+	}
+
 	public function logIn($username,$password) {
 		$sql = "SELECT * FROM {$this->primaryTable} WHERE username=:username";
 		if ($result = $this->executeQuery($sql,array(":username"=>$username))) {
 			if (password_verify($password,$result[0]['password'])) {
 				$this->sessionName = "app".time();
 				$_SESSION['sessionName'] = $this->sessionName;
-				foreach ($result[0] as $field=>$value) {
-					$_SESSION[$this->sessionName]['user'][$field] = $value;
-				}
-				$this->buildProfile();
+				$this->updateSessionData($result[0]);
 				return true;			
 			}
 		}
 		return false;
 	}
 
+	public function refreshProfile() {
+		$sql = "SELECT * FROM {$this->primaryTable} WHERE id=:id";
+		if ($freshUser = $this->executeQuery($sql,array(":id"=>$this->getProfileValue("id")))[0]) {
+			$this->updateSessionData($freshUser);
+		}
+	}
+
 	protected function buildProfile() {
 		foreach ($_SESSION[$this->sessionName]['user'] as $field=>$value) {
 			$this->profile[$field] = $value;
 		}
-		return false;
 	}
 
 	function getProfileValue($field) {
@@ -69,7 +81,7 @@ class User extends DBObject {
 		if (array_key_exists($field,$temp)) {
 			return $temp[$field];
 		}
-		return false;
+		return null;
 	}
 
 	function getProfile() {
