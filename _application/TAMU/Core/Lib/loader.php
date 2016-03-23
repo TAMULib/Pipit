@@ -28,7 +28,7 @@ require_once "{$config['PATH_LIB']}functions.php";
 //This array represents the app's pages. Used to generate user facing navigation and load controllers
 //The keys represent controller names
 $pages = array(
-			"widgets" => array("name"=>"widget","path"=>"widgets"),
+			"widgets" => array("name"=>"widgets","path"=>"widgets"),
 			"users" => array("name"=>"users","path"=>"users","admin"=>true));
 
 

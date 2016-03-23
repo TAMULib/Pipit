@@ -21,8 +21,12 @@ if ($users) {
 					<td>{$user['name_last']}</td>
 					<td>{$user['name_first']}</td>
 					<td>{$user['email']}</td>
-					<td class=\"capitalize\">
-						<a class=\"inline-block button button-small do-loadmodal\" href=\"{$app_http}?action=edit&id={$user['id']}\">Edit</a>";
+					<td class=\"capitalize\">";
+if ($globaluser->getProfileValue("id") != $user['id']) {
+	echo "				<a class=\"inline-block button button-small do-loadmodal\" href=\"{$app_http}?action=edit&id={$user['id']}\">Edit</a>";
+} else {
+	echo "				<a class=\"inline-block button button-small\" href=\"{$config['PATH_HTTP']}user.php?action=edit\">Edit</a>";
+}
 if ($user['isadmin'] != 1) {
 	echo '					<form class="inline-block do-submit-confirm" name="togglestatus" method="POST" action="'.$app_http.'">
 								<input type="hidden" name="action" value="'.$enableToggle.'" />
