@@ -1,6 +1,6 @@
 <?php
-namespace TAMU\Seed\Classes\Data;
-use TAMU\Seed\Interfaces as Interfaces;
+namespace TAMU\Core\Classes\Data;
+use TAMU\Core\Interfaces as Interfaces;
 /** 
 *	An abstract implementation of the DataBaseRepository interface
 *	Extending this provides CRUD interaction with the configured database table

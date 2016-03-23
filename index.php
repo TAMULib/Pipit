@@ -1,5 +1,5 @@
 <?php
 $controller = 'default';
-include "./_application/TAMU/Seed/Config/config.php";
+include "./_application/App/Config/config.php";
 include PATH_LIB."loader.php";
 ?>

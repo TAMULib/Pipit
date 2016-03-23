@@ -1,5 +1,5 @@
 <?php
-namespace TAMU\Seed;
+namespace TAMU\Core;
 session_start();
 
 //load the constants

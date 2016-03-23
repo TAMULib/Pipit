@@ -1,6 +1,6 @@
 <?php
-namespace TAMU\Seed\Classes\Data;
-use TAMU\Seed\Interfaces as Interfaces;
+namespace App\Classes\Data;
+use TAMU\Core\Classes\Data as CoreData;
 
 /** 
 *	Repo for managing application Users
@@ -8,7 +8,7 @@ use TAMU\Seed\Interfaces as Interfaces;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class Users extends AbstractDataBaseRepository {
+class Users extends CoreData\AbstractDataBaseRepository {
 	public function __construct() {
 		parent::__construct('users','id','name_last');
 	}

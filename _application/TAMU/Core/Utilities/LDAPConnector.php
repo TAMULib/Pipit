@@ -1,5 +1,5 @@
 <?php
-namespace \TAMU\Seed\Utilities;
+namespace TAMU\Core\Utilities;
 
 class LDAPConnector {
 	private $url;

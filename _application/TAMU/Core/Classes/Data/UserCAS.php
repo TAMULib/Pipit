@@ -1,5 +1,5 @@
 <?php
-namespace TAMU\Seed\Classes\Data;
+namespace TAMU\Core\Classes\Data;
 
 /** 
 *	Represents the application user
@@ -13,7 +13,7 @@ class UserCAS extends User {
 
 	public function __construct($appUrl) {
 		parent::__construct();
-		$casData['hostname'] = (isset($casData['hostname'])) ? $casData['hostname']:'cas-dev.tamu.edu';
+		$casData['hostname'] = $casData['hostname'];
 		$this->serverInfo['path'] = $appUrl;
 		$this->casPaths['login'] = "cas/login";
 		$this->casPaths['check'] = "cas/serviceValidate";
