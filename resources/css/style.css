@@ -50,7 +50,7 @@ label, input, select {
 	padding: 6px;
 }
 
-input[type=submit] {
+input[type=submit], a.button {
 	border: 1px solid #ccc;
 	border-radius: 8px;
 	background: #eeeeee; /* Old browsers */
@@ -67,6 +67,23 @@ input[type=submit] {
 	cursor: pointer;
 	color: #555;
 }
+
+input[type=submit].small, a.button-small {
+	font-size: 1em;
+	padding: 4px 8px;
+	margin: 4px;
+	border-radius: 6px;
+}
+
+a.button {
+	cursor: pointer;
+}
+
+a.button:hover {
+	text-decoration: none;
+}
+
+
 
 /* Columns */
 

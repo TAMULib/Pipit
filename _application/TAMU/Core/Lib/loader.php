@@ -1,5 +1,14 @@
 <?php
 namespace TAMU\Core;
+
+/**
+*	The entry point for the application. All endpoints lead, here.
+*	
+*	@author Jason Savell <jsavell@library.tamu.edu>
+*
+*/
+
+
 session_start();
 
 //load the constants
@@ -15,14 +24,29 @@ if (isset($forceRedirectUrl) && !empty($forceRedirectUrl)) {
 $system = array();
 
 require_once "{$config['PATH_LIB']}functions.php";
+
+//This array represents the app's pages. Used to generate user facing navigation and load controllers
+//The keys represent controller names
 $pages = array(
-			"widgets" => array("name"=>"widgets","path"=>"widgets"),
+			"widgets" => array("name"=>"widget","path"=>"widgets"),
 			"users" => array("name"=>"users","path"=>"users","admin"=>true));
 
+
+// $data is a wrapper for incoming data
+//do not access $_POST, $_GET, $_REQUEST directly
 if (!isset($data)) {
-	$data = $_REQUEST;
+	if (!empty($_GET['action'])) {
+		//restrict any controller actions that alter DB data to POST
+		$restrictedActions = array("insert","remove","update");
+		if (!in_array($_GET['action'],$restrictedActions)) {
+			$data = $_GET;
+		}
+	} else {
+		$data = $_POST;
+	}
 }
 
+//get the user
 if (isset($config['usecas']) && $config['usecas']) {
 	$globaluser = new Classes\Data\UserCAS($config['path_http']);
 	if (!empty($_GET['ticket'])) {
@@ -36,6 +60,7 @@ if (isset($config['usecas']) && $config['usecas']) {
 	$globaluser = new Classes\Data\User();
 }
 
+//set the ViewRenderer
 if (isset($data['json']) && $data['json']) {
 	$viewRenderer = new Classes\ViewRenderers\JSONViewRenderer();
 } else {
@@ -43,7 +68,6 @@ if (isset($data['json']) && $data['json']) {
 }
 
 //load admin controller if user is logged in and an admin page
-//if (isset($accesslevel) && ($accesslevel == 1)) {
 if (array_key_exists($controller,$pages) || $controller == 'user') {
 	if (!empty($pages[$controller]['admin']) && $pages[$controller]['admin'] == true) {
 		//if the user is an admin, load the admin controller, otherwise, redirect to the home page
@@ -85,6 +109,7 @@ if (!empty($filename) && is_file($filename)) {
 	$system[] = 'Error loading content';
 }
 
+//send system messages to the ViewRenderer
 $viewRenderer->registerAppContextProperty("system", $system);
 
 //display the content
