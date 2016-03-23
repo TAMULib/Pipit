@@ -37,7 +37,7 @@ class User extends DBObject {
 		return false;
 	}
 
-	private function hash($plaintext) {
+	public static function hashPassword($plaintext) {
 		return password_hash($plaintext, PASSWORD_DEFAULT);
 	}
 
