@@ -147,13 +147,17 @@ header h1 {
 	left: 16%;
 }
 
+#systemBar {
+	clear: both;
+	min-height: 40px;
+}
 
 .sysMsg {
 	text-align: center;
 	position: absolute;
 	left: 25%;
 	width: 50%;
-	
+	min-width: 100px;
 }
 
 .sysMsg h4 {
@@ -161,8 +165,8 @@ header h1 {
 	border: 1px solid #555;
 	background-color: #efefef;
 	cursor: pointer;
-	width: 20%;
-	max-width: 50%;
+	width: 50%;
+	min-width: 100px;
 	margin: 8px auto;
 }
 
