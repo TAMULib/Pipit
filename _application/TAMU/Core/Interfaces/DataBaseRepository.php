@@ -1,5 +1,5 @@
 <?php
-namespace TAMU\Seed\Interfaces;
+namespace TAMU\Core\Interfaces;
 /** 
 *	An interface defining a DatabaseRepository
 *	DatabaseRepositories are utilized by controllers to perform CRUD actions on Databases

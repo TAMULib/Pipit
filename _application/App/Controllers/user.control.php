@@ -1,5 +1,6 @@
 <?php
-namespace TAMU\Seed;
+namespace App;
+use TAMU\Core as Core;
 
 $viewRenderer->registerAppContextProperty("app_http", "{$config['PATH_HTTP']}login.php");
 

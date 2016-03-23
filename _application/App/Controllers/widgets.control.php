@@ -1,5 +1,6 @@
 <?php
-namespace TAMU\Seed;
+namespace App;
+use TAMU\Core as Core;
 
 $page['title'] = 'Manage Widgets';
 $page['navigation'] = array(

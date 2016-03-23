@@ -3,13 +3,15 @@ define('APP_NAME', 'The Seed App');
 define('APP_DIRECTORY', 'PHPSeedApp'); 
 define('APP_BASE', '_application/');
 
+define("NAMESPACE_CORE","TAMU\\Seed\\");
+
 //server paths
 define('PATH_ROOT', '/'); 
 define('PATH_FILE', PATH_ROOT.APP_DIRECTORY.'/');
 define('PATH_APP', PATH_FILE.APP_BASE);
-define('PATH_LIB', PATH_APP."TAMU/Seed/Lib/");
-define('PATH_CONTROLLERS', PATH_APP."TAMU/Seed/Controllers/");
-define('PATH_VIEWS', PATH_APP."TAMU/Seed/Views/");
+define('PATH_LIB', PATH_APP.nameSpaceToPath(NAMESPACE_CORE)."Lib/");
+define('PATH_CONTROLLERS', PATH_APP.nameSpaceToPath(NAMESPACE_CORE)."Controllers/");
+define('PATH_VIEWS', PATH_APP.nameSpaceToPath(NAMESPACE_CORE)."Views/");
 
 //web paths
 define('PATH_HTTP', "http://localhost/".APP_DIRECTORY."/");
