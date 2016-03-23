@@ -38,22 +38,23 @@ $(document).ready(function() {
 	});
 
 	$(".container").on("submit",".do-submit",function() {
-		$("#modalContent .do-results").load(app_http+" .do-results > *",$(this).serialize());
+		$("#modalContent .do-results").load(app_http+" .do-results > *",$(this).serializeArray());
 		return false;
 	});
 
-	$(".container,#theModal").on("click",".do-remove",function() {
+	$(".container,#theModal").on("submit",".do-remove",function() {
 		isModal = ($(this).parents("#theModal").length != 0) ? true:false;
 		if (confirmAction()) {
 			$.ajax({
 				type: "POST",
-				url: $(this).attr("href")
+				url: app_http,
+				data: $(this).serialize()
 			}).done(function(data) {
 				updateSystemOutput(data);
 				if (isModal) {
 					$("#theModal .do-close").click();
 				} else {
-					$("#modalContent .do-results").load(app_http+"/ #modalContent .do-results > *");
+					$("#modalContent .do-results").load(app_http+" #modalContent .do-results > *");
 				}
 			});
 		}

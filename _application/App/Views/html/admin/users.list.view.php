@@ -22,8 +22,13 @@ if ($users) {
 					<td>{$user['name_first']}</td>
 					<td>{$user['email']}</td>
 					<td class=\"capitalize\">
-						<a class=\"do-loadmodal\" href=\"{$app_http}?action=edit&id={$user['id']}\">Edit</a> | 
-						<a class=\"do-remove\" href=\"{$app_http}?action={$enableToggle}&id={$user['id']}\">{$enableToggle}</a>
+						<a class=\"inline-block button button-small do-loadmodal\" href=\"{$app_http}?action=edit&id={$user['id']}\">Edit</a>";
+echo '					<form class="inline-block do-remove" name="removewidget" method="POST" action="'.$app_http.'">
+							<input type="hidden" name="action" value="'.$enableToggle.'" />
+							<input type="hidden" name="id" value="'.$user['id'].'" />
+							<input class="small capitalize" type="submit" name="submitremove" value="'.$enableToggle.'" />
+						</form>';
+echo "
 					</td>
 				</tr>";
 	}

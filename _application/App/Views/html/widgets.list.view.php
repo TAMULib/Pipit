@@ -12,8 +12,13 @@ if ($parameters['widgets']) {
 		echo "<tr>
 					<td>{$widget['name']}</td>
 					<td class=\"capitalize\">
-						<a class=\"do-loadmodal\" href=\"{$app_http}?action=edit&id={$widget['id']}\">Edit</a> | 
-						<a class=\"do-remove\" href=\"{$app_http}?action=remove&id={$widget['id']}\">Remove</a>
+						<a class=\"inline-block button button-small do-loadmodal\" href=\"{$app_http}?action=edit&id={$widget['id']}\">Edit</a>";
+echo '					<form class="inline-block do-remove" name="removewidget" method="POST" action="'.$app_http.'">
+							<input type="hidden" name="action" value="remove" />
+							<input type="hidden" name="id" value="'.$widget['id'].'" />
+							<input class="small" type="submit" name="submitremove" value="Remove" />
+						</form>';
+echo "
 					</td>
 				</tr>";
 	}
