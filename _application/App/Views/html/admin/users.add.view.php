@@ -9,6 +9,14 @@ echo '<form class="do-submit" name="adduser" method="POST" action="'.$app_http.'
 				<label for="user[email]">Email</label>
 				<input type="text" name="user[email]" />
 			</div>
+			<div class="column column-half">
+				<label for="user[username]">Username</label>
+				<input type="text" name="user[username]" />
+				<label for="user[password]">Password</label>
+				<input type="password" name="user[password]" />
+				<label for="confirmpassword">Confirm Password</label>
+				<input type="password" name="confirmpassword" />
+			</div>
 			<input type="submit" name="submituser" value="Add User" />
 		</form>';
 ?>

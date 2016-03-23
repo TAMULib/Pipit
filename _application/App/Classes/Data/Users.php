@@ -125,6 +125,12 @@ class Users extends CoreData\AbstractDataBaseRepository {
 		return $this->update($id,array('inactive'=>0));
 	}
 
+	public function add($data) {
+		$data['password'] = CoreData\User::hashPassword($data['password']);
+		$data['inactive'] = 1;
+		return parent::add($data);
+	}
+
 	/**
 	*	By default, the seed app only allows for disabling users.
 	*	See AbstractDataBaseRepository.php for a functional example of removeById
