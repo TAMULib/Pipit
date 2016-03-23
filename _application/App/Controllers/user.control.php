@@ -2,10 +2,13 @@
 namespace App;
 use TAMU\Core as Core;
 
-$viewRenderer->registerAppContextProperty("app_http", "{$config['PATH_HTTP']}login.php");
+$viewRenderer->registerAppContextProperty("app_http", "{$config['PATH_HTTP']}user.php");
 
 if (!empty($data['action'])) {
 	switch ($data['action']) {
+		case 'edit':
+			$viewName = 'user.edit';
+		break;
 		case 'logout':
 			if ($globaluser->isLoggedIn()) {
 				if ($globaluser->logOut()) {
