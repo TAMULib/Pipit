@@ -4,7 +4,7 @@
 if ($globaluser->isLoggedIn()) {
 	echo " Welcome, {$globaluser->getProfileValue('username')}.";
 } else {
-	echo " You can log in, <a href=\"{$app_http}login.php\">here</a>.";
+	echo " You can log in, <a href=\"{$app_http}user.php\">here</a>.";
 }
 ?>
 </div>

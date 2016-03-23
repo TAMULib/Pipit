@@ -31,7 +31,7 @@ class UserCAS extends User {
 		}
 		if ($file[5]) {
 			$rawUserName = simplexml_load_string($file[5]);
-			$this->sessionName = "keymstr".time();
+			$this->sessionName = "app".time();
 			$_SESSION['sessionName'] = $this->sessionName;
 			//using quotes to force conversion of rawUserName to string
 			$_SESSION[$this->sessionName]['user']['username'] = "{$rawUserName[0]}";

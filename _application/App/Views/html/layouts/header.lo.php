@@ -77,7 +77,7 @@ if ($globaluser->isLoggedIn()) {
         <div id="systemBar">
 <?php
 if ($globaluser->isLoggedIn()) {
-    echo '  <div style="float:right;min-width: 5%;padding:12px 20px;">Hi '.$globaluser->getProfileValue('username').'! (<a href="'.$config['PATH_HTTP'].'logout.php">logout</a>)</div>';
+    echo '  <div style="float:right;min-width: 5%;padding:12px 20px;">Hi <a href="'.$config['PATH_HTTP'].'user.php?action=edit">'.$globaluser->getProfileValue('username').'</a>! (<a href="'.$config['PATH_HTTP'].'user.php?action=logout">logout</a>)</div>';
 }
 //present any system messages
 echo '      <div class="sysMsg">';
