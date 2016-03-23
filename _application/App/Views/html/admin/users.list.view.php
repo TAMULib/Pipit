@@ -23,11 +23,21 @@ if ($users) {
 					<td>{$user['email']}</td>
 					<td class=\"capitalize\">
 						<a class=\"inline-block button button-small do-loadmodal\" href=\"{$app_http}?action=edit&id={$user['id']}\">Edit</a>";
-echo '					<form class="inline-block do-remove" name="removewidget" method="POST" action="'.$app_http.'">
-							<input type="hidden" name="action" value="'.$enableToggle.'" />
-							<input type="hidden" name="id" value="'.$user['id'].'" />
-							<input class="small capitalize" type="submit" name="submitremove" value="'.$enableToggle.'" />
-						</form>';
+if ($user['isadmin'] != 1) {
+	echo '					<form class="inline-block do-submit-confirm" name="togglestatus" method="POST" action="'.$app_http.'">
+								<input type="hidden" name="action" value="'.$enableToggle.'" />
+								<input type="hidden" name="id" value="'.$user['id'].'" />
+								<input class="small capitalize" type="submit" name="submitstatus" value="'.$enableToggle.'" />
+							</form>';
+}
+if (!$user['inactive'] && $user['isadmin'] == 0) {
+	echo '					<form class="inline-block do-submit-confirm" name="elevateuser" method="POST" action="'.$app_http.'">
+								<input type="hidden" name="action" value="update" />
+								<input type="hidden" name="id" value="'.$user['id'].'" />
+								<input type="hidden" name="user[isadmin]" value="1" />
+								<input class="small capitalize" type="submit" name="submituser" value="Make Admin" />
+							</form>';
+}
 echo "
 					</td>
 				</tr>";
