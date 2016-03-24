@@ -13,7 +13,7 @@ class User extends DBObject {
 
 	public function __construct() {
 		parent::__construct();
-		$this->sessionName = isset($_SESSION['sessionName']) ? $_SESSION['sessionName']:NULL;
+		$this->sessionUserId = isset($_SESSION[SESSION_SCOPE]['sessionData']['userId']) ? $_SESSION[SESSION_SCOPE]['sessionData']['userId']:NULL;
 		$this->primaryTable = 'users';
 		if ($this->isLoggedIn()) {
 			$this->buildProfile();
@@ -22,8 +22,7 @@ class User extends DBObject {
 
 	public function logOut() {
 		if ($this->isLoggedIn()) {
-			unset($_SESSION[$this->sessionName]);
-			unset($_SESSION['sessionName']);
+			unset($_SESSION[SESSION_SCOPE]['sessionData']);
 			session_destroy();
 			return true;
 		}
@@ -31,7 +30,7 @@ class User extends DBObject {
 	}
 
 	public function isLoggedIn() {
-		if (isset($_SESSION[$this->sessionName]['user'])) {
+		if (!empty($this->sessionUserId)) {
 			return true;
 		}
 		return false;
@@ -41,38 +40,25 @@ class User extends DBObject {
 		return password_hash($plaintext, PASSWORD_DEFAULT);
 	}
 
-	private function updateSessionData($data) {
-		foreach ($data as $field=>$value) {
-			if ($field !== 'password') {
-				$_SESSION[$this->sessionName]['user'][$field] = $value;
-			}
-		}
-		$this->buildProfile();
-	}
-
 	public function logIn($username,$password) {
-		$sql = "SELECT * FROM {$this->primaryTable} WHERE username=:username";
+		session_regenerate_id(true);
+		session_start();
+		$sql = "SELECT id,password FROM {$this->primaryTable} WHERE username=:username";
 		if ($result = $this->executeQuery($sql,array(":username"=>$username))) {
 			if (password_verify($password,$result[0]['password'])) {
-				$this->sessionName = "app".time();
-				$_SESSION['sessionName'] = $this->sessionName;
-				$this->updateSessionData($result[0]);
+				$_SESSION[SESSION_SCOPE]['sessionData']['userId'] = $result[0][id];
 				return true;			
 			}
 		}
 		return false;
 	}
 
-	public function refreshProfile() {
-		$sql = "SELECT * FROM {$this->primaryTable} WHERE id=:id";
-		if ($freshUser = $this->executeQuery($sql,array(":id"=>$this->getProfileValue("id")))[0]) {
-			$this->updateSessionData($freshUser);
-		}
-	}
-
 	protected function buildProfile() {
-		foreach ($_SESSION[$this->sessionName]['user'] as $field=>$value) {
-			$this->profile[$field] = $value;
+		$sql = "SELECT * FROM {$this->primaryTable} WHERE id=:id";
+		if ($user = $this->executeQuery($sql,array(":id"=>$this->sessionUserId))[0]) {
+			foreach ($user as $field=>$value) {
+				$this->profile[$field] = $value;
+			}
 		}
 	}
 
