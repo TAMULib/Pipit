@@ -68,6 +68,10 @@ input[type=submit], a.button {
 	color: #555;
 }
 
+input[type=submit]:disabled {
+	color: #C4C2C2;
+}
+
 input[type=submit].small, a.button-small {
 	font-size: 1em;
 	padding: 4px 8px;
