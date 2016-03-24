@@ -11,7 +11,6 @@ if (!empty($data['action'])) {
 		case 'update':
 			$tusers = new Classes\Data\Users();
 			if (isset($data['user']) && $tusers->update($globaluser->getProfileValue("id"),$data['user'])) {
-				$globaluser->refreshProfile();
 				$system[] = 'User updated';
 			} else {
 				$system[] = 'Error updating user';
