@@ -13,16 +13,18 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	protected $primaryTable;
 	protected $primaryKey;
 	protected $defaultOrderBy;
+	protected $gettableColumns;
 
-	protected function __construct($primaryTable,$primaryKey,$defaultOrderBy=null) {
+	protected function __construct($primaryTable,$primaryKey,$defaultOrderBy=null,$gettableColumns=null) {
 		$this->primaryTable = $primaryTable;
 		$this->primaryKey = $primaryKey;
 		$this->defaultOrderBy = $defaultOrderBy;
+		$this->gettableColumns = $gettableColumns;
 		parent::__construct();
 	}
 
 	public function get() {
-		$sql = "SELECT * FROM {$this->primaryTable}";
+		$sql = "SELECT ".(($this->gettableColumns) ? "id,".implode(",",$this->gettableColumns):"*")." FROM {$this->primaryTable}";
 		if ($this->defaultOrderBy) {
 			$sql .= " ORDER BY {$this->defaultOrderBy}";
 		}

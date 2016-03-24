@@ -41,8 +41,10 @@ if (!isset($data)) {
 		if (!in_array($_GET['action'],$restrictedActions)) {
 			$data = $_GET;
 		}
-	} else {
+	} elseif (!empty($_POST['action'])) {
 		$data = $_POST;
+	} else {
+		$data = $_REQUEST;
 	}
 }
 
