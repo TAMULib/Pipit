@@ -131,6 +131,13 @@ class Users extends CoreData\AbstractDataBaseRepository {
 		return parent::add($data);
 	}
 
+	public function update($id,$data) {
+		if (!empty($data['password'])) {
+			$data['password'] = CoreData\User::hashPassword($data['password']);
+		}
+		return parent::update($id,$data);
+	}
+
 	/**
 	*	By default, the seed app only allows for disabling users.
 	*	See AbstractDataBaseRepository.php for a functional example of removeById

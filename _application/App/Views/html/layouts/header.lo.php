@@ -11,7 +11,7 @@
         <link rel="apple-touch-icon" href="iphone-icon.png" />
         <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_CSS'];?>style.css" media="screen"/>
 <?php
-if (is_file("{$config['PATH_CSS']}{$controller}.css")) {
+if (is_file("{$config['PATH_FILE']}{$controller}.css")) {
     echo '<link rel="stylesheet" type="text/css" href="'.$config['PATH_CSS'].$controller.'.css" media="screen"/>';
 }
 ?>
@@ -23,8 +23,8 @@ if (is_file("{$config['PATH_CSS']}{$controller}.css")) {
         </script>
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>default.js"></script>
 <?php
-if (is_file("{$config['PATH_APP']}js/{$controller}.js")) {
-    echo '<script type="text/javascript" src="'.$config['PATH_APP'].$controller.'.js"></script>';
+if (is_file("{$config['PATH_FILE']}resources/js/{$controller}.js")) {
+    echo '<script type="text/javascript" src="'.$config['PATH_JS'].$controller.'.js"></script>';
 }
 ?>
         <link rel="shortcut icon" href="ico/favicon.ico">
