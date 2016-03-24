@@ -10,7 +10,7 @@ use TAMU\Core\Classes\Data as CoreData;
 
 class Users extends CoreData\AbstractDataBaseRepository {
 	public function __construct() {
-		parent::__construct('users','id','name_last');
+		parent::__construct('users','id','name_last',array(username,email,name_first,name_last,isadmin,inactive));
 	}
 
 	/**	@todo Generalize and possibly move to separate utility */
