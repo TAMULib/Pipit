@@ -49,8 +49,6 @@ if (isset($data['action'])) {
 			if (isset($data['id']) && is_numeric($data['id']) && ($widget = $twidgets->getById($data['id']))) {
 				$widget = $viewRenderer->registerViewVariable("widget",$widget);
 				$viewName = "widgets.edit";
-			} else {
-				echo 'no stuff';
 			}
 		break;
 	}
