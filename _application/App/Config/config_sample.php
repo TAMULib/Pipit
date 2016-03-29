@@ -30,6 +30,13 @@ define('LDAP_URL', NULL);
 define('LDAP_PORT', NULL);
 define('LDAP_USER', NULL);
 define('LDAP_PASSWORD', NULL);
+define('LDAP_BASE_DN', NULL);
+define('LDAP_SEARCH_FILTER', NULL);
+//ToDo upgrade to PHP 5.6+ to allow for Array constants
+//const LDAP_SEARCH_ATTRIBUTES = array();
+//const LDAP_USER_MAP = array();
+define('LDAP_INACTIVE_USER_KEY', NULL);
+define('LDAP_USERNAME_KEY', NULL);
 
 //db config
 define('DB_USER', '');
