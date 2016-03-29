@@ -127,6 +127,14 @@ a.button:hover {
 	font-size: .9em;
 }
 
+form {
+	white-space: nowrap;
+}
+
+form .column {
+	white-space: normal;
+}
+
 /* Theming */
 
 header {
