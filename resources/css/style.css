@@ -45,9 +45,17 @@ form {
 	padding: 0px;
 }
 
-label, input, select {
+label, input, select, textarea {
 	display: block;
-	padding: 6px;
+	padding: 10px;
+}
+
+textarea, input[type=text] {
+	border: 1px solid #ccc;	
+}
+
+textarea {
+	min-height: 140px;
 }
 
 input[type=submit], a.button {
@@ -286,7 +294,8 @@ table.list tr.inactive td {
 	width: 40%;
 	min-height: 300px;
 	margin-left: -20%;
-	z-index: 10;	
+	z-index: 10;
+	min-width: 400px;
 }
 
 @media (max-width: 1044px) {
