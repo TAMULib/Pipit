@@ -13,6 +13,14 @@ class Users extends CoreData\AbstractDataBaseRepository {
 		parent::__construct('users','id','name_last',array('username','email','name_first','name_last','isadmin','inactive'));
 	}
 
+	public function get() {
+		$sql = "SELECT ".(($this->gettableColumns) ? "id,".implode(",",$this->gettableColumns):"*").",IF(password IS NOT NULL AND password !='',1,0) AS haspassword FROM {$this->primaryTable}";
+		if ($this->defaultOrderBy) {
+			$sql .= " ORDER BY {$this->defaultOrderBy}";
+		}
+		return $this->queryWithIndex($sql,$this->primaryKey);
+	}
+
 	public function searchAdvanced($data) {
 		$sql = "SELECT * FROM {$this->primaryTable} u ";
 		$conj = "WHERE";

@@ -6,7 +6,9 @@ $page['title'] = 'Manage Users';
 $page['navigation'] = array(
 						array("name"=>"list"),
 						array("name"=>"add","action"=>"add","modal"=>true));
+$usingLdap = false;
 if ($config['LDAP_URL'] && $config['LDAP_PORT']) {
+	$usingLdap = true;
 	$page['navigation'][] =	array("name"=>"LDAP Sync","action"=>"ldapsync","modal"=>true);
 	//todo upgrade to PHP 5.6+ to allow for array constants, moving these configuration to the config file
 	$tusers = new Classes\Data\LDAPUsers(array("name_first"=>"givenname","name_last"=>"sn","email"=>"mail","username"=>"samaccountname"),
