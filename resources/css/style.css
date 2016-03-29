@@ -288,7 +288,7 @@ table.list tr.inactive td {
 	}
 }
 
-@media (max-width: 500px) {
+@media (max-width: 500px),(max-height: 800px) {
 	#theModal {
 		top: 20px;
 	}
