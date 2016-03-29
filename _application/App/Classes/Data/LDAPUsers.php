@@ -43,7 +43,7 @@ class LDAPUsers extends Users {
 	}
 
 	public function syncWithLdap() {
-		$ldapWrap = new Utilities\LDAPConnector($this->ldapServer['url'],$this->ldapServer['port'],$this->ldapServer['user'],$this->ldapServer['password']);
+		$ldapWrap = new Utilities\LDAPConnector();
 		$results = array();
 		if ($ldapHandle = $ldapWrap->getConnection()) {
 			$ldapUserMap = $this->ldapUserMap;
