@@ -27,6 +27,14 @@ define('PATH_IMAGES', PATH_HTTP."resources/images/");
 
 define('USECAS', false);
 
+define('CAS_LOGIN', "cas/login");
+define('CAS_CHECK', "cas/serviceValidate");
+define('CAS_LOGOUT', "cas/logout");
+define('CAS_URLS_BASE', NULL);
+define('CAS_URLS_LOGIN', CAS_URLS_BASE.CAS_LOGIN."?service=".PATH_HTTP."&renew=true");
+define('CAS_URLS_CHECK', CAS_URLS_BASE.CAS_CHECK."?service=".PATH_HTTP."&renew=true");
+define('CAS_URLS_LOGOUT', CAS_URLS_BASE.CAS_LOGOUT."?service=".PATH_HTTP."user.php?action=logout");
+
 //ldap config
 define('LDAP_URL', NULL);
 define('LDAP_PORT', NULL);

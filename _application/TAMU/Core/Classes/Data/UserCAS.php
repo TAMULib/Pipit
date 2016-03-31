@@ -1,5 +1,6 @@
 <?php
 namespace TAMU\Core\Classes\Data;
+use App\Classes\Data as AppData;
 
 /** 
 *	Represents the application user
@@ -9,19 +10,12 @@ namespace TAMU\Core\Classes\Data;
 
 class UserCAS extends User {
 	private $casPaths;
-	private $serverInfo;
 
-	public function __construct($appUrl) {
+	public function __construct() {
 		parent::__construct();
-		$casData['hostname'] = $casData['hostname'];
-		$this->serverInfo['path'] = $appUrl;
-		$this->casPaths['login'] = "cas/login";
-		$this->casPaths['check'] = "cas/serviceValidate";
-		$this->casPaths['logout'] = "cas/logout";
-		$this->casPaths['urls']['base'] = "https://{$casData['hostname']}/";
-		$this->casPaths['urls']['login'] = "{$this->casPaths['urls']['base']}{$this->casPaths['login']}?service={$this->serverInfo['path']}&renew=true";
-		$this->casPaths['urls']['check'] = "{$this->casPaths['urls']['base']}{$this->casPaths['check']}?service={$this->serverInfo['path']}&renew=true";
-		$this->casPaths['urls']['logout'] = "{$this->casPaths['urls']['base']}{$this->casPaths['logout']}?service={$this->serverInfo['path']}logout.php&renew=true";
+		$this->casPaths['urls']['login'] = $GLOBALS['config']['CAS_URLS_LOGIN'];
+		$this->casPaths['urls']['check'] = $GLOBALS['config']['CAS_URLS_CHECK'];
+		$this->casPaths['urls']['logout'] = $GLOBALS['config']['CAS_URLS_LOGOUT'];
 	}
 
 	public function processLogIn($ticket) {
@@ -29,18 +23,27 @@ class UserCAS extends User {
 		if (!$file) {
 			die("The authentication process failed to validate through CAS.");
 		}
-		if ($file[5]) {
-			$rawUserName = simplexml_load_string($file[5]);
-			$this->sessionName = "app".time();
-			$_SESSION['sessionName'] = $this->sessionName;
+		if (!empty($file[5])) {
+			$rawUserName = simplexml_load_string($file[2]);
 			//using quotes to force conversion of rawUserName to string
-			$_SESSION[$this->sessionName]['user']['username'] = "{$rawUserName[0]}";
-			$tusers = new users();
-			if ($tusers->searchUsersAdvanced(array("username"=>$_SESSION[$this->sessionName]['user']['username'],"isadmin"=>1))) {
-				$_SESSION[$this->sessionName]['user']['isadmin'] = 1;
+			$casUserName = "{$rawUserName[0]}";
+			$tusers = new AppData\Users();
+
+			//find an existing, active user or create a new one
+			if (($user = $tusers->searchAdvanced(array("username"=>$casUserName)))) {
+				if ($user[0]['inactive'] == 0) {
+					$userId = $user[0]['id'];
+				}
+			} else {
+				$userId = $tusers->add(array("username"=>$casUserName,"iscas"=>1));
 			}
-			$this->buildProfile();
-			return true;		
+			if (!empty($userId)) {
+				session_regenerate_id(true);
+				session_start();
+				$_SESSION[SESSION_SCOPE]['sessionData']['userId'] = $userId;
+				$this->buildProfile();
+				return true;
+			}
 		}
 		return false;
 	}
