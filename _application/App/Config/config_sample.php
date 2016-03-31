@@ -3,6 +3,8 @@ define('APP_NAME', 'The Seed App');
 define('APP_DIRECTORY', 'PHPSeedApp'); 
 define('APP_BASE', '_application/');
 
+define("SESSION_SCOPE",APP_DIRECTORY);
+
 //defines the primary namespaces.
 //the autoloader defined in TAMU/Core/Lib/functions.php depends on these values to find and load Class and Interface files
 //Individual files will need to have their namespaces updated to match if these are changed.
