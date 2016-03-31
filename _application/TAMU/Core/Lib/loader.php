@@ -49,8 +49,8 @@ if (!isset($data)) {
 }
 
 //get the user
-if (isset($config['usecas']) && $config['usecas']) {
-	$globaluser = new Classes\Data\UserCAS($config['path_http']);
+if (isset($config['USECAS']) && $config['USECAS']) {
+	$globaluser = new Classes\Data\UserCAS();
 	if (!empty($_GET['ticket'])) {
 		if ($globaluser->processLogIn($_GET['ticket'])) {
 			header("Location:{$config['PATH_HTTP']}");
