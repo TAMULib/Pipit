@@ -27,7 +27,7 @@ if ($globaluser->getProfileValue("id") != $user['id']) {
 } else {
 	echo "				<a class=\"inline-block button button-small\" href=\"{$config['PATH_HTTP']}user.php?action=edit\">Edit</a>";
 }
-if ($user['haspassword'] && $user['isadmin'] != 1) {
+if ((($user['haspassword'] && $enableToggle == 'enable') || $enableToggle != 'enable') && $user['isadmin'] != 1) {
 	echo '					<form class="inline-block do-submit-confirm" name="togglestatus" method="POST" action="'.$app_http.'">
 								<input type="hidden" name="action" value="'.$enableToggle.'" />
 								<input type="hidden" name="id" value="'.$user['id'].'" />
