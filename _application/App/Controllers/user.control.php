@@ -2,7 +2,7 @@
 namespace App;
 use TAMU\Core as Core;
 
-$viewRenderer->registerAppContextProperty("app_http", "{$config['PATH_HTTP']}user.php");
+$site->getViewRenderer()->registerAppContextProperty("app_http", "{$config['PATH_HTTP']}user.php");
 
 $page['title'] = 'User';
 
@@ -18,12 +18,12 @@ if (!empty($data['action'])) {
 		break;
 		case 'edit':
 			$page['subtitle'] = 'Edit Profile';
-			$viewRenderer->registerViewVariable("user",$globaluser->getProfile());
+			$site->getViewRenderer()->registerViewVariable("user",$site->globalUser->getProfile());
 			$viewName = 'user.edit';
 		break;
 		case 'logout':
-			if ($globaluser->isLoggedIn()) {
-				if ($globaluser->logOut()) {
+			if ($site->globalUser->isLoggedIn()) {
+				if ($site->getGlobalUser()->logOut()) {
 					$system[] = "You've been logged out";
 					$viewName = "user.login";
 				} else {
@@ -36,7 +36,7 @@ if (!empty($data['action'])) {
 		break;
 		case 'login':
 			if ($data['user']['username'] && $data['user']['password']) {
-				if ($globaluser->logIn($data['user']['username'],$data['user']['password'])) {
+				if ($site->getGlobalUser()->logIn($data['user']['username'],$data['user']['password'])) {
 					header("Location:{$config['path_http']}");
 				} else {
 					$system[] = 'Invalid username/password combination';
@@ -48,12 +48,12 @@ if (!empty($data['action'])) {
 		break;
 	}
 } else {
-	if ($globaluser->isLoggedIn()) {
+	if ($site->getGlobalUser()->isLoggedIn()) {
 		$viewName = "user.info";
 	} else {
 		$viewName = "user.login";
 	}
 }
-$viewRenderer->setPage($page);
+$site->getViewRenderer()->setPage($page);
 
 ?>
