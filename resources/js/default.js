@@ -29,10 +29,14 @@ function updateSystemOutput(data) {
 /**
 * POSTs a form data update to the server, then updates .do-results with a fresh copy of its contents
 *
+* To keep a modal open and updated after form submission, add a modal_context input field to the modal form. 
+* Its value should be the query string of the content with which you want to update the modal.
+*
 **/
 
 function formUpdate(theForm) {
-	isModal = (theForm.parents("#theModal").length != 0) ? true:false;
+	var isModal = (theForm.parents("#theModal").length != 0) ? true:false;
+	
 	$.ajax({
 		type: "POST",
 		url: app_http,
@@ -40,7 +44,15 @@ function formUpdate(theForm) {
 	}).done(function(data) {
 		updateSystemOutput(data);
 		if (isModal) {
-			$("#theModal .do-close").click();
+			var $modalContextField = theForm.children("input[name=modal_context]");
+			if ($modalContextField) {
+				var modalContext = $modalContextField.val();
+			}
+			if (!modalContext) {
+				$("#theModal .do-close").click();
+			} else {
+				$("#theModal .do-results").load(app_http+"?"+modalContext+" #modalContent .do-results > *");
+			}
 		}
 		$("#modalContent .do-results").load(app_http+" #modalContent .do-results > *");
 	});
