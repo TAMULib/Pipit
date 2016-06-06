@@ -93,6 +93,7 @@ if (array_key_exists($controller,$pages) || $controller == 'user') {
 		header("Location:{$config['PATH_HTTP']}");
 	}
 } else {
+	$viewRenderer->registerAppContextProperty("app_http", "{$config['PATH_HTTP']}");
 	$filename = "{$config['PATH_CONTROLLERS']}default.control.php";
 }
 
