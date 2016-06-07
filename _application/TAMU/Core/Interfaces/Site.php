@@ -7,13 +7,12 @@ namespace TAMU\Core\Interfaces;
 */
 
 interface Site {
-	public function __construct(&$siteConfig,&$pages);
 	public function setViewRenderer($viewRenderer);
 	public function getViewRenderer();
 	public function getPages();
+	public function setPages($pages);
 	public function getGlobalUser();
 	public function getControllerPath($controllerName);
-	public function prepInputData();
-	public function getInputData();
+	public function getSanitizedInputData();
 }
 ?>
