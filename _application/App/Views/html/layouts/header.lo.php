@@ -55,9 +55,9 @@ if (is_file("{$config['PATH_FILE']}resources/js/{$controller}.js")) {
         </header>
         <div class="navigation">
 <?php
-if ($site->getGlobalUser()->isLoggedIn()) {
-    foreach ($site->getPages as $nav) {
-        if (!empty($nav['admin']) && ($nav['admin'] == true && $site->getGlobalUser()->isAdmin())) {
+if ($globaluser->isLoggedIn()) {
+    foreach ($pages as $nav) {
+        if (!empty($nav['admin']) && ($nav['admin'] == true && $globaluser->isAdmin())) {
             if ($controller == $nav['path']) {
                echo "<a class=\"capitalize current\" href=\"{$config['PATH_HTTP']}admin/{$nav['path']}/\">{$nav['name']}</a>";
             } else {
@@ -76,8 +76,8 @@ if ($site->getGlobalUser()->isLoggedIn()) {
         </div>
         <div id="systemBar">
 <?php
-if ($site->getGlobalUser()->isLoggedIn()) {
-    echo '  <div style="float:right;min-width: 5%;padding:12px 20px;">Hi <a href="'.$config['PATH_HTTP'].'user.php?action=edit">'.$site->getGlobalUser()->getProfileValue('username').'</a>! (<a href="'.$config['PATH_HTTP'].'user.php?action=logout">logout</a>)</div>';
+if ($globaluser->isLoggedIn()) {
+    echo '  <div style="float:right;min-width: 5%;padding:12px 20px;">Hi <a href="'.$config['PATH_HTTP'].'user.php?action=edit">'.$globaluser->getProfileValue('username').'</a>! (<a href="'.$config['PATH_HTTP'].'user.php?action=logout">logout</a>)</div>';
 }
 //present any system messages
 echo '      <div class="sysMsg">';

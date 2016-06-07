@@ -16,11 +16,11 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 	private $viewFile = null;
 	private $appContext = null;
 
-	public function __construct() {
+	public function __construct(&$globalUser,&$pages,$controllerName) {
 		$this->registerAppContextProperty("config", $GLOBALS['config']);
-		$this->registerAppContextProperty("globaluser", $GLOBALS['globaluser']);
-		$this->registerAppContextProperty("pages", $GLOBALS['pages']);
-		$this->registerAppContextProperty("controller", $GLOBALS['controller']);
+		$this->registerAppContextProperty("globaluser", $globalUser);
+		$this->registerAppContextProperty("pages", $pages);
+		$this->registerAppContextProperty("controller", $controllerName);
 	}
 
 	public function renderView() {
