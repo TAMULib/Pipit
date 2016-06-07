@@ -37,7 +37,7 @@ if (!empty($data['action'])) {
 		case 'login':
 			if ($data['user']['username'] && $data['user']['password']) {
 				if ($site->getGlobalUser()->logIn($data['user']['username'],$data['user']['password'])) {
-					header("Location:{$config['path_http']}");
+					header("Location:{$config['PATH_HTTP']}");
 				} else {
 					$system[] = 'Invalid username/password combination';
 					$viewName = "user.login";
