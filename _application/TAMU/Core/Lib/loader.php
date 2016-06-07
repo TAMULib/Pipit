@@ -41,10 +41,10 @@ $data = $site->getSanitizedInputData();
 if (isset($data['json']) && $data['json']) {
 	$site->setViewRenderer(new Classes\ViewRenderers\JSONViewRenderer());
 } else {
-	$site->setViewRenderer(new Classes\ViewRenderers\HTMLViewRenderer($site->getGlobalUser(),$site->getPages(),$controller));
+	$site->setViewRenderer(new Classes\ViewRenderers\HTMLViewRenderer($site->getGlobalUser(),$site->getPages(),$controllerName));
 }
 
-$controllerPath = $site->getControllerPath($controller);
+$controllerPath = $site->getControllerPath($controllerName);
 
 if (!$controllerPath) {
 	header("Location:{$config['PATH_HTTP']}");
@@ -56,7 +56,7 @@ if (!empty($controllerPath) && is_file($controllerPath)) {
 	include $controllerPath;
 	//if the controller defined a $viewfile, register it with the view renderer
 	if (isset($viewName)) {
-		if (!empty($pages[$controller]['admin']) && $pages[$controller]['admin'] == true) {
+		if (!empty($pages[$controllerName]['admin']) && $pages[$controllerName]['admin'] == true) {
 			$site->getViewRenderer()->setView($viewName,$site->getGlobalUser()->isAdmin());
 		} else {
 			$site->getViewRenderer()->setView($viewName);
