@@ -22,7 +22,7 @@ if ($users) {
 					<td>{$user['name_first']}</td>
 					<td>{$user['email']}</td>
 					<td class=\"capitalize\">";
-if ($globaluser->getProfileValue("id") != $user['id']) {
+if ($globalUser->getProfileValue("id") != $user['id']) {
 	echo "				<a class=\"inline-block button button-small do-loadmodal\" href=\"{$app_http}?action=edit&id={$user['id']}\">Edit</a>";
 } else {
 	echo "				<a class=\"inline-block button button-small\" href=\"{$config['PATH_HTTP']}user.php?action=edit\">Edit</a>";
