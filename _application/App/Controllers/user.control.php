@@ -18,7 +18,7 @@ if (!empty($data['action'])) {
 		break;
 		case 'edit':
 			$page['subtitle'] = 'Edit Profile';
-			$site->getViewRenderer()->registerViewVariable("user",$site->globalUser->getProfile());
+			$site->getViewRenderer()->registerViewVariable("user",$site->getGlobalUser()->getProfile());
 			$viewName = 'user.edit';
 		break;
 		case 'logout':
