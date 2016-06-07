@@ -15,9 +15,7 @@ abstract class AbstractSite implements Interfaces\Site {
 	private $inputData;
 
 	public function __construct(&$siteConfig,&$pages) {
-		$this->globalUser = $globalUser;
 		$this->siteConfig = $siteConfig;
-		$this->viewRenderer = $viewRenderer;
 		$this->pages = $pages;
 		$this->prepInputData();
 		$this->setUser();

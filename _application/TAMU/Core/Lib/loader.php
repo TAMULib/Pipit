@@ -12,6 +12,7 @@ use App\Classes as AppClasses;
 
 session_start();
 
+$config = get_defined_constants(true)["user"];
 require_once "{$config['PATH_LIB']}functions.php";
 
 //This array represents the app's pages. Used to generate user facing navigation and load controllers
@@ -20,7 +21,6 @@ $pages = array(
 			"widgets" => array("name"=>"widgets","path"=>"widgets"),
 			"users" => array("name"=>"users","path"=>"users","admin"=>true));
 
-$config = get_defined_constants(true)["user"];
 //$site = new AppClasses\Site($globaluser,$config,$viewRenderer,$pages);
 $site = new AppClasses\Site($config,$pages);
 
@@ -41,7 +41,7 @@ $data = $site->getInputData();
 if (isset($data['json']) && $data['json']) {
 	$site->setViewRenderer(new Classes\ViewRenderers\JSONViewRenderer());
 } else {
-	$site->setViewRenderer(new Classes\ViewRenderers\HTMLViewRenderer());
+	$site->setViewRenderer(new Classes\ViewRenderers\HTMLViewRenderer($site->getGlobalUser(),$site->getPages(),$controller));
 }
 
 
@@ -56,7 +56,7 @@ if (!empty($controllerPath) && is_file($controllerPath)) {
 	//if the controller defined a $viewfile, register it with the view renderer
 	if (isset($viewName)) {
 		if (!empty($pages[$controller]['admin']) && $pages[$controller]['admin'] == true) {
-			$site->getViewRenderer()->setView($viewName,$globaluser->isAdmin());
+			$site->getViewRenderer()->setView($viewName,$site->getGlobalUser()->isAdmin());
 		} else {
 			$site->getViewRenderer()->setView($viewName);
 		}
