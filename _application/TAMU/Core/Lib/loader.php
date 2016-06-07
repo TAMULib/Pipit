@@ -34,8 +34,7 @@ if (isset($forceRedirectUrl) && !empty($forceRedirectUrl)) {
 
 $system = array();
 
-//get a sanitized version of GET/POST/REQUEST data
-$data = $site->getInputData();
+$data = $site->getSanitizedInputData();
 
 //set the ViewRenderer
 if (isset($data['json']) && $data['json']) {
