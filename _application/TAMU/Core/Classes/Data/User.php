@@ -42,11 +42,10 @@ class User extends DBObject {
 
 	public function logIn($username,$password) {
 		session_regenerate_id(true);
-		session_start();
 		$sql = "SELECT id,password FROM {$this->primaryTable} WHERE username=:username AND inactive=0";
 		if ($result = $this->executeQuery($sql,array(":username"=>$username))) {
 			if (password_verify($password,$result[0]['password'])) {
-				$_SESSION[SESSION_SCOPE]['sessionData']['userId'] = $result[0][id];
+				$_SESSION[SESSION_SCOPE]['sessionData']['userId'] = $result[0]['id'];
 				return true;			
 			}
 		}
