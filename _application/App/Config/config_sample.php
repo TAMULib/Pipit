@@ -59,6 +59,12 @@ define("DB_DSN", 'mysql:host='.DB_HOST.';dbname='.DB_DATABASE);
 
 //debug mode for PDO database queries
 define('DB_DEBUG', false);
+
+//This array represents the app's pages. Used to generate user facing navigation and load controllers
+//The keys represent controller names
+$sitePages = array(
+			"widgets" => array("name"=>"widgets","path"=>"widgets"),
+			"users" => array("name"=>"users","path"=>"users","admin"=>true));
 ?>
 
 

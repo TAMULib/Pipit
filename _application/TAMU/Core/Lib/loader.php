@@ -3,7 +3,14 @@ namespace TAMU\Core;
 use App\Classes as AppClasses;
 
 /**
-*	The entry point for the application. All endpoints lead, here.
+*	The Core Loader is the default entry point for the application. All endpoints lead, here, by way of the App Loader.
+*
+*	The Core Loader is responsible for:
+* 		Starting the session
+*		Preparing global vars for controller use
+*		Managing an implementation of the Site class
+*		Using the Site class to get the logged in User
+*		Using the Site class to load appropriate controllers and render views
 *	
 *	@author Jason Savell <jsavell@library.tamu.edu>
 *
@@ -12,28 +19,22 @@ use App\Classes as AppClasses;
 
 session_start();
 
+//don't recommend using, sanitizing in case someone does
+$_SERVER['PHP_SELF'] = htmlentities($_SERVER['PHP_SELF']);
+
+
 $config = get_defined_constants(true)["user"];
 require_once "{$config['PATH_LIB']}functions.php";
 
-//This array represents the app's pages. Used to generate user facing navigation and load controllers
-//The keys represent controller names
-$pages = array(
-			"widgets" => array("name"=>"widgets","path"=>"widgets"),
-			"users" => array("name"=>"users","path"=>"users","admin"=>true));
+$site = new AppClasses\Site($config,$sitePages);
 
-//$site = new AppClasses\Site($globaluser,$config,$viewRenderer,$pages);
-$site = new AppClasses\Site($config,$pages);
-
-
-//don't recommend using, sanitizing in case someone does
-$_SERVER['PHP_SELF'] = htmlentities($_SERVER['PHP_SELF']);
+$pages = $site->getPages();
 
 if (isset($forceRedirectUrl) && !empty($forceRedirectUrl)) {
 	header("Location: {$forceRedirectUrl}");
 }
 
 $system = array();
-
 $data = $site->getSanitizedInputData();
 
 //set the ViewRenderer
@@ -43,11 +44,12 @@ if (isset($data['json']) && $data['json']) {
 	$site->setViewRenderer(new Classes\ViewRenderers\HTMLViewRenderer($site->getGlobalUser(),$site->getPages(),$controller));
 }
 
-
 $controllerPath = $site->getControllerPath($controller);
+
 if (!$controllerPath) {
 	header("Location:{$config['PATH_HTTP']}");
 }
+
 
 //try to load the controller
 if (!empty($controllerPath) && is_file($controllerPath)) {
