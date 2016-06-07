@@ -55,6 +55,7 @@ class User extends DBObject {
 	protected function buildProfile() {
 		$sql = "SELECT * FROM {$this->primaryTable} WHERE id=:id";
 		if ($user = $this->executeQuery($sql,array(":id"=>$this->sessionUserId))[0]) {
+			unset($user['password']);
 			foreach ($user as $field=>$value) {
 				$this->profile[$field] = $value;
 			}
