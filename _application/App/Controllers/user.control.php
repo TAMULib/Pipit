@@ -22,7 +22,7 @@ if (!empty($data['action'])) {
 			$viewName = 'user.edit';
 		break;
 		case 'logout':
-			if ($site->globalUser->isLoggedIn()) {
+			if ($site->getGlobalUser()->isLoggedIn()) {
 				if ($site->getGlobalUser()->logOut()) {
 					$system[] = "You've been logged out";
 					$viewName = "user.login";
