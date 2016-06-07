@@ -18,19 +18,19 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 
 	public function __construct(&$globalUser,&$pages,$controllerName) {
 		$this->registerAppContextProperty("config", $GLOBALS['config']);
-		$this->registerAppContextProperty("globaluser", $globalUser);
+		$this->registerAppContextProperty("globalUser", $globalUser);
 		$this->registerAppContextProperty("pages", $pages);
-		$this->registerAppContextProperty("controller", $controllerName);
+		$this->registerAppContextProperty("controllerName", $controllerName);
 	}
 
 	public function renderView() {
 		$config =& $this->getAppContextProperty("config");
-		$globaluser =& $this->getAppContextProperty("globaluser");
+		$globalUser =& $this->getAppContextProperty("globalUser");
 		$pages =& $this->getAppContextProperty("pages");
 		$system =& $this->getAppContextProperty("system");
 		$page =& $this->getAppContextProperty("page");
 		$app_http =& $this->getAppContextProperty("app_http");
-		$controller =& $this->getAppContextProperty("controller");
+		$controllerName =& $this->getAppContextProperty("controllerName");
 		include "{$config['PATH_VIEWS']}html/layouts/header.lo.php";
 		if (!empty($this->viewFile)) {
 			if (is_file($this->viewFile)) {

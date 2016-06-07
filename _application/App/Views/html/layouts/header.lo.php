@@ -11,7 +11,7 @@
         <link rel="apple-touch-icon" href="iphone-icon.png" />
         <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_CSS'];?>style.css" media="screen"/>
 <?php
-if (is_file("{$config['PATH_FILE']}{$controller}.css")) {
+if (is_file("{$config['PATH_FILE']}{$controllerName}.css")) {
     echo '<link rel="stylesheet" type="text/css" href="'.$config['PATH_CSS'].$controller.'.css" media="screen"/>';
 }
 ?>
@@ -23,8 +23,8 @@ if (is_file("{$config['PATH_FILE']}{$controller}.css")) {
         </script>
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>default.js"></script>
 <?php
-if (is_file("{$config['PATH_FILE']}resources/js/{$controller}.js")) {
-    echo '<script type="text/javascript" src="'.$config['PATH_JS'].$controller.'.js"></script>';
+if (is_file("{$config['PATH_FILE']}resources/js/{$controllerName}.js")) {
+    echo '<script type="text/javascript" src="'.$config['PATH_JS'].$controllerName.'.js"></script>';
 }
 ?>
         <link rel="shortcut icon" href="ico/favicon.ico">
@@ -55,16 +55,16 @@ if (is_file("{$config['PATH_FILE']}resources/js/{$controller}.js")) {
         </header>
         <div class="navigation">
 <?php
-if ($globaluser->isLoggedIn()) {
+if ($globalUser->isLoggedIn()) {
     foreach ($pages as $nav) {
-        if (!empty($nav['admin']) && ($nav['admin'] == true && $globaluser->isAdmin())) {
-            if ($controller == $nav['path']) {
+        if (!empty($nav['admin']) && ($nav['admin'] == true && $globalUser->isAdmin())) {
+            if ($controllerName == $nav['path']) {
                echo "<a class=\"capitalize current\" href=\"{$config['PATH_HTTP']}admin/{$nav['path']}/\">{$nav['name']}</a>";
             } else {
                 echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}admin/{$nav['path']}/\">{$nav['name']}</a>";
             }
         } elseif (empty($nav['admin'])) {
-            if ($controller == $nav['path']) {
+            if ($controllerName == $nav['path']) {
                echo "<a class=\"capitalize current\" href=\"{$config['PATH_HTTP']}{$nav['path']}/\">{$nav['name']}</a>";
             } else {
                 echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}{$nav['path']}/\">{$nav['name']}</a>";
@@ -76,8 +76,8 @@ if ($globaluser->isLoggedIn()) {
         </div>
         <div id="systemBar">
 <?php
-if ($globaluser->isLoggedIn()) {
-    echo '  <div style="float:right;min-width: 5%;padding:12px 20px;">Hi <a href="'.$config['PATH_HTTP'].'user.php?action=edit">'.$globaluser->getProfileValue('username').'</a>! (<a href="'.$config['PATH_HTTP'].'user.php?action=logout">logout</a>)</div>';
+if ($globalUser->isLoggedIn()) {
+    echo '  <div style="float:right;min-width: 5%;padding:12px 20px;">Hi <a href="'.$config['PATH_HTTP'].'user.php?action=edit">'.$globalUser->getProfileValue('username').'</a>! (<a href="'.$config['PATH_HTTP'].'user.php?action=logout">logout</a>)</div>';
 }
 //present any system messages
 echo '      <div class="sysMsg">';
