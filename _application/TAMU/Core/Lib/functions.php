@@ -1,5 +1,11 @@
 <?php
 
+/*
+*   This autoloader will search both the app and core namespaces, in that order, for the first matching file containing the declaration of that class or interface.
+*   In other words, a class/interface at the app level with NAMESPACE\\CLASSNAME will be loaded instead of a core level class/interface with the same NAMESPACE\\CLASSNAME
+*
+*/
+
 spl_autoload_register(function($class) {
     // project-specific namespace prefixes
     $prefixes = array(NAMESPACE_APP,NAMESPACE_CORE);

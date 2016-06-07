@@ -15,10 +15,10 @@ if (isset($data['action'])) {
 	switch ($data['action']) {
 		case 'search':
 			if (isset($data['term'])) {
- 				$viewRenderer->registerViewVariable("users",$tusers->search($data['term']));
+ 				$site->getViewRenderer()->registerViewVariable("users",$tusers->search($data['term']));
 				$viewName = "users.list";
 			} elseif (isset($data['advancedsearch'])) {
- 				$viewRenderer->registerViewVariable("users",$tusers->searchAdvanced($data['advancedsearch']));
+ 				$site->getViewRenderer()->registerViewVariable("users",$tusers->searchAdvanced($data['advancedsearch']));
 				$viewName = "users.list";
 			} else {
 				$system[] = 'There was an error with the search';
@@ -59,16 +59,16 @@ if (isset($data['action'])) {
 		case 'edit':
 			$page['subtitle'] = 'Update User';
 			if (isset($data['id']) && is_numeric($data['id'])) {
- 				$viewRenderer->registerViewVariable("user",$tusers->getById($data['id']));
+ 				$site->getViewRenderer()->registerViewVariable("user",$tusers->getById($data['id']));
 				$viewName = "users.edit";
 			}
 		break;
 	}
 } else {
 	$page['subtitle'] = 'Users';
- 	$viewRenderer->registerViewVariable("users",$tusers->get());
+ 	$site->getViewRenderer()->registerViewVariable("users",$tusers->get());
 	$viewName = "users.list";
 }
-$viewRenderer->setPage($page);
+$site->getViewRenderer()->setPage($page);
 
 ?>
