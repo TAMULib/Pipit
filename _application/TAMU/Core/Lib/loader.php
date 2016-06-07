@@ -41,7 +41,7 @@ $data = $site->getSanitizedInputData();
 if (isset($data['json']) && $data['json']) {
 	$site->setViewRenderer(new Classes\ViewRenderers\JSONViewRenderer());
 } else {
-	$site->setViewRenderer(new Classes\ViewRenderers\HTMLViewRenderer($site->getGlobalUser(),$site->getPages(),$controllerName));
+	$site->setViewRenderer(new AppClasses\ViewRenderers\BootstrapViewRenderer($site->getGlobalUser(),$site->getPages(),$controllerName));
 }
 
 $controllerPath = $site->getControllerPath($controllerName);
