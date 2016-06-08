@@ -13,9 +13,10 @@ function confirmAction() {
 * Rebinds the datepickers. Use when a datepicker element may have been loaded asynchronously
 *
 **/
+/*
 function runDatePicker() {
 	$(".date-input-db").datepicker({ dateFormat: 'yy-mm-dd' });
-}
+}*/
 
 /**
 * Parse the system output from the HTML returned after an AJAX POST and pop it into the active DOM
@@ -23,7 +24,7 @@ function runDatePicker() {
 **/
 function updateSystemOutput(data) {
 	$(".sysMsg").html($($(data).filter("#systemBar").find(".sysMsg")).html());
-	setTimeout("$(\".sysMsg h4\").fadeOut(\"slow\")",6000);
+	setTimeout("$(\".sysMsg .alert\").fadeOut(\"slow\")",6000);
 }
 
 /**
@@ -49,7 +50,7 @@ function formUpdate(theForm) {
 				var modalContext = $modalContextField.val();
 			}
 			if (!modalContext) {
-				$("#theModal .do-close").click();
+				$('#theModal').modal('hide');
 			} else {
 				$("#theModal .do-results").load(app_http+"?"+modalContext+" #modalContent .do-results > *");
 			}
@@ -68,13 +69,14 @@ function formGet(theForm) {
 
 $(document).ready(function() {
 	//bind datepickers on page load
-	runDatePicker();
+//	runDatePicker();
 
 	//rebind datepickers after any AJAX calls complete
+/*
 	$(document).ajaxComplete(function() {
 		runDatePicker();
 	});
-
+*/
 	//remove system messages when clicked on by user
 	$("#systemBar").on("click",".sysMsg .alert",function() {
 		$(this).fadeOut("slow",function() {
@@ -84,7 +86,7 @@ $(document).ready(function() {
 
 	//show the clear search option when a search is active
 	$("#searchResults").click(function() {
-		$("#searchStatus a.hidden").fadeIn("fast");
+		$("#searchStatus a").toggle();
 	});
 
 	//reset the search results and UI
@@ -95,6 +97,19 @@ $(document).ready(function() {
 		$(this).fadeOut("fast");
 	});
 
+	//Loads the modal box
+	//Any anchor tag with a .do-loadmodal class will have the contents of its href loaded into the modal box
+	$(".container,#theModal").on("click",".do-loadmodal",function(e) {
+		e.preventDefault();
+		$clicked = $(this);
+		$(".container").addClass("blur");
+		$("#theModal").fadeIn("fast",function() {
+			$("#theModal .modal-body").load($clicked.attr("href")+" #modalContent > *",function() {
+				$('#theModal').modal('show');
+			});
+		});
+	});
+
 	//AJAX form submission with confirmation
 	//Listens for submission of any form with a .do-submit-confirm class
 	$(".container,#theModal").on("submit",".do-submit-confirm",function() {
@@ -102,6 +117,12 @@ $(document).ready(function() {
 			formUpdate($(this));
 		}
 		return false;
+	});
+
+	//Confirmation interceptor
+	//Makes a click on any element with a .do-confirm class cancellable by the user
+	$(".container,#theModal").on("click",".do-confirm",function() {
+		return confirmAction();
 	});
 
 	//AJAX form submission for updating app data
@@ -118,38 +139,4 @@ $(document).ready(function() {
 		return false;
 	});
 
-	//Confirmation interceptor
-	//Makes a click on any element with a .do-confirm class cancellable by the user
-	$(".container,#theModal").on("click",".do-confirm",function() {
-		return confirmAction();
-	});
-
-	//Loads the modal box
-	//Any anchor tag with a .do-loadmodal class will have the contents of its href loaded into the modal box
-	$(".container,#theModal").on("click",".do-loadmodal",function(e) {
-		e.preventDefault();
-		$clicked = $(this);
-		$(".container").addClass("blur");
-		$("#theModal .loader").fadeIn("fast",function() {
-			$("#theOverlay").fadeIn("fast",function() {
-				$("#theModal").fadeIn("fast",function() {
-					$("#theModal .content").load($clicked.attr("href")+" #modalContent > *",function() {
-						$("#theModal .loader").fadeOut("fast",function() {
-							$("#theModal .content").fadeIn("fast");
-						});
-					});
-				});
-			});
-		});
-	});
-
-	//Closes the modal box
-	$("#theModal .do-close").click(function(e) {
-		e.preventDefault();
-		$("#theModal").fadeOut("fast",function() {
-			$(".container").removeClass("blur");
-			$("#theOverlay").fadeOut("fast");
-			$("#theModal .content").hide();
-		});
-	});
 });

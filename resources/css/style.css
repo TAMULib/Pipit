@@ -14,7 +14,7 @@ body {
 	text-align: center;
 }
 
-.hidden {
+.hidden,.theModal > .content {
 	display: none;
 }
 
@@ -181,7 +181,7 @@ header h1 {
 	min-width: 100px;
 }
 
-.sysMsg h4 {
+.sysMsg h4.alert {
 	border-radius: 6px;
 	border: 1px solid #555;
 	background-color: #efefef;
@@ -189,6 +189,7 @@ header h1 {
 	width: 50%;
 	min-width: 100px;
 	margin: 8px auto;
+	font-weight: bold;
 }
 
 .sysMsg h4:hover {
