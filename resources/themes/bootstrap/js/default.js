@@ -1,4 +1,22 @@
+/**
+* Simple wrapper for the built in confirm()
+*
+*/
+function confirmAction() {
+	if (confirm("Are you sure?")) {
+		return true;
+	}
+	return false;
+}
+
 $(document).ready(function() {
+	//remove system messages when clicked on by user
+	$("#systemBar").on("click",".sysMsg .alert",function() {
+		$(this).fadeOut("slow",function() {
+			$(this).remove();
+		});
+	});
+
 	//Loads the modal box
 	//Any anchor tag with a .do-loadmodal class will have the contents of its href loaded into the modal box
 	$(".container,#theModal").on("click",".do-loadmodal",function(e) {
@@ -10,6 +28,21 @@ $(document).ready(function() {
 				$('#theModal').modal('show');
 			});
 		});
+	});
+
+	//AJAX form submission with confirmation
+	//Listens for submission of any form with a .do-submit-confirm class
+	$(".container,#theModal").on("submit",".do-submit-confirm",function() {
+		if (confirmAction()) {
+			formUpdate($(this));
+		}
+		return false;
+	});
+
+	//Confirmation interceptor
+	//Makes a click on any element with a .do-confirm class cancellable by the user
+	$(".container,#theModal").on("click",".do-confirm",function() {
+		return confirmAction();
 	});
 
 	//AJAX form submission for updating app data
@@ -25,7 +58,7 @@ $(document).ready(function() {
 	**/
 	function updateSystemOutput(data) {
 		$(".sysMsg").html($($(data).filter("#systemBar").find(".sysMsg")).html());
-		setTimeout("$(\".sysMsg h4\").fadeOut(\"slow\")",6000);
+		setTimeout("$(\".sysMsg .alert\").fadeOut(\"slow\")",6000);
 	}
 
 	/**
