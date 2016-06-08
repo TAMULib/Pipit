@@ -76,7 +76,7 @@ $(document).ready(function() {
 	});
 
 	//remove system messages when clicked on by user
-	$("#systemBar").on("click",".sysMsg h4",function() {
+	$("#systemBar").on("click",".sysMsg .alert",function() {
 		$(this).fadeOut("slow",function() {
 			$(this).remove();
 		});

@@ -12,6 +12,7 @@
 		<!-- Bootstrap CSS - Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_CSS'];?>style.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_THEMES'];?>bootstrap/css/style.css" media="screen"/>
 <?php
 if (is_file("{$config['PATH_FILE']}{$controllerName}.css")) {
     echo '<link rel="stylesheet" type="text/css" href="'.$config['PATH_CSS'].$controller.'.css" media="screen"/>';
@@ -54,30 +55,30 @@ if ($controllerName != 'default' && is_file("{$config['PATH_FILE']}resources/js/
             <div class="content">
             </div>
         </div>
-        <header>
-            <h1><?php echo $config["APP_NAME"];?> BOOTSTRAPPED</h1>
-        </header>
-        <div class="navigation">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<span class="navbar-brand"><?php echo $config["APP_NAME"];?></span>
+				</div>
+				<div>
+					<ul class="nav navbar-nav">
 <?php
 if ($globalUser->isLoggedIn()) {
     foreach ($pages as $nav) {
+		echo '			<li'.(($controllerName == $nav['path']) ? ' class="active"':'').'>';
         if (!empty($nav['admin']) && ($nav['admin'] == true && $globalUser->isAdmin())) {
-            if ($controllerName == $nav['path']) {
-               echo "<a class=\"capitalize current\" href=\"{$config['PATH_HTTP']}admin/{$nav['path']}/\">{$nav['name']}</a>";
-            } else {
-                echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}admin/{$nav['path']}/\">{$nav['name']}</a>";
-            }
+			echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}admin/{$nav['path']}/\">{$nav['name']}</a>";
         } elseif (empty($nav['admin'])) {
-            if ($controllerName == $nav['path']) {
-               echo "<a class=\"capitalize current\" href=\"{$config['PATH_HTTP']}{$nav['path']}/\">{$nav['name']}</a>";
-            } else {
-                echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}{$nav['path']}/\">{$nav['name']}</a>";
-            }
+			echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}{$nav['path']}/\">{$nav['name']}</a>";
         }
+		echo '			</li>';
     }
 }
 ?>
-        </div>
+					</ul>
+        		</div>
+			</div>
+		</nav>
         <div id="systemBar">
 <?php
 if ($globalUser->isLoggedIn()) {
@@ -87,7 +88,7 @@ if ($globalUser->isLoggedIn()) {
 echo '      <div class="sysMsg">';
 if (isset($system)) {
 	foreach ($system as $msg) {
-		echo "    <h4>{$msg}</h4>";
+		echo "    <div class=\"alert alert-info\">{$msg}</div>";
 	}
 }
 echo '      </div>';
@@ -97,8 +98,9 @@ echo '      </div>';
 <?php
 if (!empty($page)) {
     if (isset($page['title'])) {
-    	echo "
-            <h1>{$page['title']}</h1>";
+		echo "<div class=\"page-header\">
+            	<h1>{$page['title']}</h1>
+			</div>";
     }
     echo '  <div>';
     if (isset($page['navigation'])) {
@@ -127,7 +129,9 @@ if (!empty($page)) {
 }
 echo '        <div id="modalContent">';
 if (isset($page['subtitle']) && $page['subtitle']) {
-	echo "     <h4 class=\"capitalize\">{$page['subtitle']}</h4>";
+	echo "     	<div class=\"page-header\">
+					<h1 class=\"capitalize\"><small>{$page['subtitle']}</small></h1>
+				</div>";
 }
 
 ?>
