@@ -15,12 +15,15 @@ define("NAMESPACE_APP","App\\");
 define('PATH_ROOT', '/'); 
 define('PATH_FILE', PATH_ROOT.APP_DIRECTORY.'/');
 define('PATH_APP', PATH_FILE.APP_BASE);
-define('PATH_LIB', PATH_APP.str_replace('\\', '/', NAMESPACE_CORE)."Lib/");
+define('PATH_LIB', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Lib/");
+define('PATH_CORE_LIB', PATH_APP.str_replace('\\', '/', NAMESPACE_CORE)."Lib/");
 define('PATH_CONTROLLERS', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Controllers/");
 define('PATH_VIEWS', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Views/");
 
 //web paths
 define('PATH_HTTP', "http://localhost/".APP_DIRECTORY."/");
+define('PATH_RESOURCES', PATH_HTTP."resources/");
+define('PATH_THEMES', PATH_HTTP."resources/themes/");
 define('PATH_CSS', PATH_HTTP."resources/css/");
 define('PATH_JS', PATH_HTTP."resources/js/");
 define('PATH_IMAGES', PATH_HTTP."resources/images/");
@@ -59,6 +62,18 @@ define("DB_DSN", 'mysql:host='.DB_HOST.';dbname='.DB_DATABASE);
 
 //debug mode for PDO database queries
 define('DB_DEBUG', false);
+
+//This array represents the app's pages. Used to generate user facing navigation and load controllers
+//The keys correspond to controller names
+//Each entry should have a corresponding user reachable file (with an arbitrary real directory path) that includes the config file and (defines a controller and includes the loader) or (redirects with $forceRedirectUrl)
+//It's possible to have user reachable files that aren't represented in this array. They simply won't have a navigation link in the HTML header.
+$sitePages = array(
+			"widgets" => array("name"=>"widgets","path"=>"widgets"),
+			"users" => array("name"=>"users","path"=>"users","admin"=>true));
+
+//The ViewRenderer can be set, here, if we want to use something other than the default HTMLViewRenderer
+//define('VIEW_RENDERER','BootstrapViewRenderer');
+
 ?>
 
 
