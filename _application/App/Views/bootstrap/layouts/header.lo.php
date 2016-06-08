@@ -87,7 +87,7 @@ if ($globalUser->isLoggedIn()) {
         		</div>
 			</div>
 		</nav>
-        <div id="systemBar">
+        <div id="systemBar" class="clearfix">
 <?php
 //present any system messages
 echo '      <div class="sysMsg col-sm-10">';
@@ -105,7 +105,7 @@ if ($globalUser->isLoggedIn()) {
 
 ?>
         </div>
-        <div class="container">
+        <div class="container clearfix">
 <?php
 if (!empty($page)) {
     if (isset($page['title'])) {
