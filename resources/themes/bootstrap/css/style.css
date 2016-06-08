@@ -4,8 +4,20 @@
 	border-bottom: 1px solid #008a00;
 }
 
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+	background-color: #008a00;
+}
+
+a:focus, a:hover {
+	color: #008a00;
+}
+
 .sysMsg div.alert {
 	cursor: pointer;
 	width: 50%;
 	min-width: 100px;
+}
+
+#theModal .page-header {
+	margin-top: 8px;
 }

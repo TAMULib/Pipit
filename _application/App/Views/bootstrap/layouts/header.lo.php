@@ -20,6 +20,7 @@ if (is_file("{$config['PATH_FILE']}{$controllerName}.css")) {
 ?>
 		<!-- Bootstrap JS - Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!--
         <link rel="stylesheet" href="<?php echo $config['PATH_JS'];?>jquery-ui-1.11.2.custom/jquery-ui.css">
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>jquery-ui-1.11.2.custom/jquery-ui.js"></script>
@@ -27,10 +28,13 @@ if (is_file("{$config['PATH_FILE']}{$controllerName}.css")) {
             var app_http = '<?php echo $app_http;?>';
         </script>
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>default.js"></script>
+-->
 <?php
+/*
 if ($controllerName != 'default' && is_file("{$config['PATH_FILE']}resources/js/{$controllerName}.js")) {
     echo '<script type="text/javascript" src="'.$config['PATH_JS'].$controllerName.'.js"></script>';
 }
+*/
 ?>
         <link rel="shortcut icon" href="ico/favicon.ico">
     </head>
@@ -103,20 +107,8 @@ if (!empty($page)) {
 			</div>";
     }
     echo '  <div>';
-    if (isset($page['navigation'])) {
-        $size = sizeof($page['navigation']);
-        $navWidth = 15*$size;
-        $btnWidth = $navWidth/($size*.8);
-        echo "  <div style=\"width:{$navWidth}%\" class=\"inline-block navigation subNav\">";
-    	foreach ($page['navigation'] as $subnav) {
-            $isCurrent = (isset($data['action']) && isset($subnav['action']) && $subnav['action'] == $data['action']) || (!isset($data['action']) && !isset($subnav['action']));
-    		echo "<a style=\"width:{$btnWidth}%\" class=\"capitalize".($isCurrent ? ' current':'').(isset($subnav['modal']) ? ' do-loadmodal':'')."\" href=\"{$app_http}".((isset($subnav['action'])) ? "?action={$subnav['action']}":'')."\">{$subnav['name']}</a>";
-    	}
-        echo '  </div>';
-    }
-
     if (isset($page['search'])) {
-        echo '  <form id="doSearch" class="do-get inline-block" name="search" method="POST" action="'.$app_http.'">
+        echo '  <form id="doSearch" class="do-get pull-right" name="search" method="POST" action="'.$app_http.'">
                     <input type="hidden" name="action" value="search" />
                     <input id="searchTerm" class="inline" type="text" name="term" />';
         echo '      <input id="searchResults" class="inline" type="submit" name="submit" value="Search" />
@@ -125,6 +117,18 @@ if (!empty($page)) {
                     </div>
                 </form>';
     }
+
+    if (isset($page['navigation'])) {
+        echo "  <ul class=\"nav nav-pills\">";
+    	foreach ($page['navigation'] as $subnav) {
+            $isCurrent = (isset($data['action']) && isset($subnav['action']) && $subnav['action'] == $data['action']) || (!isset($data['action']) && !isset($subnav['action']));
+    		echo "	<li".(($isCurrent) ? ' class="active"':'').">
+						<a class=\"capitalize".(isset($subnav['modal']) ? ' do-loadmodal':'')."\" href=\"{$app_http}".((isset($subnav['action'])) ? "?action={$subnav['action']}":'')."\">{$subnav['name']}</a>
+					</li>";
+    	}
+        echo '  </ul>';
+    }
+
     echo '    </div>';
 }
 echo '        <div id="modalContent">';
