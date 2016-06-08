@@ -9,9 +9,11 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <link rel="apple-touch-icon" href="iphone-icon.png" />
+        <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>jquery.min.js"></script>
 		<!-- Bootstrap CSS - Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_CSS'];?>style.css" media="screen"/>
+<!--        <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_CSS'];?>style.css" media="screen"/>-->
+        <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_CSS'];?>helpers.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_THEMES'];?>bootstrap/css/style.css" media="screen"/>
 <?php
 if (is_file("{$config['PATH_FILE']}{$controllerName}.css")) {
@@ -39,6 +41,7 @@ if ($controllerName != 'default' && is_file("{$config['PATH_FILE']}resources/js/
         <link rel="shortcut icon" href="ico/favicon.ico">
     </head>
     <body>
+<!--
         <div id="theOverlay"></div>
         <div id="theModal">
             <div class="header">
@@ -59,6 +62,7 @@ if ($controllerName != 'default' && is_file("{$config['PATH_FILE']}resources/js/
             <div class="content">
             </div>
         </div>
+-->
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -85,17 +89,20 @@ if ($globalUser->isLoggedIn()) {
 		</nav>
         <div id="systemBar">
 <?php
-if ($globalUser->isLoggedIn()) {
-    echo '  <div style="float:right;min-width: 5%;padding:12px 20px;">Hi <a href="'.$config['PATH_HTTP'].'user.php?action=edit">'.$globalUser->getProfileValue('username').'</a>! (<a href="'.$config['PATH_HTTP'].'user.php?action=logout">logout</a>)</div>';
-}
 //present any system messages
-echo '      <div class="sysMsg">';
+echo '      <div class="sysMsg col-sm-10">';
 if (isset($system)) {
 	foreach ($system as $msg) {
 		echo "    <div class=\"alert alert-info\">{$msg}</div>";
 	}
 }
 echo '      </div>';
+if ($globalUser->isLoggedIn()) {
+    echo '  <div class="col-sm-2">
+				<span>Hi <a href="'.$config['PATH_HTTP'].'user.php?action=edit">'.$globalUser->getProfileValue('username').'</a>! (<a href="'.$config['PATH_HTTP'].'user.php?action=logout">logout</a>)</span>
+			</div>';
+}
+
 ?>
         </div>
         <div class="container">
@@ -106,32 +113,39 @@ if (!empty($page)) {
             	<h1>{$page['title']}</h1>
 			</div>";
     }
-    echo '  <div>';
-    if (isset($page['search'])) {
-        echo '  <form id="doSearch" class="do-get pull-right" name="search" method="POST" action="'.$app_http.'">
-                    <input type="hidden" name="action" value="search" />
-                    <input id="searchTerm" class="inline" type="text" name="term" />';
-        echo '      <input id="searchResults" class="inline" type="submit" name="submit" value="Search" />
-                    <div class="inline-block" id="searchStatus">
-                        <a class="hidden" href="#clearSearch">clear search</a>
-                    </div>
-                </form>';
-    }
-
+    echo '  <div id="subNav" class="row">';
     if (isset($page['navigation'])) {
-        echo "  <ul class=\"nav nav-pills\">";
+        echo "  <div class=\"col col-sm-8\">
+					<ul class=\"nav nav-pills\">";
     	foreach ($page['navigation'] as $subnav) {
             $isCurrent = (isset($data['action']) && isset($subnav['action']) && $subnav['action'] == $data['action']) || (!isset($data['action']) && !isset($subnav['action']));
-    		echo "	<li".(($isCurrent) ? ' class="active"':'').">
-						<a class=\"capitalize".(isset($subnav['modal']) ? ' do-loadmodal':'')."\" href=\"{$app_http}".((isset($subnav['action'])) ? "?action={$subnav['action']}":'')."\">{$subnav['name']}</a>
-					</li>";
+    		echo "		<li".(($isCurrent) ? ' class="active"':'').">
+							<a class=\"capitalize".(isset($subnav['modal']) ? ' do-loadmodal':'')."\" href=\"{$app_http}".((isset($subnav['action'])) ? "?action={$subnav['action']}":'')."\">{$subnav['name']}</a>
+						</li>";
     	}
-        echo '  </ul>';
+        echo '  	</ul>
+				</div>';
+    }
+    if (isset($page['search'])) {
+        echo '  <div class="col col-sm-4">
+					<form id="doSearch" class="do-get" name="search" method="POST" action="'.$app_http.'">
+                    	<input type="hidden" name="action" value="search" />
+						<div class="input-group">
+                    		<input id="searchTerm" class="form-control" type="text" name="term" />';
+        echo '		      	<span class="input-group-btn">
+								<input id="searchResults" class="btn btn-default" type="submit" name="submit" value="Search" />
+							</span>
+						</div>
+	                    <div class="inline-block" id="searchStatus">
+	                        <a class="hidden" href="#clearSearch">clear search</a>
+	                    </div>
+	                </form>
+				</div>';
     }
 
     echo '    </div>';
 }
-echo '        <div id="modalContent">';
+echo '		<div id="modalContent">';
 if (isset($page['subtitle']) && $page['subtitle']) {
 	echo "     	<div class=\"page-header\">
 					<h1 class=\"capitalize\"><small>{$page['subtitle']}</small></h1>
