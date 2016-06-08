@@ -18,10 +18,11 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 	private $viewPath = '';
 
 
-	public function __construct(&$globalUser,&$pages,$controllerName) {
+	public function __construct(&$globalUser,&$pages,&$data,$controllerName) {
 		$this->registerAppContextProperty("config", $GLOBALS['config']);
 		$this->registerAppContextProperty("globalUser", $globalUser);
 		$this->registerAppContextProperty("pages", $pages);
+		$this->registerAppContextProperty("data", $data);
 		$this->registerAppContextProperty("controllerName", $controllerName);
 		$this->setViewPath('html');
 	}
@@ -32,6 +33,7 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 		$pages =& $this->getAppContextProperty("pages");
 		$system =& $this->getAppContextProperty("system");
 		$page =& $this->getAppContextProperty("page");
+		$data =& $this->getAppContextProperty("data");
 		$app_http =& $this->getAppContextProperty("app_http");
 		$controllerName =& $this->getAppContextProperty("controllerName");
 		include "{$this->getViewPath()}layouts/header.lo.php";
