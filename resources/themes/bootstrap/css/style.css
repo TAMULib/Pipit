@@ -8,7 +8,7 @@
 	background-color: #008a00;
 }
 
-a:focus, a:hover {
+a,a:focus, a:hover {
 	color: #008a00;
 }
 
@@ -21,3 +21,11 @@ a:focus, a:hover {
 #theModal .page-header {
 	margin-top: 8px;
 }
+
+.form-inline input {
+	width: auto;
+}
+
+#subNav .col {
+	margin-top: 8px;
+}	
