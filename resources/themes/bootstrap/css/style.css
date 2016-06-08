@@ -19,8 +19,8 @@ a,a:focus, a:hover {
 	text-align: center;
 }
 
-#theModal .page-header {
-	margin-top: 8px;
+#theModal .page-header,#theModal .page-header h1 {
+	margin-top: 0px;
 }
 
 .form-inline input {
