@@ -47,7 +47,7 @@ if (is_file("{$config['PATH_FILE']}resources/js/{$controllerName}.js")) {
                 </div>
                 <a class="do-close" href="#">Close</a>
             </div>
-            <div class="content hidden">
+            <div class="content">
             </div>
         </div>
         <header>

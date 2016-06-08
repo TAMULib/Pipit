@@ -14,7 +14,7 @@ body {
 	text-align: center;
 }
 
-.hidden {
+.hidden,.theModal > .content {
 	display: none;
 }
 
