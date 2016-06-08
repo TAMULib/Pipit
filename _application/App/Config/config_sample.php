@@ -22,6 +22,8 @@ define('PATH_VIEWS', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Views/");
 
 //web paths
 define('PATH_HTTP', "http://localhost/".APP_DIRECTORY."/");
+define('PATH_RESOURCES', PATH_HTTP."resources/");
+define('PATH_THEMES', PATH_HTTP."resources/themes/");
 define('PATH_CSS', PATH_HTTP."resources/css/");
 define('PATH_JS', PATH_HTTP."resources/js/");
 define('PATH_IMAGES', PATH_HTTP."resources/images/");
@@ -68,6 +70,10 @@ define('DB_DEBUG', false);
 $sitePages = array(
 			"widgets" => array("name"=>"widgets","path"=>"widgets"),
 			"users" => array("name"=>"users","path"=>"users","admin"=>true));
+
+//The ViewRenderer can be set, here, if we want to use something other than the default HTMLViewRenderer
+//define('VIEW_RENDERER','BootstrapViewRenderer');
+
 ?>
 
 

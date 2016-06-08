@@ -47,7 +47,7 @@ if (is_file("{$config['PATH_FILE']}resources/js/{$controllerName}.js")) {
                 </div>
                 <a class="do-close" href="#">Close</a>
             </div>
-            <div class="content hidden">
+            <div class="content">
             </div>
         </div>
         <header>
@@ -83,7 +83,7 @@ if ($globalUser->isLoggedIn()) {
 echo '      <div class="sysMsg">';
 if (isset($system)) {
 	foreach ($system as $msg) {
-		echo "    <h4>{$msg}</h4>";
+		echo "    <h4 class=\"alert\">{$msg}</h4>";
 	}
 }
 echo '      </div>';
