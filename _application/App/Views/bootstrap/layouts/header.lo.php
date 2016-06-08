@@ -128,7 +128,7 @@ if (!empty($page)) {
 							</span>
 						</div>
 	                    <div class="inline-block" id="searchStatus">
-	                        <a class="hidden" href="#clearSearch">clear search</a>
+	                        <a href="#clearSearch">clear search</a>
 	                    </div>
 	                </form>
 				</div>';

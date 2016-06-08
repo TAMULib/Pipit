@@ -29,4 +29,8 @@ a,a:focus, a:hover {
 
 #subNav .col {
 	margin-top: 8px;
-}	
+}
+
+#searchStatus a {
+	display: none;
+}
