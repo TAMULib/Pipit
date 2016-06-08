@@ -9,7 +9,6 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <link rel="apple-touch-icon" href="iphone-icon.png" />
-        <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>jquery.min.js"></script>
 		<!-- Bootstrap CSS - Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <!--        <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_CSS'];?>style.css" media="screen"/>-->
@@ -20,17 +19,19 @@ if (is_file("{$config['PATH_FILE']}{$controllerName}.css")) {
     echo '<link rel="stylesheet" type="text/css" href="'.$config['PATH_CSS'].$controller.'.css" media="screen"/>';
 }
 ?>
+        <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>jquery.min.js"></script>
 		<!-- Bootstrap JS - Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <!--
         <link rel="stylesheet" href="<?php echo $config['PATH_JS'];?>jquery-ui-1.11.2.custom/jquery-ui.css">
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+-->
         <script type="text/javascript">
             var app_http = '<?php echo $app_http;?>';
         </script>
-        <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>default.js"></script>
--->
+        <script type="text/javascript" src="<?php echo $config['PATH_THEMES'];?>bootstrap/js/default.js"></script>
+
 <?php
 /*
 if ($controllerName != 'default' && is_file("{$config['PATH_FILE']}resources/js/{$controllerName}.js")) {
@@ -41,28 +42,18 @@ if ($controllerName != 'default' && is_file("{$config['PATH_FILE']}resources/js/
         <link rel="shortcut icon" href="ico/favicon.ico">
     </head>
     <body>
-<!--
-        <div id="theOverlay"></div>
-        <div id="theModal">
-            <div class="header">
-                <div class="loader">
-                    <div id="squaresWaveG">
-                        <div id="squaresWaveG_1" class="squaresWaveG"></div>
-                        <div id="squaresWaveG_2" class="squaresWaveG"></div>
-                        <div id="squaresWaveG_3" class="squaresWaveG"></div>
-                        <div id="squaresWaveG_4" class="squaresWaveG"></div>
-                        <div id="squaresWaveG_5" class="squaresWaveG"></div>
-                        <div id="squaresWaveG_6" class="squaresWaveG"></div>
-                        <div id="squaresWaveG_7" class="squaresWaveG"></div>
-                        <div id="squaresWaveG_8" class="squaresWaveG"></div>
-                    </div>
-                </div>
-                <a class="do-close" href="#">Close</a>
-            </div>
-            <div class="content">
+        <div id="theModal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+            		<div class="modal-header">
+                		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body"></div>
+				</div>
             </div>
         </div>
--->
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
