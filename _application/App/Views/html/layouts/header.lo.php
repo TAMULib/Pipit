@@ -83,7 +83,7 @@ if ($globalUser->isLoggedIn()) {
 echo '      <div class="sysMsg">';
 if (isset($system)) {
 	foreach ($system as $msg) {
-		echo "    <h4>{$msg}</h4>";
+		echo "    <h4 class=\"alert\">{$msg}</h4>";
 	}
 }
 echo '      </div>';
