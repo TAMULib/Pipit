@@ -41,8 +41,17 @@ $data = $site->getSanitizedInputData();
 if (isset($data['json']) && $data['json']) {
 	$site->setViewRenderer(new Classes\ViewRenderers\JSONViewRenderer());
 } else {
-	$site->setViewRenderer(new AppClasses\ViewRenderers\BootstrapViewRenderer($site->getGlobalUser(),$site->getPages(),$data,$controllerName));
-//	$site->setViewRenderer(new Classes\ViewRenderers\HTMLViewRenderer($site->getGlobalUser(),$site->getPages(),$data,$controllerName));
+	if (!empty($config['VIEW_RENDERER'])) {
+		if (class_exists("{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {
+			$className = "{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}";
+		} elseif (class_exists("{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {
+			$className = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}";
+		}
+	}
+	if (!$className) {
+		$className = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\HTMLViewRenderer";
+	}
+	$site->setViewRenderer(new $className($site->getGlobalUser(),$site->getPages(),$data,$controllerName));
 }
 
 $controllerPath = $site->getControllerPath($controllerName);

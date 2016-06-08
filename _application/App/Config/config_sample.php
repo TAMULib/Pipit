@@ -70,6 +70,10 @@ define('DB_DEBUG', false);
 $sitePages = array(
 			"widgets" => array("name"=>"widgets","path"=>"widgets"),
 			"users" => array("name"=>"users","path"=>"users","admin"=>true));
+
+//The ViewRenderer can be set, here, if we want to use something other than the default HTMLViewRenderer
+//define('VIEW_RENDERER','BootstrapViewRenderer');
+
 ?>
 
 
