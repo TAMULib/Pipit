@@ -16,6 +16,7 @@ a,a:focus, a:hover {
 	cursor: pointer;
 	width: 50%;
 	min-width: 100px;
+	text-align: center;
 }
 
 #theModal .page-header {
