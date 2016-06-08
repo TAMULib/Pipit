@@ -3,9 +3,9 @@ namespace App\Classes\ViewRenderers;
 use TAMU\Core\Classes as CoreClasses;
 
 /** 
-*	The default implementation of the ViewRenderer interface.
-*	Renders HTML with templated header and footer
-*	Would make a good starting point for integration with front end frameworks like Bootstrap
+*	An implementation of the ViewRenderer interface for Bootstrap based theming
+*	
+*	Looks in the 'bootstrap' Views directory for a given view first. If not found, falls back to the 'html' directory.
 *
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
