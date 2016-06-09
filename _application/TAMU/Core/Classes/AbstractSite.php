@@ -13,7 +13,7 @@ abstract class AbstractSite implements Interfaces\Site {
 	private $viewRenderer;
 	private $pages;
 	private $inputData;
-	private $systemMessages;
+	protected $systemMessages;
 
 	public function __construct(&$siteConfig,$pages) {
 		$this->siteConfig = $siteConfig;
