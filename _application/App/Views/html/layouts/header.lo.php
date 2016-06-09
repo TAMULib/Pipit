@@ -81,10 +81,10 @@ if ($globalUser->isLoggedIn()) {
 }
 //present any system messages
 echo '      <div class="sysMsg">';
-if (isset($system)) {
-	foreach ($system as $msg) {
-		echo "    <h4 class=\"alert\">{$msg}</h4>";
-	}
+if (isset($systemMessages)) {
+    foreach ($systemMessages as $sysMsg) {
+        echo "    <h4 class=\"alert\">{$sysMsg->getMessage()}</h4>";
+    }
 }
 echo '      </div>';
 ?>

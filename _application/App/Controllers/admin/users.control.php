@@ -21,35 +21,35 @@ if (isset($data['action'])) {
  				$site->getViewRenderer()->registerViewVariable("users",$tusers->searchAdvanced($data['advancedsearch']));
 				$viewName = "users.list";
 			} else {
-				$system[] = 'There was an error with the search';
+				$site->addSystemError('There was an error with the search');
 			}
 		break;
 		case 'disable':
 			if (isset($data['id']) && is_numeric($data['id']) && $tusers->disableById($data['id'])) {
-				$system[] = 'User disabled';
+				$site->addSystemMessage('User disabled');
 			} else {
-				$system[] = 'Error disabling user';
+				$site->addSystemError('Error disabling user');
 			}
 		break;
 		case 'enable':
 			if (isset($data['id']) && is_numeric($data['id']) && $tusers->enableById($data['id'])) {
-				$system[] = 'User enabled';
+				$site->addSystemMessage('User enabled');
 			} else {
-				$system[] = 'Error enabling user';
+				$site->addSystemError('Error enabling user');
 			}
 		break;
 		case 'insert':
 			if (isset($data['user']) && $tusers->add($data['user'])) {
-				$system[] = 'User added';
+				$site->addSystemMessage('User added');
 			} else {
-				$system[] = 'Error adding user';
+				$site->addSystemError('Error adding usert');
 			}
 		break;
 		case 'update':
 			if (isset($data['user']) && (isset($data['id']) && is_numeric($data['id'])) && $tusers->update($data['id'],$data['user'])) {
-				$system[] = 'User updated';
+				$site->addSystemMessage('User updated');
 			} else {
-				$system[] = 'Error updating user';
+				$site->addSystemError('Error updating user');
 			}
 		break;
 		case 'add':

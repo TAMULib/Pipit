@@ -13,6 +13,7 @@ abstract class AbstractSite implements Interfaces\Site {
 	private $viewRenderer;
 	private $pages;
 	private $inputData;
+	private $systemMessages;
 
 	public function __construct(&$siteConfig,$pages) {
 		$this->siteConfig = $siteConfig;
@@ -104,4 +105,8 @@ abstract class AbstractSite implements Interfaces\Site {
 	public function getGlobalUser() {
 		return $this->globalUser;
 	}
+
+	abstract public function addSystemMessage($message,$type="info");
+
+	abstract public function getSystemMessages();
 }
