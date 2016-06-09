@@ -31,11 +31,12 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 		$config =& $this->getAppContextProperty("config");
 		$globalUser =& $this->getAppContextProperty("globalUser");
 		$pages =& $this->getAppContextProperty("pages");
-		$system =& $this->getAppContextProperty("system");
 		$page =& $this->getAppContextProperty("page");
 		$data =& $this->getAppContextProperty("data");
 		$app_http =& $this->getAppContextProperty("app_http");
 		$controllerName =& $this->getAppContextProperty("controllerName");
+		$systemMessages =& $this->getAppContextProperty("systemMessages");
+		
 		include "{$this->getViewPath()}layouts/header.lo.php";
 		if (!empty($this->viewFile)) {
 			$parameters = $this->getViewVariables();

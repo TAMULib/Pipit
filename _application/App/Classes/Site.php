@@ -7,4 +7,15 @@ use TAMU\Core\Classes as CoreClasses;
 */
 
 class Site extends CoreClasses\AbstractSite {
+	public function addSystemMessage($message,$type="info") {
+		$this->systemMessages[] = new SystemMessage($message,$type);
+	}
+
+	public function addSystemError($message) {
+		$this->addSystemMessage($message,'error');
+	}
+
+	public function getSystemMessages() {
+		return $this->systemMessages;
+	}
 }

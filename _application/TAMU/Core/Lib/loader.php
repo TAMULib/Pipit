@@ -34,7 +34,6 @@ if (isset($forceRedirectUrl) && !empty($forceRedirectUrl)) {
 	header("Location: {$forceRedirectUrl}");
 }
 
-$system = array();
 $data = $site->getSanitizedInputData();
 
 //set the ViewRenderer
@@ -73,11 +72,11 @@ if (!empty($controllerPath) && is_file($controllerPath)) {
 		}
 	}
 } else {
-	$system[] = 'Error loading content';
+	$site->addSystemError('Error loading content');
 }
 
 //send system messages to the ViewRenderer
-$site->getViewRenderer()->registerAppContextProperty("system", $system);
+$site->getViewRenderer()->registerAppContextProperty("systemMessages", $site->getSystemMessages());
 
 //display the content
 $site->getViewRenderer()->renderView();

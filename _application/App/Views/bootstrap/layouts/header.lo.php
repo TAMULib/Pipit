@@ -82,9 +82,14 @@ if ($globalUser->isLoggedIn()) {
 <?php
 //present any system messages
 echo '      <div class="sysMsg col-sm-10">';
-if (isset($system)) {
-	foreach ($system as $msg) {
-		echo "    <div class=\"alert alert-info\">{$msg}</div>";
+if (isset($systemMessages)) {
+	foreach ($systemMessages as $sysMsg) {
+        $typeMap = array('error'=>'danger');
+        $msgType = $sysMsg->getType();
+        if (array_key_exists($msgType,$typeMap)) {
+            $msgType = $typeMap[$msgType];
+        }
+		echo "    <div class=\"alert alert-{$msgType}\">{$sysMsg->getMessage()}</div>";
 	}
 }
 echo '      </div>';
