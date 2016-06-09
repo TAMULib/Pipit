@@ -75,6 +75,10 @@ if (!empty($controllerPath) && is_file($controllerPath)) {
 	$site->addSystemError('Error loading content');
 }
 
+if (!empty($page)) {
+	$site->getViewRenderer()->setPage($page);
+}
+
 //send system messages to the ViewRenderer
 $site->getViewRenderer()->registerAppContextProperty("systemMessages", $site->getSystemMessages());
 

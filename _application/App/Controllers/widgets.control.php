@@ -57,6 +57,5 @@ if (isset($data['action'])) {
 	$site->getViewRenderer()->registerViewVariable("widgets", $twidgets->get());
 	$viewName = "widgets.list";
 }
-$site->getViewRenderer()->setPage($page);
 
 ?>

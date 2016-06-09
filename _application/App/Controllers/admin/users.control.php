@@ -69,6 +69,5 @@ if (isset($data['action'])) {
  	$site->getViewRenderer()->registerViewVariable("users",$tusers->get());
 	$viewName = "users.list";
 }
-$site->getViewRenderer()->setPage($page);
 
 ?>

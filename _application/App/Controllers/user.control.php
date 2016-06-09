@@ -54,6 +54,5 @@ if (!empty($data['action'])) {
 		$viewName = "user.login";
 	}
 }
-$site->getViewRenderer()->setPage($page);
 
 ?>
