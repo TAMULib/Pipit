@@ -1,4 +1,5 @@
 <?php
+namespace TAMU\Core;
 
 /*
 *   This autoloader will search both the app and core namespaces, in that order, for the first matching file containing the declaration of that class or interface.
@@ -32,4 +33,5 @@ spl_autoload_register(function($class) {
 function nameSpaceToPath($nameSpace) {
     return str_replace('\\', '/', $nameSpace);
 }
+
 ?>

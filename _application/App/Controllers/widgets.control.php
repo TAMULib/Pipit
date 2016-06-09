@@ -16,28 +16,28 @@ if (isset($data['action'])) {
  				$site->getViewRenderer()->registerViewVariable("widgets",$twidgets->search($data['term']));
 				$viewName = "widgets.list";
 			} else {
-				$system[] = 'There was an error with the search';
+				$site->addSystemError('There was an error with the search');
 			}
 		break;
 		case 'remove':
 			if (isset($data['id']) && is_numeric($data['id']) && $twidgets->removeById($data['id'])) {
-				$system[] = 'Widget removed';
+				$site->addSystemMessage('Widget removed');
 			} else {
-				$system[] = 'Error removing widget';
+				$site->addSystemError('Error removing widget');
 			}
 		break;
 		case 'insert':
 			if (isset($data['widget']) && $twidgets->add($data['widget'])) {
-				$system[] = 'Widget added';
+				$site->addSystemMessage('Widget added');
 			} else {
-				$system[] = 'Error adding widget';
+				$site->addSystemError('Error adding widget');
 			}
 		break;
 		case 'update':
 			if (isset($data['widget']) && (isset($data['id']) && is_numeric($data['id'])) && $twidgets->update($data['id'],$data['widget'])) {
-				$system[] = 'Widget updated';
+				$site->addSystemMessage('Widget updated');
 			} else {
-				$system[] = 'Error updating widget';
+				$site->addSystemError('Error updating widget');
 			}
 		break;
 		case 'add':

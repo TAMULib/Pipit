@@ -14,5 +14,7 @@ interface Site {
 	public function getGlobalUser();
 	public function getControllerPath($controllerName);
 	public function getSanitizedInputData();
+	public function addSystemMessage($systemMessage);
+	public function getSystemMessages();
 }
 ?>

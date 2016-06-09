@@ -1,6 +1,5 @@
 <?php
 namespace App;
-use TAMU\Core as Core;
 
 $site->getViewRenderer()->registerAppContextProperty("app_http", "{$config['PATH_HTTP']}user.php");
 
@@ -10,10 +9,10 @@ if (!empty($data['action'])) {
 	switch ($data['action']) {
 		case 'update':
 			$tusers = new Classes\Data\Users();
-			if (isset($data['user']) && $tusers->update($globaluser->getProfileValue("id"),$data['user'])) {
-				$system[] = 'User updated';
+			if (isset($data['user']) && $tusers->update($site->getGlobalUser()->getProfileValue("id"),$data['user'])) {
+				$site->addSystemMessage('User updated');
 			} else {
-				$system[] = 'Error updating user';
+				$site->addSystemError('Error updating user');
 			}
 		break;
 		case 'edit':
@@ -24,13 +23,14 @@ if (!empty($data['action'])) {
 		case 'logout':
 			if ($site->getGlobalUser()->isLoggedIn()) {
 				if ($site->getGlobalUser()->logOut()) {
-					$system[] = "You've been logged out";
+					$site->addSystemMessage("You've been logged out");
+
 					$viewName = "user.login";
 				} else {
-					$system[] = 'There was an error logging you out';
+					$site->addSystemError('There was an error logging you out');
 				}
 			} else {
-				$system[] = "You don't seem to be logged in";
+				$site->addSystemError("You don't seem to be logged in");
 				$viewName = "user.login";
 			}
 		break;
@@ -39,11 +39,11 @@ if (!empty($data['action'])) {
 				if ($site->getGlobalUser()->logIn($data['user']['username'],$data['user']['password'])) {
 					header("Location:{$config['PATH_HTTP']}");
 				} else {
-					$system[] = 'Invalid username/password combination';
+					$site->addSystemError('Invalid username/password combination');
 					$viewName = "user.login";
 				}
 			} else {
-				$system[] = 'Please provide both your username and password';
+				$site->addSystemError('Please provide both your username and password');
 			}
 		break;
 	}
