@@ -12,6 +12,7 @@ if ($parameters['widgets']) {
 		echo "<tr>
 					<td>{$widget['name']}</td>
 					<td class=\"capitalize\">
+						<a class=\"inline-block button button-small do-loadmodal\" href=\"{$app_http}?action=parts&widgetid={$widget['id']}\">Parts</a>
 						<a class=\"inline-block button button-small do-loadmodal\" href=\"{$app_http}?action=edit&id={$widget['id']}\">Edit</a>";
 echo '					<form class="inline-block do-submit-confirm" name="removewidget" method="POST" action="'.$app_http.'">
 							<input type="hidden" name="action" value="remove" />

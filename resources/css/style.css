@@ -5,26 +5,8 @@ body {
 	padding: 0px;
 }
 
-/* helper classes */
-.capitalize {
-	text-transform: capitalize;
-}
-
-.center {
-	text-align: center;
-}
-
 .hidden,.theModal > .content {
 	display: none;
-}
-
-.inline {
-	display: inline;
-}
-
-.inline-block {
-	display: inline-block;
-	vertical-align: middle;
 }
 
 /* Defaults */
