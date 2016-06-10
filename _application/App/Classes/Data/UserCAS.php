@@ -1,6 +1,6 @@
 <?php
-namespace TAMU\Core\Classes\Data;
-use App\Classes\Data as AppData;
+namespace App\Classes\Data;
+use Core\Classes\Data as CoreData;
 
 /** 
 *	Represents the application user
@@ -8,7 +8,7 @@ use App\Classes\Data as AppData;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class UserCAS extends User {
+class UserCAS extends CoreData\User {
 	private $casPaths;
 
 	public function __construct() {
@@ -27,7 +27,7 @@ class UserCAS extends User {
 			$rawUserName = simplexml_load_string($file[2]);
 			//using quotes to force conversion of rawUserName to string
 			$casUserName = "{$rawUserName[0]}";
-			$tusers = new AppData\Users();
+			$tusers = new Users();
 
 			//find an existing, active user or create a new one
 			if (($user = $tusers->searchAdvanced(array("username"=>$casUserName)))) {

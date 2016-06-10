@@ -1,6 +1,5 @@
 <?php
 namespace App;
-use TAMU\Core as Core;
 
 $page['title'] = 'Manage Users';
 $page['navigation'] = array(

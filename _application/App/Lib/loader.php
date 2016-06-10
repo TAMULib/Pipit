@@ -1,7 +1,5 @@
 <?php
-namespace App;
-use App\Classes as AppClasses;
-use TAMU\Core as Core;
+namespace App\Lib;
 
 /**
 *	App Loader - The entry point for the application. All endpoints lead, here.

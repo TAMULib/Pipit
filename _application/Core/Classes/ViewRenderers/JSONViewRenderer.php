@@ -1,6 +1,6 @@
 <?php
-namespace TAMU\Core\Classes\ViewRenderers;
-use TAMU\Core\Interfaces as Interfaces;
+namespace Core\Classes\ViewRenderers;
+use Core\Interfaces as Interfaces;
 
 /** 
 *	An implementation of the ViewRenderer interface for rendering registered viewvariables as JSON

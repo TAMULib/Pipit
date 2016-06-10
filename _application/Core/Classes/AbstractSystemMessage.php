@@ -1,6 +1,6 @@
 <?php
-namespace TAMU\Core\Classes;
-use TAMU\Core\Interfaces as Interfaces;
+namespace Core\Classes;
+use Core\Interfaces as Interfaces;
 
 /** 
 *	An abstract implementation of the SystemMessage interface

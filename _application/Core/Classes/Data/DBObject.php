@@ -1,5 +1,5 @@
 <?php
-namespace TAMU\Core\Classes\Data;
+namespace Core\Classes\Data;
 use \PDO;
 /** 
 * 	Provides a PDO DB connection to instances of dbobject and its descendants

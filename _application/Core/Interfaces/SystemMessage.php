@@ -1,5 +1,5 @@
 <?php
-namespace TAMU\Core\Interfaces;
+namespace Core\Interfaces;
 /** 
 *	An interface defining a SystemMessage
 *

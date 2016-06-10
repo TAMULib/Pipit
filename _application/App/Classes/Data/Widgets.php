@@ -1,6 +1,6 @@
 <?php
 namespace App\Classes\Data;
-use TAMU\Core\Classes\Data as CoreData;
+use Core\Classes\Data as CoreData;
 /** 
 *	Repo for managing Widgets
 *	Intended as a starting point for developing application specific DAOs

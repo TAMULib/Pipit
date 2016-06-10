@@ -1,6 +1,6 @@
 <?php
 namespace App\Classes\ViewRenderers;
-use TAMU\Core\Classes as CoreClasses;
+use Core\Classes as CoreClasses;
 
 /** 
 *	An implementation of the ViewRenderer interface for Bootstrap based theming

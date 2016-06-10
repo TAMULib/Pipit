@@ -6,9 +6,9 @@ define('APP_BASE', '_application/');
 define("SESSION_SCOPE",APP_DIRECTORY);
 
 //defines the primary namespaces.
-//the autoloader defined in TAMU/Core/Lib/functions.php depends on these values to find and load Class and Interface files
+//the autoloader defined in Core/Lib/functions.php depends on these values to find and load Class and Interface files
 //Individual files will need to have their namespaces updated to match if these are changed.
-define("NAMESPACE_CORE","TAMU\\Core\\");
+define("NAMESPACE_CORE","Core\\");
 define("NAMESPACE_APP","App\\");
 
 //server paths

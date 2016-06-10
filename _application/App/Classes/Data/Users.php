@@ -1,6 +1,6 @@
 <?php
 namespace App\Classes\Data;
-use TAMU\Core\Classes\Data as CoreData;
+use Core\Classes\Data as CoreData;
 
 /** 
 *	Repo for managing application Users

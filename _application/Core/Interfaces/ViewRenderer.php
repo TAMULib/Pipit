@@ -1,5 +1,5 @@
 <?php
-namespace TAMU\Core\Interfaces;
+namespace Core\Interfaces;
 /** 
 *	An interface defining a ViewRenderer
 *	ViewRenderers are utilized by controllers and handle the presentation of data to the user

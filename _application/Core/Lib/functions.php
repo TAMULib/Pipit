@@ -1,5 +1,5 @@
 <?php
-namespace TAMU\Core;
+namespace Core\Lib;
 
 /*
 *   This autoloader will search both the app and core namespaces, in that order, for the first matching file containing the declaration of that class or interface.

@@ -1,5 +1,5 @@
 <?php
-namespace TAMU\Core\Classes\Data;
+namespace Core\Classes\Data;
 
 /** 
 *	Represents the application user

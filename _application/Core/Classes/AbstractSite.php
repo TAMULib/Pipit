@@ -1,6 +1,7 @@
 <?php
-namespace TAMU\Core\Classes;
-use TAMU\Core\Interfaces as Interfaces;
+namespace Core\Classes;
+use Core\Interfaces as Interfaces;
+use App\Classes\Data as AppData;
 /** 
 *	An abstract implementation of the Site interface
 *
@@ -25,13 +26,13 @@ abstract class AbstractSite implements Interfaces\Site {
 	protected function setUser() {
 		//build the user
 		if (isset($this->siteConfig['USECAS']) && $this->siteConfig['USECAS']) {
-			$this->globalUser = new Data\UserCAS();
-			$casTicket = $this->getInputData()['ticket'];
+			$this->globalUser = new AppData\UserCAS();
+			$casTicket = $this->getSanitizedInputData()['ticket'];
 			if (!empty($casTicket)) {
 				if ($this->globalUser->processLogIn($casTicket)) {
 					header("Location:{$this->siteConfig['PATH_HTTP']}");
 				}
-			} elseif (!$this->getGlobalUser()->isLoggedIn() && !isset($this->getInputData()['action'])) {
+			} elseif (!$this->getGlobalUser()->isLoggedIn() && !isset($this->getSanitizedInputData()['action'])) {
 				$this->getGlobaluser()->initiateLogIn();
 			}
 		} else {

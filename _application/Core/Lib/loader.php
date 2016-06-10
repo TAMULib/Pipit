@@ -1,5 +1,5 @@
 <?php
-namespace TAMU\Core;
+namespace Core\Lib;
 use App\Classes as AppClasses;
 
 /**
