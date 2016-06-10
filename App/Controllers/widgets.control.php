@@ -11,28 +11,29 @@ $twidgets = new Classes\Data\Widgets();
 if (isset($data['action'])) {
 	switch ($data['action']) {
 		case 'parts':
-			switch ($data['subaction']) {
-				case 'add':
-					if ($twidgets->addPartToWidget($data['widgetid'],$data['part'])) {
-						$site->addSystemMessage('Part added');
-					} else {
-						$site->addSystemError('There was an error adding the part');
-					}
-				break;
-				case 'remove':
-					if ($twidgets->removePartById($data['partid'])) {
-						$site->addSystemMessage('Part removed');
-					} else {
-						$site->addSystemError('There was an error removing the part');
-					}
-				break;
-				default:
-					$widget = $twidgets->getById($data['widgetid']);
-					$page['subtitle'] = 'Parts for '.$widget['name'];
-					$site->getViewRenderer()->registerViewVariable("widget",$widget);
-					$site->getViewRenderer()->registerViewVariable("parts",$twidgets->getPartsByWidgetId($data['widgetid']));
-					$viewName = 'widgets.parts';
-				break;
+			if (!empty($data['subaction'])) {
+				switch ($data['subaction']) {
+					case 'add':
+						if ($twidgets->addPartToWidget($data['widgetid'],$data['part'])) {
+							$site->addSystemMessage('Part added');
+						} else {
+							$site->addSystemError('There was an error adding the part');
+						}
+					break;
+					case 'remove':
+						if ($twidgets->removePartById($data['partid'])) {
+							$site->addSystemMessage('Part removed');
+						} else {
+							$site->addSystemError('There was an error removing the part');
+						}
+					break;
+				}
+			} else {
+				$widget = $twidgets->getById($data['widgetid']);
+				$page['subtitle'] = 'Parts for '.$widget['name'];
+				$site->getViewRenderer()->registerViewVariable("widget",$widget);
+				$site->getViewRenderer()->registerViewVariable("parts",$twidgets->getPartsByWidgetId($data['widgetid']));
+				$viewName = 'widgets.parts';
 			}
 		break;
 		case 'search':
