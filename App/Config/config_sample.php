@@ -71,6 +71,13 @@ $sitePages = array(
 			"widgets" => array("name"=>"widgets","path"=>"widgets"),
 			"users" => array("name"=>"users","path"=>"users","admin"=>true));
 
+//To override the default CoreLogger, uncomment this and add functionality to the App\\Classes\\Logger
+//You could also extend the Core or App Loggers or implement the Logger interface directly. Just define the resulting namespaced class, here:
+//define("LOGGER_CLASS",NAMESPACE_APP."Classes\\Logger");
+
+//Set the log level: 0 = Everything, 3 = Errors only
+define("LOG_LEVEL",3);
+
 //The ViewRenderer can be set, here, if we want to use something other than the default HTMLViewRenderer
 //define('VIEW_RENDERER','BootstrapViewRenderer');
 

@@ -32,10 +32,15 @@ if (!empty($config['LOGGER_CLASS'])) {
 	$logger = new CoreClasses\CoreLogger();
 }
 
+if (!empty($config['LOG_LEVEL'])) {
+	$logger->setLogLevel($config['LOG_LEVEL']);
+}
+
 //try to load the App site class
 $className = "{$config['NAMESPACE_APP']}Classes\\Site";
 if (class_exists($className)) {
 	$site = new $className($config,$sitePages);
+	$logger->debug("Loaded Site Class: {$className}");
 }
 
 if (empty($site)) {

@@ -8,7 +8,7 @@ use Core\Classes as CoreClasses;
 
 class Logger extends CoreClasses\CoreLogger {
 	public function writeToLog($entry) {
-		echo '<pre>From The App Logger</pre>';
+		$entry[1] = "(App Log) {$entry[1]}";
 		parent::writeToLog($entry);
 	}
 }
