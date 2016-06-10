@@ -1,5 +1,5 @@
 <div class="do-results">
-	<form class="vertical-spacer-bottom do-submit" name="addpart" method="POST" action="'.$app_http.'">
+	<form class="vertical-spacer-bottom do-submit" name="addpart" method="POST" action="<?php echo $app_http;?>">
 <?php
 $modalContext = 'action=parts&widgetid='.$parameters['widget']['id'];
 echo '	<input type="hidden" name="modal_context" value="'.$modalContext.'" />
