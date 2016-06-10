@@ -57,3 +57,17 @@ CREATE TABLE IF NOT EXISTS widgets (
   description text NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table 'widgets_parts'
+--
+
+CREATE TABLE IF NOT EXISTS widgets_parts (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  widgetid int(11) NOT NULL,
+  `name` varchar(60) NOT NULL,
+  PRIMARY KEY (id),
+  KEY widgetid (widgetid)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
