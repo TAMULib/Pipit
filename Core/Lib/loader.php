@@ -32,7 +32,7 @@ if (!empty($config['LOGGER_CLASS'])) {
 	$logger = new CoreClasses\CoreLogger();
 }
 
-if (!empty($config['LOG_LEVEL'])) {
+if (isset($config['LOG_LEVEL'])) {
 	$logger->setLogLevel($config['LOG_LEVEL']);
 }
 
