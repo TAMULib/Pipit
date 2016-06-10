@@ -1,6 +1,6 @@
 <?php
 namespace Core\Lib;
-use App\Classes as AppClasses;
+use Core\Classes as CoreClasses;
 
 /**
 *	The Core Loader is the default entry point for the application. All endpoints lead, here, by way of the App Loader.
@@ -16,17 +16,34 @@ use App\Classes as AppClasses;
 *
 */
 
-
 session_start();
 
 //don't recommend using, sanitizing in case someone does
 $_SERVER['PHP_SELF'] = htmlentities($_SERVER['PHP_SELF']);
 
-
 $config = get_defined_constants(true)["user"];
+
 require_once "{$config['PATH_LIB']}functions.php";
 
-$site = new AppClasses\Site($config,$sitePages);
+//if a logger has been configured, prefer it to the CoreLogger
+if (!empty($config['LOGGER_CLASS'])) {
+	$logger = new $config['LOGGER_CLASS']();
+} else {
+	$logger = new CoreClasses\CoreLogger();
+}
+
+//try to load the App site class
+$className = "{$config['NAMESPACE_APP']}Classes\\Site";
+if (class_exists($className)) {
+	$site = new $className($config,$sitePages);
+}
+
+if (empty($site)) {
+	$logger->error("Site Class not found");
+	exit;
+}
+
+$site->setLogger($logger);
 
 $pages = $site->getPages();
 
