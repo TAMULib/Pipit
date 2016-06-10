@@ -1,5 +1,5 @@
 <div class="do-results">
-	<form class="do-submit" name="addpart" method="POST" action="'.$app_http.'">
+	<form class="vertical-spacer-bottom do-submit" name="addpart" method="POST" action="'.$app_http.'">
 <?php
 $modalContext = 'action=parts&widgetid='.$parameters['widget']['id'];
 echo '	<input type="hidden" name="modal_context" value="'.$modalContext.'" />
@@ -27,7 +27,7 @@ echo '					<a class="inline-block button button-small do-loadmodal" href="'.$app
 							<input type="hidden" name="action" value="parts" />
 							<input type="hidden" name="subaction" value="remove" />
 							<input type="hidden" name="partid" value="'.$part['id'].'" />
-							<input class="small" type="submit" name="submitremove" value="Remove" />
+							<input class="inline-block small" type="submit" name="submitremove" value="Remove" />
 						</form>';
 echo "
 					</td>

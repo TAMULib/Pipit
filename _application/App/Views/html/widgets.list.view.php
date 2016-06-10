@@ -17,7 +17,7 @@ if ($parameters['widgets']) {
 echo '					<form class="inline-block do-submit-confirm" name="removewidget" method="POST" action="'.$app_http.'">
 							<input type="hidden" name="action" value="remove" />
 							<input type="hidden" name="id" value="'.$widget['id'].'" />
-							<input class="small" type="submit" name="submitremove" value="Remove" />
+							<input class="inline-block small" type="submit" name="submitremove" value="Remove" />
 						</form>';
 echo "
 					</td>
