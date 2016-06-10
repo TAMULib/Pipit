@@ -42,6 +42,7 @@ if (class_exists($className)) {
 	$site = new $className($config,$sitePages);
 	$logger->debug("Loaded Site Class: {$className}");
 }
+$className = null;
 
 if (empty($site)) {
 	$logger->error("Site Class not found");
