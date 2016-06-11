@@ -74,6 +74,7 @@ if (isset($data['json']) && $data['json']) {
 		$className = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\HTMLViewRenderer";
 	}
 	$site->setViewRenderer(new $className($site->getGlobalUser(),$site->getPages(),$data,$controllerName));
+	$className = null;
 }
 
 $controllerPath = $site->getControllerPath($controllerName);
@@ -84,23 +85,30 @@ if (!$controllerPath) {
 
 
 //try to load the controller
-if (!empty($controllerPath) && is_file($controllerPath)) {
-	include $controllerPath;
-	//if the controller defined a $viewfile, register it with the view renderer
-	if (isset($viewName)) {
-		if (!empty($pages[$controllerName]['admin']) && $pages[$controllerName]['admin'] == true) {
-			$site->getViewRenderer()->setView($viewName,$site->getGlobalUser()->isAdmin());
-		} else {
-			$site->getViewRenderer()->setView($viewName);
-		}
-	}
+if ($controllerName == 'widgets') {
+	$className = "{$config['NAMESPACE_APP']}Classes\\Controllers\\WidgetsController";
+	$controller = new $className($site);
+	$controller->evaluate();
 } else {
-	$site->addSystemError('Error loading content');
+	if (!empty($controllerPath) && is_file($controllerPath)) {
+		include $controllerPath;
+		//if the controller defined a $viewfile, register it with the view renderer
+		if (isset($viewName)) {
+			if (!empty($pages[$controllerName]['admin']) && $pages[$controllerName]['admin'] == true) {
+				$site->getViewRenderer()->setView($viewName,$site->getGlobalUser()->isAdmin());
+			} else {
+				$site->getViewRenderer()->setView($viewName);
+			}
+		}
+	} else {
+		$site->addSystemError('Error loading content');
+	}
+
+	if (!empty($page)) {
+		$site->getViewRenderer()->setPage($page);
+	}
 }
 
-if (!empty($page)) {
-	$site->getViewRenderer()->setPage($page);
-}
 
 //send system messages to the ViewRenderer
 $site->getViewRenderer()->registerAppContextProperty("systemMessages", $site->getSystemMessages());
