@@ -85,8 +85,8 @@ if (!$controllerPath) {
 
 
 //try to load the controller
-if ($controllerName == 'widgets') {
-	$className = "{$config['NAMESPACE_APP']}Classes\\Controllers\\WidgetsController";
+if ($controllerName == 'widgets' || $controllerName == 'user') {
+	$className = "{$config['NAMESPACE_APP']}Classes\\Controllers\\".ucfirst($controllerName)."Controller";
 	$controller = new $className($site);
 	$controller->evaluate();
 } else {

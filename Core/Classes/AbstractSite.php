@@ -23,6 +23,10 @@ abstract class AbstractSite implements Interfaces\Site {
 		$this->setUser();
 	}
 
+	public function getSiteConfig() {
+		return $this->siteConfig;
+	}
+
 	protected function setUser() {
 		//build the user
 		if (isset($this->siteConfig['USECAS']) && $this->siteConfig['USECAS']) {
