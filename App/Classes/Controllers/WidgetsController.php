@@ -1,15 +1,13 @@
 <?php
 namespace App\Classes\Controllers;
 use App\Classes\Data as AppClasses;
+use Core\Classes as Core;
 
-class WidgetsController {
-	private $site;
+class WidgetsController extends Core\AbstractController {
 	private $widgetsRepo;
-	private $page = array();
-	private $viewName;
 
 	public function __construct(&$site) {
-		$this->site = $site;
+		parent::__construct($site);
 		$this->widgetsRepo = new AppClasses\Widgets();
 		$page['title'] = 'Manage Widgets';
 		$page['navigation'] = array(
@@ -17,29 +15,6 @@ class WidgetsController {
 								array("name"=>"add","action"=>"add","modal"=>true));
 		$page['search'] = true;
 		$this->page = $page;
-	}
-
-	private function setViewName($viewName) {
-		$this->viewName = $viewName;
-	}
-
-	public function evaluate() {
-		$data = $this->site->getSanitizedInputData();
-		if (!empty($data['action'])) {
-			$methodName = $data['action'];
-			if (!empty($data['subaction'])) {
-				$methodName = $methodName.$data['subaction'];
-			}
-			if (method_exists($this,$methodName)) {
-				$this->$methodName();
-			}
-		} else {
-			$this->loadDefault();
-		}
-		$this->site->getViewRenderer()->setPage($this->page);
-		if (!empty($this->viewName)) {
-			$this->site->getViewRenderer()->setView($this->viewName);
-		}
 	}
 
 	protected function parts() {
