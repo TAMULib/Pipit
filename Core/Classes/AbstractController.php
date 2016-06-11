@@ -11,6 +11,7 @@ abstract class AbstractController implements Interfaces\Controller {
 	protected $site;
 	protected $page = array();
 	protected $viewName;
+	protected $requireAdmin = false;
 
 	public function __construct(&$site) {
 		$this->site = $site;
@@ -47,7 +48,7 @@ abstract class AbstractController implements Interfaces\Controller {
 		}
 		$this->site->getViewRenderer()->setPage($this->getPage());
 		if (!empty($this->getViewName())) {
-			$this->site->getViewRenderer()->setView($this->getViewName());
+			$this->site->getViewRenderer()->setView($this->getViewName(),$this->requireAdmin);
 		}
 	}
 

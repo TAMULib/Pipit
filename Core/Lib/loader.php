@@ -36,6 +36,11 @@ if (isset($config['LOG_LEVEL'])) {
 	$logger->setLogLevel($config['LOG_LEVEL']);
 }
 
+if (isset($forceRedirectUrl) && !empty($forceRedirectUrl)) {
+echo $forceRedirectUrl;
+	header("Location: {$forceRedirectUrl}");
+}
+
 //try to load the App site class
 $className = "{$config['NAMESPACE_APP']}Classes\\Site";
 if (class_exists($className)) {
@@ -52,10 +57,6 @@ if (empty($site)) {
 $site->setLogger($logger);
 
 $pages = $site->getPages();
-
-if (isset($forceRedirectUrl) && !empty($forceRedirectUrl)) {
-	header("Location: {$forceRedirectUrl}");
-}
 
 $data = $site->getSanitizedInputData();
 
@@ -85,7 +86,8 @@ if (!$controllerPath) {
 
 
 //try to load the controller
-$className = "{$config['NAMESPACE_APP']}Classes\\Controllers\\".ucfirst($controllerName)."Controller";
+//$className = "{$config['NAMESPACE_APP']}Classes\\Controllers\\".ucfirst($controllerName)."Controller";
+$className = $site->getControllerClass($controllerName);
 if (class_exists($className)) {
 	$controller = new $className($site);
 	$controller->evaluate();
