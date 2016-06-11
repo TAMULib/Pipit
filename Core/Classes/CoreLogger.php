@@ -3,7 +3,8 @@ namespace Core\Classes;
 use Core\Interfaces as Interfaces;
 
 /** 
-*	An abstract implementation of the Logger interface
+*	The default implementation of the Logger interface.
+* 	The active logger can be defined in the config file.
 *
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
