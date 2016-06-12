@@ -4,6 +4,9 @@ use \PDO;
 /** 
 * 	Provides a PDO DB connection to instances of dbobject and its descendants
 *	@author Jason Savell <jsavell@library.tamu.edu>
+*
+*	@todo Make abstract and leave implementing of relevant methods to specific implementers (MySqlObject, MsSqlObject)
+*	@todo Use Logger for outputting debug data
 */
 
 class db {
