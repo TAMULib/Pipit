@@ -60,7 +60,7 @@ class UserController extends Core\AbstractController {
 	}
 
 	protected function loadDefault() {
-		if ($site->getGlobalUser()->isLoggedIn()) {
+		if ($this->site->getGlobalUser()->isLoggedIn()) {
 			$this->setViewName("user.info");
 		} else {
 			$this->setViewName("user.login");
