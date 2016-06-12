@@ -141,4 +141,6 @@ abstract class AbstractSite implements Interfaces\Site {
 	abstract public function addSystemMessage($message,$type="info");
 
 	abstract public function getSystemMessages();
+
+	abstract public function getDataRepository($repositoryName);
 }

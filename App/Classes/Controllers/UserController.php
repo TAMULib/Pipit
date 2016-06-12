@@ -8,7 +8,7 @@ class UserController extends Core\AbstractController {
 
 	public function __construct(&$site) {
 		parent::__construct($site);
-		$this->usersRepo = new AppClasses\Users();
+		$this->usersRepo = $site->getDataRepository("Users");
 		$this->site->getViewRenderer()->registerAppContextProperty("app_http", "{$this->site->getSiteConfig()['PATH_HTTP']}user.php");
 
 		$page['title'] = 'User';
@@ -60,7 +60,7 @@ class UserController extends Core\AbstractController {
 	}
 
 	protected function loadDefault() {
-		if ($site->getGlobalUser()->isLoggedIn()) {
+		if ($this->site->getGlobalUser()->isLoggedIn()) {
 			$this->setViewName("user.info");
 		} else {
 			$this->setViewName("user.login");

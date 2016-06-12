@@ -8,7 +8,7 @@ class WidgetsController extends Core\AbstractController {
 
 	public function __construct(&$site) {
 		parent::__construct($site);
-		$this->widgetsRepo = new AppClasses\Widgets();
+		$this->widgetsRepo = $site->getDataRepository("Widgets");
 		$page['title'] = 'Manage Widgets';
 		$page['navigation'] = array(
 								array("name"=>"list"),
