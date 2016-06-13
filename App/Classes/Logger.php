@@ -2,7 +2,7 @@
 namespace App\Classes;
 use Core\Classes as CoreClasses;
 /** 
-*	The primary site manager
+*	An app level logger. This can be activated in the config file.
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 

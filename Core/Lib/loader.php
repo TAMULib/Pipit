@@ -36,6 +36,10 @@ if (isset($config['LOG_LEVEL'])) {
 	$logger->setLogLevel($config['LOG_LEVEL']);
 }
 
+if (isset($forceRedirectUrl) && !empty($forceRedirectUrl)) {
+	header("Location: {$forceRedirectUrl}");
+}
+
 //try to load the App site class
 $className = "{$config['NAMESPACE_APP']}Classes\\Site";
 if (class_exists($className)) {
@@ -52,10 +56,6 @@ if (empty($site)) {
 $site->setLogger($logger);
 
 $pages = $site->getPages();
-
-if (isset($forceRedirectUrl) && !empty($forceRedirectUrl)) {
-	header("Location: {$forceRedirectUrl}");
-}
 
 $data = $site->getSanitizedInputData();
 
@@ -74,33 +74,19 @@ if (isset($data['json']) && $data['json']) {
 		$className = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\HTMLViewRenderer";
 	}
 	$site->setViewRenderer(new $className($site->getGlobalUser(),$site->getPages(),$data,$controllerName));
+	$className = null;
 }
-
-$controllerPath = $site->getControllerPath($controllerName);
-
-if (!$controllerPath) {
-	header("Location:{$config['PATH_HTTP']}");
-}
-
 
 //try to load the controller
-if (!empty($controllerPath) && is_file($controllerPath)) {
-	include $controllerPath;
-	//if the controller defined a $viewfile, register it with the view renderer
-	if (isset($viewName)) {
-		if (!empty($pages[$controllerName]['admin']) && $pages[$controllerName]['admin'] == true) {
-			$site->getViewRenderer()->setView($viewName,$site->getGlobalUser()->isAdmin());
-		} else {
-			$site->getViewRenderer()->setView($viewName);
-		}
-	}
+$className = $site->getControllerClass($controllerName);
+if (class_exists($className)) {
+	$controller = new $className($site);
+	$controller->evaluate();
 } else {
-	$site->addSystemError('Error loading content');
+	$logger->error("Did not find Controller Class");
+	header("Location:{$config['PATH_HTTP']}");
 }
-
-if (!empty($page)) {
-	$site->getViewRenderer()->setPage($page);
-}
+$className = null;
 
 //send system messages to the ViewRenderer
 $site->getViewRenderer()->registerAppContextProperty("systemMessages", $site->getSystemMessages());

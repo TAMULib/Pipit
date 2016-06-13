@@ -28,4 +28,13 @@ class Site extends CoreClasses\AbstractSite {
 	public function getLogger() {
 		return $this->logger;
 	}
+
+	public function getDataRepository($repositoryName) {
+		$className = __NAMESPACE__.'\\Data\\'.$repositoryName;
+		if (class_exists($className)) {
+			return new $className();
+		}
+		$this->getLogger()->error("Could not find Repository: ".$repositoryName);
+		return null;
+	}
 }

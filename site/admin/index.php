@@ -1,5 +1,5 @@
 <?php
 include "../../App/Config/config.php";
-$forceRedirectUrl = "{$config['path_http']}";
+$forceRedirectUrl = PATH_HTTP;
 include PATH_LIB."loader.php";
 ?>
