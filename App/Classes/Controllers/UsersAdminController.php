@@ -17,7 +17,7 @@ class UsersAdminController extends Core\AbstractController {
 		$page['search'] = array(array("name"=>"name_last","type"=>"text"),
 								array("name"=>"name_first","type"=>"text"));
 		$this->setPage($page);
-		$this->usersRepo = new AppData\Users();
+		$this->usersRepo = $site->getDataRepository("Users");
 	}
 
 	protected function search() {
