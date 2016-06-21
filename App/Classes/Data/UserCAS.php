@@ -19,22 +19,23 @@ class UserCAS extends CoreData\User {
 	}
 
 	public function processLogIn($ticket) {
-		$file = @file($this->casPaths['urls']['check']."&renew=true&ticket={$ticket}");
+		$file = file_get_contents($this->casPaths['urls']['check']."&renew=true&ticket={$ticket}");
 		if (!$file) {
 			die("The authentication process failed to validate through CAS.");
 		}
-		if (!empty($file[5])) {
-			$rawUserName = simplexml_load_string($file[2]);
-			//using quotes to force conversion of rawUserName to string
-			$casUserName = "{$rawUserName[0]}";
-			$tusers = new Users();
 
+		if (!empty($file)) {
+			//using quotes to force conversion of rawUserName to string
+ 			$casXml = simplexml_load_string($file,null, 0, 'cas', true);
+			$casXml->registerXPathNamespace("cas", 'http://www.yale.edu/tp/cas');
+			$casUserName = $casXml->authenticationSuccess->user;
+			$tusers = new Users();
 			//find an existing, active user or create a new one
 			if (($user = $tusers->searchAdvanced(array("username"=>$casUserName)))) {
 				if ($user[0]['inactive'] == 0) {
 					$userId = $user[0]['id'];
 				}
-			} else {
+			} elseif (!empty($casUserName)) {
 				$userId = $tusers->add(array("username"=>$casUserName,"iscas"=>1));
 			}
 			if (!empty($userId)) {
@@ -44,6 +45,8 @@ class UserCAS extends CoreData\User {
 				$this->buildProfile();
 				return true;
 			}
+		} else {
+			$this->getLogger()->error("Failed to retrieve CAS XML");
 		}
 		return false;
 	}
