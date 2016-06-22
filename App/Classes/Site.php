@@ -7,7 +7,6 @@ use Core\Classes as CoreClasses;
 */
 
 class Site extends CoreClasses\AbstractSite {
-	protected $logger;
 
 	public function addSystemMessage($message,$type="info") {
 		$this->systemMessages[] = new SystemMessage($message,$type);
@@ -19,14 +18,6 @@ class Site extends CoreClasses\AbstractSite {
 
 	public function getSystemMessages() {
 		return $this->systemMessages;
-	}
-
-	public function setLogger(&$logger) {
-		$this->logger = $logger;
-	}
-
-	public function getLogger() {
-		return $this->logger;
 	}
 
 	public function getDataRepository($repositoryName) {

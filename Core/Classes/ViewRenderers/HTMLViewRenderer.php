@@ -18,7 +18,7 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 	private $viewPath = '';
 
 
-	public function __construct(&$globalUser,&$pages,&$data,$controllerName) {
+	public function __construct($globalUser,$pages,$data,$controllerName) {
 		$this->registerAppContextProperty("config", $GLOBALS['config']);
 		$this->registerAppContextProperty("globalUser", $globalUser);
 		$this->registerAppContextProperty("pages", $pages);
@@ -28,14 +28,14 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 	}
 
 	public function renderView() {
-		$config =& $this->getAppContextProperty("config");
-		$globalUser =& $this->getAppContextProperty("globalUser");
-		$pages =& $this->getAppContextProperty("pages");
-		$page =& $this->getAppContextProperty("page");
-		$data =& $this->getAppContextProperty("data");
-		$app_http =& $this->getAppContextProperty("app_http");
-		$controllerName =& $this->getAppContextProperty("controllerName");
-		$systemMessages =& $this->getAppContextProperty("systemMessages");
+		$config = $this->getAppContextProperty("config");
+		$globalUser = $this->getAppContextProperty("globalUser");
+		$pages = $this->getAppContextProperty("pages");
+		$page = $this->getAppContextProperty("page");
+		$data = $this->getAppContextProperty("data");
+		$app_http = $this->getAppContextProperty("app_http");
+		$controllerName = $this->getAppContextProperty("controllerName");
+		$systemMessages = $this->getAppContextProperty("systemMessages");
 		
 		include "{$this->getViewPath()}layouts/header.lo.php";
 		if (!empty($this->viewFile)) {

@@ -8,7 +8,7 @@ use App\Classes\Data as AppData;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-abstract class AbstractSite implements Interfaces\Site {
+abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	private $globalUser;
 	private $siteConfig;
 	private $viewRenderer;

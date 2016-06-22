@@ -1,5 +1,6 @@
 <?php
 namespace Core\Classes\Data;
+use Core\Classes as CoreClasses;
 use \PDO;
 /** 
 * 	Provides a PDO DB connection to instances of dbobject and its descendants
@@ -14,17 +15,8 @@ class db {
 	private static $instance;
 
     private function __construct() {
-		try {
-        	$this->handle = new PDO($GLOBALS['config']['DB_DSN'], $GLOBALS['config']['DB_USER'], $GLOBALS['config']['DB_PASSWORD']);
-		} catch (PDOException $e) {
-			if ($GLOBALS['DB_DEBUG']) {
-				echo '<pre>';
-				print_r($e);
-				echo '</pre>';
-			}
-			throw $e;
-		}
-    }
+		$this->handle = new PDO($GLOBALS['config']['DB_DSN'], $GLOBALS['config']['DB_USER'], $GLOBALS['config']['DB_PASSWORD']);
+	}
 
     public static function getInstance() {
         if (!isset(self::$instance)) {
@@ -40,7 +32,7 @@ class db {
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class DBObject {
+class DBObject extends CoreClasses\CoreObject {
 	protected $db;
 	protected $primaryTable;
 	
@@ -85,21 +77,21 @@ class DBObject {
 	*/
 	protected function executeQuery($sql,$bindparams=NULL) {
 		$result = $this->db->handle->prepare($sql);
-		if ($result->execute($bindparams)) {
+		$result->execute($bindparams);
+		if ($result->errorCode() == '00000') {
 			return $result->fetchAll(PDO::FETCH_ASSOC);
-		} elseif (isset($GLOBALS['debugDb']) && $GLOBALS['debugDb']) {
-			print_r($result->errorInfo());
-		}
+		} 
+		$this->logStatementError($result->errorInfo(),$sql);
 		return false;
 	}
 
 	protected function executeUpdate($sql,$bindparams=NULL) {
 		$result = $this->db->handle->prepare($sql);
-		if ($result->execute($bindparams)) {
+		$result->execute($bindparams);
+		if ($result->errorCode() == '00000') {
 			return true;
-		} elseif (isset($GLOBALS['debugDb']) && $GLOBALS['debugDb']) {
-			print_r($result->errorInfo());
-		}
+		} 
+		$this->logStatementError($result->errorInfo(),$sql);
 		return false;
 	}
 
@@ -216,6 +208,16 @@ class DBObject {
 			return true;
 		}
 		return false;
+	}
+
+	protected function logStatementError($error,$sql=null) {
+		if (!empty($GLOBALS['config']['DB_DEBUG'])) {
+			$message = "Error with query - CODE: {$error[1]}";
+			if ($sql) {
+				$message .= " QUERY: {$sql}";
+			}
+			$this->getLogger()->error($message);
+		}
 	}
 }
 ?>

@@ -2,7 +2,7 @@
 namespace App\Classes;
 use Core\Classes as CoreClasses;
 /** 
-*	An app level logger. This can be activated in the config file.
+*	An example app level logger. This can be activated in the config file and rewritten to be useful.
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 

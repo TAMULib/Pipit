@@ -17,7 +17,7 @@ class User extends DBObject {
 		$this->primaryTable = 'users';
 		if ($this->isLoggedIn()) {
 			$this->buildProfile();
-		}		
+		}
 	}
 
 	public function logOut() {

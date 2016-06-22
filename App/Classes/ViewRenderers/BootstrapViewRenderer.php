@@ -14,7 +14,7 @@ use Core\Classes as CoreClasses;
 class BootstrapViewRenderer extends CoreClasses\ViewRenderers\HTMLViewRenderer {
 	protected $viewPaths = array('bootstrap','html');
 
-	public function __construct(&$globalUser,&$pages,&$data,$controllerName) {
+	public function __construct($globalUser,$pages,$data,$controllerName) {
 		parent::__construct($globalUser,$pages,$data,$controllerName);
 		$this->setViewPath($this->viewPaths[0]);
 	}
