@@ -36,6 +36,7 @@ class CoreLogger implements Interfaces\Logger {
 	public function setLogLevel($logLevel) {
  		if (is_int($logLevel) && $logLevel <= count($this->loggerTypes)) {
 			$this->logLevel = $logLevel;
+			$this->debug("Log level was set to: {$this->loggerTypes[$logLevel]}");
 		} else {
 			$this->warn("Invalid Log Level");
 		}

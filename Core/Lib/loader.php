@@ -25,16 +25,7 @@ $config = get_defined_constants(true)["user"];
 
 require_once "{$config['PATH_LIB']}functions.php";
 
-//if a logger has been configured, prefer it to the CoreLogger
-if (!empty($config['LOGGER_CLASS'])) {
-	$logger = new $config['LOGGER_CLASS']();
-} else {
-	$logger = new CoreClasses\CoreLogger();
-}
-
-if (isset($config['LOG_LEVEL'])) {
-	$logger->setLogLevel($config['LOG_LEVEL']);
-}
+$logger = getLogger();
 
 if (isset($forceRedirectUrl) && !empty($forceRedirectUrl)) {
 	header("Location: {$forceRedirectUrl}");
@@ -52,8 +43,6 @@ if (empty($site)) {
 	$logger->error("Site Class not found");
 	exit;
 }
-
-$site->setLogger($logger);
 
 $pages = $site->getPages();
 

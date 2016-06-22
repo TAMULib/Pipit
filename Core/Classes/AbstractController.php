@@ -7,7 +7,7 @@ use Core\Interfaces as Interfaces;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-abstract class AbstractController implements Interfaces\Controller {
+abstract class AbstractController extends CoreObject implements Interfaces\Controller {
 	protected $site;
 	protected $page = array();
 	protected $viewName;

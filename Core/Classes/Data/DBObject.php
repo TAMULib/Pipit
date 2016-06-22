@@ -1,5 +1,6 @@
 <?php
 namespace Core\Classes\Data;
+use Core\Classes as CoreClasses;
 use \PDO;
 /** 
 * 	Provides a PDO DB connection to instances of dbobject and its descendants
@@ -31,17 +32,11 @@ class db {
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class DBObject {
+class DBObject extends CoreClasses\CoreObject {
 	protected $db;
 	protected $primaryTable;
-	private $logger = null;
 	
 	protected function __construct() {
-		if ($GLOBALS['logger']) {
-			$this->logger = $GLOBALS['logger'];
-		} else {
-			$this->logger = new CoreClasses\CoreLogger();
-		}
 		//get the DB connection
 		$this->db = db::getInstance();
 	}
@@ -224,13 +219,5 @@ class DBObject {
 			$this->getLogger()->error($message);
 		}
 	}
-
-	protected function getLogger() {
-		return $this->logger;
-	}
-
-	protected function setLogger($logger) {
-		$this->logger = $logger;
-	}	
 }
 ?>

@@ -1,5 +1,6 @@
 <?php
 namespace Core\Lib;
+use Core\Classes as CoreClasses;
 
 /*
 *   This autoloader will search both the app and core namespaces, in that order, for the first matching file containing the declaration of that class or interface.
@@ -34,4 +35,18 @@ function nameSpaceToPath($nameSpace) {
     return str_replace('\\', '/', $nameSpace);
 }
 
+function getLogger() {
+    if (empty($GLOBALS['logger'])) {
+        //if a logger has been configured, prefer it to the CoreLogger
+        if (!empty($GLOBALS['config']['LOGGER_CLASS'])) {
+            $GLOBALS['logger'] = new $GLOBALS['config']['LOGGER_CLASS']();
+        } else {
+            $GLOBALS['logger'] = new CoreClasses\CoreLogger();
+        }
+        if (isset($GLOBALS['config']['LOG_LEVEL'])) {
+            $GLOBALS['logger']->setLogLevel($GLOBALS['config']['LOG_LEVEL']);
+        }
+    }
+    return $GLOBALS['logger'];
+}
 ?>
