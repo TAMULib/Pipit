@@ -9,9 +9,33 @@ use Core\Interfaces as Interfaces;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
+class LoggerLevel {
+	private $name;
+	private $phpErrorCode;
+	public function __construct($name,$phpErrorCode) {
+		$this->name = $name;
+		$this->phpErrorCode = $phpErrorCode;
+	}
+
+	public function getName() {
+		return $this->name;
+	}
+
+	public function getPhpErrorCode() {
+		return $this->phpErrorCode;
+	}
+}
+
 class CoreLogger implements Interfaces\Logger {
-	private $loggerTypes = array("info","debug","warn","error");
+	private $loggerTypes = array();
 	private $logLevel = 3;
+
+	public function __construct() {
+		array_push($this->loggerTypes,new LoggerLevel("info",E_USER_NOTICE),
+									new LoggerLevel("debug",E_USER_NOTICE),
+									new LoggerLevel("warn",E_USER_WARNING),
+									new LoggerLevel("error",E_USER_ERROR));
+	}
 
 	public function info($message) {
 		$this->writeToLog(array(0,$message));
@@ -29,16 +53,16 @@ class CoreLogger implements Interfaces\Logger {
 
 	protected function writeToLog($entry) {
 		if ($entry[0] >= $this->logLevel) {
-			error_log("**** ".get_class($this)." - {$this->loggerTypes[$entry[0]]}: {$entry[1]} ****");
+			trigger_error("** ".get_class($this)." ** {$entry[1]}",$this->loggerTypes[$entry[0]]->getPhpErrorCode());
 		}
 	}
 
 	public function setLogLevel($logLevel) {
  		if (is_int($logLevel) && $logLevel <= count($this->loggerTypes)) {
 			$this->logLevel = $logLevel;
-			$this->debug("Log level was set to: {$this->loggerTypes[$logLevel]}");
+			$this->debug("Log level was set to: {$this->loggerTypes[$logLevel]->getName()}");
 		} else {
-			$this->warn("Invalid Log Level");
+			$this->warn("Invalid Log Level was requested");
 		}
 	}
 }
