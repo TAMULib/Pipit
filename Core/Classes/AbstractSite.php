@@ -74,7 +74,7 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 						$controllerClass = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Controllers\\DefaultAdminController";
 					}
 				}
-			} elseif ($this->globalUser->isLoggedIn() || (!$this->globalUser->isLoggedIn() && $controllerName == 'user')) {
+			} elseif ($this->globalUser->isLoggedIn() || empty($this->pages[$controllerName]['restricted'])) {
 				//load standard controller
 				$this->viewRenderer->registerAppContextProperty("app_http", "{$this->siteConfig['PATH_HTTP']}{$controllerName}/");
 				$controllerClass = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Controllers\\".ucfirst($controllerName)."Controller";

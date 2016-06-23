@@ -69,10 +69,11 @@ if (isset($data['json']) && $data['json']) {
 //try to load the controller
 $className = $site->getControllerClass($controllerName);
 if (class_exists($className)) {
-	$controller = new $className($site);
+	$controllerConfig = (!empty($controllerConfig)) ? $controllerConfig:null;
+	$controller = new $className($site,$controllerConfig);
 	$controller->evaluate();
 } else {
-	$logger->error("Did not find Controller Class");
+	$logger->warn("Did not find Controller Class");
 	header("Location:{$config['PATH_HTTP']}");
 }
 $className = null;

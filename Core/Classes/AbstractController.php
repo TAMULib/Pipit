@@ -12,9 +12,13 @@ abstract class AbstractController extends CoreObject implements Interfaces\Contr
 	protected $page = array();
 	protected $viewName;
 	protected $requireAdmin = false;
+	protected $controllerConfig = array();
 
-	public function __construct(&$site) {
+	public function __construct(&$site,$controllerConfig=null) {
 		$this->site = $site;
+		if ($controllerConfig) {
+			$this->setControllerConfig($controllerConfig);
+		}
 	}
 
 	protected function setPage($page) {
@@ -31,6 +35,14 @@ abstract class AbstractController extends CoreObject implements Interfaces\Contr
 
 	protected function getViewName() {
 		return $this->viewName;
+	}
+
+	protected function getControllerConfig() {
+		return $this->controllerConfig;
+	}
+
+	protected function setControllerConfig($controllerConfig) {
+		$this->controllerConfig = $controllerConfig;
 	}
 
 	public function evaluate() {
