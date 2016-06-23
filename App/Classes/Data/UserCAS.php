@@ -25,7 +25,6 @@ class UserCAS extends CoreData\User {
 		}
 
 		if (!empty($file)) {
-			//using quotes to force conversion of rawUserName to string
  			$casXml = simplexml_load_string($file,null, 0, 'cas', true);
 			$casXml->registerXPathNamespace("cas", 'http://www.yale.edu/tp/cas');
 			$casUserName = $casXml->authenticationSuccess->user;
