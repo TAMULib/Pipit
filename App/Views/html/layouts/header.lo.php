@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_CSS'];?>helpers.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_CSS'];?>style.css" media="screen"/>
 <?php
-if (is_file("{$config['PATH_FILE']}{$controllerName}.css")) {
+if (is_file("{$config['PATH_APP']}{$controllerName}.css")) {
     echo '<link rel="stylesheet" type="text/css" href="'.$config['PATH_CSS'].$controller.'.css" media="screen"/>';
 }
 ?>
@@ -24,7 +24,7 @@ if (is_file("{$config['PATH_FILE']}{$controllerName}.css")) {
         </script>
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>default.js"></script>
 <?php
-if (is_file("{$config['PATH_FILE']}resources/js/{$controllerName}.js")) {
+if (is_file("{$config['PATH_APP']}resources/js/{$controllerName}.js")) {
     echo '<script type="text/javascript" src="'.$config['PATH_JS'].$controllerName.'.js"></script>';
 }
 ?>

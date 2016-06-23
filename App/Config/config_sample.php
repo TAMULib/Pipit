@@ -22,8 +22,7 @@ define("NAMESPACE_APP","App\\");
 
 //server paths
 //These don't need to be touched unless you're changing the location of the respective directories
-define('PATH_FILE', PATH_ROOT.APP_DIRECTORY.'/');
-define('PATH_APP', PATH_FILE.'/');
+define('PATH_APP', PATH_ROOT.APP_DIRECTORY.'/');
 define('PATH_LIB', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Lib/");
 define('PATH_CORE_LIB', PATH_APP.str_replace('\\', '/', NAMESPACE_CORE)."Lib/");
 define('PATH_CONTROLLERS', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Controllers/");
@@ -32,10 +31,10 @@ define('PATH_VIEWS', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Views/");
 //web paths
 //These don't need to be touched unless you want to put your site assets somewhere else
 define('PATH_RESOURCES', PATH_HTTP."resources/");
-define('PATH_THEMES', PATH_HTTP.PATH_RESOURCES."/themes/");
-define('PATH_CSS', PATH_HTTP.PATH_RESOURCES."/css/");
-define('PATH_JS', PATH_HTTP.PATH_RESOURCES."/js/");
-define('PATH_IMAGES', PATH_HTTP.PATH_RESOURCES."/images/");
+define('PATH_THEMES', PATH_RESOURCES."/themes/");
+define('PATH_CSS', PATH_RESOURCES."/css/");
+define('PATH_JS', PATH_RESOURCES."/js/");
+define('PATH_IMAGES', PATH_RESOURCES."/images/");
 
 //Setting this to true triggers an attempt to log in to a CAS server using the following CAS configuration
 define('USECAS', false);
@@ -80,7 +79,7 @@ define('DB_DEBUG', false);
 //Each entry should have a corresponding user reachable file (with an arbitrary real directory path) that includes the config file and (defines a controller and includes the loader) or (redirects with $forceRedirectUrl)
 //It's possible to have user reachable files that aren't represented in this array. They simply won't have a navigation link in the HTML header.
 $sitePages = array(
-			"widgets" => array("name"=>"widgets","path"=>"widgets"),
+			"widgets" => array("name"=>"widgets","path"=>"widgets","restricted"=>true),
 			"users" => array("name"=>"users","path"=>"users","admin"=>true));
 
 //To override the default CoreLogger, uncomment this and add functionality to the App\\Classes\\Logger
