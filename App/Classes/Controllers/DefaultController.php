@@ -4,6 +4,7 @@ use Core\Classes as Core;
 
 class DefaultController extends Core\AbstractController {
 	protected function loadDefault() {
-		$this->setViewName("default");
+		$viewName = (!empty($this->getControllerConfig()['viewName'])) ? $this->getControllerConfig()['viewName']:'default';
+		$this->setViewName($viewName);
 	}
 }

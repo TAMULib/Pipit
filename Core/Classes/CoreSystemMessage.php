@@ -3,12 +3,12 @@ namespace Core\Classes;
 use Core\Interfaces as Interfaces;
 
 /** 
-*	An abstract implementation of the SystemMessage interface
+*	The default implementation of the SystemMessage interface
 *
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class AbstractSystemMessage implements Interfaces\SystemMessage {
+class CoreSystemMessage implements Interfaces\SystemMessage {
 	private $messageType;
 	private $message;
 
