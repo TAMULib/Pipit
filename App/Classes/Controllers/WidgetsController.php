@@ -9,12 +9,12 @@ class WidgetsController extends Core\AbstractController {
 	public function __construct(&$site) {
 		parent::__construct($site);
 		$this->widgetsRepo = $site->getDataRepository("Widgets");
-		$page['title'] = 'Manage Widgets';
-		$page['navigation'] = array(
+		$this->page = $site->getPages()['widgets'];
+		$this->page->setTitle('Manage Widgets');
+		$this->page->setOptions(array(
 								array("name"=>"list"),
-								array("name"=>"add","action"=>"add","modal"=>true));
-		$page['search'] = true;
-		$this->page = $page;
+								array("name"=>"add","action"=>"add","modal"=>true)));
+		$this->page->setSearch(true);
 	}
 
 	protected function parts() {

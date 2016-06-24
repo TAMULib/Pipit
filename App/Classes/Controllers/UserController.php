@@ -11,8 +11,8 @@ class UserController extends Core\AbstractController {
 		$this->usersRepo = $site->getDataRepository("Users");
 		$this->site->getViewRenderer()->registerAppContextProperty("app_http", "{$this->site->getSiteConfig()['PATH_HTTP']}user.php");
 
-		$page['title'] = 'User';
-		$this->setPage($page);
+		$site->getCurrentPage()->setTitle('User');
+//		$this->setPage($site->getCurrentPage());
 
 	}
 

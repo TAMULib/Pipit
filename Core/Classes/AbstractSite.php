@@ -15,6 +15,7 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	private $pages;
 	private $inputData;
 	protected $systemMessages;
+	protected $currentPage;
 
 	public function __construct(&$siteConfig,$pages) {
 		$this->siteConfig = $siteConfig;
@@ -52,6 +53,14 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 		return $this->pages;
 	}
 
+	public function setCurrentPage($page) {
+		$this->currentPage = $page;
+	}
+
+	public function getCurrentPage() {
+		return $this->currentPage;
+	}
+
 	public function setViewRenderer($viewRenderer) {
 		$this->viewRenderer = $viewRenderer;
 	}
@@ -60,32 +69,7 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 		return $this->viewRenderer;
 	}
 
-	public function getControllerClass($controllerName) {
-		$controllerClass = null;
-		if (array_key_exists($controllerName,$this->pages) || $controllerName == 'user') {
-			if (!empty($this->pages[$controllerName]['admin']) && $this->pages[$controllerName]['admin'] == true) {
-				//if the user is an admin, load the admin controller, otherwise, return false;
-				if ($this->globalUser->isAdmin()) {
-					if ($controllerName) {
-						$this->viewRenderer->registerAppContextProperty("app_http", "{$this->siteConfig['PATH_HTTP']}admin/{$controllerName}/");
-						$controllerClass = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Controllers\\".ucfirst($controllerName)."AdminController";
-					} else {
-						$this->viewRenderer->registerAppContextProperty("app_http", "{$this->siteConfig['PATH_HTTP']}admin/");
-						$controllerClass = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Controllers\\DefaultAdminController";
-					}
-				}
-			} elseif ($this->globalUser->isLoggedIn() || empty($this->pages[$controllerName]['restricted'])) {
-				//load standard controller
-				$this->viewRenderer->registerAppContextProperty("app_http", "{$this->siteConfig['PATH_HTTP']}{$controllerName}/");
-				$controllerClass = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Controllers\\".ucfirst($controllerName)."Controller";
-			}
-		} else {
-			$this->viewRenderer->registerAppContextProperty("app_http", "{$this->siteConfig['PATH_HTTP']}");
-			$controllerClass = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Controllers\\DefaultController";
-		}
-		return $controllerClass;
-
-	}
+	abstract public function getControllerClass($controllerName);
 
 	protected function generateSanitizedInputData() {
 		if (!empty($_GET['action'])) {
