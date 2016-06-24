@@ -87,34 +87,6 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 
 	}
 
-	public function getControllerPath($controllerName) {
-		$controllerPath = null;
-		//load admin controller if user is logged in and an admin page
-		if (array_key_exists($controllerName,$this->pages) || $controllerName == 'user') {
-			if (!empty($this->pages[$controllerName]['admin']) && $this->pages[$controllerName]['admin'] == true) {
-				//if the user is an admin, load the admin controller, otherwise, return false;
-				if ($this->globalUser->isAdmin()) {
-					if ($controllerName) {
-						$this->viewRenderer->registerAppContextProperty("app_http", "{$this->siteConfig['PATH_HTTP']}admin/{$controllerName}/");
-						$controllerPath = "{$this->siteConfig['PATH_CONTROLLERS']}admin/{$controllerName}.control.php";
-					} else {
-						$this->viewRenderer->registerAppContextProperty("app_http", "{$this->siteConfig['PATH_HTTP']}admin/");
-						$controllerPath = "{$this->siteConfig['PATH_CONTROLLERS']}admin/default.control.php";
-					}
-				}
-			} elseif ($this->globalUser->isLoggedIn() || (!$this->globalUser->isLoggedIn() && $controllerName == 'user')) {
-				//load standard controller
-				$this->viewRenderer->registerAppContextProperty("app_http", "{$this->siteConfig['PATH_HTTP']}{$controllerName}/");
-
-				$controllerPath = "{$this->siteConfig['PATH_CONTROLLERS']}{$controllerName}.control.php";
-			}
-		} else {
-			$this->viewRenderer->registerAppContextProperty("app_http", "{$this->siteConfig['PATH_HTTP']}");
-			$controllerPath = "{$this->siteConfig['PATH_CONTROLLERS']}default.control.php";
-		}
-		return $controllerPath;
-	}
-
 	protected function generateSanitizedInputData() {
 		if (!empty($_GET['action'])) {
 			//restrict any controller actions that alter DB data to POST
