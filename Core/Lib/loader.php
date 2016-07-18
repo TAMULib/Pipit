@@ -50,7 +50,7 @@ $data = $site->getSanitizedInputData();
 
 //set the ViewRenderer
 if (isset($data['json']) && $data['json']) {
-	$site->setViewRenderer(new Classes\ViewRenderers\JSONViewRenderer());
+	$site->setViewRenderer(new CoreClasses\ViewRenderers\JSONViewRenderer());
 } else {
 	if (!empty($config['VIEW_RENDERER'])) {
 		if (class_exists("{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {
