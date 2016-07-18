@@ -33,11 +33,13 @@ if (isset($forceRedirectUrl) && !empty($forceRedirectUrl)) {
 	header("Location: {$forceRedirectUrl}");
 }
 
-//try to load the App site class
-$className = "{$config['NAMESPACE_APP']}Classes\\Site";
-if (class_exists($className)) {
+if (!empty($config['SITE_CLASS'])) {
+	$className = "{$config['NAMESPACE_APP']}Classes\\{$config['SITE_CLASS']}";
 	$site = new $className($config,$sitePages);
-	$logger->debug("Loaded Site Class: {$className}");
+	$logger->debug("Loaded Configured Class: {$className}");
+} else {
+	$site = new CoreClasses\CoreSite($config,$sitePages);
+	$logger->debug("Loaded Core Site Class");
 }
 $className = null;
 

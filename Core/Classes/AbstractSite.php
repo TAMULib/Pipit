@@ -17,33 +17,15 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	protected $systemMessages;
 	protected $currentPage;
 
-	public function __construct(&$siteConfig,$pages) {
-		$this->siteConfig = $siteConfig;
-		$this->setPages($pages);
-		$this->generateSanitizedInputData();
-		$this->setUser();
-	}
-
 	public function getSiteConfig() {
 		return $this->siteConfig;
 	}
 
-	protected function setUser() {
-		//build the user
-		if (isset($this->siteConfig['USECAS']) && $this->siteConfig['USECAS']) {
-			$this->globalUser = new AppData\UserCAS();
-			$casTicket = $this->getSanitizedInputData()['ticket'];
-			if (!empty($casTicket)) {
-				if ($this->globalUser->processLogIn($casTicket)) {
-					header("Location:{$this->siteConfig['PATH_HTTP']}");
-				}
-			} elseif (!$this->getGlobalUser()->isLoggedIn() && !isset($this->getSanitizedInputData()['action'])) {
-				$this->getGlobaluser()->initiateLogIn();
-			}
-		} else {
-			$this->globalUser = new Data\User();
-		}
+	protected function setSiteConfig($siteConfig) {
+		$this->siteConfig = $siteConfig;
 	}
+
+	abstract protected function setUser();
 
 	public function setPages($pages) {
 		$this->pages = $pages;
@@ -92,6 +74,10 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 
 	public function getGlobalUser() {
 		return $this->globalUser;
+	}
+
+	protected function setGlobalUser($globalUser) {
+		$this->globalUser = $globalUser;
 	}
 
 	abstract public function addSystemMessage($message,$type="info");

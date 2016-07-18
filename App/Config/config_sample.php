@@ -82,6 +82,9 @@ define('DB_DEBUG', false);
 //Set the log level: 0 = Everything, 3 = Errors only
 define("LOG_LEVEL",3);
 
+//If SITE_CLASS is not set, the app will use CoreSite by default.
+//define('SITE_CLASS','Site');
+
 //If VIEW_RENDERER is not set, the app will use the HTMLViewRenderer by default.
 define('VIEW_RENDERER','BootstrapViewRenderer');
 
