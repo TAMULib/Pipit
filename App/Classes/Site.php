@@ -26,7 +26,7 @@ class Site extends CoreClasses\AbstractSite {
 		if (array_key_exists($controllerName,$this->getPages()) || $controllerName == 'user') {
 			if ($controllerName == 'user') {
 				$this->setCurrentPage(new SitePage('user','user',SECURITY_PUBLIC));
-			} else {
+			} elseif ($this->getPages()[$controllerName]) {
 				$this->setCurrentPage($this->getPages()[$controllerName]);
 			}
 			$currentPage = $this->getCurrentPage();

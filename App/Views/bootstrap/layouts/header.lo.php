@@ -137,7 +137,7 @@ if (!empty($page)) {
     echo '    </div>';
 }
 echo '		<div id="modalContent">';
-if ($page->getSubTitle()) {
+if (!empty($page) && $page->getSubTitle()) {
 	echo "     	<div class=\"page-header\">
 					<h1 class=\"capitalize\"><small>{$page->getSubTitle()}</small></h1>
 				</div>";
