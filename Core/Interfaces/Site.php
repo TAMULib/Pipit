@@ -12,7 +12,7 @@ interface Site {
 	public function getPages();
 	public function setPages($pages);
 	public function getGlobalUser();
-	public function getControllerPath($controllerName);
+	public function getControllerClass($controllerName);
 	public function getSanitizedInputData();
 	public function addSystemMessage($systemMessage);
 	public function getSystemMessages();

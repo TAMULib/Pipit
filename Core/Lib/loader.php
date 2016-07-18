@@ -44,8 +44,6 @@ if (empty($site)) {
 	exit;
 }
 
-$pages = $site->getPages();
-
 $data = $site->getSanitizedInputData();
 
 //set the ViewRenderer
