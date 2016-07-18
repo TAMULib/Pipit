@@ -9,18 +9,18 @@ class WidgetsController extends Core\AbstractController {
 	public function __construct(&$site) {
 		parent::__construct($site);
 		$this->widgetsRepo = $site->getDataRepository("Widgets");
-		$page['title'] = 'Manage Widgets';
-		$page['navigation'] = array(
+
+		$this->getPage()->setTitle("Manage Widgets");
+		$this->getPage()->setOptions(array(
 								array("name"=>"list"),
-								array("name"=>"add","action"=>"add","modal"=>true));
-		$page['search'] = true;
-		$this->page = $page;
+								array("name"=>"add","action"=>"add","modal"=>true)));
+		$this->getPage()->setIsSearchable(true);
 	}
 
 	protected function parts() {
 		$data = $this->site->getSanitizedInputData();
 		$widget = $this->widgetsRepo->getById($data['widgetid']);
-		$this->page['subtitle'] = 'Parts for '.$widget['name'];
+		$this->getPage()->setSubTitle('Parts for '.$widget['name']);
 		$this->site->getViewRenderer()->registerViewVariable("widget",$widget);
 		$this->site->getViewRenderer()->registerViewVariable("parts",$this->widgetsRepo->getPartsByWidgetId($data['widgetid']));
 		$this->setViewName('widgets.parts');
@@ -45,7 +45,7 @@ class WidgetsController extends Core\AbstractController {
 	}
 
 	protected function add() {
-		$this->page['subtitle'] = 'New Widget';
+		$this->getPage()->setSubTitle('New Widget');
 		$this->site->getViewRenderer()->setView("widgets.add");
 		$this->setViewName('widgets.add');
 	}
@@ -60,7 +60,7 @@ class WidgetsController extends Core\AbstractController {
 	}
 
 	protected function edit() {
-		$this->page['subtitle'] = 'Update Widget';
+		$this->getPage()->setSubTitle('Update Widget');
 		$data = $this->site->getSanitizedInputData();
 		if (isset($data['id']) && is_numeric($data['id']) && ($widget = $this->widgetsRepo->getById($data['id']))) {
 			$widget = $this->site->getViewRenderer()->registerViewVariable("widget",$widget);
@@ -97,7 +97,7 @@ class WidgetsController extends Core\AbstractController {
 	}
 
 	protected function loadDefault() {
-		$this->page['subtitle'] = 'Widgets';
+		$this->getPage()->setSubTitle('Widgets');
 		$this->site->getViewRenderer()->registerViewVariable("widgets", $this->widgetsRepo->get());
 		$this->setViewName('widgets.list');
 	}

@@ -23,6 +23,7 @@ define("NAMESPACE_APP","App\\");
 //server paths
 //These don't need to be touched unless you're changing the location of the respective directories
 define('PATH_APP', PATH_ROOT.APP_DIRECTORY.'/');
+define('PATH_CONFIG', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Config/");
 define('PATH_LIB', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Lib/");
 define('PATH_CORE_LIB', PATH_APP.str_replace('\\', '/', NAMESPACE_CORE)."Lib/");
 define('PATH_CONTROLLERS', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Controllers/");
@@ -74,14 +75,6 @@ define("DB_DSN", 'mysql:host='.DB_HOST.';dbname='.DB_DATABASE);
 //debug mode for PDO database queries
 define('DB_DEBUG', false);
 
-//This array represents the app's pages. Used to generate user facing navigation and load controllers
-//The keys correspond to controller names
-//Each entry should have a corresponding user reachable file (with an arbitrary real directory path) that includes the config file and (defines a controller and includes the loader) or (redirects with $forceRedirectUrl)
-//It's possible to have user reachable files that aren't represented in this array. They simply won't have a navigation link in the HTML header.
-$sitePages = array(
-			"widgets" => array("name"=>"widgets","path"=>"widgets","restricted"=>true),
-			"users" => array("name"=>"users","path"=>"users","admin"=>true));
-
 //To override the default CoreLogger, uncomment this and add functionality to the App\\Classes\\Logger
 //You could also extend the Core or App Loggers or implement the Logger interface directly. Just define the resulting namespaced class, here:
 //define("LOGGER_CLASS",NAMESPACE_APP."Classes\\Logger");
@@ -89,8 +82,15 @@ $sitePages = array(
 //Set the log level: 0 = Everything, 3 = Errors only
 define("LOG_LEVEL",3);
 
+//If SITE_CLASS is not set, the app will use CoreSite by default.
+//define('SITE_CLASS','Site');
+
 //If VIEW_RENDERER is not set, the app will use the HTMLViewRenderer by default.
 define('VIEW_RENDERER','BootstrapViewRenderer');
+
+define('SECURITY_PUBLIC',-1);
+define('SECURITY_USER',0);
+define('SECURITY_ADMIN',1);
 
 ?>
 

@@ -25,17 +25,21 @@ $config = get_defined_constants(true)["user"];
 
 require_once "{$config['PATH_LIB']}functions.php";
 
+require_once PATH_CONFIG.'config.pages.php';
+
 $logger = getLogger();
 
 if (isset($forceRedirectUrl) && !empty($forceRedirectUrl)) {
 	header("Location: {$forceRedirectUrl}");
 }
 
-//try to load the App site class
-$className = "{$config['NAMESPACE_APP']}Classes\\Site";
-if (class_exists($className)) {
+if (!empty($config['SITE_CLASS'])) {
+	$className = "{$config['NAMESPACE_APP']}Classes\\{$config['SITE_CLASS']}";
 	$site = new $className($config,$sitePages);
-	$logger->debug("Loaded Site Class: {$className}");
+	$logger->debug("Loaded Configured Class: {$className}");
+} else {
+	$site = new CoreClasses\CoreSite($config,$sitePages);
+	$logger->debug("Loaded Core Site Class");
 }
 $className = null;
 
@@ -47,8 +51,8 @@ if (empty($site)) {
 $data = $site->getSanitizedInputData();
 
 //set the ViewRenderer
-if (isset($data['json']) && $data['json']) {
-	$site->setViewRenderer(new Classes\ViewRenderers\JSONViewRenderer());
+if (!empty($data['json'])) {
+	$site->setViewRenderer(new CoreClasses\ViewRenderers\JSONViewRenderer());
 } else {
 	if (!empty($config['VIEW_RENDERER'])) {
 		if (class_exists("{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {

@@ -9,13 +9,14 @@ use Core\Interfaces as Interfaces;
 
 abstract class AbstractController extends CoreObject implements Interfaces\Controller {
 	protected $site;
-	protected $page = array();
+	protected $page;
 	protected $viewName;
 	protected $requireAdmin = false;
 	protected $controllerConfig = array();
 
 	public function __construct(&$site,$controllerConfig=null) {
 		$this->site = $site;
+		$this->setPage($site->getCurrentPage());
 		if ($controllerConfig) {
 			$this->setControllerConfig($controllerConfig);
 		}

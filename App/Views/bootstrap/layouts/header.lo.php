@@ -58,12 +58,12 @@ if ($controllerName != 'default' && is_file("{$config['PATH_APP']}resources/js/{
 					<ul class="nav navbar-nav">
 <?php
 if ($globalUser->isLoggedIn()) {
-    foreach ($pages as $nav) {
-		echo '			<li'.(($controllerName == $nav['path']) ? ' class="active"':'').'>';
-        if (!empty($nav['admin']) && ($nav['admin'] == true && $globalUser->isAdmin())) {
-			echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}admin/{$nav['path']}/\">{$nav['name']}</a>";
-        } elseif (empty($nav['admin'])) {
-			echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}{$nav['path']}/\">{$nav['name']}</a>";
+    foreach ($pages as $sitePage) {
+		echo '			<li'.(($controllerName == $sitePage->getPath()) ? ' class="active"':'').'>';
+        if ($sitePage->getAccessLevel() == SECURITY_ADMIN && $globalUser->isAdmin()) {
+			echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}admin/{$sitePage->getPath()}/\">{$sitePage->getName()}</a>";
+        } else if ($sitePage->getAccessLevel() < SECURITY_ADMIN) {
+			echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}{$sitePage->getPath()}/\">{$sitePage->getName()}</a>";
         }
 		echo '			</li>';
     }
@@ -99,16 +99,17 @@ if ($globalUser->isLoggedIn()) {
         <div class="container clearfix">
 <?php
 if (!empty($page)) {
-    if (isset($page['title'])) {
+    if ($page->getTitle()) {
 		echo "<div class=\"page-header\">
-            	<h1>{$page['title']}</h1>
+            	<h1>{$page->getTitle()}</h1>
 			</div>";
     }
+
     echo '  <div id="subNav" class="row">';
-    if (isset($page['navigation'])) {
+    if ($page->getOptions()) {
         echo "  <div class=\"col col-sm-8\">
 					<ul class=\"nav nav-pills\">";
-    	foreach ($page['navigation'] as $subnav) {
+    	foreach ($page->getOptions() as $subnav) {
             $isCurrent = (isset($data['action']) && isset($subnav['action']) && $subnav['action'] == $data['action']) || (!isset($data['action']) && !isset($subnav['action']));
     		echo "		<li".(($isCurrent) ? ' class="active"':'').">
 							<a class=\"capitalize".(isset($subnav['modal']) ? ' do-loadmodal':'')."\" href=\"{$app_http}".((isset($subnav['action'])) ? "?action={$subnav['action']}":'')."\">{$subnav['name']}</a>
@@ -117,7 +118,7 @@ if (!empty($page)) {
         echo '  	</ul>
 				</div>';
     }
-    if (isset($page['search'])) {
+    if ($page->isSearchable()) {
         echo '  <div class="col col-sm-4">
 					<form id="doSearch" class="do-get" name="search" method="POST" action="'.$app_http.'">
                     	<input type="hidden" name="action" value="search" />
@@ -133,14 +134,12 @@ if (!empty($page)) {
 	                </form>
 				</div>';
     }
-
     echo '    </div>';
 }
 echo '		<div id="modalContent">';
-if (isset($page['subtitle']) && $page['subtitle']) {
+if (!empty($page) && $page->getSubTitle()) {
 	echo "     	<div class=\"page-header\">
-					<h1 class=\"capitalize\"><small>{$page['subtitle']}</small></h1>
+					<h1 class=\"capitalize\"><small>{$page->getSubTitle()}</small></h1>
 				</div>";
 }
-
 ?>

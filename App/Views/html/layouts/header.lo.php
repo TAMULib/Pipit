@@ -58,18 +58,10 @@ if (is_file("{$config['PATH_APP']}resources/js/{$controllerName}.js")) {
 <?php
 if ($globalUser->isLoggedIn()) {
     foreach ($pages as $nav) {
-        if (!empty($nav['admin']) && ($nav['admin'] == true && $globalUser->isAdmin())) {
-            if ($controllerName == $nav['path']) {
-               echo "<a class=\"capitalize current\" href=\"{$config['PATH_HTTP']}admin/{$nav['path']}/\">{$nav['name']}</a>";
-            } else {
-                echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}admin/{$nav['path']}/\">{$nav['name']}</a>";
-            }
-        } elseif (empty($nav['admin'])) {
-            if ($controllerName == $nav['path']) {
-               echo "<a class=\"capitalize current\" href=\"{$config['PATH_HTTP']}{$nav['path']}/\">{$nav['name']}</a>";
-            } else {
-                echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}{$nav['path']}/\">{$nav['name']}</a>";
-            }
+        if ($nav->getAccessLevel() == SECURITY_ADMIN && $globalUser->isAdmin()) {
+            echo "<a class=\"capitalize".(($controllerName == $nav->getPath()) ? ' current':'')."\" href=\"{$config['PATH_HTTP']}admin/{$nav->getPath()}/\">{$nav->getName()}</a>";
+        } else if ($nav->getAccessLevel() < SECURITY_ADMIN){
+            echo "<a class=\"capitalize".(($controllerName == $nav->getPath()) ? ' current':'')."\" href=\"{$config['PATH_HTTP']}{$nav->getPath()}/\">{$nav->getName()}</a>";
         }
     }
 }
@@ -93,24 +85,24 @@ echo '      </div>';
         <div class="container">
 <?php
 if (!empty($page)) {
-    if (isset($page['title'])) {
+    if ($page->getTitle()) {
     	echo "
-            <h1>{$page['title']}</h1>";
+            <h1>{$page->getTitle()}</h1>";
     }
     echo '  <div>';
-    if (isset($page['navigation'])) {
-        $size = sizeof($page['navigation']);
+    if ($page->getOptions()) {
+        $size = sizeof($page->getOptions());
         $navWidth = 15*$size;
         $btnWidth = $navWidth/($size*.8);
         echo "  <div style=\"width:{$navWidth}%\" class=\"inline-block navigation subNav\">";
-    	foreach ($page['navigation'] as $subnav) {
+    	foreach ($page->getOptions() as $subnav) {
             $isCurrent = (isset($data['action']) && isset($subnav['action']) && $subnav['action'] == $data['action']) || (!isset($data['action']) && !isset($subnav['action']));
     		echo "<a style=\"width:{$btnWidth}%\" class=\"capitalize".($isCurrent ? ' current':'').(isset($subnav['modal']) ? ' do-loadmodal':'')."\" href=\"{$app_http}".((isset($subnav['action'])) ? "?action={$subnav['action']}":'')."\">{$subnav['name']}</a>";
     	}
         echo '  </div>';
     }
 
-    if (isset($page['search'])) {
+    if ($page->isSearchable()) {
         echo '  <form id="doSearch" class="do-get inline-block" name="search" method="POST" action="'.$app_http.'">
                     <input type="hidden" name="action" value="search" />
                     <input id="searchTerm" class="inline" type="text" name="term" />';
@@ -123,8 +115,8 @@ if (!empty($page)) {
     echo '    </div>';
 }
 echo '        <div id="modalContent">';
-if (isset($page['subtitle']) && $page['subtitle']) {
-	echo "     <h4 class=\"capitalize\">{$page['subtitle']}</h4>";
+if (!empty($page) && $page->getSubtitle()) {
+	echo "     <h4 class=\"capitalize\">{$page->getSubtitle()}</h4>";
 }
 
 ?>
