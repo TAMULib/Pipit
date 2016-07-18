@@ -10,14 +10,16 @@ class UsersAdminController extends Core\AbstractController {
 		$this->requireAdmin = true;
 		parent::__construct($site);
 
-		$page['title'] = 'Manage Users';
-		$page['navigation'] = array(
-								array("name"=>"list"),
-								array("name"=>"add","action"=>"add","modal"=>true));
-		$page['search'] = array(array("name"=>"name_last","type"=>"text"),
-								array("name"=>"name_first","type"=>"text"));
-		$this->setPage($page);
 		$this->usersRepo = $site->getDataRepository("Users");
+
+		$this->getPage()->setTitle("Manage Users");
+		$this->getPage()->setOptions(array(
+								array("name"=>"list"),
+								array("name"=>"add","action"=>"add","modal"=>true)));
+		$this->getPage()->setIsSearchable(true);
+		$this->getPage()->setSearchableFields(array(array("name"=>"name_last","type"=>"text"),
+								array("name"=>"name_first","type"=>"text")));
+
 	}
 
 	protected function search() {
@@ -62,7 +64,7 @@ class UsersAdminController extends Core\AbstractController {
 	}
 
 	protected function add() {
-		$this->page['subtitle'] = 'New User';
+		$this->getPage->setSubTitle('New User');
 		$this->setViewName("users.add");
 	}
 
@@ -77,7 +79,7 @@ class UsersAdminController extends Core\AbstractController {
 
 	protected function edit() {
 		$data = $this->site->getSanitizedInputData();
-		$this->page['subtitle'] = 'Update User';
+		$this->getPage()->setSubTitle('Update User');
 		if (isset($data['id']) && is_numeric($data['id'])) {
 			$this->site->getViewRenderer()->registerViewVariable("user",$this->usersRepo->getById($data['id']));
 			$this->setViewName("users.edit");
@@ -85,7 +87,7 @@ class UsersAdminController extends Core\AbstractController {
 	}
 
 	protected function loadDefault() {
-		$this->page['subtitle'] = 'Users';
+		$this->getPage()->setSubTitle('Users');
 	 	$this->site->getViewRenderer()->registerViewVariable("users",$this->usersRepo->get());
 		$this->setViewName("users.list");
 	}

@@ -34,10 +34,10 @@ class Site extends CoreClasses\AbstractSite {
 				//if the user is an admin, load the admin controller, otherwise, return false;
 				if ($this->getGlobalUser()->isAdmin()) {
 					if ($controllerName) {
-						$this->viewRenderer->registerAppContextProperty("app_http", "{$this->siteConfig['PATH_HTTP']}admin/{$controllerName}/");
+						$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}admin/{$controllerName}/");
 						$controllerClass = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Controllers\\".ucfirst($controllerName)."AdminController";
 					} else {
-						$this->viewRenderer->registerAppContextProperty("app_http", "{$this->siteConfig['PATH_HTTP']}admin/");
+						$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}admin/");
 						$controllerClass = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Controllers\\DefaultAdminController";
 					}
 				}

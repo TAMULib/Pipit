@@ -25,7 +25,7 @@ $config = get_defined_constants(true)["user"];
 
 require_once "{$config['PATH_LIB']}functions.php";
 
-include PATH_CONFIG.'config.pages.php';
+require_once PATH_CONFIG.'config.pages.php';
 
 $logger = getLogger();
 

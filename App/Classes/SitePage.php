@@ -11,7 +11,7 @@ use Core\Classes as CoreClasses;
 class SitePage extends CoreClasses\AbstractSitePage {
 
 	public function setTitle($title) {
-		$this->setTitle($title);
+		$this->title = $title;
 	}
 
 	public function getTitle() {
@@ -19,7 +19,7 @@ class SitePage extends CoreClasses\AbstractSitePage {
 	}
 
 	public function setSubTitle($subTitle) {
-		$this->setSubTitle($subTitle);
+		$this->subTitle = $subTitle;
 	}
 
 	public function getSubTitle() {

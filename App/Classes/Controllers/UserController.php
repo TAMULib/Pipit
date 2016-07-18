@@ -11,8 +11,7 @@ class UserController extends Core\AbstractController {
 		$this->usersRepo = $site->getDataRepository("Users");
 		$this->site->getViewRenderer()->registerAppContextProperty("app_http", "{$this->site->getSiteConfig()['PATH_HTTP']}user.php");
 
-		$site->getCurrentPage()->setTitle('User');
-//		$this->setPage($site->getCurrentPage());
+		$this->getPage()->setTitle('User');
 
 	}
 
@@ -26,7 +25,7 @@ class UserController extends Core\AbstractController {
 	}
 
 	protected function edit() {
-		$this->page['subtitle'] = 'Edit Profile';
+		$this->getPage()->setSubTitle('Edit Profile');
 		$this->site->getViewRenderer()->registerViewVariable("user",$this->site->getGlobalUser()->getProfile());
 		$this->setViewName('user.edit');
 	}
