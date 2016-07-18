@@ -60,7 +60,7 @@ if ($globalUser->isLoggedIn()) {
     foreach ($pages as $nav) {
         if ($nav->getAccessLevel() == SECURITY_ADMIN && $globalUser->isAdmin()) {
             echo "<a class=\"capitalize".(($controllerName == $nav->getPath()) ? ' current':'')."\" href=\"{$config['PATH_HTTP']}admin/{$nav->getPath()}/\">{$nav->getName()}</a>";
-        } else {
+        } else if ($nav->getAccessLevel() < SECURITY_ADMIN){
             echo "<a class=\"capitalize".(($controllerName == $nav->getPath()) ? ' current':'')."\" href=\"{$config['PATH_HTTP']}{$nav->getPath()}/\">{$nav->getName()}</a>";
         }
     }

@@ -62,7 +62,7 @@ if ($globalUser->isLoggedIn()) {
 		echo '			<li'.(($controllerName == $sitePage->getPath()) ? ' class="active"':'').'>';
         if ($sitePage->getAccessLevel() == SECURITY_ADMIN && $globalUser->isAdmin()) {
 			echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}admin/{$sitePage->getPath()}/\">{$sitePage->getName()}</a>";
-        } else {
+        } else if ($sitePage->getAccessLevel() < SECURITY_ADMIN) {
 			echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}{$sitePage->getPath()}/\">{$sitePage->getName()}</a>";
         }
 		echo '			</li>';
