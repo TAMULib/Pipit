@@ -49,7 +49,7 @@ if (empty($site)) {
 $data = $site->getSanitizedInputData();
 
 //set the ViewRenderer
-if (isset($data['json']) && $data['json']) {
+if (!empty($data['json'])) {
 	$site->setViewRenderer(new CoreClasses\ViewRenderers\JSONViewRenderer());
 } else {
 	if (!empty($config['VIEW_RENDERER'])) {
