@@ -21,10 +21,12 @@ use Core\Lib as CoreLib;
 class CoreLoader implements CoreInterfaces\Loader {
 	private $controllerName;
 	private $config;
+	private $logger;
 
 	public function __construct($config,$controllerName) {
 		$this->config = $config;
 		$this->controllerName = $controllerName;
+		$this->logger = CoreLib\getLogger();
 	}
 
 	protected function setConfig($config) {
@@ -41,27 +43,31 @@ class CoreLoader implements CoreInterfaces\Loader {
 		}
 	}
 
+	private function getSiteClass() {
+		$site = null;
+		$config = $this->getConfig();
+		if (!empty($config['SITE_CLASS'])) {
+			$className = "{$config['NAMESPACE_APP']}Classes\\{$config['SITE_CLASS']}";
+			$site = new $className($config);
+			$this->logger->debug("Loaded Configured Class: {$className}");
+		} else {
+			$site = new CoreClasses\CoreSite($config);
+			$this->logger->debug("Loaded Core Site Class");
+		}
+		return $site;
+	}
+
 	public function load() {
 		session_start();
 
 		$config = $this->getConfig();
 
-		$logger = CoreLib\getLogger();
-
 		$this->checkRedirect();
 
-		if (!empty($config['SITE_CLASS'])) {
-			$className = "{$config['NAMESPACE_APP']}Classes\\{$config['SITE_CLASS']}";
-			$site = new $className($config,$config['sitePages']);
-			$logger->debug("Loaded Configured Class: {$className}");
-		} else {
-			$site = new CoreClasses\CoreSite($config,$config['sitePages']);
-			$logger->debug("Loaded Core Site Class");
-		}
-		$className = null;
+		$site = $this->getSiteClass();
 
 		if (empty($site)) {
-			$logger->error("Site Class not found");
+			$this->logger->error("Site Class not found");
 			exit;
 		}
 
@@ -92,7 +98,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 			$controller = new $className($site,$controllerConfig);
 			$controller->evaluate();
 		} else {
-			$logger->warn("Did not find Controller Class");
+			$this->logger->warn("Did not find Controller Class");
 			header("Location:{$config['PATH_HTTP']}");
 		}
 		$className = null;
