@@ -1,5 +1,5 @@
 <?php
 include "../../App/Config/config.php";
-$controllerName = 'widgets';
+$controllerConfig = array('name'=>'widgets');
 include PATH_LIB."loader.php";
 ?>
