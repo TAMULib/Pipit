@@ -25,14 +25,19 @@ if (!empty($forceRedirectUrl)) {
 	unset($forceRedirectUrl);
 }
 
+if (!empty($controllerConfig)) {
+	$config['controllerConfig'] = $controllerConfig;
+	unset($controllerConfig);
+}
+
 $logger = CoreLib\getLogger();
 
 if (!empty($config['LOADER_CLASS'])) {
 	$className = "{$config['NAMESPACE_APP']}Classes\\Loaders\\{$config['LOADER_CLASS']}";
-	$siteLoader = new $className($config,$controllerName);
+	$siteLoader = new $className($config);
 	$logger->debug("Using Configured Loader Class: {$className}");
 } else {
-	$siteLoader = new CoreClasses\Loaders\CoreLoader($config,$controllerName);
+	$siteLoader = new CoreClasses\Loaders\CoreLoader($config);
 	$logger->debug("Using Default Loader Class: CoreLoader");
 }
 $siteLoader->load();

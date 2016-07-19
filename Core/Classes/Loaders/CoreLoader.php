@@ -19,13 +19,12 @@ use Core\Lib as CoreLib;
 */
 
 class CoreLoader implements CoreInterfaces\Loader {
-	private $controllerName;
 	private $config;
 	private $logger;
+	private $site;
 
-	public function __construct($config,$controllerName) {
+	public function __construct($config) {
 		$this->config = $config;
-		$this->controllerName = $controllerName;
 		$this->logger = CoreLib\getLogger();
 	}
 
@@ -92,7 +91,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 			if (!$className) {
 				$className = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\HTMLViewRenderer";
 			}
-			$site->setViewRenderer(new $className($site->getGlobalUser(),$site->getPages(),$inputData,$this->controllerName));
+			$site->setViewRenderer(new $className($site->getGlobalUser(),$site->getPages(),$inputData,$config['controllerConfig']['name']));
 			$viewRendererFlag = true;
 		}
 		if (!$viewRendererFlag) {
@@ -105,10 +104,9 @@ class CoreLoader implements CoreInterfaces\Loader {
 	private function loadController($site) {
 		//try to load the controller
 		$config = $this->getConfig();
-		$className = $site->getControllerClass($this->controllerName);
+		$className = $site->getControllerClass($config['controllerConfig']['name']);
 		if (class_exists($className)) {
-			$controllerConfig = (!empty($controllerConfig)) ? $controllerConfig:null;
-			$controller = new $className($site,$controllerConfig);
+			$controller = new $className($site,$config['controllerConfig']);
 			$controller->evaluate();
 		} else {
 			$this->logger->warn("Did not find Controller Class");

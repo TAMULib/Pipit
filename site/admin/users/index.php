@@ -1,5 +1,5 @@
 <?php
 include "../../../App/Config/config.php";
-$controllerName = 'users';
+$controllerConfig = array('name'=>'users');
 include PATH_LIB."loader.php";
 ?>
