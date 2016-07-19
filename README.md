@@ -10,3 +10,4 @@ A basic PHP framework for web app development
 * CAS support
 * LDAP Utility
 * Convention based javascript built on jQuery provides easy modal loading, AJAX updating, and user notifications
+* Offers a complete, working seed app as a starting point.

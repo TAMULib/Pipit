@@ -4,8 +4,8 @@
 //This must be set to the real file path to the base directory of your server, e.g. '/var/www/html/'
 define('PATH_ROOT', '/'); 
 
-define('APP_NAME', 'The Seed App'); 
-define('APP_DIRECTORY', 'PHPSeedApp'); 
+define('APP_NAME', 'The PipitSeed App'); 
+define('APP_DIRECTORY', 'Pipit'); 
 
 
 //Optionally change this to your domain or IP.
