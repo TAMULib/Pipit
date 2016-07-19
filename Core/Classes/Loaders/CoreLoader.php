@@ -27,10 +27,18 @@ class CoreLoader implements CoreInterfaces\Loader {
 		$this->controllerName = $controllerName;
 	}
 
+	protected function setConfig($config) {
+		$this->config = $config;
+	}
+
+	protected function getConfig() {
+		return $this->config;
+	}
+
 	public function load() {
 		session_start();
 
-		$config = $this->config;
+		$config = $this->getConfig();
 
 		$logger = CoreLib\getLogger();
 
