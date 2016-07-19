@@ -12,7 +12,23 @@ use Core\Lib as CoreLib;
 */
 
 require_once PATH_LIB."functions.php";
+require_once PATH_CONFIG.'config.pages.php';
 
-$siteLoader = new CoreLib\CoreLoader($controllerName);
+$config = get_defined_constants(true)["user"];
+if (!empty($sitePages)) {
+	$config['sitePages'] = $sitePages;
+	unset($sitePages);
+}
+
+$logger = CoreLib\getLogger();
+
+if (!empty($config['LOADER_CLASS'])) {
+	$className = "{$config['NAMESPACE_APP']}Classes\\Loaders\\{$config['LOADER_CLASS']}";
+	$siteLoader = new $className($config,$controllerName);
+	$logger->debug("Using Configured Loader Class: {$className}");
+} else {
+	$siteLoader = new CoreClasses\Loaders\CoreLoader($config,$controllerName);
+	$logger->debug("Using Default Loader Class: CoreLoader");
+}
 $siteLoader->load();
 ?>

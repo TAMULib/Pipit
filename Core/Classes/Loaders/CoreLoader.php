@@ -1,7 +1,8 @@
 <?php
-namespace Core\Lib;
+namespace Core\Classes\Loaders;
 use Core\Classes as CoreClasses;
 use Core\Interfaces as CoreInterfaces;
+use Core\Lib as CoreLib;
 
 /**
 *	The Core Loader is the default entry point for the application. All endpoints lead, here, by way of the App Loader.
@@ -19,22 +20,19 @@ use Core\Interfaces as CoreInterfaces;
 
 class CoreLoader implements CoreInterfaces\Loader {
 	private $controllerName;
+	private $config;
 
-	public function __construct($controllerName) {
-		//don't recommend using, sanitizing in case someone does
-		$_SERVER['PHP_SELF'] = htmlentities($_SERVER['PHP_SELF']);
-
-		$GLOBALS['config'] = get_defined_constants(true)["user"];
+	public function __construct($config,$controllerName) {
+		$this->config = $config;
 		$this->controllerName = $controllerName;
 	}
 
 	public function load() {
 		session_start();
 
-		$config = $GLOBALS['config'];
-		require_once PATH_CONFIG.'config.pages.php';
+		$config = $this->config;
 
-		$logger = getLogger();
+		$logger = CoreLib\getLogger();
 
 		if (!empty($GLOBALS['forceRedirectUrl'])) {
 			header("Location: {$GLOBALS['forceRedirectUrl']}");
@@ -42,10 +40,10 @@ class CoreLoader implements CoreInterfaces\Loader {
 
 		if (!empty($config['SITE_CLASS'])) {
 			$className = "{$config['NAMESPACE_APP']}Classes\\{$config['SITE_CLASS']}";
-			$site = new $className($config,$sitePages);
+			$site = new $className($config,$config['sitePages']);
 			$logger->debug("Loaded Configured Class: {$className}");
 		} else {
-			$site = new CoreClasses\CoreSite($config,$sitePages);
+			$site = new CoreClasses\CoreSite($config,$config['sitePages']);
 			$logger->debug("Loaded Core Site Class");
 		}
 		$className = null;

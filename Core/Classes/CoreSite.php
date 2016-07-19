@@ -8,9 +8,9 @@ namespace Core\Classes;
 
 class CoreSite extends AbstractSite {
 
-	public function __construct(&$siteConfig,$pages) {
+	public function __construct(&$siteConfig) {
 		$this->setSiteConfig($siteConfig);
-		$this->setPages($pages);
+		$this->setPages($siteConfig['sitePages']);
 		$this->generateSanitizedInputData();
 		$this->setUser();
 	}
