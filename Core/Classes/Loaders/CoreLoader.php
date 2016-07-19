@@ -35,6 +35,12 @@ class CoreLoader implements CoreInterfaces\Loader {
 		return $this->config;
 	}
 
+	private function checkRedirect() {
+		if (!empty($this->getConfig()['forceRedirectUrl'])) {
+			header("Location: {$this->getConfig()['forceRedirectUrl']}");
+		}
+	}
+
 	public function load() {
 		session_start();
 
@@ -42,9 +48,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 
 		$logger = CoreLib\getLogger();
 
-		if (!empty($GLOBALS['forceRedirectUrl'])) {
-			header("Location: {$GLOBALS['forceRedirectUrl']}");
-		}
+		$this->checkRedirect();
 
 		if (!empty($config['SITE_CLASS'])) {
 			$className = "{$config['NAMESPACE_APP']}Classes\\{$config['SITE_CLASS']}";

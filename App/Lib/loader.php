@@ -20,6 +20,11 @@ if (!empty($sitePages)) {
 	unset($sitePages);
 }
 
+if (!empty($forceRedirectUrl)) {
+	$config['forceRedirectUrl'] = $forceRedirectUrl;
+	unset($forceRedirectUrl);
+}
+
 $logger = CoreLib\getLogger();
 
 if (!empty($config['LOADER_CLASS'])) {
