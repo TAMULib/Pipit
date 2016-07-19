@@ -2,7 +2,7 @@
 namespace Core\Classes;
 use Core\Interfaces as Interfaces;
 /** 
-*	An abstract implementation of the Controller interface
+*	An abstract implementation of the Controller interface, intended to be extended by App controllers
 *
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
@@ -14,6 +14,11 @@ abstract class AbstractController extends CoreObject implements Interfaces\Contr
 	protected $requireAdmin = false;
 	protected $controllerConfig = array();
 
+	/**
+	*	@param Interfaces\Site $site - the context for the page load
+	*	@param mixed[] $controllerConfig - An array of Controller specific configuration directives
+	*
+	*/
 	public function __construct(&$site,$controllerConfig=null) {
 		$this->site = $site;
 		$this->setPage($site->getCurrentPage());
@@ -46,6 +51,9 @@ abstract class AbstractController extends CoreObject implements Interfaces\Contr
 		$this->controllerConfig = $controllerConfig;
 	}
 
+	/**
+	*	This evaluate() implementation looks for $action and $subaction vars from the request input and uses them to build a method name. If that method name exists, it will be invoked. If not, loadDefault() will be called. Any ViewRenderer updates made as a result are then registered with the Site's ViewRenderer.
+	*/
 	public function evaluate() {
 		$data = $this->site->getSanitizedInputData();
 		if (!empty($data['action'])) {
