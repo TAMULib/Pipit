@@ -5,8 +5,8 @@ SET time_zone = "+00:00";
 --
 -- Database: 'phpseedapp'
 --
-CREATE DATABASE IF NOT EXISTS phpseedapp DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE phpseedapp;
+CREATE DATABASE IF NOT EXISTS pipit DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE pipit;
 
 -- --------------------------------------------------------
 
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS users (
 -- --------------------------------------------------------
 
 -- Default password is 'changethis' --
-INSERT INTO `users` (`username`, `password`, `email`, `name_first`, `name_last`, `isadmin`, `inactive`) VALUES
+INSERT INTO users (username, password, email, name_first, name_last, isadmin, inactive) VALUES
 ('admin', '$2y$10$XWsCnoBSNE2P6YKD3ERqZ.Wjwtq1RR5fgXKVcRYaWtmpkPGbYyi.G', '', 'Adam', 'Admin', 1, 0);
 
 
