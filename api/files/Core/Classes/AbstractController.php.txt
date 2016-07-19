@@ -8,16 +8,21 @@ use Core\Interfaces as Interfaces;
 */
 
 abstract class AbstractController extends CoreObject implements Interfaces\Controller {
+	/** @var Interfaces\Site This must be injected on construction */
 	protected $site;
+	/** @var Interfaces\SitePage The specific SitePage, if one exists, that represents the Controller in the UI */
 	protected $page;
+	/** @var string An identifier for the view an endpoint method wants the ViewRenderer to load */
 	protected $viewName;
+	/** @var boolean A flag identifying a Controller for admin access only */
 	protected $requireAdmin = false;
+	/** @var mixed[] Optional Configuration directives for a Controller */
 	protected $controllerConfig = array();
 
 	/**
 	*	@param Interfaces\Site $site - the context for the page load
-	*	@param mixed[] $controllerConfig - An array of Controller specific configuration directives
-	*
+	*	@param mixed[] $controllerConfig - An (optional) associative array of Controller specific configuration directives
+	*	@return void
 	*/
 	public function __construct(&$site,$controllerConfig=null) {
 		$this->site = $site;
@@ -27,28 +32,56 @@ abstract class AbstractController extends CoreObject implements Interfaces\Contr
 		}
 	}
 
+	/**
+	*	Assigns a SitePage to the controller
+	*	@param Interfaces\SitePage $page
+	*	@return void
+	*/
 	protected function setPage($page) {
 		$this->page = $page;
 	}
 
+	/**
+	*	Returns the assigned SitePage
+	*	@return Interfaces\SitePage
+	*/
 	protected function getPage() {
 		return $this->page;
 	}
 
+	/**
+	*	Controller endpoint methods should use this to set the name of the view for their Controller
+	*	@param string $viewName
+	*	@return void
+	*	@see AbstractController::evaluate() How the $viewName property is used to feed the Interfaces\ViewRenderer
+	*/
 	protected function setViewName($viewName) {
 		$this->viewName = $viewName;
 	}
 
+	/**
+	*	Returns the assigned viewName
+	*	@return string $viewName
+	*/
 	protected function getViewName() {
 		return $this->viewName;
 	}
 
-	protected function getControllerConfig() {
-		return $this->controllerConfig;
-	}
-
+	/**
+	*	Set the $controllerConfig property, which can be used to provide configuration directives to extending Controllers
+	*	@param mixed[] $controllerConfig
+	*	@return void
+	*/
 	protected function setControllerConfig($controllerConfig) {
 		$this->controllerConfig = $controllerConfig;
+	}
+
+	/**
+	*	Returns the assigned $controllerConfig
+	*	@return mixed[] $controllerConfig
+	*/
+	protected function getControllerConfig() {
+		return $this->controllerConfig;
 	}
 
 	/**
@@ -73,5 +106,8 @@ abstract class AbstractController extends CoreObject implements Interfaces\Contr
 		}
 	}
 
+	/**
+	*	This is a extending Controller's default endpoint method, executed by ::evaluate(), when no other endpoint methods match the request
+	*/
 	abstract protected function loadDefault();
 }
