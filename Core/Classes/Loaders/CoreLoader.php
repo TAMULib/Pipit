@@ -5,9 +5,9 @@ use Core\Interfaces as CoreInterfaces;
 use Core\Lib as CoreLib;
 
 /**
-*	The Core Loader is the default entry point for the application. All endpoints lead, here, by way of the App Loader.
+*	The CoreLoader is the default implementation of the Loader interface.
 *
-*	The Core Loader is responsible for:
+*	The CoreLoader is responsible for:
 * 		Starting the session
 *		Preparing global vars for controller use
 *		Managing an implementation of the Site class
@@ -37,6 +37,18 @@ class CoreLoader implements CoreInterfaces\Loader {
 		return $this->config;
 	}
 
+	public function load() {
+		session_start();
+
+		$this->checkRedirect();
+		$site = $this->getSiteClass();
+		$site = $this->applyViewRenderer($site);
+
+		$this->loadController($site);
+		$this->render($site);
+
+	}
+
 	private function checkRedirect() {
 		if (!empty($this->getConfig()['forceRedirectUrl'])) {
 			header("Location: {$this->getConfig()['forceRedirectUrl']}");
@@ -54,28 +66,21 @@ class CoreLoader implements CoreInterfaces\Loader {
 			$site = new CoreClasses\CoreSite($config);
 			$this->logger->debug("Loaded Core Site Class");
 		}
-		return $site;
-	}
-
-	public function load() {
-		session_start();
-
-		$config = $this->getConfig();
-
-		$this->checkRedirect();
-
-		$site = $this->getSiteClass();
-
 		if (empty($site)) {
 			$this->logger->error("Site Class not found");
 			exit;
 		}
+		return $site;
+	}
 
-		$data = $site->getSanitizedInputData();
-
+	private function applyViewRenderer($site) {
 		//set the ViewRenderer
-		if (!empty($data['json'])) {
+		$config = $this->getConfig();
+		$inputData = $site->getSanitizedInputData();
+		$viewRendererFlag = false;
+		if (!empty($inputData['json'])) {
 			$site->setViewRenderer(new CoreClasses\ViewRenderers\JSONViewRenderer());
+			$viewRendererFlag = true;
 		} else {
 			if (!empty($config['VIEW_RENDERER'])) {
 				if (class_exists("{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {
@@ -87,11 +92,19 @@ class CoreLoader implements CoreInterfaces\Loader {
 			if (!$className) {
 				$className = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\HTMLViewRenderer";
 			}
-			$site->setViewRenderer(new $className($site->getGlobalUser(),$site->getPages(),$data,$this->controllerName));
-			$className = null;
+			$site->setViewRenderer(new $className($site->getGlobalUser(),$site->getPages(),$inputData,$this->controllerName));
+			$viewRendererFlag = true;
 		}
+		if (!$viewRendererFlag) {
+			$this->logger->error("ViewRenderer Class not found");
+			exit;
+		}
+		return $site;
+	}
 
+	private function loadController($site) {
 		//try to load the controller
+		$config = $this->getConfig();
 		$className = $site->getControllerClass($this->controllerName);
 		if (class_exists($className)) {
 			$controllerConfig = (!empty($controllerConfig)) ? $controllerConfig:null;
@@ -101,8 +114,9 @@ class CoreLoader implements CoreInterfaces\Loader {
 			$this->logger->warn("Did not find Controller Class");
 			header("Location:{$config['PATH_HTTP']}");
 		}
-		$className = null;
+	}
 
+	private function render($site) {
 		//send system messages to the ViewRenderer
 		$site->getViewRenderer()->registerAppContextProperty("systemMessages", $site->getSystemMessages());
 
