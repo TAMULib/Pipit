@@ -9,7 +9,7 @@ namespace Core\Interfaces;
 interface Controller {
 	/**
 	*	The purpose of this method is to match a page request to an internal Controller method responsible for handling that request.
-	*
+	*	@return void
 	*/
 	public function evaluate();
 }
