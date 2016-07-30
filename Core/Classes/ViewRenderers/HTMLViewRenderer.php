@@ -38,9 +38,9 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 		$systemMessages = $this->getAppContextProperty("systemMessages");
 		
 		include "{$this->getViewPath()}layouts/header.lo.php";
-		if (!empty($this->viewFile)) {
+		if (!empty($this->getViewFile())) {
 			$parameters = $this->getViewVariables();
-			include $this->viewFile;
+			include $this->getViewFile();
 		}
 		include "{$this->getViewPath()}layouts/footer.lo.php";
 	}
@@ -53,6 +53,10 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 			return true;
 		}
 		return false;
+	}
+
+	protected function getViewFile() {
+		return $this->viewFile;
 	}
 
 	protected function getViewPath() {
