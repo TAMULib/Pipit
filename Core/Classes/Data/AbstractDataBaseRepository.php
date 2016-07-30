@@ -18,6 +18,8 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	protected $defaultOrderBy;
 	/** @var string[] $gettableColumns If provided, AbstractDataBaseRepository::get()) will only SELECT the columns present in this array. */
 	protected $gettableColumns;
+	/** @var string[] $searchableColumns If provided, AbstractDataBaseRepository::search()) will carry out its search on these columns */
+	protected $searchableColumns;
 
 	/**
 	*	Extending classes configure themselves using this constructor.
@@ -26,13 +28,15 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	*	@param string $primaryKey Required. Extending classes define the Primary Key of the table they manage
 	*	@param string $defaultOrderBy Optional. Explicitly define a column to order query results by
 	*	@param string[] $gettableColumns Optional. AbstractDataBaseRepository::get()) will SELECT only these fields, when passed
+	*	@param string[] $searchableColumns Optional. AbstractDataBaseRepository::search()) will search these columns
 	*
 	*/
-	protected function __construct($primaryTable,$primaryKey,$defaultOrderBy=null,$gettableColumns=null) {
+	protected function __construct($primaryTable,$primaryKey,$defaultOrderBy=null,$gettableColumns=null,$searchableColumns=null) {
 		$this->primaryTable = $primaryTable;
 		$this->primaryKey = $primaryKey;
 		$this->defaultOrderBy = $defaultOrderBy;
 		$this->gettableColumns = $gettableColumns;
+		$this->searchableColumns = $searchableColumns;
 		parent::__construct();
 	}
 
@@ -53,17 +57,31 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	*	Get all rows from the $primaryTable matching the search %$term% against a 'name' field
 	*	
 	*	@param string $term The search criteria
-	*	@todo This method is assuming the existence of a 'name' field to search. Needs to be generalized
 	*	@return array[] $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2"))
 	*/
 	public function search($term) {
-		$sql = "SELECT * FROM {$this->primaryTable} WHERE 
-				name LIKE ?";
-		$bindparams = array("%".$term."%");
-		if ($result = $this->executeQuery($sql,$bindparams)) {
-			return $result;
+		if ($this->getSearchableColumns()) {
+			$sql = "SELECT * FROM {$this->primaryTable} WHERE ";
+
+			$searchColumns = $this->getSearchableColumns();
+			$bindParams = array();
+			$columnCount = count($searchColumns);
+			for ($x=0;$x<$columnCount;$x++) {
+				$sql .= "({$searchColumns[$x]} LIKE :t{$x})";
+				if ($columnCount > 1 && $x != ($columnCount-1)) {
+					$sql .= " OR ";
+				}
+				$bindparams[":t{$x}"] = "%".$term."%";
+			}
+			if ($result = $this->executeQuery($sql,$bindparams)) {
+				return $result;
+			}
 		}
 		return false;
+	}
+
+	protected function getSearchableColumns() {
+		return $this->searchableColumns;
 	}
 
 	/**
