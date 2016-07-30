@@ -16,7 +16,7 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 	private $viewFile = null;
 	private $appContext = null;
 	private $viewPath = '';
-
+	private $adminPath = '';
 
 	public function __construct($globalUser,$pages,$data,$controllerName) {
 		$this->registerAppContextProperty("config", $GLOBALS['config']);
@@ -25,6 +25,7 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 		$this->registerAppContextProperty("data", $data);
 		$this->registerAppContextProperty("controllerName", $controllerName);
 		$this->setViewPath('html');
+		$this->setAdminViewPath('admin');
 	}
 
 	public function renderView() {
@@ -47,7 +48,7 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 
 	public function setView($viewFile,$isAdmin=false) {
 		$config = $this->getAppContextProperty("config");
-		$fullPath = $this->getViewPath().(($isAdmin) ? 'admin/':'')."{$viewFile}.view.php";
+		$fullPath = (($isAdmin) ? $this->getAdminViewPath():$this->getViewPath())."{$viewFile}.view.php";
 		if (is_file($fullPath)) {
 			$this->viewFile = $fullPath;
 			return true;
@@ -65,6 +66,14 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 
 	protected function setViewPath($viewPath) {
 		$this->viewPath = $viewPath;
+	}
+
+	protected function getAdminViewPath() {
+		return "{$this->getAppContextProperty('config')['PATH_VIEWS']}{$this->viewPath}/{$this->adminPath}/";
+	}
+
+	protected function setAdminViewPath($adminPath) {
+		$this->adminPath = $adminPath;
 	}
 
 	public function setViewVariables($data) {
