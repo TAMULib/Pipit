@@ -16,7 +16,7 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 	private $viewFile = null;
 	private $appContext = null;
 	private $viewPath = '';
-
+	private $adminPath = '';
 
 	public function __construct($globalUser,$pages,$data,$controllerName) {
 		$this->registerAppContextProperty("config", $GLOBALS['config']);
@@ -25,6 +25,7 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 		$this->registerAppContextProperty("data", $data);
 		$this->registerAppContextProperty("controllerName", $controllerName);
 		$this->setViewPath('html');
+		$this->setAdminViewPath('admin');
 	}
 
 	public function renderView() {
@@ -38,21 +39,25 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 		$systemMessages = $this->getAppContextProperty("systemMessages");
 		
 		include "{$this->getViewPath()}layouts/header.lo.php";
-		if (!empty($this->viewFile)) {
+		if (!empty($this->getViewFile())) {
 			$parameters = $this->getViewVariables();
-			include $this->viewFile;
+			include $this->getViewFile();
 		}
 		include "{$this->getViewPath()}layouts/footer.lo.php";
 	}
 
 	public function setView($viewFile,$isAdmin=false) {
 		$config = $this->getAppContextProperty("config");
-		$fullPath = $this->getViewPath().(($isAdmin) ? 'admin/':'')."{$viewFile}.view.php";
+		$fullPath = (($isAdmin) ? $this->getAdminViewPath():$this->getViewPath())."{$viewFile}.view.php";
 		if (is_file($fullPath)) {
 			$this->viewFile = $fullPath;
 			return true;
 		}
 		return false;
+	}
+
+	protected function getViewFile() {
+		return $this->viewFile;
 	}
 
 	protected function getViewPath() {
@@ -61,6 +66,14 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 
 	protected function setViewPath($viewPath) {
 		$this->viewPath = $viewPath;
+	}
+
+	protected function getAdminViewPath() {
+		return "{$this->getAppContextProperty('config')['PATH_VIEWS']}{$this->viewPath}/{$this->adminPath}/";
+	}
+
+	protected function setAdminViewPath($adminPath) {
+		$this->adminPath = $adminPath;
 	}
 
 	public function setViewVariables($data) {
