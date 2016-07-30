@@ -58,7 +58,7 @@ class CoreSite extends AbstractSite {
 				//if the user is an admin, load the admin controller, otherwise, return false;
 				if ($this->getGlobalUser()->isAdmin()) {
 					if ($controllerName) {
-						$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}admin/{$controllerName}/");
+						$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}admin/{$this->getPages()[$controllerName]->getPath()}/");
 						$controllerClass = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Controllers\\".ucfirst($controllerName)."AdminController";
 					} else {
 						$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}admin/");
@@ -67,7 +67,7 @@ class CoreSite extends AbstractSite {
 				}
 			} elseif ($this->getGlobalUser()->isLoggedIn() || $currentPage->getAccessLevel() == SECURITY_PUBLIC) {
 				//load standard controller
-				$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}{$controllerName}/");
+				$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}{$this->getPages()[$controllerName]->getPath()}/");
 				$controllerClass = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Controllers\\".ucfirst($controllerName)."Controller";
 			}
 		} else {
