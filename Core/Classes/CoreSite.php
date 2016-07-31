@@ -1,5 +1,6 @@
 <?php
 namespace Core\Classes;
+use App\Classes\Data as AppData;
 
 /** 
 *	The primary site manager
@@ -17,12 +18,12 @@ class CoreSite extends AbstractSite {
 
 	protected function setUser() {
 		//build the user
-		if (isset($this->siteConfig['USECAS']) && $this->siteConfig['USECAS']) {
+		if (isset($this->getSiteConfig()['USECAS']) && $this->getSiteConfig()['USECAS']) {
 			$this->setGlobalUser(new AppData\UserCAS());
-			$casTicket = $this->getSanitizedInputData()['ticket'];
-			if (!empty($casTicket)) {
-				if ($this->globalUser->processLogIn($casTicket)) {
-					header("Location:{$this->siteConfig['PATH_HTTP']}");
+			$inputData = $this->getSanitizedInputData();
+			if (!empty($inputData['ticket'])) {
+				if ($this->getGlobalUser()->processLogIn($inputData['ticket'])) {
+					header("Location:{$this->getSiteConfig()['PATH_HTTP']}");
 				}
 			} elseif (!$this->getGlobalUser()->isLoggedIn() && !isset($this->getSanitizedInputData()['action'])) {
 				$this->getGlobaluser()->initiateLogIn();
