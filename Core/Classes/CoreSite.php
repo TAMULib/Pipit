@@ -16,17 +16,8 @@ class CoreSite extends AbstractSite {
 	}
 
 	protected function setUser() {
-		//build the user
-		if (isset($this->siteConfig['USECAS']) && $this->siteConfig['USECAS']) {
-			$this->setGlobalUser(new AppData\UserCAS());
-			$casTicket = $this->getSanitizedInputData()['ticket'];
-			if (!empty($casTicket)) {
-				if ($this->globalUser->processLogIn($casTicket)) {
-					header("Location:{$this->siteConfig['PATH_HTTP']}");
-				}
-			} elseif (!$this->getGlobalUser()->isLoggedIn() && !isset($this->getSanitizedInputData()['action'])) {
-				$this->getGlobaluser()->initiateLogIn();
-			}
+		if (isset($this->getSiteConfig()['USECAS']) && $this->getSiteConfig()['USECAS']) {
+			$this->setGlobalUser(new Data\UserCAS($this->getSanitizedInputData(),$this->getDataRepository('Users')));
 		} else {
 			$this->setGlobalUser(new Data\User());
 		}
@@ -58,7 +49,7 @@ class CoreSite extends AbstractSite {
 				//if the user is an admin, load the admin controller, otherwise, return false;
 				if ($this->getGlobalUser()->isAdmin()) {
 					if ($controllerName) {
-						$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}admin/{$controllerName}/");
+						$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}admin/{$currentPage->getPath()}/");
 						$controllerClass = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Controllers\\".ucfirst($controllerName)."AdminController";
 					} else {
 						$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}admin/");
@@ -67,7 +58,7 @@ class CoreSite extends AbstractSite {
 				}
 			} elseif ($this->getGlobalUser()->isLoggedIn() || $currentPage->getAccessLevel() == SECURITY_PUBLIC) {
 				//load standard controller
-				$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}{$controllerName}/");
+				$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}{$currentPage->getPath()}/");
 				$controllerClass = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Controllers\\".ucfirst($controllerName)."Controller";
 			}
 		} else {
@@ -80,7 +71,12 @@ class CoreSite extends AbstractSite {
 	public function getDataRepository($repositoryName) {
 		$className = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Data\\{$repositoryName}";
 		if (class_exists($className)) {
-			return new $className();
+			$repository = new $className();
+			$setSiteMethod = 'setSite';
+			if (is_callable(array($repository,$setSiteMethod))) {
+				$repository->$setSiteMethod($this);
+			}
+			return $repository;
 		}
 		$this->getLogger()->error("Could not find Repository: ".$repositoryName);
 		return null;

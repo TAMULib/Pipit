@@ -14,7 +14,8 @@ Each entry should have a corresponding user reachable file (with an arbitrary re
 		a. Defines a controller and includes the loader 
 		b. Redirects with $forceRedirectUrl
 
-It's possible to have user reachable files that aren't represented in this array. They simply won't have a navigation link in the HTML header.
+It's possible to have user (public) reachable files that aren't represented in this array by using the DefaultController and setting the
+view with $controllerConfig. They simply won't have a navigation link in the HTML header.
 
 Further configuration of the current SitePage is often done by the controllers that correspond to that SitePage.
 */

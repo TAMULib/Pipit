@@ -10,7 +10,7 @@ use Core\Classes\Data as CoreData;
 
 class Users extends CoreData\AbstractDataBaseRepository {
 	public function __construct() {
-		parent::__construct('users','id','name_last',array('username','email','name_first','name_last','isadmin','inactive'));
+		parent::__construct('users','id','name_last',array('username','email','name_first','name_last','isadmin','inactive'),array("name_last","name_first","email"));
 	}
 
 	public function get() {
@@ -31,19 +31,6 @@ class Users extends CoreData\AbstractDataBaseRepository {
 			$conj = "AND";
 		}
 		$sql .= " ORDER BY name_last";
-		if ($result = $this->executeQuery($sql,$bindparams)) {
-			return $result;
-		}
-		return false;
-	}
-
-	public function search($term) {
-		$sql = "SELECT * FROM {$this->primaryTable} WHERE 
-				name_last LIKE ? OR 
-				name_first LIKE ? OR
-				email LIKE ?
-				ORDER BY name_last";
-		$bindparams = array("%".$term."%","%".$term."%","%".$term."%");
 		if ($result = $this->executeQuery($sql,$bindparams)) {
 			return $result;
 		}
