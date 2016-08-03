@@ -16,17 +16,8 @@ class CoreSite extends AbstractSite {
 	}
 
 	protected function setUser() {
-		//build the user
-		if (isset($this->siteConfig['USECAS']) && $this->siteConfig['USECAS']) {
-			$this->setGlobalUser(new AppData\UserCAS());
-			$casTicket = $this->getSanitizedInputData()['ticket'];
-			if (!empty($casTicket)) {
-				if ($this->globalUser->processLogIn($casTicket)) {
-					header("Location:{$this->siteConfig['PATH_HTTP']}");
-				}
-			} elseif (!$this->getGlobalUser()->isLoggedIn() && !isset($this->getSanitizedInputData()['action'])) {
-				$this->getGlobaluser()->initiateLogIn();
-			}
+		if (isset($this->getSiteConfig()['USECAS']) && $this->getSiteConfig()['USECAS']) {
+			$this->setGlobalUser(new Data\UserCAS($this->getSanitizedInputData(),$this->getDataRepository('Users')));
 		} else {
 			$this->setGlobalUser(new Data\User());
 		}

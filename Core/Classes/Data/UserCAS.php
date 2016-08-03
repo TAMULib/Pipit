@@ -1,6 +1,5 @@
 <?php
-namespace App\Classes\Data;
-use Core\Classes\Data as CoreData;
+namespace Core\Classes\Data;
 
 /** 
 *	Represents the application user
@@ -8,14 +7,24 @@ use Core\Classes\Data as CoreData;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class UserCAS extends CoreData\User {
+class UserCAS extends User {
 	private $casPaths;
+	private $usersRepo;
 
-	public function __construct() {
+	public function __construct($inputData,$usersRepo=null) {
 		parent::__construct();
 		$this->casPaths['urls']['login'] = $GLOBALS['config']['CAS_URLS_LOGIN'];
 		$this->casPaths['urls']['check'] = $GLOBALS['config']['CAS_URLS_CHECK'];
 		$this->casPaths['urls']['logout'] = $GLOBALS['config']['CAS_URLS_LOGOUT'];
+		if (!empty($inputData['ticket'])) {
+			$this->usersRepo = $usersRepo;
+
+			if ($this->processLogIn($inputData['ticket'])) {
+				header("Location:{$GLOBALS['config']['CAS_REDIRECT_URL']}");
+			}
+		} elseif (!$this->isLoggedIn() && !isset($inputData['action'])) {
+			$this->initiateLogIn();
+		}
 	}
 
 	public function processLogIn($ticket) {
@@ -28,7 +37,7 @@ class UserCAS extends CoreData\User {
  			$casXml = simplexml_load_string($file,null, 0, 'cas', true);
 			$casXml->registerXPathNamespace("cas", 'http://www.yale.edu/tp/cas');
 			$casUserName = $casXml->authenticationSuccess->user;
-			$tusers = new Users();
+			$tusers = $this->usersRepo;
 			//find an existing, active user or create a new one
 			if (($user = $tusers->searchAdvanced(array("username"=>$casUserName)))) {
 				if ($user[0]['inactive'] == 0) {
