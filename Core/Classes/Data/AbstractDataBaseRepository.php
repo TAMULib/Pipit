@@ -10,6 +10,8 @@ use Core\Interfaces as Interfaces;
 */
 
 abstract class AbstractDataBaseRepository extends DBObject implements Interfaces\DataBaseRepository {
+	/** @var Interfaces\Site $site This provides the Site context to all DatabaseRepositories extending this class */
+	protected $site;
 	/** @var string $primaryTable This is the name of the DB table managed by DatabaseRepositories extending this class */
 	protected $primaryTable;
 	/** @var string $primaryKey This is the name of the Primary Key for the $primaryTable managed by DatabaseRepositories extending this class */
@@ -126,5 +128,22 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	*/
 	public function update($id,$data) {
 		return $this->buildUpdateStatement($id,$data);
+	}
+
+	/**
+	*	Get the Site context
+	*	@return Interfaces\Site $site The Site context
+	*/
+	protected function getSite() {
+		return $this->site;
+	}
+
+	/**
+	*	Set the Site context
+	*	@param Interfaces\Site $site The Site context
+	*	@return void
+	*/
+	public function setSite($site) {
+		$this->site = $site;
 	}
 }
