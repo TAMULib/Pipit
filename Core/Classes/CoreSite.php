@@ -81,7 +81,10 @@ class CoreSite extends AbstractSite {
 		$className = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Data\\{$repositoryName}";
 		if (class_exists($className)) {
 			$repository = new $className();
-			$repository->setSite($this);
+			$setSiteMethod = 'setSite';
+			if (is_callable(array($repository,$setSiteMethod))) {
+				$repository->$setSiteMethod($this);
+			}
 			return $repository;
 		}
 		$this->getLogger()->error("Could not find Repository: ".$repositoryName);
