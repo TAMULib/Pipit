@@ -9,7 +9,7 @@ define('APP_DIRECTORY', 'Pipit');
 
 //Optionally change this to your domain or IP.
 //Add port if non-standard
-define('PATH_HTTP', "http://savell.evans.tamu.edu:8080/".APP_DIRECTORY."/site/");
+define('PATH_HTTP', "http://localhost:8080/".APP_DIRECTORY."/site/");
 
 define("SESSION_SCOPE",APP_DIRECTORY);
 
@@ -39,13 +39,14 @@ define('PATH_IMAGES', PATH_RESOURCES."/images/");
 //Setting this to true triggers an attempt to log in to a CAS server using the following CAS configuration
 define('USECAS', false);
 
-define('CAS_URLS_BASE', NULL);
+define('CAS_URLS_BASE', 'https://cas-dev.tamu.edu/');
 define('CAS_LOGIN', "cas/login");
 define('CAS_CHECK', "cas/serviceValidate");
 define('CAS_LOGOUT', "cas/logout");
 define('CAS_URLS_LOGIN', CAS_URLS_BASE.CAS_LOGIN."?service=".PATH_HTTP."&renew=true");
 define('CAS_URLS_CHECK', CAS_URLS_BASE.CAS_CHECK."?service=".PATH_HTTP."&renew=true");
 define('CAS_URLS_LOGOUT', CAS_URLS_BASE.CAS_LOGOUT."?service=".PATH_HTTP."user.php?action=logout");
+define('CAS_REDIRECT_URL', PATH_HTTP);
 
 //ldap config
 define('LDAP_URL', NULL);

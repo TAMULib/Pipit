@@ -16,6 +16,12 @@ interface ViewRenderer {
 	public function renderView();
 
 	/**
+	*	@param string $viewName A string representing the name of the view
+	*	@return void
+	*/
+	public function setView($viewName);
+
+	/**
 	*	Set all variables associated with the view at once.
 	*	This can also be expected to overwrite previously set view variables
 	*	@param mixed[] $data

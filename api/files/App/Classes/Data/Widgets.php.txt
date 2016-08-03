@@ -9,7 +9,7 @@ use Core\Classes\Data as CoreData;
 
 class Widgets extends CoreData\AbstractDataBaseRepository {
 	public function __construct() {
-		parent::__construct('widgets','id','name');
+		parent::__construct('widgets','id','name',null,array("name"));
 	}
 
 	public function getPartsByWidgetId($widgetId) {

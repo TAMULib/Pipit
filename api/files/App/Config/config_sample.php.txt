@@ -47,6 +47,7 @@ define('CAS_LOGOUT', "cas/logout");
 define('CAS_URLS_LOGIN', CAS_URLS_BASE.CAS_LOGIN."?service=".PATH_HTTP."&renew=true");
 define('CAS_URLS_CHECK', CAS_URLS_BASE.CAS_CHECK."?service=".PATH_HTTP."&renew=true");
 define('CAS_URLS_LOGOUT', CAS_URLS_BASE.CAS_LOGOUT."?service=".PATH_HTTP."user.php?action=logout");
+define('CAS_REDIRECT_URL', PATH_HTTP);
 
 //ldap config
 define('LDAP_URL', NULL);
