@@ -9,7 +9,7 @@ use Core\Interfaces as Interfaces;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-abstract class AbstractDataBaseRepository extends DBObject implements Interfaces\DataBaseRepository {
+abstract class AbstractDataBaseRepository extends DBObject implements Interfaces\DataRepository {
 	/** @var Interfaces\Site $site This provides the Site context to all DatabaseRepositories extending this class */
 	protected $site;
 	/** @var string $primaryTable This is the name of the DB table managed by DatabaseRepositories extending this class */
