@@ -6,12 +6,9 @@ use Core\Classes as Core;
 class UsersAdminController extends Core\AbstractController {
 	private $usersRepo;
 
-	public function __construct(&$site) {
+	protected function configure() {
 		$this->requireAdmin = true;
-		parent::__construct($site);
-
-		$this->usersRepo = $site->getDataRepository("Users");
-
+		$this->usersRepo = $this->site->getDataRepository("Users");
 		$this->getPage()->setTitle("Manage Users");
 		$this->getPage()->setOptions(array(
 								array("name"=>"list"),
@@ -19,7 +16,6 @@ class UsersAdminController extends Core\AbstractController {
 		$this->getPage()->setIsSearchable(true);
 		$this->getPage()->setSearchableFields(array(array("name"=>"name_last","type"=>"text"),
 								array("name"=>"name_first","type"=>"text")));
-
 	}
 
 	protected function search() {
