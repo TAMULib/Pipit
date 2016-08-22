@@ -1,6 +1,9 @@
 # Pipit
 A basic PHP framework for web app development
 
+## Documentation
+https://tamulib.github.io/Pipit/api/
+
 ## Features
 * MVC driven design
 * Database abstraction layer utilizing PDO and a Repository model
