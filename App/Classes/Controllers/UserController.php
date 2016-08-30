@@ -31,7 +31,7 @@ class UserController extends Core\AbstractController {
 		$data = $this->site->getSanitizedInputData();
 		if ($data['user']['username'] && $data['user']['password']) {
 			if ($this->site->getGlobalUser()->logIn($data['user']['username'],$data['user']['password'])) {
-				header("Location:{$this->site->getSiteConfig()['PATH_HTTP']}");
+				$this->site->setRedirectUrl("{$this->site->getSiteConfig()['PATH_HTTP']}");
 			} else {
 				$this->site->addSystemError('Invalid username/password combination');
 				$this->setViewName("user.login");
