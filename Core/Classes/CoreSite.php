@@ -9,6 +9,7 @@ namespace Core\Classes;
 class CoreSite extends AbstractSite {
 	/** @var Core\Interfaces\DataRepository[] $cachedDataRepositories A store of DataRepositories to provide (singletons) to requestors */
 	protected $cachedDataRepositories = array();
+	private $redirectUrl = null;
 
 	/**
 	*	Constructs an instance of CoreSite
@@ -139,5 +140,17 @@ class CoreSite extends AbstractSite {
 		return array_key_exists($repositoryName, $this->cachedDataRepositories) ? $this->cachedDataRepositories[$repositoryName]:null;
 	}
 
+	public function setRedirectUrl($redirectUrl) {
+		$this->redirectUrl = $redirectUrl;
+	}
+
+	public function hasRedirectUrl() {
+		return !empty($this->redirectUrl);
+	}
+
+
+	public function redirect() {
+		header("Location: {$this->redirectUrl}");
+	}
 }
 ?>
