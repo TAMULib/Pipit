@@ -6,9 +6,8 @@ use Core\Classes as Core;
 class WidgetsController extends Core\AbstractController {
 	private $widgetsRepo;
 
-	public function __construct(&$site) {
-		parent::__construct($site);
-		$this->widgetsRepo = $site->getDataRepository("Widgets");
+	protected function configure() {
+		$this->widgetsRepo = $this->site->getDataRepository("Widgets");
 
 		$this->getPage()->setTitle("Manage Widgets");
 		$this->getPage()->setOptions(array(

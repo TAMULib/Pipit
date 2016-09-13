@@ -3,9 +3,8 @@ namespace App\Classes\Controllers;
 use Core\Classes as Core;
 
 class DefaultAdminController extends Core\AbstractController {
-	public function __construct(&$site) {
+	protected function configure() {
 		$this->requireAdmin = true;
-		parent::__construct($site);
 	}
 	
 	protected function loadDefault() {

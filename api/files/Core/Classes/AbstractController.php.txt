@@ -30,6 +30,7 @@ abstract class AbstractController extends CoreObject implements Interfaces\Contr
 		if ($controllerConfig) {
 			$this->setControllerConfig($controllerConfig);
 		}
+		$this->configure();
 	}
 
 	/**
@@ -104,6 +105,12 @@ abstract class AbstractController extends CoreObject implements Interfaces\Contr
 		if (!empty($this->getViewName())) {
 			$this->site->getViewRenderer()->setView($this->getViewName(),$this->requireAdmin);
 		}
+	}
+
+	/**
+	*	Override to handle any Controller specific configurations, e.g. Page details, DataRepository fetching.
+	*/
+	protected function configure() {
 	}
 
 	/**

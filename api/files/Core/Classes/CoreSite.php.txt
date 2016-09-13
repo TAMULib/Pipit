@@ -7,6 +7,7 @@ namespace Core\Classes;
 */
 
 class CoreSite extends AbstractSite {
+	protected $cachedDataRepositories = array();
 
 	public function __construct(&$siteConfig) {
 		$this->setSiteConfig($siteConfig);
@@ -69,17 +70,32 @@ class CoreSite extends AbstractSite {
 	}
 
 	public function getDataRepository($repositoryName) {
-		$className = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Data\\{$repositoryName}";
-		if (class_exists($className)) {
-			$repository = new $className();
-			$setSiteMethod = 'setSite';
-			if (is_callable(array($repository,$setSiteMethod))) {
-				$repository->$setSiteMethod($this);
+		$repository = $this->getCachedDataRepository($repositoryName);
+		if (!$repository) {
+			$className = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Data\\{$repositoryName}";
+			if (class_exists($className)) {
+				$repository = new $className();
+				$setSiteMethod = 'setSite';
+				if (is_callable(array($repository,$setSiteMethod))) {
+					$repository->$setSiteMethod($this);
+				}
+				$this->addCachedDataRepository($repositoryName,$repository);
+				$this->getLogger()->debug("Providing FRESH Repo: ".$repositoryName);
+			} else {
+				$this->getLogger()->error("Could not find Repository: ".$repositoryName);
 			}
-			return $repository;
+		} else {
+			$this->getLogger()->debug("Providing CACHED Repo: ".$repositoryName);
 		}
-		$this->getLogger()->error("Could not find Repository: ".$repositoryName);
-		return null;
+		return $repository;
+	}
+
+	protected function addCachedDataRepository($repositoryName,$dataRepository) {
+		$this->cachedDataRepositories[$repositoryName] = $dataRepository;
+	}
+
+	protected function getCachedDataRepository($repositoryName) {
+		return array_key_exists($repositoryName, $this->cachedDataRepositories) ? $this->cachedDataRepositories[$repositoryName]:null;
 	}
 
 }

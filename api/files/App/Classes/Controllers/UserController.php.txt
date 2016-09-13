@@ -6,13 +6,10 @@ use Core\Classes as Core;
 class UserController extends Core\AbstractController {
 	private $usersRepo;
 
-	public function __construct(&$site) {
-		parent::__construct($site);
-		$this->usersRepo = $site->getDataRepository("Users");
+	protected function configure() {
+		$this->usersRepo = $this->site->getDataRepository("Users");
 		$this->site->getViewRenderer()->registerAppContextProperty("app_http", "{$this->site->getSiteConfig()['PATH_HTTP']}user.php");
-
 		$this->getPage()->setTitle('User');
-
 	}
 
 	protected function update() {
