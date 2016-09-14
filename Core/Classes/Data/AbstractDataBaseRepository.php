@@ -59,7 +59,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	*	Get all rows from the $primaryTable matching the search %$term% against a 'name' field
 	*	
 	*	@param string $term The search criteria
-	*	@return array[] $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2"))
+	*	@return array[]|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
 	public function search($term) {
 		if ($this->getSearchableColumns()) {
@@ -82,6 +82,10 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 		return false;
 	}
 
+	/**
+	* Returns an array of column names that should be used to perform searches on records in a repository
+	* @return string[] $searchableColumns An array of string containing the searchable columns
+	*/
 	protected function getSearchableColumns() {
 		return $this->searchableColumns;
 	}
