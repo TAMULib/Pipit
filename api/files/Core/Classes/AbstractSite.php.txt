@@ -9,22 +9,40 @@ use App\Classes\Data as AppData;
 */
 
 abstract class AbstractSite extends CoreObject implements Interfaces\Site {
+	/** @var mixed[] $globalUser An array containing data about the logged in user */
 	private $globalUser;
+	/** @var mixed[] $siteConfig An array containing the site configuration */
 	private $siteConfig;
+	/** @var Core\Interfaces\ViewRenderer A ViewRenderer implementation */
 	private $viewRenderer;
+	/** @var Core\Interfaces\SitePage[] An array of SitePage */
 	private $pages;
+	/** @var mixed[] $inputData A sanitized version of GET/POST/REQUEST input */
 	private $inputData;
+	/** @var Core\Interfaces\SystemMessage[] An array of SystemMessage */
 	protected $systemMessages;
+	/** @var Core\Interfaces\SitePage The currently requested SitePage */
 	protected $currentPage;
 
+	/**
+	*	Returns the site configuration
+	*	@return mixed[] $siteConfig
+	*/
 	public function getSiteConfig() {
 		return $this->siteConfig;
 	}
 
+	/**
+	*	Sets the site configuration
+	*	@param mixed[] $siteConfig The site configuration
+	*/
 	protected function setSiteConfig($siteConfig) {
 		$this->siteConfig = $siteConfig;
 	}
 
+	/**
+	*	Sets the logged in user
+	*/
 	abstract protected function setUser();
 
 	public function setPages($pages) {
@@ -35,10 +53,18 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 		return $this->pages;
 	}
 
+	/**
+	*	Sets the currently requested page
+	*	@param Interfaces\SitePage $page The currently requested SitePage
+	*/
 	public function setCurrentPage($page) {
 		$this->currentPage = $page;
 	}
 
+	/**
+	*	Gets the currently requested page
+	*	@return Interfaces\SitePage The currently requested SitePage
+	*/
 	public function getCurrentPage() {
 		return $this->currentPage;
 	}
@@ -76,6 +102,11 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 		return $this->globalUser;
 	}
 
+	/**
+	*	Set a representation of the application user associated with a request. 
+	*
+	*	@param mixed[] $globalUser The application user
+	*/
 	protected function setGlobalUser($globalUser) {
 		$this->globalUser = $globalUser;
 	}
@@ -84,5 +115,10 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 
 	abstract public function getSystemMessages();
 
+	/**
+	*	Provides a uniform approach to fetching Interfaces\DataRepository
+	*	Should handle all instantiation and any desired caching of repositories
+	*	@param string The name of the desired Interfaces\DataRepository
+	*/
 	abstract public function getDataRepository($repositoryName);
 }
