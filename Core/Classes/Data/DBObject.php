@@ -6,8 +6,6 @@ use \PDO;
 * 	Provides a PDO DB connection to instances of dbobject and its descendants
 *	@author Jason Savell <jsavell@library.tamu.edu>
 *
-*	@todo Make abstract and leave implementing of relevant methods to specific implementers (MySqlObject, MsSqlObject)
-*	@todo Use Logger for outputting debug data
 */
 
 class db {
@@ -29,19 +27,29 @@ class db {
 
 /** 
 *	A base class to be extended by any class that needs to access the DB
+*	Provides a DB connection instance and several abstractions for DB interaction
 *	@author Jason Savell <jsavell@library.tamu.edu>
+*
+*	@todo Make abstract and leave implementing of relevant methods to specific implementers (MySqlObject, MsSqlObject)
+*	@todo Provide getter/setter for $primaryTable to be utilized by extending classes
 */
-
 class DBObject extends CoreClasses\CoreObject {
+	/** @var db An instance of the db class, providing the connection to the DB */
 	protected $db;
+	/** @var string The name of the main db table associated with an instance of DBObject */
 	protected $primaryTable;
 	
+	/**
+	*	Gets a db instance and assigns it to the $db property
+	*/
 	protected function __construct() {
-		//get the DB connection
 		$this->db = db::getInstance();
 	}
 
-	//returns an appropriate date format function for the query language
+	/**
+	*	Returns an appropriate date format function for the SQL language
+	*	@return string $sql
+	*/
 	protected function dbFormatDate($field) {
 		if (strtolower($GLOBALS['dbconfig']['dbtype']) == 'mssql') {
 			$sql = "CONVERT(VARCHAR(10), {$field},101)";
@@ -51,7 +59,10 @@ class DBObject extends CoreClasses\CoreObject {
 		return $sql;
 	}
 
-	//returns an appropriate text search function for the query language
+	/**
+	*	Returns an appropriate text search function for the SQL language
+	*	@return string $sql
+	*/
 	protected function dbTextMatch($fields,$value) {
 		if (strtolower($GLOBALS['dbconfig']['dbtype']) == strtolower('mssql')) {
 			$sql = "FREETEXT(({$fields}),{$value})";
@@ -61,7 +72,10 @@ class DBObject extends CoreClasses\CoreObject {
 		return $sql;
 	}
 
-	//returns the current time function for the query language
+	/**
+	*	Returns an appropriate CURRENT TIME function for the SQL language
+	*	@return string $sql
+	*/
 	protected function dbNow() {
 		if ( strtolower($GLOBALS['dbconfig']['dbtype']) == strtolower('mssql')) {
 			$sql = "GETDATE()";
@@ -71,9 +85,11 @@ class DBObject extends CoreClasses\CoreObject {
 		return $sql;
 	}
 
-	/** execute a query and return the results as an array
-	*  @sql: the query
-	*  @bindparams: an array of values to be binded to any query parameters
+	/** 
+	*	Execute a query and return the results as an array
+	* 	@param string $sql the SQL query
+	*  	@param mixed[] $bindparams: an array of values to be binded by PDO to any query parameters
+	*	@return array[]|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
 	protected function executeQuery($sql,$bindparams=NULL) {
 		$result = $this->db->handle->prepare($sql);
@@ -85,6 +101,12 @@ class DBObject extends CoreClasses\CoreObject {
 		return false;
 	}
 
+	/** 
+	*	Execute an update query
+	* 	@param string $sql The SQL query
+	*  	@param mixed[] $bindparams An array of values to be binded by PDO to any query parameters
+	*	@return boolean True on success, false on anything else
+	*/
 	protected function executeUpdate($sql,$bindparams=NULL) {
 		$result = $this->db->handle->prepare($sql);
 		$result->execute($bindparams);
@@ -95,14 +117,22 @@ class DBObject extends CoreClasses\CoreObject {
 		return false;
 	}
 
+	/**
+	*	Returns the id of the most recent insert query
+	*	@return int The id of the last inserted record
+	*/
+
 	protected function getLastInsertId() {
 		return $this->db->handle->lastInsertId();
 	}
 
-	/**  query the DB and return the rows as a 1 or 2 dimensional indexed array
-	*	@sql: the query
-	*   @index: the table's primary key
-	*	@findex: an optional foreign key from the table (when used, returns a 2 dimensional array)
+	/**  
+	*	Query the DB and return the rows as a 1 or 2 dimensional indexed array
+	*	@param string $sql The query string
+	*   @param string $index The table's primary key
+	*	@param string $findex An optional foreign key from the table (when used, returns a 2 dimensional array, indexed first by $index, second by $findex)
+	*  	@param mixed[] $bindparams An array of values to be binded by PDO to any query parameters
+	*	@return array[]|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
 
 	protected function queryWithIndex($sql,$index,$findex=NULL,$bindparams=NULL) {
@@ -122,22 +152,28 @@ class DBObject extends CoreClasses\CoreObject {
 		return false;
 	}
 	
-	/** escape a @value to prep for use in a DB query
+	/** 
+	*	Escape a @value to prep for use in a DB query
+	*	@return string The escaped $value
 	*/
 	protected function quote($value) {
 		return $this->db->handle->quote($value);
 	}
 
-	/**cleans an @ar and returns the result
+	/**
+	*	Escapes the contents of an array and returns the result
+	*	@return string[] The escaped array
 	*/
 	protected function quoteArray($ar) {
 		return array_map(array($this,"quote"),$ar);
 	}
 
-	/** Returns a parametrized IN clause for use in a prepared statement
-	* @ar: an array of values for IN
-	* &@bindparams: a reference to the caller's array of binded parameters
-	* @varprefix: use to avoid naming collisions when calling multiple times within 1 statement
+	/** 
+	*	Returns a parametrized IN clause for use in a prepared statement
+	*	@param mixed[] $ar An array of values representing the contents of the IN clause
+	*	@param mixed[] $bindparams A reference to the caller's array of binded parameters
+	*	@param string $varprefix Can be used to avoid bind parameter naming collisions when calling multiple times within 1 statement
+	*	@return string The resulting IN clause
 	*/
 	protected function buildIn($ar,&$bindparams,$varprefix = 'v') {
 		$x=1;
@@ -149,6 +185,12 @@ class DBObject extends CoreClasses\CoreObject {
 		return 'IN ('.rtrim($sql,',').')';
 	}
 
+	/**
+	*	Builds and executes an insert statement
+	*	@param mixed[] $data An associative array (ColumnName->Value) of data representing the new DB record
+	*	@param string $table Optional - The table to insert the new record into. Defaults to $primaryTable
+	*	@return int/false Returns the ID of the new record on success, false on failure
+	*/
 	protected function buildInsertStatement($data,$table=null) {
 		if (!$table) {
 			$table = $this->primaryTable;
@@ -170,6 +212,12 @@ class DBObject extends CoreClasses\CoreObject {
 		return false;
 	}
 
+	/**
+	*	Builds and executes a single insert statement that inserts multiple new records
+	*	@param mixed[][] $rows An array of associative arrays (ColumnName->Value) of data representing the new DB records
+	*	@param string $table Optional - The table to insert the new records into. Defaults to $primaryTable
+	*	@return boolean True on success, false on failure
+	*/
 	protected function buildMultiRowInsertStatement($rows,$table=null) {
 		if (!$table) {
 			$table = $this->primaryTable;
@@ -192,6 +240,13 @@ class DBObject extends CoreClasses\CoreObject {
 		return $this->executeUpdate($sql,$bindparams);
 	}
 
+	/**
+	*	Builds and executes an update statement
+	*	@param int $id The id of the record to be updated
+	*	@param mixed[] $data An associative array (ColumnName->Value) of data representing the updated data
+	*	@param string $table Optional - The table to insert the new record into. Defaults to $primaryTable
+	*	@return boolean True on success, false on failure
+	*/
 	protected function buildUpdateStatement($id,$data,$table=null) {
 		if (!$table) {
 			$table = $this->primaryTable;
@@ -210,6 +265,11 @@ class DBObject extends CoreClasses\CoreObject {
 		return false;
 	}
 
+	/**
+	* 	Logs SQL errors to the logger
+	*	@param array $error A PDO::errorInfo() error
+	*	@param string $sql The SQL query that triggered the error
+	*/
 	protected function logStatementError($error,$sql=null) {
 		if (!empty($GLOBALS['config']['DB_DEBUG'])) {
 			$message = "Error with query - CODE: {$error[1]}";

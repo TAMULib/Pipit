@@ -9,14 +9,21 @@ use Core\Interfaces as Interfaces;
 */
 
 class JSONViewRenderer implements Interfaces\ViewRenderer {
+	/** @var mixed[] $variables An array of application data to provide to the views */
 	private $variables = array();
+	/** @var mixed[] $appContext An array of data for the views geared toward the app environment (User session, server paths, config)  */
 	private $appContext = null;
 
+	/**
+	*	Render as JSON any registered view variables
+	*/
 	public function renderView() {
 		echo json_encode($this->getViewVariables());
 	}
 
-	//ViewRenderer interface required, but not currently used by json renderer
+	/*
+	*	An implmentation is required by the ViewRenderer interface, but this method is not currently used by JSONViewRenderer
+	*/
 	public function setView($viewFile,$isAdmin=false) {
 	}
 
@@ -44,7 +51,9 @@ class JSONViewRenderer implements Interfaces\ViewRenderer {
 		return $this->appContext[$name];
 	}
 
-	//ViewRenderer interface required, but not currently used by json renderer
+	/*
+	*	An implmentation is required by the ViewRenderer interface, but this method is not currently used by JSONViewRenderer
+	*/
 	public function setPage($page) {
 	}
 }

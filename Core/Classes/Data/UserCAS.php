@@ -11,6 +11,9 @@ class UserCAS extends User {
 	private $casPaths;
 	private $usersRepo;
 
+	/**
+	*	Instantiates a new UserCAS by negotiating the login process with a configured CAS Server
+	*/
 	public function __construct($inputData,$usersRepo=null) {
 		parent::__construct();
 		$this->casPaths['urls']['login'] = $GLOBALS['config']['CAS_URLS_LOGIN'];
@@ -27,6 +30,12 @@ class UserCAS extends User {
 		}
 	}
 
+	/**
+	*	Processes the result of a CAS authentication request, associating an application user with their corresponding CAS record,
+	*		and logging them into the application
+	*	@param string $ticket The ticket provided by the CAS Server
+	*	@return boolean True on successful login, false on anything else
+	*/
 	public function processLogIn($ticket) {
 		$file = file_get_contents($this->casPaths['urls']['check']."&renew=true&ticket={$ticket}");
 		if (!$file) {
@@ -59,10 +68,16 @@ class UserCAS extends User {
 		return false;
 	}
 
+	/**
+	*	Redirect to the configured CAS Server's login URL
+	*/
 	public function initiatelogIn() {
 		header("Location: {$this->casPaths['urls']['login']}");
 	}
 
+	/**
+	*	Log the User out from the application, then redirect to the configured CAS Server's logout URL
+	*/
 	public function logOut() {
 		parent::logOut();
 		header("Location: {$this->casPaths['urls']['logout']}");
