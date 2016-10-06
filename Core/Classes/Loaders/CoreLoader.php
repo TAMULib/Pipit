@@ -65,6 +65,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 	private function checkRedirect() {
 		if (!empty($this->getConfig()['forceRedirectUrl'])) {
 			$this->site->setRedirectUrl("{$this->getConfig()['forceRedirectUrl']}");
+			$this->site->redirect();
 		}
 	}
 
