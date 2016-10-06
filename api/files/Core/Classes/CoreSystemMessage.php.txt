@@ -9,9 +9,16 @@ use Core\Interfaces as Interfaces;
 */
 
 class CoreSystemMessage implements Interfaces\SystemMessage {
+	/** @var string $messageType Informs the UI about the type of the message (info, warn, success, notify, etc.) */
 	private $messageType;
+	/** @var string $message The content of the message */
 	private $message;
 
+	/**
+	*	Constructs a new CoreSystemMessage by setting its type and message
+	*	@param string $message The content of the message
+	*	@param string $messageType Informs the UI about the type of the message (info, warn, success, notify, etc.)
+	*/
 	public function __construct($message,$messageType) {
 		$this->setMessage($message);
 		$this->setType($messageType);
