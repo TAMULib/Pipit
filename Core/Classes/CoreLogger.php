@@ -50,7 +50,7 @@ class LoggerLevel {
 class CoreLogger implements Interfaces\Logger {
 	/** @var LoggerLevel[] $loggerTypes The valid log levels */
 	private $loggerTypes = array();
-	/** @var inter $logLevel The log level of a CoreLogger instance (defaults to 3) */
+	/** @var int $logLevel The log level of a CoreLogger instance (defaults to 3) */
 	private $logLevel = 3;
 
 	/**
