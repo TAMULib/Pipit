@@ -77,6 +77,10 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 		return $this->viewRenderer;
 	}
 
+	abstract public function setRedirectUrl($redirectUrl);
+	abstract public function hasRedirectUrl();
+	abstract public function redirect();
+
 	abstract public function getControllerClass($controllerName);
 
 	protected function generateSanitizedInputData() {
