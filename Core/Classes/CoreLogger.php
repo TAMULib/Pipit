@@ -84,7 +84,7 @@ class CoreLogger implements Interfaces\Logger {
 	*/
 	protected function writeToLog($entry) {
 		if ($entry[0] >= $this->logLevel) {
-			trigger_error("** ".get_class($this)." ** {$entry[1]}",$this->loggerTypes[$entry[0]]->getPhpErrorCode());
+			trigger_error("** ".$this->getFormattedCaller()." ** {$entry[1]} **",$this->loggerTypes[$entry[0]]->getPhpErrorCode());
 		}
 	}
 
@@ -99,6 +99,23 @@ class CoreLogger implements Interfaces\Logger {
 		} else {
 			$this->warn("Invalid Log Level was requested");
 		}
+	}
+
+	protected function getFormattedCaller() {
+		$backTrace = debug_backtrace();
+		$caller = array();
+		foreach ($backTrace as $trace) {
+			if (empty($trace['class']) || ($trace['class'] != get_class($this))) {
+				$caller['line'] = "L{$trace['line']}";
+				$caller['file'] = "File: {$trace['file']}";
+				$caller['function'] = "Function: {$trace['function']}";
+				if (!empty($caller['class'])) {
+					$caller['class'] = "Class: {$trace['class']}";
+				}
+				break;
+			}
+		}
+		return implode(', ',$caller);
 	}
 }
 ?>
