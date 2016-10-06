@@ -8,41 +8,80 @@ namespace Core\Classes;
 */
 
 abstract class AbstractSitePage {
+	/** @var int $accessLevel The security restriction for the page */
 	protected $accessLevel;
+	/** @var string $name The name of the page */
 	protected $name;
+	/** @var string $path The relative directory path to the page */
 	protected $path;
+	/** @var string $title The UI display title of the page */
 	protected $title;
+	/** @var string $name The UI display subtitle of the page */
 	protected $subTitle;
+	/** @var array[] $options The UI displayed subnavigation for the page */
 	protected $options = array();
+	/** @var boolean $isSearchable Should UIs with search capability show a search box for this page? */
 	protected $isSearchable = false;
+	/** @var string[] $searchableFields The columns search implementors should use when querying a DataRepository */
 	protected $searchableFields = array();
 
+	/**
+	*	Default constructor for extenders of AbstractSitePage
+	*
+	*	@param string $name The name of the page
+	*	@param string $path The relative directory path to the page
+	*	@param int $accesslevel The security restriction for the page
+	*/
 	public function __construct($name,$path,$accessLevel) {
 		$this->setName($name);
 		$this->setPath($path);
 		$this->setAccessLevel($accessLevel);
 	}
 
+	/**
+	*	Gets the access level for the page
+	*	@return int The access level for the page
+	*/
 	public function getAccessLevel() {
 		return $this->accessLevel;
 	}
 
+	/**
+	*	Sets the access level for the page
+	*	@param int The access level for the page (Defaults to 0)
+	*/
 	protected function setAccessLevel($accessLevel=0) {
 		$this->accessLevel = $accessLevel;
 	}
 
+	/**
+	*	Gets the name of the page
+	*	@return string $name The name of the page
+	*/
 	public function getName() {
 		return $this->name;
 	}
 
+	/**
+	*	Sets the name of the page
+	*	@param string The name of the page
+	*/
 	public function setName($name) {
 		$this->name = $name;
 	}
 
+	/**
+	*	Gets the relative directory path of the page
+	*	@return string The relative directory path of the page
+	*/
 	public function getPath() {
 		return $this->path;
 	}
 
+	/**
+	*	Sets the path of the page
+	*	@param string $path The relative directory path of the page
+	*/
 	public function setPath($path) {
 		$this->path = $path;
 	}
