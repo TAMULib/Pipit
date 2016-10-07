@@ -22,6 +22,9 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 	private $viewPath = '';
 	/** @var string $adminPath The directory within the $viewPath that contains the admin views */
 	private $adminPath = '';
+	/** @var string $viewDirectory An optional subdirectory within the $viewPath that contains a collection of related views */
+	private $viewDirectory = '';
+	
 
 	/**
 	*	Initializes the ViewRenderer with the state of the application
@@ -70,12 +73,28 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 	*/
 	public function setView($viewFile,$isAdmin=false) {
 		$config = $this->getAppContextProperty("config");
-		$fullPath = (($isAdmin) ? $this->getAdminViewPath():$this->getViewPath())."{$viewFile}.view.php";
+		$fullPath = (($isAdmin) ? $this->getAdminViewPath():$this->getViewPath()).($this->getViewDirectory() ? "{$this->getViewDirectory()}/":'')."{$viewFile}.view.php";
 		if (is_file($fullPath)) {
 			$this->viewFile = $fullPath;
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	*	Allows for defining a subdirectory for views which will be appended to the primary view path. 
+	*	For example, all views for a Controller can be put in a view subdirectory, and that Controller will set the viewDirectory to match that location.
+	*
+	*/
+	public function setViewDirectory($directoryName) {
+		$this->viewDirectory = $directoryName;
+	}
+
+	/**
+	*	Gets the (optional) subdirectory for views which will be appended to the primary view path. 
+	*/
+	protected function getViewDirectory() {
+		return $this->viewDirectory;
 	}
 
 	/**
