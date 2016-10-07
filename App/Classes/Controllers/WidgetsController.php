@@ -14,7 +14,7 @@ class WidgetsController extends Core\AbstractController {
 								array("name"=>"list"),
 								array("name"=>"add","action"=>"add","modal"=>true)));
 		$this->getPage()->setIsSearchable(true);
-		$this->site->getViewRenderer()->setViewDirectory('widgets');
+		$this->getSite()->getViewRenderer()->setViewDirectory('widgets');
 	}
 
 	protected function parts() {
