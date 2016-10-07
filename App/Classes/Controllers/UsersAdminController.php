@@ -16,6 +16,7 @@ class UsersAdminController extends Core\AbstractController {
 		$this->getPage()->setIsSearchable(true);
 		$this->getPage()->setSearchableFields(array(array("name"=>"name_last","type"=>"text"),
 								array("name"=>"name_first","type"=>"text")));
+		$this->site->getViewRenderer()->setViewDirectory('users');
 	}
 
 	protected function search() {
