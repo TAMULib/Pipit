@@ -25,6 +25,17 @@ interface Site {
 	public function getViewRenderer();
 
 	/**
+	*	Define a redirect URL.
+	*
+	*	@param ViewRenderer $viewRenderer
+	*	@return void
+	*/
+	public function setRedirectUrl($redirectUrl);
+
+	public function hasRedirectUrl();
+	public function redirect();
+
+	/**
 	*	Get the pages defined for the Site. 
 	*
 	*	@return SitePage[] 

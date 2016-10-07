@@ -25,12 +25,28 @@ abstract class AbstractController extends CoreObject implements Interfaces\Contr
 	*	@return void
 	*/
 	public function __construct(&$site,$controllerConfig=null) {
-		$this->site = $site;
+		$this->setSite($site);
 		$this->setPage($site->getCurrentPage());
 		if ($controllerConfig) {
 			$this->setControllerConfig($controllerConfig);
 		}
 		$this->configure();
+	}
+
+	/**
+	*	Gets the Site context for Controllers
+	*	@return Core\Interfaces\Site The active Site implementation
+	*/
+	protected function getSite() {
+		return $this->site;
+	}
+
+	/**
+	*	Sets the Site context for Controllers
+	*	@param Core\Interfaces\Site The active Site implementation
+	*/
+	protected function setSite($site) {
+		$this->site = $site;
 	}
 
 	/**
