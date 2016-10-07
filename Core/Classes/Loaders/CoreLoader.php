@@ -112,7 +112,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 			if (!$className) {
 				$className = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\HTMLViewRenderer";
 			}
-			$this->site->setViewRenderer(new $className($this->site->getGlobalUser(),$this->site->getPages(),$inputData,$config['controllerConfig']['name']));
+			$this->site->setViewRenderer(new $className($this->site->getGlobalUser(),$this->site->getPages(),$inputData,(!empty($config['controllerConfig']) ? $config['controllerConfig']['name']:null)));
 			$viewRendererFlag = true;
 		}
 		if (!$viewRendererFlag) {
@@ -127,11 +127,15 @@ class CoreLoader implements CoreInterfaces\Loader {
 	private function loadController() {
 		//try to load the controller
 		$config = $this->getConfig();
-		$className = $this->site->getControllerClass($config['controllerConfig']['name']);
-		if (class_exists($className)) {
-			$controller = new $className($this->site,$config['controllerConfig']);
-			$controller->evaluate();
-		} else {
+		$controller = null;
+		if (!empty($config['controllerConfig']['name'])) {
+			$className = $this->site->getControllerClass($config['controllerConfig']['name']);
+			if (class_exists($className)) {
+				$controller = new $className($this->site,$config['controllerConfig']);
+				$controller->evaluate();
+			}
+		}
+		if (!$controller) {
 			$this->logger->warn("Did not find Controller Class");
 			$this->site->setRedirectUrl($config['PATH_HTTP']);
 		}
