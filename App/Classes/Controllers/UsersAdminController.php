@@ -8,7 +8,7 @@ class UsersAdminController extends Core\AbstractController {
 
 	protected function configure() {
 		$this->requireAdmin = true;
-		$this->usersRepo = $this->site->getDataRepository("Users");
+		$this->usersRepo = $this->getSite()->getDataRepository("Users");
 		$this->getPage()->setTitle("Manage Users");
 		$this->getPage()->setOptions(array(
 								array("name"=>"list"),
@@ -19,43 +19,43 @@ class UsersAdminController extends Core\AbstractController {
 	}
 
 	protected function search() {
-		$data = $this->site->getSanitizedInputData();
+		$data = $this->getSite()->getSanitizedInputData();
 		if (isset($data['term'])) {
-			$this->site->getViewRenderer()->registerViewVariable("users",$this->usersRepo->search($data['term']));
+			$this->getSite()->getViewRenderer()->registerViewVariable("users",$this->usersRepo->search($data['term']));
 			$this->setViewName("users.list");
 		} elseif (isset($data['advancedsearch'])) {
 			$site->getViewRenderer()->registerViewVariable("users",$this->usersRepo->searchAdvanced($data['advancedsearch']));
 			$this->setViewName("users.list");
 		} else {
-			$this->site->addSystemError('There was an error with the search');
+			$this->getSite()->addSystemError('There was an error with the search');
 		}
 	}
 
 
 	protected function disable() {
-		$data = $this->site->getSanitizedInputData();
+		$data = $this->getSite()->getSanitizedInputData();
 		if (isset($data['id']) && is_numeric($data['id']) && $this->usersRepo->disableById($data['id'])) {
-			$this->site->addSystemMessage('User disabled');
+			$this->getSite()->addSystemMessage('User disabled');
 		} else {
-			$this->site->addSystemError('Error disabling user');
+			$this->getSite()->addSystemError('Error disabling user');
 		}
 	}
 
 	protected function enable() {
-		$data = $this->site->getSanitizedInputData();
+		$data = $this->getSite()->getSanitizedInputData();
 		if (isset($data['id']) && is_numeric($data['id']) && $this->usersRepo->enableById($data['id'])) {
-			$this->site->addSystemMessage('User enabled');
+			$this->getSite()->addSystemMessage('User enabled');
 		} else {
-			$this->site->addSystemError('Error enabling user');
+			$this->getSite()->addSystemError('Error enabling user');
 		}
 	}
 
 	protected function insert() {
-		$data = $this->site->getSanitizedInputData();
+		$data = $this->getSite()->getSanitizedInputData();
 		if (isset($data['user']) && $this->usersRepo->add($data['user'])) {
-			$this->site->addSystemMessage('User added');
+			$this->getSite()->addSystemMessage('User added');
 		} else {
-			$this->site->addSystemError('Error adding usert');
+			$this->getSite()->addSystemError('Error adding usert');
 		}
 	}
 
@@ -65,26 +65,26 @@ class UsersAdminController extends Core\AbstractController {
 	}
 
 	protected function update() {
-		$data = $this->site->getSanitizedInputData();
+		$data = $this->getSite()->getSanitizedInputData();
 		if (isset($data['user']) && (isset($data['id']) && is_numeric($data['id'])) && $this->usersRepo->update($data['id'],$data['user'])) {
-			$this->site->addSystemMessage('User updated');
+			$this->getSite()->addSystemMessage('User updated');
 		} else {
-			$this->site->addSystemError('Error updating user');
+			$this->getSite()->addSystemError('Error updating user');
 		}
 	}
 
 	protected function edit() {
-		$data = $this->site->getSanitizedInputData();
+		$data = $this->getSite()->getSanitizedInputData();
 		$this->getPage()->setSubTitle('Update User');
 		if (isset($data['id']) && is_numeric($data['id'])) {
-			$this->site->getViewRenderer()->registerViewVariable("user",$this->usersRepo->getById($data['id']));
+			$this->getSite()->getViewRenderer()->registerViewVariable("user",$this->usersRepo->getById($data['id']));
 			$this->setViewName("users.edit");
 		}		
 	}
 
 	protected function loadDefault() {
 		$this->getPage()->setSubTitle('Users');
-	 	$this->site->getViewRenderer()->registerViewVariable("users",$this->usersRepo->get());
+	 	$this->getSite()->getViewRenderer()->registerViewVariable("users",$this->usersRepo->get());
 		$this->setViewName("users.list");
 	}
 

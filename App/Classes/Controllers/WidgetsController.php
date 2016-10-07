@@ -7,7 +7,7 @@ class WidgetsController extends Core\AbstractController {
 	private $widgetsRepo;
 
 	protected function configure() {
-		$this->widgetsRepo = $this->site->getDataRepository("Widgets");
+		$this->widgetsRepo = $this->getSite()->getDataRepository("Widgets");
 
 		$this->getPage()->setTitle("Manage Widgets");
 		$this->getPage()->setOptions(array(
@@ -17,78 +17,78 @@ class WidgetsController extends Core\AbstractController {
 	}
 
 	protected function parts() {
-		$data = $this->site->getSanitizedInputData();
+		$data = $this->getSite()->getSanitizedInputData();
 		$widget = $this->widgetsRepo->getById($data['widgetid']);
 		$this->getPage()->setSubTitle('Parts for '.$widget['name']);
-		$this->site->getViewRenderer()->registerViewVariable("widget",$widget);
-		$this->site->getViewRenderer()->registerViewVariable("parts",$this->widgetsRepo->getPartsByWidgetId($data['widgetid']));
+		$this->getSite()->getViewRenderer()->registerViewVariable("widget",$widget);
+		$this->getSite()->getViewRenderer()->registerViewVariable("parts",$this->widgetsRepo->getPartsByWidgetId($data['widgetid']));
 		$this->setViewName('widgets.parts');
 	}
 
 	protected function remove() {
-		$data = $this->site->getSanitizedInputData();
+		$data = $this->getSite()->getSanitizedInputData();
 		if (isset($data['id']) && is_numeric($data['id']) && $this->widgetsRepo->removeById($data['id'])) {
-			$this->site->addSystemMessage('Widget removed');
+			$this->getSite()->addSystemMessage('Widget removed');
 		} else {
-			$this->site->addSystemError('Error removing widget');
+			$this->getSite()->addSystemError('Error removing widget');
 		}		
 	}
 
 	protected function insert() {
-		$data = $this->site->getSanitizedInputData();
+		$data = $this->getSite()->getSanitizedInputData();
 		if (isset($data['widget']) && $this->widgetsRepo->add($data['widget'])) {
-			$this->site->addSystemMessage('Widget added');
+			$this->getSite()->addSystemMessage('Widget added');
 		} else {
-			$this->site->addSystemError('Error adding widget');
+			$this->getSite()->addSystemError('Error adding widget');
 		}
 	}
 
 	protected function add() {
 		$this->getPage()->setSubTitle('New Widget');
-		$this->site->getViewRenderer()->setView("widgets.add");
+		$this->getSite()->getViewRenderer()->setView("widgets.add");
 		$this->setViewName('widgets.add');
 	}
 
 	protected function update() {
-		$data = $this->site->getSanitizedInputData();
+		$data = $this->getSite()->getSanitizedInputData();
 		if (isset($data['widget']) && (isset($data['id']) && is_numeric($data['id'])) && $this->widgetsRepo->update($data['id'],$data['widget'])) {
-			$this->site->addSystemMessage('Widget updated');
+			$this->getSite()->addSystemMessage('Widget updated');
 		} else {
-			$this->site->addSystemError('Error updating widget');
+			$this->getSite()->addSystemError('Error updating widget');
 		}
 	}
 
 	protected function edit() {
 		$this->getPage()->setSubTitle('Update Widget');
-		$data = $this->site->getSanitizedInputData();
+		$data = $this->getSite()->getSanitizedInputData();
 		if (isset($data['id']) && is_numeric($data['id']) && ($widget = $this->widgetsRepo->getById($data['id']))) {
-			$widget = $this->site->getViewRenderer()->registerViewVariable("widget",$widget);
+			$widget = $this->getSite()->getViewRenderer()->registerViewVariable("widget",$widget);
 			$this->setViewName('widgets.edit');
 		}
 	}
 
 	protected function partsAdd() {
-		$data = $this->site->getSanitizedInputData();
+		$data = $this->getSite()->getSanitizedInputData();
 		if ($this->widgetsRepo->addPartToWidget($data['widgetid'],$data['part'])) {
-			$this->site->addSystemMessage('Part added');
+			$this->getSite()->addSystemMessage('Part added');
 		} else {
-			$this->site->addSystemError('There was an error adding the part');
+			$this->getSite()->addSystemError('There was an error adding the part');
 		}
 	}
 
 	protected function partsRemove() {
-		$data = $this->site->getSanitizedInputData();
+		$data = $this->getSite()->getSanitizedInputData();
 		if ($this->widgetsRepo->removePartById($data['partid'])) {
-			$this->site->addSystemMessage('Part removed');
+			$this->getSite()->addSystemMessage('Part removed');
 		} else {
-			$this->site->addSystemError('There was an error removing the part');
+			$this->getSite()->addSystemError('There was an error removing the part');
 		}		
 	}
 
 	protected function search() {
-		$data = $this->site->getSanitizedInputData();
+		$data = $this->getSite()->getSanitizedInputData();
 		if (isset($data['term'])) {
-			$this->site->getViewRenderer()->registerViewVariable("widgets",$this->widgetsRepo->search($data['term']));
+			$this->getSite()->getViewRenderer()->registerViewVariable("widgets",$this->widgetsRepo->search($data['term']));
 			$this->setViewName("widgets.list");
 		} else {
 			$site->addSystemError('There was an error with the search');
@@ -97,7 +97,7 @@ class WidgetsController extends Core\AbstractController {
 
 	protected function loadDefault() {
 		$this->getPage()->setSubTitle('Widgets');
-		$this->site->getViewRenderer()->registerViewVariable("widgets", $this->widgetsRepo->get());
+		$this->getSite()->getViewRenderer()->registerViewVariable("widgets", $this->widgetsRepo->get());
 		$this->setViewName('widgets.list');
 	}
 }
