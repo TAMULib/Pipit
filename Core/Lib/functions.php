@@ -16,4 +16,22 @@ function getLogger() {
     }
     return $GLOBALS['logger'];
 }
+
+function loadFile($class,$nameSpace,$baseDirectory) {
+    $len = strlen($nameSpace);
+    if (strncmp($nameSpace, $class, $len) == 0) {
+        // replace the namespace prefix with the base directory, replace namespace
+        // separators with directory separators in the relative class name, append
+        // with .php
+        $file = $baseDirectory.nameSpaceToPath($class).'.php';
+        // if the file exists, require it
+        if (file_exists($file)) {
+            require $file;
+        }
+    }
+}
+
+function nameSpaceToPath($nameSpace) {
+    return str_replace('\\', '/', $nameSpace);
+}
 ?>
