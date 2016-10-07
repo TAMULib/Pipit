@@ -101,21 +101,21 @@ class CoreLogger implements Interfaces\Logger {
 		}
 	}
 
-	protected function getFormattedCaller() {
+	protected function getCaller() {
 		$backTrace = debug_backtrace();
 		$caller = array();
 		foreach ($backTrace as $trace) {
 			if (empty($trace['class']) || ($trace['class'] != get_class($this))) {
-				$caller['line'] = "L{$trace['line']}";
-				$caller['file'] = "File: {$trace['file']}";
-				$caller['function'] = "Function: {$trace['function']}";
-				if (!empty($caller['class'])) {
-					$caller['class'] = "Class: {$trace['class']}";
-				}
+				$caller = $trace;
 				break;
 			}
 		}
-		return implode(', ',$caller);
+		return $caller;
+	}
+
+	protected function getFormattedCaller() {
+		$rawCaller = $this->getCaller();
+		return implode(', ',array("line"=>"L{$rawCaller['line']}","file"=>"File: {$rawCaller['file']}","function"=>"Function: {$rawCaller['function']}"));
 	}
 }
 ?>
