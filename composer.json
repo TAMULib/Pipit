@@ -1,5 +1,5 @@
 {
-    "name": "TAMULib/Pipit",
+    "name": "tamu-lib/Pipit",
     "type": "library",
     "description": "A basic PHP framework for web app development",
     "keywords": ["MVC","Framework"],
