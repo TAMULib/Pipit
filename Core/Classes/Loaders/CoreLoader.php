@@ -62,7 +62,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 	*	Check for and execute any $config requested redirects
 	*
 	*/
-	private function checkRedirect() {
+	protected function checkRedirect() {
 		if (!empty($this->getConfig()['forceRedirectUrl'])) {
 			$this->site->setRedirectUrl("{$this->getConfig()['forceRedirectUrl']}");
 			$this->site->redirect();
@@ -72,7 +72,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 	/**
 	*	Looks for a configured Site implementation to utilize, falls back to CoreSite if none are found
 	*/
-	private function loadSiteClass() {
+	protected function loadSiteClass() {
 		$site = null;
 		$config = $this->getConfig();
 		if (!empty($config['SITE_CLASS'])) {
@@ -93,7 +93,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 	/**
 	*	Finds an appropriate ViewRenderer and sets it up for use
 	*/
-	private function applyViewRenderer() {
+	protected function applyViewRenderer() {
 		//set the ViewRenderer
 		$config = $this->getConfig();
 		$inputData = $this->site->getSanitizedInputData();
@@ -124,7 +124,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 	/**
 	*	Looks for the configured Controller and hands over control by executing its evaluate() method
 	*/
-	private function loadController() {
+	protected function loadController() {
 		//try to load the controller
 		$config = $this->getConfig();
 		$controller = null;
@@ -144,7 +144,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 	/**
 	*	Asks the ViewRenderer to render the response
 	*/
-	private function render() {
+	protected function render() {
 		if ($this->site->hasRedirectUrl()) {
 			$this->site->redirect();
 		}
