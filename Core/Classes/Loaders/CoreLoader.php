@@ -40,6 +40,22 @@ class CoreLoader implements CoreInterfaces\Loader {
 	}
 
 	/**
+	*	Gets the Site context
+	*	@return Core\Interfaces\Site The active Site implementation
+	*/
+	protected function getSite() {
+		return $this->site;
+	}
+
+	/**
+	*	Sets the Site context
+	*	@param Core\Interfaces\Site The active Site implementation
+	*/
+	protected function setSite($site) {
+		$this->site = $site;
+	}
+
+	/**
 	*	load() is responsible for taking us from the request to the rendered response.
 	*	- Kick off the seesion
 	*	- Honor any $config redirect requests
@@ -62,17 +78,17 @@ class CoreLoader implements CoreInterfaces\Loader {
 	*	Check for and execute any $config requested redirects
 	*
 	*/
-	private function checkRedirect() {
+	protected function checkRedirect() {
 		if (!empty($this->getConfig()['forceRedirectUrl'])) {
-			$this->site->setRedirectUrl("{$this->getConfig()['forceRedirectUrl']}");
-			$this->site->redirect();
+			$this->getSite()->setRedirectUrl("{$this->getConfig()['forceRedirectUrl']}");
+			$this->getSite()->redirect();
 		}
 	}
 
 	/**
 	*	Looks for a configured Site implementation to utilize, falls back to CoreSite if none are found
 	*/
-	private function loadSiteClass() {
+	protected function loadSiteClass() {
 		$site = null;
 		$config = $this->getConfig();
 		if (!empty($config['SITE_CLASS'])) {
@@ -87,19 +103,19 @@ class CoreLoader implements CoreInterfaces\Loader {
 			$this->logger->error("Site Class not found");
 			exit;
 		}
-		$this->site = $site;
+		$this->setSite($site);
 	}
 
 	/**
 	*	Finds an appropriate ViewRenderer and sets it up for use
 	*/
-	private function applyViewRenderer() {
+	protected function applyViewRenderer() {
 		//set the ViewRenderer
 		$config = $this->getConfig();
-		$inputData = $this->site->getSanitizedInputData();
+		$inputData = $this->getSite()->getSanitizedInputData();
 		$viewRendererFlag = false;
 		if (!empty($inputData['json'])) {
-			$this->site->setViewRenderer(new CoreClasses\ViewRenderers\JSONViewRenderer());
+			$this->getSite()->setViewRenderer(new CoreClasses\ViewRenderers\JSONViewRenderer());
 			$viewRendererFlag = true;
 		} else {
 			if (!empty($config['VIEW_RENDERER'])) {
@@ -112,7 +128,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 			if (!$className) {
 				$className = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\HTMLViewRenderer";
 			}
-			$this->site->setViewRenderer(new $className($this->site->getGlobalUser(),$this->site->getPages(),$inputData,(!empty($config['controllerConfig']) ? $config['controllerConfig']['name']:null)));
+			$this->getSite()->setViewRenderer(new $className($this->getSite()->getGlobalUser(),$this->getSite()->getPages(),$inputData,(!empty($config['controllerConfig']) ? $config['controllerConfig']['name']:null)));
 			$viewRendererFlag = true;
 		}
 		if (!$viewRendererFlag) {
@@ -124,35 +140,35 @@ class CoreLoader implements CoreInterfaces\Loader {
 	/**
 	*	Looks for the configured Controller and hands over control by executing its evaluate() method
 	*/
-	private function loadController() {
+	protected function loadController() {
 		//try to load the controller
 		$config = $this->getConfig();
 		$controller = null;
 		if (!empty($config['controllerConfig']['name'])) {
-			$className = $this->site->getControllerClass($config['controllerConfig']['name']);
+			$className = $this->getSite()->getControllerClass($config['controllerConfig']['name']);
 			if (class_exists($className)) {
-				$controller = new $className($this->site,$config['controllerConfig']);
+				$controller = new $className($this->getSite(),$config['controllerConfig']);
 				$controller->evaluate();
 			}
 		}
 		if (!$controller) {
 			$this->logger->warn("Did not find Controller Class");
-			$this->site->setRedirectUrl($config['PATH_HTTP']);
+			$this->getSite()->setRedirectUrl($config['PATH_HTTP']);
 		}
 	}
 
 	/**
 	*	Asks the ViewRenderer to render the response
 	*/
-	private function render() {
-		if ($this->site->hasRedirectUrl()) {
-			$this->site->redirect();
+	protected function render() {
+		if ($this->getSite()->hasRedirectUrl()) {
+			$this->getSite()->redirect();
 		}
 		//send system messages to the ViewRenderer
-		$this->site->getViewRenderer()->registerAppContextProperty("systemMessages", $this->site->getSystemMessages());
+		$this->getSite()->getViewRenderer()->registerAppContextProperty("systemMessages", $this->getSite()->getSystemMessages());
 
 		//display the content
-		$this->site->getViewRenderer()->renderView();
+		$this->getSite()->getViewRenderer()->renderView();
 	}
 }
 ?>
