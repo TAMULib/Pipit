@@ -112,6 +112,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 	protected function applyViewRenderer() {
 		//set the ViewRenderer
 		$config = $this->getConfig();
+		$inputData = $this->getSite()->getSanitizedInputData();
 		if ($viewRendererName = $this->getViewRendererName()) {
 			$this->getSite()->setViewRenderer(new $viewRendererName($this->getSite()->getGlobalUser(),$this->getSite()->getPages(),$inputData,(!empty($config['controllerConfig']) ? $config['controllerConfig']['name']:null)));
 		} else {
