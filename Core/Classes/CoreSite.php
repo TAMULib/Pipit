@@ -152,6 +152,7 @@ class CoreSite extends AbstractSite {
 	public function redirect() {
 		$this->getLogger()->debug("REDIRECTING TO: {$this->redirectUrl}");
 		header("Location: {$this->redirectUrl}");
+		exit;
 	}
 }
 ?>
