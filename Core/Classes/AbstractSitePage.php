@@ -1,5 +1,6 @@
 <?php
 namespace Core\Classes;
+use Core\Interfaces as Interfaces;
 /** 
 *	An abstract implementation of a SitePage
 *	SitePages are used to define metadata like subaction options, titles and user security levels
@@ -7,7 +8,7 @@ namespace Core\Classes;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-abstract class AbstractSitePage {
+abstract class AbstractSitePage implements Interfaces\SitePage {
 	/** @var int $accessLevel The security restriction for the page */
 	protected $accessLevel;
 	/** @var string $name The name of the page */
@@ -50,7 +51,7 @@ abstract class AbstractSitePage {
 	*	Sets the access level for the page
 	*	@param int The access level for the page (Defaults to 0)
 	*/
-	protected function setAccessLevel($accessLevel=0) {
+	public function setAccessLevel($accessLevel=0) {
 		$this->accessLevel = $accessLevel;
 	}
 
