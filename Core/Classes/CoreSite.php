@@ -26,7 +26,14 @@ class CoreSite extends AbstractSite {
 	*	Associates the session User with CoreSite
 	*/
 	protected function setUser() {
-		if (isset($this->getSiteConfig()['USECAS']) && $this->getSiteConfig()['USECAS']) {
+		if (!empty($this->getSiteConfig()['USER_CLASS'])) {
+			$className = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Data\\{$this->getSiteConfig()['USER_CLASS']}";
+			if (class_exists($className)) {
+				$this->setGlobalUser(new $className());
+			} else {
+				$this->getLogger()->error("Configured User class not found: {$className}");
+			}
+		} else if (isset($this->getSiteConfig()['USECAS']) && $this->getSiteConfig()['USECAS']) {
 			$this->setGlobalUser(new Data\UserCAS($this->getSanitizedInputData(),$this->getDataRepository('Users')));
 		} else {
 			$this->setGlobalUser(new Data\User());
