@@ -1,5 +1,6 @@
 <?php
 namespace Core\Classes\Data;
+use Core\Interfaces as Interfaces;
 
 /** 
 *	Represents the application user
@@ -7,7 +8,7 @@ namespace Core\Classes\Data;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class User extends DBObject {
+class User extends DBObject implements Interfaces\User {
 	private $sessionName;
 	/** @var mixed[] $profile An associative array of the User's profile data */
 	private $profile;
