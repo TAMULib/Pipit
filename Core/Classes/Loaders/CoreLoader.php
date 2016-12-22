@@ -113,28 +113,46 @@ class CoreLoader implements CoreInterfaces\Loader {
 		//set the ViewRenderer
 		$config = $this->getConfig();
 		$inputData = $this->getSite()->getSanitizedInputData();
-		$viewRendererFlag = false;
-		if (!empty($inputData['json'])) {
-			$this->getSite()->setViewRenderer(new CoreClasses\ViewRenderers\JSONViewRenderer());
-			$viewRendererFlag = true;
+		if ($viewRendererName = $this->getViewRendererName()) {
+			$this->getSite()->setViewRenderer(new $viewRendererName($this->getSite()->getGlobalUser(),$this->getSite()->getPages(),$inputData,(!empty($config['controllerConfig']) ? $config['controllerConfig']['name']:null)));
 		} else {
-			if (!empty($config['VIEW_RENDERER'])) {
-				if (class_exists("{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {
-					$className = "{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}";
-				} elseif (class_exists("{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {
-					$className = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}";
-				}
-			}
-			if (!$className) {
-				$className = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\HTMLViewRenderer";
-			}
-			$this->getSite()->setViewRenderer(new $className($this->getSite()->getGlobalUser(),$this->getSite()->getPages(),$inputData,(!empty($config['controllerConfig']) ? $config['controllerConfig']['name']:null)));
-			$viewRendererFlag = true;
-		}
-		if (!$viewRendererFlag) {
 			$this->logger->error("ViewRenderer Class not found");
 			exit;
 		}
+	}
+
+	/**
+	*	Provides the fully qualified class name of the ViewRenderer that should be used to render the response
+	*	App level extenders of CoreLoader can override this method to use their own criteria to select the ViewRenderer
+	*	@return string $viewRendererName - The fully qualified class name of the ViewRenderer to be used to render the response
+	*/
+	protected function getViewRendererName() {
+		$config = $this->getConfig();
+		$inputData = $this->getSite()->getSanitizedInputData();
+		$viewRendererName = null;
+
+		$availableCoreRenderers = array("json","csv","html");
+
+		$viewRenderOverride = null;
+
+		//legacy support for original GET request of JSONViewRenderer
+		if (!empty($inputData['json'])) {
+			$viewRenderOverride = "JSONViewRenderer";
+		} else if (!empty($inputData['view_renderer']) && in_array($inputData['view_renderer'],$availableCoreRenderers)) {
+			$viewRenderOverride = "{$inputData['view_renderer']}ViewRenderer";
+		}
+		if ($viewRenderOverride) {
+			$viewRendererName = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$viewRenderOverride}";
+		} else if (!empty($config['VIEW_RENDERER'])) {
+			if (class_exists("{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {
+				$viewRendererName = "{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}";
+			} elseif (class_exists("{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {
+				$viewRendererName = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}";
+			}
+		} else {
+			$viewRendererName = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\HTMLViewRenderer";
+		}
+		return $viewRendererName;
 	}
 
 	/**
