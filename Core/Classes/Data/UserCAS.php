@@ -7,7 +7,7 @@ namespace Core\Classes\Data;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class UserCAS extends User {
+class UserCAS extends UserDB {
 	private $casPaths;
 	private $usersRepo;
 

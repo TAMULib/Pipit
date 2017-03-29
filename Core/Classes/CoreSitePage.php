@@ -10,6 +10,15 @@ namespace Core\Classes;
 
 class CoreSitePage extends AbstractSitePage {
 
+	public function isAdminPage() {
+		//any AccessLevel above SECURITY_USER is an admin page
+		return ($this->getAccessLevel() > SECURITY_USER);
+	}
+
+	public function isPublicPage() {
+		return ($this->getAccessLevel() == SECURITY_PUBLIC);
+	}
+
 	public function setTitle($title) {
 		$this->title = $title;
 	}
@@ -48,6 +57,6 @@ class CoreSitePage extends AbstractSitePage {
 
 	public function getSearchableFields() {
 		return $this->searchableFields;
-	} 
+	}
 }
 ?>

@@ -87,6 +87,8 @@ abstract class AbstractSitePage implements Interfaces\SitePage {
 		$this->path = $path;
 	}
 
+	abstract public function isAdminPage();
+	abstract public function isPublicPage();
 	abstract public function setTitle($title);
 	abstract public function getTitle();
 	abstract public function setSubTitle($subTitle);

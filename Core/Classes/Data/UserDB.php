@@ -8,7 +8,7 @@ use Core\Interfaces as Interfaces;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class User extends DBObject implements Interfaces\User {
+class UserDB extends DBObject implements Interfaces\User {
 	/** @var string $sessionName A string scoping the user's session variables within their larger PHP $_SESSION array */
 	private $sessionName;
 	/** @var mixed[] $profile An associative array of the User's profile data */
@@ -117,7 +117,7 @@ class User extends DBObject implements Interfaces\User {
 	*	@return boolean
 	*/
 	function isAdmin() {
-		if ($this->isLoggedIn() && $this->getProfileValue("isadmin")) {
+		if ($this->isLoggedIn() && $this->getProfileValue("role") > SECURITY_USER) {
 			return true;
 		}
 		return false;
