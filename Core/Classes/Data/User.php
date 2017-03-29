@@ -9,6 +9,7 @@ use Core\Interfaces as Interfaces;
 */
 
 class User extends DBObject implements Interfaces\User {
+	/** @var string $sessionName A string scoping the user's session variables within their larger PHP $_SESSION array */
 	private $sessionName;
 	/** @var mixed[] $profile An associative array of the User's profile data */
 	private $profile;
@@ -18,7 +19,8 @@ class User extends DBObject implements Interfaces\User {
 	*/
 	public function __construct() {
 		parent::__construct();
-		$this->sessionUserId = isset($_SESSION[SESSION_SCOPE]['sessionData']['userId']) ? $_SESSION[SESSION_SCOPE]['sessionData']['userId']:NULL;
+		$this->sessionName = SESSION_SCOPE;
+		$this->sessionUserId = isset($_SESSION[$this->sessionName]['sessionData']['userId']) ? $_SESSION[$this->sessionName]['sessionData']['userId']:NULL;
 		$this->primaryTable = 'users';
 		if ($this->isLoggedIn()) {
 			$this->buildProfile();
@@ -31,7 +33,7 @@ class User extends DBObject implements Interfaces\User {
 	*/
 	public function logOut() {
 		if ($this->isLoggedIn()) {
-			unset($_SESSION[SESSION_SCOPE]['sessionData']);
+			unset($_SESSION[$this->sessionName]['sessionData']);
 			session_destroy();
 			return true;
 		}
@@ -69,7 +71,7 @@ class User extends DBObject implements Interfaces\User {
 		$sql = "SELECT id,password FROM {$this->primaryTable} WHERE username=:username AND inactive=0";
 		if ($result = $this->executeQuery($sql,array(":username"=>$username))) {
 			if (password_verify($password,$result[0]['password'])) {
-				$_SESSION[SESSION_SCOPE]['sessionData']['userId'] = $result[0]['id'];
+				$_SESSION[$this->sessionName]['sessionData']['userId'] = $result[0]['id'];
 				return true;			
 			}
 		}
