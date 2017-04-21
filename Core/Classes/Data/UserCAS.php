@@ -58,7 +58,7 @@ class UserCAS extends UserDB {
 			if (!empty($userId)) {
 				session_regenerate_id(true);
 				session_start();
-				$_SESSION[SESSION_SCOPE]['sessionData']['userId'] = $userId;
+				$this->setSessionUserId($userId);
 				$this->buildProfile();
 				return true;
 			}
