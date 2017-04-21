@@ -7,7 +7,7 @@ namespace Core\Classes\Data;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class UserCAS extends User {
+class UserCAS extends UserDB {
 	private $casPaths;
 	private $usersRepo;
 
@@ -58,7 +58,7 @@ class UserCAS extends User {
 			if (!empty($userId)) {
 				session_regenerate_id(true);
 				session_start();
-				$_SESSION[SESSION_SCOPE]['sessionData']['userId'] = $userId;
+				$this->setSessionUserId($userId);
 				$this->buildProfile();
 				return true;
 			}

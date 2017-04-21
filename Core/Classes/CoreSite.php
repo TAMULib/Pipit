@@ -36,7 +36,7 @@ class CoreSite extends AbstractSite {
 		} else if (isset($this->getSiteConfig()['USECAS']) && $this->getSiteConfig()['USECAS']) {
 			$this->setGlobalUser(new Data\UserCAS($this->getSanitizedInputData(),$this->getDataRepository('Users')));
 		} else {
-			$this->setGlobalUser(new Data\User());
+			$this->setGlobalUser(new Data\UserDB());
 		}
 	}
 
@@ -76,18 +76,18 @@ class CoreSite extends AbstractSite {
 				$this->setCurrentPage($this->getPages()[$controllerName]);
 			}
 			$currentPage = $this->getCurrentPage();
-			if ($currentPage->getAccessLevel() == SECURITY_ADMIN) {
+			if ($currentPage->isAdminPage()) {
 				//if the user is an admin, load the admin controller, otherwise, return false;
 				if ($this->getGlobalUser()->isAdmin()) {
 					if ($controllerName) {
-						$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}admin/{$currentPage->getPath()}/");
+						$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}{$currentPage->getPath()}/");
 						$controllerClass = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Controllers\\".ucfirst($controllerName)."AdminController";
 					} else {
-						$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}admin/");
+						$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}");
 						$controllerClass = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Controllers\\DefaultAdminController";
 					}
 				}
-			} elseif ($this->getGlobalUser()->isLoggedIn() || $currentPage->getAccessLevel() == SECURITY_PUBLIC) {
+			} elseif ($this->getGlobalUser()->isLoggedIn() || $currentPage->isPublicPage()) {
 				//load standard controller
 				$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}{$currentPage->getPath()}/");
 				$controllerClass = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Controllers\\".ucfirst($controllerName)."Controller";

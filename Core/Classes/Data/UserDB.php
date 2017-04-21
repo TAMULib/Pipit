@@ -8,9 +8,11 @@ use Core\Interfaces as Interfaces;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class User extends DBObject implements Interfaces\User {
+class UserDB extends DBObject implements Interfaces\User {
 	/** @var string $sessionName A string scoping the user's session variables within their larger PHP $_SESSION array */
 	private $sessionName;
+	/** @var mixed $sessionUserId A unique identifier for the User to be stored within their session data */
+	private $sessionUserId;
 	/** @var mixed[] $profile An associative array of the User's profile data */
 	private $profile;
 
@@ -19,12 +21,39 @@ class User extends DBObject implements Interfaces\User {
 	*/
 	public function __construct() {
 		parent::__construct();
-		$this->sessionName = SESSION_SCOPE;
-		$this->sessionUserId = isset($_SESSION[$this->sessionName]['sessionData']['userId']) ? $_SESSION[$this->sessionName]['sessionData']['userId']:NULL;
+		$this->setSessionName(SESSION_SCOPE);
+		$this->setSessionUserId();
 		$this->primaryTable = 'users';
 		if ($this->isLoggedIn()) {
 			$this->buildProfile();
 		}
+	}
+
+	/**
+	*	Get the name of the session, which is used as a key within the $_SESSION array
+	*	@return string The name of the session
+	*/
+	protected function getSessionName() {
+		return $this->sessionName;
+	}
+
+	protected function setSessionName($sessionName) {
+		$this->sessionName = $sessionName;
+	}
+
+	/**
+	*	Get the unique identifier for the User as stored in $_SESSION
+	*	@return mixed The User's ID
+	*/
+	protected function getSessionUserId($userId=null) {
+		return $this->sessionUserId;
+	}
+
+	protected function setSessionUserId($sessionUserId=null) {
+		if ($sessionUserId) {
+			$_SESSION[$this->getSessionName()]['sessionData']['userId'] = $sessionUserId;
+		}
+		$this->sessionUserId = $_SESSION[$this->getSessionName()]['sessionData']['userId'];
 	}
 
 	/**
@@ -71,7 +100,7 @@ class User extends DBObject implements Interfaces\User {
 		$sql = "SELECT id,password FROM {$this->primaryTable} WHERE username=:username AND inactive=0";
 		if ($result = $this->executeQuery($sql,array(":username"=>$username))) {
 			if (password_verify($password,$result[0]['password'])) {
-				$_SESSION[$this->sessionName]['sessionData']['userId'] = $result[0]['id'];
+				$this->setSessionUserId($result[0]['id']);
 				return true;			
 			}
 		}
@@ -83,7 +112,7 @@ class User extends DBObject implements Interfaces\User {
 	*/
 	protected function buildProfile() {
 		$sql = "SELECT * FROM {$this->primaryTable} WHERE id=:id";
-		if ($user = $this->executeQuery($sql,array(":id"=>$this->sessionUserId))[0]) {
+		if ($user = $this->executeQuery($sql,array(":id"=>$this->getSessionUserId()))[0]) {
 			unset($user['password']);
 			foreach ($user as $field=>$value) {
 				$this->profile[$field] = $value;
@@ -117,7 +146,7 @@ class User extends DBObject implements Interfaces\User {
 	*	@return boolean
 	*/
 	function isAdmin() {
-		if ($this->isLoggedIn() && $this->getProfileValue("isadmin")) {
+		if ($this->isLoggedIn() && $this->getProfileValue("role") > SECURITY_USER) {
 			return true;
 		}
 		return false;

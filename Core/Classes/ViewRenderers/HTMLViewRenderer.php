@@ -119,10 +119,10 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 	}
 
 	/**
-	*	@return string The full path to the admin views directory
+	*	@return string The full path to the admin views directory (by default, this is the same as the standard path)
 	*/
 	protected function getAdminViewPath() {
-		return "{$this->getAppContextProperty('config')['PATH_VIEWS']}{$this->viewPath}/{$this->adminPath}/";
+		return $this->getViewPath();
 	}
 
 	/**
