@@ -107,5 +107,17 @@ interface SitePage {
 	*	@return string[] $searchableFields
 	*/
 	public function getSearchableFields();
+
+	/**
+	*	Is this page restricted to administrative users?
+	*	@return boolean
+	*/
+	public function isAdminPage();
+
+	/**
+	* 	Should this page be available to all users?
+	*	@return boolean
+	*/
+	public function isPublicPage();
 }
 ?>
