@@ -1,7 +1,10 @@
 # Pipit
 A basic PHP framework for web app development
 
-## Documentation
+## Seed App Implementation (Start Here)
+https://github.com/TAMULib/Pipit-Seed
+
+## API Documentation
 https://tamulib.github.io/Pipit/api/
 
 ## Features
@@ -12,5 +15,3 @@ https://tamulib.github.io/Pipit/api/
 * User session management, including admin authorization
 * CAS support
 * LDAP Utility
-* Convention based javascript built on jQuery provides easy modal loading, AJAX updating, and user notifications
-* Offers a complete, working seed app as a starting point.
