@@ -109,19 +109,26 @@ class CoreSite extends AbstractSite {
 		//first check if we've already instantiated this DataRepository
 		$repository = $this->getCachedDataRepository($repositoryName);
 		if (!$repository) {
-			$className = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Data\\{$repositoryName}";
-			//We found a DataRepository named $repositoryName, so let's instantiate, configure and cache it
-			if (class_exists($className)) {
-				$repository = new $className();
-				$setSiteMethod = 'setSite';
-				//provides the CoreSite instance to DataRepositories that have asked for it.
-				if (is_callable(array($repository,$setSiteMethod))) {
-					$repository->$setSiteMethod($this);
-				}
+			if (array_key_exists($repositoryName,$this->getSiteConfig()['simpleRepositories'])) {
+				$repository = new Data\SimpleDatabaseRepository($this->getSiteConfig()['simpleRepositories'][$repositoryName]['table'],$this->getSiteConfig()['simpleRepositories'][$repositoryName]['key']);
 				$this->addCachedDataRepository($repositoryName,$repository);
-				$this->getLogger()->debug("Providing FRESH Repo: ".$repositoryName);
 			} else {
+				$className = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Data\\{$repositoryName}";
+				//We found a DataRepository named $repositoryName, so let's instantiate, configure and cache it
+				if (class_exists($className)) {
+					$repository = new $className();
+					$setSiteMethod = 'setSite';
+					//provides the CoreSite instance to DataRepositories that have asked for it.
+					if (is_callable(array($repository,$setSiteMethod))) {
+						$repository->$setSiteMethod($this);
+					}
+					$this->addCachedDataRepository($repositoryName,$repository);
+				}
+			}
+			if (!$repository) {
 				$this->getLogger()->error("Could not find Repository: ".$repositoryName);
+			} else {
+				$this->getLogger()->debug("Providing FRESH Repo: ".$repositoryName);
 			}
 		} else {
 			$this->getLogger()->debug("Providing CACHED Repo: ".$repositoryName);
