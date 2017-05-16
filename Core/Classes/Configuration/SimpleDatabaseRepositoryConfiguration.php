@@ -4,7 +4,7 @@ namespace Core\Classes\Configuration;
 *	A Configuration class representing a SimpleRepository configuration
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
-class SimpleRepositoryConfiguration extends AbstractConfiguration {
+class SimpleDatabaseRepositoryConfiguration extends AbstractConfiguration {
 	protected $tableName;
 	protected $primaryKey;
 	protected $defaultOrderBy;
