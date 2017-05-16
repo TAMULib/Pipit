@@ -9,7 +9,9 @@ namespace Core\Classes;
 class CoreSite extends AbstractSite {
 	/** @var Core\Interfaces\DataRepository[] $cachedDataRepositories A store of DataRepositories to provide (singletons) to requestors */
 	protected $cachedDataRepositories = array();
+	/** @var string $redirectUrl A url to be redirected to */
 	private $redirectUrl = null;
+	/** @var string $simpleRepositoryKey The key to the location in $siteConfig of an array of SimpleRepositoryConfiguration */
 	private $simpleRepositoryKey;
 
 	/**
@@ -112,8 +114,7 @@ class CoreSite extends AbstractSite {
 		$repository = $this->getCachedDataRepository($repositoryName);
 		if (!$repository) {
 			if (is_array($this->getSiteConfig()[$this->getSimpleRepositoryKey()]) && array_key_exists($repositoryName,$this->getSiteConfig()[$this->getSimpleRepositoryKey()])) {
-				$repositoryConfig = $this->getSiteConfig()[$this->getSimpleRepositoryKey()][$repositoryName];
-				$repository = new Data\SimpleDatabaseRepository($repositoryConfig->getTableName(),$repositoryConfig->getPrimaryKey(),$repositoryConfig->getDefaultOrderBy(),$repositoryConfig->getGettableColumns(),$repositoryConfig->getSearchableColumns());
+				$repository = new Data\SimpleDatabaseRepository($this->getSiteConfig()[$this->getSimpleRepositoryKey()][$repositoryName]);
 				$this->addCachedDataRepository($repositoryName,$repository);
 			} else {
 				$className = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Data\\{$repositoryName}";

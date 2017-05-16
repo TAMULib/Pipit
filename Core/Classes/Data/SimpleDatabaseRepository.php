@@ -7,7 +7,12 @@ namespace Core\Classes\Data;
 */
 
 class SimpleDataBaseRepository extends AbstractDatabaseRepository {
-	public function __construct($tableName,$primaryKey,$defaultOrderBy=null,$gettableColumns=null,$searchableColumns=null) {
-		parent::__construct($tableName,$primaryKey,$defaultOrderBy,$gettableColumns,$searchableColumns);
+	/**
+	* Constructor for SimpleDatabaseRepository
+	*
+	* @param SimpleRepositoryConfiguration $configuration An instance of SimpleRepositoryConfiguration
+	*/
+	public function __construct($configuration) {
+		parent::__construct($configuration->getTableName(),$configuration->getPrimaryKey(),$configuration->getDefaultOrderBy(),$configuration->getGettableColumns(),$configuration->getSearchableColumns());
 	}
 }
