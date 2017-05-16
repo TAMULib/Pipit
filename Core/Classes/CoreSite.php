@@ -10,6 +10,7 @@ class CoreSite extends AbstractSite {
 	/** @var Core\Interfaces\DataRepository[] $cachedDataRepositories A store of DataRepositories to provide (singletons) to requestors */
 	protected $cachedDataRepositories = array();
 	private $redirectUrl = null;
+	private $simpleRepositoryKey;
 
 	/**
 	*	Constructs an instance of CoreSite
@@ -20,6 +21,7 @@ class CoreSite extends AbstractSite {
 		$this->setPages($siteConfig['sitePages']);
 		$this->generateSanitizedInputData();
 		$this->setUser();
+		$this->setSimpleRepositoryKey($siteConfig['SIMPLE_REPOSITORY_KEY']);
 	}
 
 	/**
@@ -109,8 +111,9 @@ class CoreSite extends AbstractSite {
 		//first check if we've already instantiated this DataRepository
 		$repository = $this->getCachedDataRepository($repositoryName);
 		if (!$repository) {
-			if (array_key_exists($repositoryName,$this->getSiteConfig()['simpleRepositories'])) {
-				$repository = new Data\SimpleDatabaseRepository($this->getSiteConfig()['simpleRepositories'][$repositoryName]['table'],$this->getSiteConfig()['simpleRepositories'][$repositoryName]['key']);
+			if (is_array($this->getSiteConfig()[$this->getSimpleRepositoryKey()]) && array_key_exists($repositoryName,$this->getSiteConfig()[$this->getSimpleRepositoryKey()])) {
+				$repositoryConfig = $this->getSiteConfig()[$this->getSimpleRepositoryKey()][$repositoryName];
+				$repository = new Data\SimpleDatabaseRepository($repositoryConfig->getTableName(),$repositoryConfig->getPrimaryKey(),$repositoryConfig->getDefaultOrderBy(),$repositoryConfig->getGettableColumns(),$repositoryConfig->getSearchableColumns());
 				$this->addCachedDataRepository($repositoryName,$repository);
 			} else {
 				$className = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Data\\{$repositoryName}";
@@ -167,6 +170,14 @@ class CoreSite extends AbstractSite {
 		$this->getLogger()->debug("REDIRECTING TO: {$this->redirectUrl}");
 		header("Location: {$this->redirectUrl}");
 		exit;
+	}
+
+	protected function getSimpleRepositoryKey() {
+		return $this->simpleRepositoryKey;
+	}
+
+	protected function setSimpleRepositoryKey($simpleRepositoryKey) {
+		$this->simpleRepositoryKey = $simpleRepositoryKey;
 	}
 }
 ?>
