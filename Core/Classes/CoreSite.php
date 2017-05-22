@@ -11,8 +11,8 @@ class CoreSite extends AbstractSite {
 	protected $cachedDataRepositories = array();
 	/** @var string $redirectUrl A url to be redirected to */
 	private $redirectUrl = null;
-	/** @var string $simpleRepositoryKey The key to the location in $siteConfig of an array of SimpleRepositoryConfiguration */
-	private $simpleRepositoryKey;
+	/** @var string $dynamicRepositoryKey The key to the location in $siteConfig of an array of DynamicRepositoryConfiguration */
+	private $dynamicRepositoryKey;
 
 	/**
 	*	Constructs an instance of CoreSite
@@ -23,7 +23,7 @@ class CoreSite extends AbstractSite {
 		$this->setPages($siteConfig['sitePages']);
 		$this->generateSanitizedInputData();
 		$this->setUser();
-		$this->setSimpleRepositoryKey($siteConfig['SIMPLE_REPOSITORY_KEY']);
+		$this->setDynamicRepositoryKey($siteConfig['DYNAMIC_REPOSITORY_KEY']);
 	}
 
 	/**
@@ -113,8 +113,8 @@ class CoreSite extends AbstractSite {
 		//first check if we've already instantiated this DataRepository
 		$repository = $this->getCachedDataRepository($repositoryName);
 		if (!$repository) {
-			if (is_array($this->getSiteConfig()[$this->getSimpleRepositoryKey()]) && array_key_exists($repositoryName,$this->getSiteConfig()[$this->getSimpleRepositoryKey()])) {
-				$repository = new Data\SimpleDatabaseRepository($this->getSiteConfig()[$this->getSimpleRepositoryKey()][$repositoryName]);
+			if (is_array($this->getSiteConfig()[$this->getDynamicRepositoryKey()]) && array_key_exists($repositoryName,$this->getSiteConfig()[$this->getDynamicRepositoryKey()])) {
+				$repository = new Data\DynamicDatabaseRepository($this->getSiteConfig()[$this->getDynamicRepositoryKey()][$repositoryName]);
 				$this->addCachedDataRepository($repositoryName,$repository);
 			} else {
 				$className = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Data\\{$repositoryName}";
@@ -173,12 +173,12 @@ class CoreSite extends AbstractSite {
 		exit;
 	}
 
-	protected function getSimpleRepositoryKey() {
-		return $this->simpleRepositoryKey;
+	protected function getDynamicRepositoryKey() {
+		return $this->dynamicRepositoryKey;
 	}
 
-	protected function setSimpleRepositoryKey($simpleRepositoryKey) {
-		$this->simpleRepositoryKey = $simpleRepositoryKey;
+	protected function setDynamicRepositoryKey($dynamicRepositoryKey) {
+		$this->dynamicRepositoryKey = $dynamicRepositoryKey;
 	}
 }
 ?>

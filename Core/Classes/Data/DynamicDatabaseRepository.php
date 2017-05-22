@@ -6,11 +6,11 @@ namespace Core\Classes\Data;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class SimpleDataBaseRepository extends AbstractDatabaseRepository {
+class DynamicDataBaseRepository extends AbstractDatabaseRepository {
 	/**
-	* Constructor for SimpleDatabaseRepository
+	* Constructor for DynamicDatabaseRepository
 	*
-	* @param SimpleRepositoryConfiguration $configuration An instance of SimpleRepositoryConfiguration
+	* @param DynamicRepositoryConfiguration $configuration An instance of DynamicRepositoryConfiguration
 	*/
 	public function __construct($configuration) {
 		parent::__construct($configuration->getTableName(),$configuration->getPrimaryKey(),$configuration->getDefaultOrderBy(),$configuration->getGettableColumns(),$configuration->getSearchableColumns());

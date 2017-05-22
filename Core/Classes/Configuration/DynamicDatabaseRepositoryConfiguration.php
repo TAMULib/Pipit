@@ -1,10 +1,10 @@
 <?php
 namespace Core\Classes\Configuration;
 /** 
-*	A Configuration class representing a SimpleRepository configuration
+*	A Configuration class representing a DynamicDatabaseRepository configuration
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
-class SimpleDatabaseRepositoryConfiguration extends AbstractConfiguration {
+class DynamicDatabaseRepositoryConfiguration extends AbstractConfiguration {
 	protected $tableName;
 	protected $primaryKey;
 	protected $defaultOrderBy;
