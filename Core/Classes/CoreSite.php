@@ -9,7 +9,10 @@ namespace Core\Classes;
 class CoreSite extends AbstractSite {
 	/** @var Core\Interfaces\DataRepository[] $cachedDataRepositories A store of DataRepositories to provide (singletons) to requestors */
 	protected $cachedDataRepositories = array();
+	/** @var string $redirectUrl A url to be redirected to */
 	private $redirectUrl = null;
+	/** @var string $dynamicRepositoryKey The key to the location in $siteConfig of an array of DynamicRepositoryConfiguration */
+	private $dynamicRepositoryKey;
 
 	/**
 	*	Constructs an instance of CoreSite
@@ -20,6 +23,7 @@ class CoreSite extends AbstractSite {
 		$this->setPages($siteConfig['sitePages']);
 		$this->generateSanitizedInputData();
 		$this->setUser();
+		$this->setDynamicRepositoryKey($siteConfig['DYNAMIC_REPOSITORY_KEY']);
 	}
 
 	/**
@@ -109,19 +113,26 @@ class CoreSite extends AbstractSite {
 		//first check if we've already instantiated this DataRepository
 		$repository = $this->getCachedDataRepository($repositoryName);
 		if (!$repository) {
-			$className = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Data\\{$repositoryName}";
-			//We found a DataRepository named $repositoryName, so let's instantiate, configure and cache it
-			if (class_exists($className)) {
-				$repository = new $className();
-				$setSiteMethod = 'setSite';
-				//provides the CoreSite instance to DataRepositories that have asked for it.
-				if (is_callable(array($repository,$setSiteMethod))) {
-					$repository->$setSiteMethod($this);
-				}
+			if (is_array($this->getSiteConfig()[$this->getDynamicRepositoryKey()]) && array_key_exists($repositoryName,$this->getSiteConfig()[$this->getDynamicRepositoryKey()])) {
+				$repository = new Data\DynamicDatabaseRepository($this->getSiteConfig()[$this->getDynamicRepositoryKey()][$repositoryName]);
 				$this->addCachedDataRepository($repositoryName,$repository);
-				$this->getLogger()->debug("Providing FRESH Repo: ".$repositoryName);
 			} else {
+				$className = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Data\\{$repositoryName}";
+				//We found a DataRepository named $repositoryName, so let's instantiate, configure and cache it
+				if (class_exists($className)) {
+					$repository = new $className();
+					$setSiteMethod = 'setSite';
+					//provides the CoreSite instance to DataRepositories that have asked for it.
+					if (is_callable(array($repository,$setSiteMethod))) {
+						$repository->$setSiteMethod($this);
+					}
+					$this->addCachedDataRepository($repositoryName,$repository);
+				}
+			}
+			if (!$repository) {
 				$this->getLogger()->error("Could not find Repository: ".$repositoryName);
+			} else {
+				$this->getLogger()->debug("Providing FRESH Repo: ".$repositoryName);
 			}
 		} else {
 			$this->getLogger()->debug("Providing CACHED Repo: ".$repositoryName);
@@ -160,6 +171,14 @@ class CoreSite extends AbstractSite {
 		$this->getLogger()->debug("REDIRECTING TO: {$this->redirectUrl}");
 		header("Location: {$this->redirectUrl}");
 		exit;
+	}
+
+	protected function getDynamicRepositoryKey() {
+		return $this->dynamicRepositoryKey;
+	}
+
+	protected function setDynamicRepositoryKey($dynamicRepositoryKey) {
+		$this->dynamicRepositoryKey = $dynamicRepositoryKey;
 	}
 }
 ?>
