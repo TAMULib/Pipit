@@ -83,6 +83,7 @@ class CoreSite extends AbstractSite {
 			if ($currentPage->isAdminPage()) {
 				//if the user is an admin, load the admin controller, otherwise, return false;
 				if ($this->getGlobalUser()->isAdmin()) {
+					/** @todo This conditional no longer makes sense.  */
 					if ($controllerName) {
 						$this->getViewRenderer()->registerAppContextProperty("app_http", "{$this->getSiteConfig()['PATH_HTTP']}{$currentPage->getPath()}/");
 						$controllerClass = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Controllers\\".ucfirst($controllerName)."AdminController";
