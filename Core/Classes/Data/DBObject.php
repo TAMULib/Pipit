@@ -5,6 +5,7 @@ use \PDO;
 /** 
 * 	Provides a PDO DB connection to instances of dbobject and its descendants
 *	@author Jason Savell <jsavell@library.tamu.edu>
+*	@todo Remove hidden dependency on $GLOBALS or throw a meaningful exception when the db config vars are missing
 *
 */
 

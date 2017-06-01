@@ -32,6 +32,7 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 	*	@param Core\Interfaces\SitePage[] $pages The application pages
 	*	@param mixed[] $data The data to be presented by the views
 	*	@param string $controllerName The name of the active Controller. Helps with discrete loading of Controller specific static resources
+	*	@todo Either handle the case of the missing $GLOBALS['config'] with a meaningful exception or ideally, 
 	*/
 	public function __construct($globalUser,$pages,$data,$controllerName) {
 		$this->registerAppContextProperty("config", $GLOBALS['config']);
