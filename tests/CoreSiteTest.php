@@ -25,8 +25,7 @@ class CoreSiteTest extends \Codeception\Test\Unit
     // tests
     public function testConfiguredUser()
     {
-        $this->config['USER_CLASS'] = 'TestUser';
-        $coreSite = new PipitCore\Classes\CoreSite($this->config);
+        $coreSite = $this->getCoreSiteInstance('TestUser',array("Test" => new PipitCore\Classes\CoreSitePage("Test","Test",SECURITY_PUBLIC)));
         $this->assertEquals('TestFiles\Classes\Data\TestUser',get_class($coreSite->getGlobalUser()));
     }
 
