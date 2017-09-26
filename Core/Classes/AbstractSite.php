@@ -125,4 +125,11 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	*	@param string The name of the desired Interfaces\DataRepository
 	*/
 	abstract public function getDataRepository($repositoryName);
+
+	/**
+	*	Provides a uniform approach to fetching Helper service classes
+	*	Should handle all instantiation and any desired caching of Helpers
+	*	@param string The name of the desired Helper
+	*/
+	abstract public function getHelper($helperName);
 }
