@@ -49,6 +49,7 @@ class FileManager extends AbstractHelper {
 
 	public function getDownloadableFile(Interfaces\File $file) {
 		$fileLocation = $this->getBaseFilePath().$file->getFullPath();
+		$this->checkFile($fileLocation);
 		header("Content-Type: ".mime_content_type($fileLocation));
 		header("Content-Length: ".filesize($fileLocation));
 		header("Content-Disposition: attachment; filename=".($file->getGloss() ? $file->getGloss():$file->getFileName()));
@@ -101,11 +102,15 @@ class FileManager extends AbstractHelper {
 
 	public function getFileFromFileName($fileName) {
 		$filePath = $this->getBaseFilePath().$fileName;
+		$this->checkFile($filePath);
+		$fileInfo = pathinfo($this->getBaseFilePath().$fileName);
+		return new CoreData\SimpleFile($fileInfo['filename'],null,$fileInfo['extension'],$fileInfo['basename']);
+	}
+
+	private function checkFile($filePath) {
 		if (!is_file($filePath)) {
 			throw new \RuntimeException("Could not find file: {$filePath}");
 		}
-		$fileInfo = pathinfo($this->getBaseFilePath().$fileName);
-		return new CoreData\SimpleFile($fileInfo['filename'],null,$fileInfo['extension'],$fileInfo['basename']);
 	}
 }
 ?>
