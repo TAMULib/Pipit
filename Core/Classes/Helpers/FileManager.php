@@ -35,7 +35,7 @@ class FileManager extends AbstractHelper {
 			$fileName = sha1($uploadedFile.' '.time());
 		}
 
-		if ($file = fopen($uploadDir.$fileName,'w')) {
+		if (!($file = fopen($uploadDir.$fileName,'w'))) {
 			throw new \RuntimeException("Error opening file: ".$uploadDir.$fileName);
 		}
 		if (!fwrite($file,$uploadedFile)) {
