@@ -77,12 +77,14 @@ class FileManager extends AbstractHelper {
 	}
 
 	public function getDirectoryContents($directoryPath=null,$filesOnly=false) {
-		$pathNames = scandir($this->getBaseFilePath().$directoryPath);
+		$scanDirectory = $this->getBaseFilePath().$directoryPath;
+		$pathNames = scandir($scanDirectory);
 		if (!$pathNames) {
-			throw new \RuntimeException("Could not read directory: {$this->getBaseFilePath()}{$directoryPath}");
+			throw new \RuntimeException("Could not read directory: {$scanDirectory}");
 		}
+
 		if ($filesOnly) {
-			$pathNames = array_filter($pathNames,function($value) { return !is_dir($value);});
+			$pathNames = array_filter($pathNames,function($value) use ($scanDirectory) { return !is_dir($scanDirectory.$value);});
 		}
 		$contents = array();
 		foreach ($pathNames as $path) {
