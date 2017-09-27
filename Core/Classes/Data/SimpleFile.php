@@ -56,6 +56,6 @@ class SimpleFile implements Interfaces\File {
 		if ($fullPath) {
 			$fullPath .= '/';
 		}
-		return $fullPath.$this->getFileName();
+		return $fullPath.$this->getGloss();
 	}
 }

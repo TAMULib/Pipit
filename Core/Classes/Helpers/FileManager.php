@@ -44,16 +44,20 @@ class FileManager extends AbstractHelper {
 	}
 
 	public function getDownloadableFileByFileName($fileName) {
-		return $this->getDownloadableFile(new CoreData\SimpleFile($fileName,null,null,$fileName));
+		return $this->getDownloadableFile($this->getFileFromFileName($fileName));
 	}
 
 	public function getDownloadableFile(Interfaces\File $file) {
 		$fileLocation = $this->getBaseFilePath().$file->getFullPath();
-		header("Content-Type: image/png");
+		header("Content-Type: ".mime_content_type($fileLocation));
 		header("Content-Length: ".filesize($fileLocation));
 		header("Content-Disposition: attachment; filename=".($file->getGloss() ? $file->getGloss():$file->getFileName()));
 		readfile($fileLocation);
 		exit;
+	}
+
+	public function removeFileByFileName($fileName) {
+		return $this->removeFile($this->getFileFromFileName($fileName));
 	}
 
 	public function removeFile(Interfaces\File $file) {
@@ -90,9 +94,18 @@ class FileManager extends AbstractHelper {
 		$contents = $this->getDirectoryContents($directoryPath,true);
 		$files = array();
 		foreach ($contents as $fileInfo) {
-			$files[] = new CoreData\SimpleFile($fileInfo['filename'],$directoryPath,$fileInfo['extension'],$fileInfo['basename']);
+			$files[] = $this->getFileFromFileName($fileInfo['basename']);
 		}
 		return $files;
+	}
+
+	public function getFileFromFileName($fileName) {
+		$filePath = $this->getBaseFilePath().$fileName;
+		if (!is_file($filePath)) {
+			throw new \RuntimeException("Could not find file: {$filePath}");
+		}
+		$fileInfo = pathinfo($this->getBaseFilePath().$fileName);
+		return new CoreData\SimpleFile($fileInfo['filename'],null,$fileInfo['extension'],$fileInfo['basename']);
 	}
 }
 ?>
