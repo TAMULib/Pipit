@@ -4,8 +4,8 @@ use Core\Interfaces as Interfaces;
 use Core\Classes\Data as CoreData;
 
 class FileManager extends AbstractHelper {
-	public function setSite($site) {
-		parent::setSite($site);
+	public function configure(Interfaces\Site $site) {
+		parent::configure($site);
 		if (!$this->getSite()->getSiteConfig()['UPLOAD_PATH']) {
 			throw new \RuntimeException("The upload path has not been configured!");
 		}

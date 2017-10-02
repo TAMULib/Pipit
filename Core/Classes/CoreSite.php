@@ -174,11 +174,7 @@ class CoreSite extends AbstractSite {
 				//We found a Helper named $helperName, so let's instantiate, configure and cache it
 				if (class_exists($className)) {
 					$helper = new $className();
-					$setSiteMethod = 'setSite';
-					//provides the CoreSite instance to Helpers that have asked for it.
-					if (is_callable(array($helper,$setSiteMethod))) {
-						$helper->$setSiteMethod($this);
-					}
+					$helper->configure($this);
 					$this->addCachedHelper($helperName,$helper);
 					$this->getLogger()->debug("Providing FRESH Helper: ".$helperName);
 					break;
