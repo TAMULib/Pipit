@@ -123,11 +123,7 @@ class CoreSite extends AbstractSite {
 				//We found a DataRepository named $repositoryName, so let's instantiate, configure and cache it
 				if (class_exists($className)) {
 					$repository = new $className();
-					$setSiteMethod = 'setSite';
-					//provides the CoreSite instance to DataRepositories that have asked for it.
-					if (is_callable(array($repository,$setSiteMethod))) {
-						$repository->$setSiteMethod($this);
-					}
+					$repository->configure($this);
 					$this->addCachedDataRepository($repositoryName,$repository);
 				}
 			}

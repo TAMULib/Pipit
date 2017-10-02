@@ -9,7 +9,7 @@ use Core\Interfaces as Interfaces;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-abstract class AbstractDataBaseRepository extends DBObject implements Interfaces\DataRepository {
+abstract class AbstractDataBaseRepository extends DBObject implements Interfaces\DataRepository, Interfaces\Configurable {
 	/** @var Interfaces\Site $site This provides the Site context to all DatabaseRepositories extending this class */
 	protected $site;
 	/** @var string $primaryTable This is the name of the DB table managed by DatabaseRepositories extending this class */
@@ -149,5 +149,9 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	*/
 	public function setSite($site) {
 		$this->site = $site;
+	}
+
+	public function configure(Interfaces\Site $site) {
+		$this->setSite($site);
 	}
 }
