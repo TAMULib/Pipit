@@ -18,6 +18,7 @@ class JSONViewRenderer implements Interfaces\ViewRenderer {
 	*	Render as JSON any registered view variables
 	*/
 	public function renderView() {
+		header('Content-Type: application/json;charset=utf-8');
 		echo json_encode($this->getViewVariables());
 	}
 
