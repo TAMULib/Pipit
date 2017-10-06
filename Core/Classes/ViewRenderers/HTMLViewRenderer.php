@@ -39,8 +39,12 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 		$this->registerAppContextProperty("pages", $pages);
 		$this->registerAppContextProperty("data", $data);
 		$this->registerAppContextProperty("controllerName", $controllerName);
-		$this->setViewPath('html');
-		$this->setAdminViewPath('admin');
+
+		if (!empty($GLOBALS['config']['ACTIVE_THEME'])) {
+			$this->setViewPath($GLOBALS['config']['ACTIVE_THEME']);
+		} else {
+			$this->setViewPath('html');
+		}
 	}
 
 	/**
