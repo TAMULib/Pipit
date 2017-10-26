@@ -12,25 +12,26 @@ class PageableDatabaseRepository extends AbstractDataBaseRepository implements I
 	private $currentPage;
 
 	protected function getPagedQuery($query,$resultsPage) {
-		return $query." LIMIT ".($resultsPage->getPage()*$resultsPage->getResultsPerPage()).",{$resultsPage->getResultsPerPage()}";
+		return $query." LIMIT ".(($resultsPage->getPage()-1)*$resultsPage->getResultsPerPage()).",{$resultsPage->getResultsPerPage()}";
 	}
 
-	protected function getNewResultsPage($page,$resultsPerPage,$query,$countQuery,$bindparams=null) {
+	protected function getNewResultsPage($page,$resultsPerPage,$query,$resultsCount,$bindparams=null) {
 		$resultsPage = new ResultsPage();
 		$resultsPage->setPage($page);
 		if ($resultsPerPage) {
 			$resultsPage->setResultsPerPage($resultsPerPage);
 		}
-		$resultsPage->calculatePageCount($this->executeQuery($countQuery));
+
+		$resultsPage->calculatePageCount($resultsCount);
 		$resultsPage->setPageResults($this->executeQuery($this->getPagedQuery($this->getGetQuery(),$resultsPage)));
 		return $resultsPage;
 	}
 
-	public function pagedGet($page=0) {
+	public function pagedGet($page=1) {
 		return $this->getNewResultsPage($page,5,$this->getGetQuery(),$this->countGet());
 	}
 
-	public function pagedSearch($page=0,$term) {
+	public function pagedSearch($page=1,$term) {
 		$searchQuery = $this->getSearchQuery($term);
 		return $this->getNewResultsPage($page,5,$searchQuery[0],$this->countSearch($term),$searchQuery[1]);
 	}

@@ -43,4 +43,8 @@ class ResultsPage {
 	public function getResultsPerPage() {
 		return $this->resultsPerPage;
 	}
+
+	public function getPageCount() {
+		return $this->pageCount;
+	}
 }
