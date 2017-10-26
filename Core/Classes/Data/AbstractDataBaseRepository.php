@@ -48,11 +48,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	*	@return array[] $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2"))
 	*/
 	public function get() {
-		$sql = "SELECT ".(($this->gettableColumns) ? "{$this->primaryKey},".implode(",",$this->gettableColumns):"*")." FROM {$this->primaryTable}";
-		if ($this->defaultOrderBy) {
-			$sql .= " ORDER BY {$this->defaultOrderBy}";
-		}
-		return $this->queryWithIndex($sql,$this->primaryKey);
+		return $this->queryWithIndex($this->getGetQuery(),$this->primaryKey);
 	}
 
 	/**
@@ -63,19 +59,8 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	*/
 	public function search($term) {
 		if ($this->getSearchableColumns()) {
-			$sql = "SELECT * FROM {$this->primaryTable} WHERE ";
-
-			$searchColumns = $this->getSearchableColumns();
-			$bindParams = array();
-			$columnCount = count($searchColumns);
-			for ($x=0;$x<$columnCount;$x++) {
-				$sql .= "({$searchColumns[$x]} LIKE :t{$x})";
-				if ($columnCount > 1 && $x != ($columnCount-1)) {
-					$sql .= " OR ";
-				}
-				$bindparams[":t{$x}"] = "%".$term."%";
-			}
-			if ($result = $this->executeQuery($sql,$bindparams)) {
+			$searchQuery = $this->getSearchQuery($term);
+			if ($result = $this->executeQuery($searchQuery[0],$searchQuery[1])) {
 				return $result;
 			}
 		}
@@ -153,5 +138,38 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 
 	public function configure(Interfaces\Site $site) {
 		$this->setSite($site);
+	}
+
+	protected function getGetQuery() {
+		$sql = "SELECT ".(($this->gettableColumns) ? "{$this->primaryKey},".implode(",",$this->gettableColumns):"*")."  {$this->getBaseQuery()}";
+		if ($this->defaultOrderBy) {
+			$sql .= " ORDER BY {$this->defaultOrderBy}";
+		}
+		return $sql;
+	}
+
+	protected function getBaseQuery() {
+		return  "FROM {$this->primaryTable}";
+	}
+
+	protected function getSearchQuery($term) {
+		$searchQuery = $this->getBaseSearchQuery($term);
+		$searchQuery[0] = "SELECT * {$searchQuery[0]} ";
+		return $searchQuery;
+	}
+
+	protected function getBaseSearchQuery($term) {
+		$sql = "FROM {$this->primaryTable} WHERE ";
+		$searchColumns = $this->getSearchableColumns();
+		$bindParams = array();
+		$columnCount = count($searchColumns);
+		for ($x=0;$x<$columnCount;$x++) {
+			$sql .= "({$searchColumns[$x]} LIKE :t{$x})";
+			if ($columnCount > 1 && $x != ($columnCount-1)) {
+				$sql .= " OR ";
+			}
+			$bindparams[":t{$x}"] = "%".$term."%";
+		}
+		return array($sql,$bindparams);
 	}
 }
