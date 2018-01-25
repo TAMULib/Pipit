@@ -37,7 +37,7 @@ class UserCAS extends UserDB {
 	*	@return boolean True on successful login, false on anything else
 	*/
 	public function processLogIn($ticket) {
-		$file = file_get_contents($this->casPaths['urls']['check']."&renew=true&ticket={$ticket}");
+		$file = file_get_contents($this->casPaths['urls']['check']."&ticket={$ticket}");
 		if (!$file) {
 			die("The authentication process failed to validate through CAS.");
 		}
