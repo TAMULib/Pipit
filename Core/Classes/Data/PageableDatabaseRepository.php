@@ -9,7 +9,6 @@ use Core\Interfaces as Interfaces;
 */
 
 class PageableDatabaseRepository extends AbstractDataBaseRepository implements Interfaces\PageableDataRepository {
-	private $currentPage;
 
 	protected function getPagedQuery($query,$resultsPage) {
 		return $query." LIMIT ".(($resultsPage->getPage()-1)*$resultsPage->getResultsPerPage()).",{$resultsPage->getResultsPerPage()}";
@@ -28,12 +27,12 @@ class PageableDatabaseRepository extends AbstractDataBaseRepository implements I
 	}
 
 	public function pagedGet($page=1) {
-		return $this->getNewResultsPage($page,5,$this->getGetQuery(),$this->countGet());
+		return $this->getNewResultsPage($page,null,$this->getGetQuery(),$this->countGet());
 	}
 
-	public function pagedSearch($page=1,$term) {
+	public function pagedSearch($term,$page=1) {
 		$searchQuery = $this->getSearchQuery($term);
-		return $this->getNewResultsPage($page,5,$searchQuery[0],$this->countSearch($term),$searchQuery[1]);
+		return $this->getNewResultsPage($page,null,$searchQuery[0],$this->countSearch($term),$searchQuery[1]);
 	}
 
 	public function countGet() {
