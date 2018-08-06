@@ -2,8 +2,8 @@
 namespace Core\Interfaces;
 
 interface File {
-	public function getFileName();
-	public function getFilePath();
-	public function getFileType();
-	public function getGloss();
+    public function getFileName();
+    public function getFilePath();
+    public function getFileType();
+    public function getGloss();
 }
