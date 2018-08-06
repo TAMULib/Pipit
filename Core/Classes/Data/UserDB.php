@@ -152,4 +152,3 @@ class UserDB extends DBObject implements Interfaces\User {
 		return false;
 	}
 }
-?>

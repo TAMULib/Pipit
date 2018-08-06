@@ -80,4 +80,3 @@ class JSONViewRenderer implements Interfaces\ViewRenderer {
 	public function setPage($page) {
 	}
 }
-?>

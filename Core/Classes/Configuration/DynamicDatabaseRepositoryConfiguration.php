@@ -39,4 +39,3 @@ class DynamicDatabaseRepositoryConfiguration extends AbstractConfiguration {
 		return $this->searchableColumns;
 	}
 }
-?>

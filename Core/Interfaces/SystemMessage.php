@@ -31,4 +31,3 @@ interface SystemMessage {
 	*/
 	public function getMessage();
 }
-?>

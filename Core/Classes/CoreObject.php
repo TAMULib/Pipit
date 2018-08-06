@@ -31,4 +31,3 @@ class CoreObject {
 		return $this->logger;
 	}
 }
-?>

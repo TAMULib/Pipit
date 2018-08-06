@@ -186,4 +186,3 @@ class HTMLViewRenderer extends CoreClasses\CoreObject implements Interfaces\View
 		$this->registerAppContextProperty("page",$page);
 	}
 }
-?>

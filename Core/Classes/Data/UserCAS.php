@@ -83,4 +83,3 @@ class UserCAS extends UserDB {
 		header("Location: {$this->casPaths['urls']['logout']}");
 	}
 }
-?>

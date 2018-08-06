@@ -189,4 +189,3 @@ class CoreLoader implements CoreInterfaces\Loader {
 		$this->getSite()->getViewRenderer()->renderView();
 	}
 }
-?>

@@ -100,4 +100,3 @@ abstract class AbstractSitePage implements Interfaces\SitePage {
 	abstract public function setSearchableFields($searchableFields);
 	abstract public function getSearchableFields();
 }
-?>

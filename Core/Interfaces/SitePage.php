@@ -120,4 +120,3 @@ interface SitePage {
 	*/
 	public function isPublicPage();
 }
-?>

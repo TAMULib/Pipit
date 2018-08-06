@@ -216,4 +216,3 @@ class CoreSite extends AbstractSite {
 		$this->dynamicRepositoryKey = $dynamicRepositoryKey;
 	}
 }
-?>
