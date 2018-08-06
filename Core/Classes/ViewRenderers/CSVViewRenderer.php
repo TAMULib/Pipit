@@ -44,3 +44,4 @@ class CSVViewRenderer extends JSONViewRenderer {
 		$this->csvFileName = $csvFileName;
 	}
 }
+

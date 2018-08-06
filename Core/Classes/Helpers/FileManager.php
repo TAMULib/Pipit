@@ -117,3 +117,4 @@ class FileManager extends AbstractHelper {
 		}
 	}
 }
+

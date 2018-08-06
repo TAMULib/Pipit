@@ -118,3 +118,4 @@ class CoreLogger implements Interfaces\Logger {
 		return implode(', ',array("line"=>"L{$rawCaller['line']}","file"=>"File: {$rawCaller['file']}","function"=>"Function: {$rawCaller['function']}"));
 	}
 }
+

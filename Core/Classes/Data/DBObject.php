@@ -280,3 +280,4 @@ class DBObject extends CoreClasses\CoreObject {
 		}
 	}
 }
+

@@ -40,3 +40,4 @@ class CoreSystemMessage implements Interfaces\SystemMessage {
 		return $this->message;
 	}
 }
+

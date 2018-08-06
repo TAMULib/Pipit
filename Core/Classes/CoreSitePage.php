@@ -59,3 +59,4 @@ class CoreSitePage extends AbstractSitePage {
 		return $this->searchableFields;
 	}
 }
+

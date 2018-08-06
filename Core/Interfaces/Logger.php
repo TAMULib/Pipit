@@ -35,3 +35,4 @@ interface Logger {
 	*/
 	public function error($message);
 }
+

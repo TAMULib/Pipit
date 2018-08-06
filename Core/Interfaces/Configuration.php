@@ -12,3 +12,4 @@ interface Configuration {
 	*/
 	public getAllProperties();
 }
+

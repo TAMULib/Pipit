@@ -53,3 +53,4 @@ interface DataRepository {
 	*/
 	public function update($id,$data);
 }
+
