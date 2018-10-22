@@ -88,4 +88,4 @@ interface Site {
 	*/
 	public function getSystemMessages();
 }
-?>
+

@@ -34,4 +34,4 @@ function loadFile($class,$nameSpace,$baseDirectory) {
 function nameSpaceToPath($nameSpace) {
     return str_replace('\\', '/', $nameSpace);
 }
-?>
+
