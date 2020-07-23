@@ -177,6 +177,7 @@ class DBObject extends CoreClasses\CoreObject {
 	*/
 	protected function buildIn($ar,&$bindparams,$varprefix = 'v') {
 		$x=1;
+		$sql = '';
 		foreach ($ar as $value) {
 			$sql .= ":{$varprefix}{$x},";
 			$bindparams[":{$varprefix}{$x}"] = $value;

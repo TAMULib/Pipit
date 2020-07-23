@@ -165,7 +165,8 @@ class CoreLoader implements CoreInterfaces\Loader {
 		if (!empty($config['controllerConfig']['name'])) {
 			$className = $this->getSite()->getControllerClass($config['controllerConfig']['name']);
 			if (class_exists($className)) {
-				$controller = new $className($this->getSite(),$config['controllerConfig']);
+				$site = $this->getSite();
+				$controller = new $className($site, $config['controllerConfig']);
 				$controller->evaluate();
 			}
 		}

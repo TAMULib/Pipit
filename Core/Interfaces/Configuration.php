@@ -10,6 +10,5 @@ interface Configuration {
 	/**
 	*	Provides an associative array of all the properties defined by the Configuration implementation instance
 	*/
-	public getAllProperties();
+	public function getAllProperties();
 }
-
