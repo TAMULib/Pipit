@@ -23,6 +23,8 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	protected $systemMessages;
 	/** @var Core\Interfaces\SitePage The currently requested SitePage */
 	protected $currentPage;
+	/** @var array HTTP Request (GET, POST, etc..) data. */
+	protected $sanitizedInputData;
 
 	/**
 	*	Returns the site configuration

@@ -50,4 +50,4 @@ interface ViewRenderer {
 	*/
 	public function getViewVariable($name);
 }
-?>
+

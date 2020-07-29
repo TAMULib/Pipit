@@ -53,7 +53,7 @@ class UserDB extends DBObject implements Interfaces\User {
 		if ($sessionUserId) {
 			$_SESSION[$this->getSessionName()]['sessionData']['userId'] = $sessionUserId;
 		}
-		$this->sessionUserId = $_SESSION[$this->getSessionName()]['sessionData']['userId'];
+		$this->sessionUserId = isset($_SESSION[$this->getSessionName()]['sessionData']['userId']) ? $_SESSION[$this->getSessionName()]['sessionData']['userId'] : null;
 	}
 
 	/**
@@ -152,4 +152,3 @@ class UserDB extends DBObject implements Interfaces\User {
 		return false;
 	}
 }
-?>

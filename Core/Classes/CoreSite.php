@@ -25,7 +25,7 @@ class CoreSite extends AbstractSite {
 		$this->setPages($siteConfig['sitePages']);
 		$this->generateSanitizedInputData();
 		$this->setUser();
-		$this->setDynamicRepositoryKey($siteConfig['DYNAMIC_REPOSITORY_KEY']);
+		$this->setDynamicRepositoryKey(isset($siteConfig['DYNAMIC_REPOSITORY_KEY']) ? $siteConfig['DYNAMIC_REPOSITORY_KEY'] : null);
 	}
 
 	/**
@@ -115,7 +115,7 @@ class CoreSite extends AbstractSite {
 		//first check if we've already instantiated this DataRepository
 		$repository = $this->getCachedDataRepository($repositoryName);
 		if (!$repository) {
-			if (is_array($this->getSiteConfig()[$this->getDynamicRepositoryKey()]) && array_key_exists($repositoryName,$this->getSiteConfig()[$this->getDynamicRepositoryKey()])) {
+			if (isset($this->getSiteConfig()[$this->getDynamicRepositoryKey()]) && is_array($this->getSiteConfig()[$this->getDynamicRepositoryKey()]) && array_key_exists($repositoryName, $this->getSiteConfig()[$this->getDynamicRepositoryKey()])) {
 				$repository = new Data\DynamicDatabaseRepository($this->getSiteConfig()[$this->getDynamicRepositoryKey()][$repositoryName]);
 				$this->addCachedDataRepository($repositoryName,$repository);
 			} else {
@@ -216,4 +216,3 @@ class CoreSite extends AbstractSite {
 		$this->dynamicRepositoryKey = $dynamicRepositoryKey;
 	}
 }
-?>

@@ -12,4 +12,4 @@ interface Configurable {
 	*/
 	public function configure(Site $site);
 }
-?>
+
