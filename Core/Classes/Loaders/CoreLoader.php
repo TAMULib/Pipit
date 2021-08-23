@@ -139,7 +139,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 		if (!empty($inputData['json'])) {
 			$viewRenderOverride = "JSONViewRenderer";
 		} else if (!empty($inputData['view_renderer']) && in_array($inputData['view_renderer'],$availableCoreRenderers)) {
-			$viewRenderOverride = "{$inputData['view_renderer']}ViewRenderer";
+			$viewRenderOverride = strtoupper($inputData['view_renderer'])."ViewRenderer";
 		}
 		if ($viewRenderOverride) {
 			$viewRendererName = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$viewRenderOverride}";
