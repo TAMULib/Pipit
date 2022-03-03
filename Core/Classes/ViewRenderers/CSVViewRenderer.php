@@ -1,7 +1,7 @@
 <?php
 namespace Core\Classes\ViewRenderers;
 
-/** 
+/**
 *	An implementation of the ViewRenderer interface for rendering registered viewvariables as CSV
 *
 *	@author Jason Savell <jsavell@library.tamu.edu>
@@ -19,16 +19,14 @@ class CSVViewRenderer extends JSONViewRenderer {
 		header('Content-Type: text/csv; charset=utf-8');
 		header('Content-Disposition: attachment; filename='.$this->csvFileName);
 		$out = fopen('php://output', 'w');
-		$csvRows = $this->getViewVariables();
-		$firstRow = reset($csvRows);
-		if (is_array($firstRow)) {
-			$fields = array_keys(reset($firstRow));
+		$viewVars = $this->getViewVariables();
+		$csvRows = reset($viewVars);
+		if (is_array($csvRows)) {
+			$fields = array_keys(reset($csvRows));
 			if (is_array($fields)) {
 				fputcsv($out, $fields);
-				foreach ($csvRows as $rows) {
-					foreach ($rows as $row) {
-						fputcsv($out, $row);
-					}
+				foreach ($csvRows as $row) {
+					fputcsv($out, $row);
 				}
 				fclose($out);
 			}
@@ -44,4 +42,4 @@ class CSVViewRenderer extends JSONViewRenderer {
 		$this->csvFileName = $csvFileName;
 	}
 }
-?>
+
