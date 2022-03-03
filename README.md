@@ -5,7 +5,7 @@ A basic PHP framework for web app development
 https://github.com/TAMULib/Pipit-Seed
 
 ## API Documentation
-https://tamulib.github.io/Pipit/api/
+https://tamulib.github.io/Pipit/api-docs/
 
 ## Features
 * MVC driven design
