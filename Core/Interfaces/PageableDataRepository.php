@@ -1,6 +1,6 @@
 <?php
 namespace Core\Interfaces;
-/** 
+/**
 *	An interface defining a DataRepository with Pageable result sets
 *	DataRepositories are utilized to perform CRUD actions on data stores
 *
@@ -8,21 +8,23 @@ namespace Core\Interfaces;
 */
 
 interface PageableDataRepository extends DataRepository {
-	/**
-	*	Get a page of records from a data source
-	*
-	*	@return mixed[] The results
-	*/
-	public function pagedGet($page);
+    /**
+    *	Get a page of records from a data source
+    *
+    *	@return ResultsPage The results
+    */
+    public function pagedGet($page,$resultsPerpage);
 
-	/**
-	* 	Get a page of search results
-	*
-	*	@param mixed $data The search criteria
-	*	@return mixed[] The search results
-	*	
-	*/
-	public function pagedSearch($page,$data);
+    /**
+    * 	Get a page of search results
+    *
+    *	@param mixed $data The search criteria
+    *   @param integer $page The page number to return
+    *   @param integer $resultsPerPage the number of results per page to return
+    *	@return ResultsPage The search results
+    *
+    */
+    public function pagedSearch($data,$page,$resultsPerpage);
 
 }
 ?>
