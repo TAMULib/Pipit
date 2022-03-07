@@ -60,7 +60,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	public function search($term) {
 		if ($this->getSearchableColumns()) {
 			$searchQuery = $this->getSearchQuery($term);
-			if ($result = $this->executeQuery($searchQuery[0],$searchQuery[1])) {
+			if ($result = $this->executeQuery($searchQuery->sql,$searchQuery->bindparams)) {
 				return $result;
 			}
 		}
@@ -154,7 +154,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 
 	protected function getSearchQuery($term) {
 		$searchQuery = $this->getBaseSearchQuery($term);
-		$searchQuery[0] = "SELECT * {$searchQuery[0]} ";
+		$searchQuery['sql'] = "SELECT * {$searchQuery->sql} ";
 		return $searchQuery;
 	}
 
@@ -170,6 +170,9 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 			}
 			$bindparams[":t{$x}"] = "%".$term."%";
 		}
-		return array($sql,$bindparams);
+		$queryParts = new \StdClass();
+		$queryParts->sql = $sql;
+		$queryParts->bindparams = $bindparams;
+		return $queryParts;
 	}
 }
