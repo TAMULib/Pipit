@@ -13,18 +13,17 @@ interface PageableDataRepository extends DataRepository {
     *
     *	@return ResultsPage The results
     */
-    public function pagedGet($page,$resultsPerpage);
+    public function pagedGet($page);
 
     /**
     * 	Get a page of search results
     *
     *	@param mixed $data The search criteria
     *   @param integer $page The page number to return
-    *   @param integer $resultsPerPage the number of results per page to return
     *	@return ResultsPage The search results
     *
     */
-    public function pagedSearch($data,$page,$resultsPerpage);
+    public function pagedSearch($data,$page);
 
 }
 ?>

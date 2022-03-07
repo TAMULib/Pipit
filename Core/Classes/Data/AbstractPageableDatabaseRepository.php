@@ -32,7 +32,7 @@ class PageableDatabaseRepository extends AbstractDataBaseRepository implements I
 
     public function pagedSearch($term,$page=1,$resultsPerPage=null) {
         $searchQuery = $this->getSearchQuery($term);
-        return $this->getNewResultsPage($page,null,$searchQuery[0],$this->countSearch($term),$searchQuery[1]);
+        return $this->getNewResultsPage($page,$resultsPerPage,$searchQuery[0],$this->countSearch($term),$searchQuery[1]);
     }
 
     public function countGet() {
