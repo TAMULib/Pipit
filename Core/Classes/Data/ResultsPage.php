@@ -6,7 +6,7 @@ use Core\Interfaces as Interfaces;
  *
  * @author Jason Savell <jsavell@library.tamu.edu>
  */
-class ResultsPage {
+class ResultsPage implements \JsonSerializable {
     private $page = 1;
     private $resultsPerPage = 25;
     private $pageCount;
@@ -104,10 +104,14 @@ class ResultsPage {
 	*
 	*	@return Core\Data\ResultsPage A new ResultsPage, ready to be populated with results
 	*/
-    public static function getNewResultsPage($page=1,$resultsPerPage=25) {
+    public static function getNewResultsPage(int $page, int $resultsPerPage) {
         $resultsPage = new ResultsPage();
-        $resultsPage->setPage($page);
+        $resultsPage->setPage(intval($page));
         $resultsPage->setResultsPerPage($resultsPerPage);
         return $resultsPage;
     }
+
+	public function jsonSerialize() {
+		return get_object_vars($this);
+	}
 }
