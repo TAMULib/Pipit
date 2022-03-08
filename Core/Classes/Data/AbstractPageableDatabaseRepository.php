@@ -8,7 +8,13 @@ use Core\Interfaces as Interfaces;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class PageableDatabaseRepository extends AbstractDataBaseRepository implements Interfaces\PageableDataRepository {
+abstract class AbstractPageableDatabaseRepository extends AbstractDataBaseRepository implements Interfaces\PageableDataRepository {
+	protected $resultsPerPage;
+
+	protected function __construct($primaryTable,$primaryKey,$defaultOrderBy=null,$gettableColumns=null,$searchableColumns=null,$resultsPerPage=20) {
+		parent::__construct($primaryTable,$primaryKey,$defaultOrderBy,$gettableColumns,$searchableColumns);
+		$this->setResultsPerPage($resultsPerPage);
+	}
 
     protected function getPagedQuery($query,$resultsPage) {
         return $query." LIMIT ".(($resultsPage->getPage()-1)*$resultsPage->getResultsPerPage()).",{$resultsPage->getResultsPerPage()}";
@@ -22,17 +28,17 @@ class PageableDatabaseRepository extends AbstractDataBaseRepository implements I
         }
 
         $resultsPage->calculatePageCount($resultsCount);
-        $resultsPage->setPageResults($this->executeQuery($this->getPagedQuery($this->getGetQuery(),$resultsPage)));
+        $resultsPage->setPageResults($this->executeQuery($this->getPagedQuery($query,$resultsPage),$bindparams));
         return $resultsPage;
     }
 
-    public function pagedGet($page=1,$resultsPerPage=null) {
-        return $this->getNewResultsPage($page,$resultsPerPage,$this->getGetQuery(),$this->countGet());
+    public function pagedGet($page=1) {
+        return $this->getNewResultsPage($page,$this->resultsPerPage,$this->getGetQuery(),$this->countGet());
     }
 
-    public function pagedSearch($term,$page=1,$resultsPerPage=null) {
+    public function pagedSearch($term,$page=1) {
         $searchQuery = $this->getSearchQuery($term);
-        return $this->getNewResultsPage($page,$resultsPerPage,$searchQuery[0],$this->countSearch($term),$searchQuery[1]);
+        return $this->getNewResultsPage($page,$this->resultsPerPage,$searchQuery[0],$this->countSearch($term),$searchQuery[1]);
     }
 
     public function countGet() {
@@ -52,7 +58,9 @@ class PageableDatabaseRepository extends AbstractDataBaseRepository implements I
         return false;
     }
 
-
+    protected function setResultsPerPage($resultsPerPage) {
+        $this->resultsPerPage = $resultsPerPage;
+    }
 }
 
 ?>
