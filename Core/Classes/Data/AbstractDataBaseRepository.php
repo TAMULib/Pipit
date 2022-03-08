@@ -154,7 +154,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 
 	protected function getSearchQuery($term) {
 		$searchQuery = $this->getBaseSearchQuery($term);
-		$searchQuery['sql'] = "SELECT * {$searchQuery->sql} ";
+		$searchQuery->sql = "SELECT * {$searchQuery->sql} ";
 		return $searchQuery;
 	}
 

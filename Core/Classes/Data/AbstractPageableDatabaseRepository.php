@@ -68,9 +68,9 @@ abstract class AbstractPageableDatabaseRepository extends AbstractDataBaseReposi
     protected function countSearch($term) {
         if ($this->getSearchableColumns()) {
             $searchQuery = $this->getBaseSearchQuery($term);
-            $searchQuery[0] = "SELECT COUNT(*) {$searchQuery[0]} ";
+            $searchQuery->sql = "SELECT COUNT(*) {$searchQuery->sql} ";
 
-            if ($result = $this->executeQuery($searchQuery[0],$searchQuery[1])) {
+            if ($result = $this->executeQuery($searchQuery->sql,$searchQuery->bindparams)) {
                 return $result[0]['COUNT(*)'];
             }
         }
@@ -103,6 +103,6 @@ abstract class AbstractPageableDatabaseRepository extends AbstractDataBaseReposi
 	*/
     public function pagedSearch($term,$page=1) {
         $searchQuery = $this->getSearchQuery($term);
-        return $this->getNewResultsPage($page,$this->resultsPerPage,$searchQuery[0],$this->countSearch($term),$searchQuery[1]);
+        return $this->getNewResultsPage($page,$this->resultsPerPage,$searchQuery->sql,$this->countSearch($term),$searchQuery->bindparams);
     }
 }
