@@ -1,7 +1,7 @@
 <?php
 namespace Core\Classes\Data;
 use Core\Interfaces as Interfaces;
-/** 
+/**
 *	An abstract implementation of the DataBaseRepository interface
 *	Extending this provides CRUD interaction with the configured database table
 *
@@ -53,7 +53,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 
 	/**
 	*	Get all rows from the $primaryTable matching the search %$term% against a 'name' field
-	*	
+	*
 	*	@param string $term The search criteria
 	*	@return array[]|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
@@ -77,7 +77,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 
 	/**
 	*	Get the row whose 'id' matches the passed $id
-	*	
+	*
 	*	@param mixed $id The unique identifier for the row
 	*	@return array|false $results An array representing the resulting DB row, empty array if no match, false if the request failed
 	*/
@@ -89,7 +89,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 
 	/**
 	*	Remove a row from the DB with an 'id' matching the passed $id
-	*	
+	*
 	*	@param mixed $id The unique identifier for the row to be removed
 	*	@return boolean $result true on removal, false on failure
 	*/
@@ -100,7 +100,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 
 	/**
 	*	Insert a row into the DB using $data
-	*	
+	*
 	*	@param mixed[] $data The data to be inserted into the $primaryTable
 	*	@return string|false The id of the inserted row on success, false on failure
 	*/
@@ -110,7 +110,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 
 	/**
 	*	Update the row having ID of $id with the key/value pairs in $data
-	*	
+	*
 	*	@param mixed $id The unique identifier for the row to be updated
 	*	@param mixed[] $data The data with which to update the row
 	*	@return boolean True on success, false on failure
