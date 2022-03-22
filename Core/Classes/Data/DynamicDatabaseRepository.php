@@ -6,7 +6,7 @@ namespace Core\Classes\Data;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class DynamicDataBaseRepository extends AbstractDatabaseRepository {
+class DynamicDataBaseRepository extends AbstractDataBaseRepository {
 	/**
 	* Constructor for DynamicDatabaseRepository
 	*

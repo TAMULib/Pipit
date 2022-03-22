@@ -9,6 +9,8 @@ namespace Core\Classes;
 class CoreSite extends AbstractSite {
 	/** @var Core\Interfaces\DataRepository[] $cachedDataRepositories A store of DataRepositories to provide (singletons) to requestors */
 	protected $cachedDataRepositories = array();
+	/** @var object[] $cachedHelpers A store of Helpers to provide (singletons) to requestors */
+	protected $cachedHelpers = array();
 	/** @var string $redirectUrl A url to be redirected to */
 	private $redirectUrl = null;
 	/** @var string $dynamicRepositoryKey The key to the location in $siteConfig of an array of DynamicRepositoryConfiguration */
@@ -23,7 +25,7 @@ class CoreSite extends AbstractSite {
 		$this->setPages($siteConfig['sitePages']);
 		$this->generateSanitizedInputData();
 		$this->setUser();
-		$this->setDynamicRepositoryKey($siteConfig['DYNAMIC_REPOSITORY_KEY']);
+		$this->setDynamicRepositoryKey(isset($siteConfig['DYNAMIC_REPOSITORY_KEY']) ? $siteConfig['DYNAMIC_REPOSITORY_KEY'] : null);
 	}
 
 	/**
@@ -114,7 +116,7 @@ class CoreSite extends AbstractSite {
 		//first check if we've already instantiated this DataRepository
 		$repository = $this->getCachedDataRepository($repositoryName);
 		if (!$repository) {
-			if (is_array($this->getSiteConfig()[$this->getDynamicRepositoryKey()]) && array_key_exists($repositoryName,$this->getSiteConfig()[$this->getDynamicRepositoryKey()])) {
+			if (isset($this->getSiteConfig()[$this->getDynamicRepositoryKey()]) && is_array($this->getSiteConfig()[$this->getDynamicRepositoryKey()]) && array_key_exists($repositoryName, $this->getSiteConfig()[$this->getDynamicRepositoryKey()])) {
 				$repository = new Data\DynamicDatabaseRepository($this->getSiteConfig()[$this->getDynamicRepositoryKey()][$repositoryName]);
 				$this->addCachedDataRepository($repositoryName,$repository);
 			} else {
@@ -122,11 +124,7 @@ class CoreSite extends AbstractSite {
 				//We found a DataRepository named $repositoryName, so let's instantiate, configure and cache it
 				if (class_exists($className)) {
 					$repository = new $className();
-					$setSiteMethod = 'setSite';
-					//provides the CoreSite instance to DataRepositories that have asked for it.
-					if (is_callable(array($repository,$setSiteMethod))) {
-						$repository->$setSiteMethod($this);
-					}
+					$repository->configure($this);
 					$this->addCachedDataRepository($repositoryName,$repository);
 				}
 			}
@@ -159,6 +157,43 @@ class CoreSite extends AbstractSite {
 		return array_key_exists($repositoryName, $this->cachedDataRepositories) ? $this->cachedDataRepositories[$repositoryName]:null;
 	}
 
+	/**
+	*	Fetch a Helper from the cache by its name
+	*	@param string $helperName The name of the desired Helper
+	*	@return object|null 
+	*/
+	public function getHelper($helperName) {
+		//first check if we've already instantiated this Helper
+		$helper = $this->getCachedHelper($helperName);
+		if (!$helper) {
+			foreach (array($this->getSiteConfig()['NAMESPACE_APP'],$this->getSiteConfig()['NAMESPACE_CORE']) as $classPath) {
+				$className = "{$classPath}Classes\\Helpers\\{$helperName}";
+				//We found a Helper named $helperName, so let's instantiate, configure and cache it
+				if (class_exists($className)) {
+					$helper = new $className();
+					$helper->configure($this);
+					$this->addCachedHelper($helperName,$helper);
+					$this->getLogger()->debug("Providing FRESH Helper: ".$helperName);
+					break;
+				}
+			}
+			if (!$helper) {
+				$this->getLogger()->error("Could not find Helper: ".$helperName);
+			}
+		} else {
+			$this->getLogger()->debug("Providing CACHED Helper: ".$helperName);
+		}
+		return $helper;
+	}
+
+	protected function addCachedHelper($helperName,$helperInstance) {
+		$this->cachedHelpers[$helperName] = $helperInstance;
+	}
+
+	protected function getCachedHelper($helperName) {
+		return array_key_exists($helperName, $this->cachedHelpers) ? $this->cachedHelpers[$helperName]:null;
+	}
+
 	public function setRedirectUrl($redirectUrl) {
 		$this->redirectUrl = $redirectUrl;
 	}
@@ -182,4 +217,3 @@ class CoreSite extends AbstractSite {
 		$this->dynamicRepositoryKey = $dynamicRepositoryKey;
 	}
 }
-?>

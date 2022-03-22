@@ -23,6 +23,8 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	protected $systemMessages;
 	/** @var Core\Interfaces\SitePage The currently requested SitePage */
 	protected $currentPage;
+	/** @var array HTTP Request (GET, POST, etc..) data. */
+	protected $sanitizedInputData;
 
 	/**
 	*	Returns the site configuration
@@ -125,4 +127,11 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	*	@param string The name of the desired Interfaces\DataRepository
 	*/
 	abstract public function getDataRepository($repositoryName);
+
+	/**
+	*	Provides a uniform approach to fetching Helper service classes
+	*	Should handle all instantiation and any desired caching of Helpers
+	*	@param string The name of the desired Helper
+	*/
+	abstract public function getHelper($helperName);
 }

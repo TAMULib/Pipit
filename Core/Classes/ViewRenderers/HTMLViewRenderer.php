@@ -1,6 +1,7 @@
 <?php
 namespace Core\Classes\ViewRenderers;
 use Core\Interfaces as Interfaces;
+use Core\Classes as CoreClasses;
 
 /** 
 *	The default implementation of the ViewRenderer interface.
@@ -11,7 +12,7 @@ use Core\Interfaces as Interfaces;
 */
 
 
-class HTMLViewRenderer implements Interfaces\ViewRenderer {
+class HTMLViewRenderer extends CoreClasses\CoreObject implements Interfaces\ViewRenderer {
 	/** @var mixed[] $variables An array of application data to provide to the views */
 	private $variables = array();
 	/** @var string $viewFile The filename of the view to load */
@@ -40,8 +41,15 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 		$this->registerAppContextProperty("pages", $pages);
 		$this->registerAppContextProperty("data", $data);
 		$this->registerAppContextProperty("controllerName", $controllerName);
-		$this->setViewPath('html');
-		$this->setAdminViewPath('admin');
+		if (!empty($GLOBALS['config']['ACTIVE_THEME'])) {
+			$themeFolder = $GLOBALS['config']['ACTIVE_THEME'];
+		 	if (is_dir($this->getAppContextProperty('config')['PATH_VIEWS'].$themeFolder)) {
+				$this->setViewPath($themeFolder);
+			} else {
+				$this->getLogger()->info("Could not find theme folder: ".$themeFolder.", falling back to default");
+				$this->setViewPath('html');
+			}
+		}
 	}
 
 	/**
@@ -179,4 +187,4 @@ class HTMLViewRenderer implements Interfaces\ViewRenderer {
 		$this->registerAppContextProperty("page",$page);
 	}
 }
-?>
+
