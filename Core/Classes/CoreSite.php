@@ -24,8 +24,8 @@ class CoreSite extends AbstractSite {
 		$this->setSiteConfig($siteConfig);
 		$this->setPages($siteConfig['sitePages']);
 		$this->generateSanitizedInputData();
-		$this->setUser();
 		$this->setDynamicRepositoryKey(isset($siteConfig['DYNAMIC_REPOSITORY_KEY']) ? $siteConfig['DYNAMIC_REPOSITORY_KEY'] : null);
+		$this->setUser();
 	}
 
 	/**
