@@ -28,6 +28,6 @@
         }
     },
     "require-dev": {
-        "codeception/codeception": "^2.3"
+        "codeception/codeception": "^4.1"
     }
 }

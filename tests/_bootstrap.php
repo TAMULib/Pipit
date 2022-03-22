@@ -1,7 +1,7 @@
 <?php
 use Core\Lib;
 
-define('PATH_CORE', '/var/www/html/apps/Pipit/'); 
+define('PATH_CORE', './');
 
 define('PATH_CORE_LIB', PATH_CORE.str_replace('\\', '/', "Core\\")."Lib/");
 

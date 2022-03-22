@@ -6,7 +6,7 @@ suites:
 settings:
     shuffle: true
     lint: true
-    bootstrap: _bootstrap.php
+bootstrap: _bootstrap.php
 paths:
     tests: tests
     output: tests/_output
