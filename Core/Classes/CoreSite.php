@@ -1,13 +1,13 @@
 <?php
 namespace Core\Classes;
 
-/** 
+/**
 *	The primary site manager
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
 class CoreSite extends AbstractSite {
-	/** @var Core\Interfaces\DataRepository[] $cachedDataRepositories A store of DataRepositories to provide (singletons) to requestors */
+	/** @var \Core\Interfaces\DataRepository[] $cachedDataRepositories A store of DataRepositories to provide (singletons) to requestors */
 	protected $cachedDataRepositories = array();
 	/** @var object[] $cachedHelpers A store of Helpers to provide (singletons) to requestors */
 	protected $cachedHelpers = array();
@@ -69,7 +69,7 @@ class CoreSite extends AbstractSite {
 	*	If no controller is found for the given controller name, the method will fall back to either DefaultController or DefaultAdminController
 	*
 	*	@param string $controllerName The name of the desired controller
-	*	@return Core\Interfaces\Controller
+	*	@return \Core\Interfaces\Controller
 	*
 	*/
 	public function getControllerClass($controllerName) {
@@ -109,7 +109,7 @@ class CoreSite extends AbstractSite {
 	/**
 	*	Provides a unified source for DataRepository singletons in response to requests for a DataRepository
 	*	@param string $repositoryName The name of the desired DataRepository
-	*	@return Core\Interfaces\DataRepository|null The resulting DataRepository if found, null otherwise
+	*	@return \Core\Interfaces\DataRepository|null The resulting DataRepository if found, null otherwise
 	*
 	*/
 	public function getDataRepository($repositoryName) {
@@ -117,7 +117,7 @@ class CoreSite extends AbstractSite {
 		$repository = $this->getCachedDataRepository($repositoryName);
 		if (!$repository) {
 			if (isset($this->getSiteConfig()[$this->getDynamicRepositoryKey()]) && is_array($this->getSiteConfig()[$this->getDynamicRepositoryKey()]) && array_key_exists($repositoryName, $this->getSiteConfig()[$this->getDynamicRepositoryKey()])) {
-				$repository = new Data\DynamicDatabaseRepository($this->getSiteConfig()[$this->getDynamicRepositoryKey()][$repositoryName]);
+				$repository = new Data\DynamicDataBaseRepository($this->getSiteConfig()[$this->getDynamicRepositoryKey()][$repositoryName]);
 				$this->addCachedDataRepository($repositoryName,$repository);
 			} else {
 				$className = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Data\\{$repositoryName}";
@@ -142,7 +142,7 @@ class CoreSite extends AbstractSite {
 	/**
 	*	Adds a new DataRepository to the list of previously requested DataRepositories
 	*	@param string $repositoryName The name of the DataRepository
-	*	@param Core\Interfaces\DataRepository An instance of a DataRepository implementation
+	*	@param \Core\Interfaces\DataRepository $dataRepository An instance of a DataRepository implementation
 	*/
 	protected function addCachedDataRepository($repositoryName,$dataRepository) {
 		$this->cachedDataRepositories[$repositoryName] = $dataRepository;
@@ -151,7 +151,7 @@ class CoreSite extends AbstractSite {
 	/**
 	*	Fetch a DataRepository from the cache by its name
 	*	@param string $repositoryName The name of the desired DataRepository
-	*	@return Core\Interfaces\DataRepository|null 
+	*	@return \Core\Interfaces\DataRepository|null
 	*/
 	protected function getCachedDataRepository($repositoryName) {
 		return array_key_exists($repositoryName, $this->cachedDataRepositories) ? $this->cachedDataRepositories[$repositoryName]:null;
@@ -160,7 +160,7 @@ class CoreSite extends AbstractSite {
 	/**
 	*	Fetch a Helper from the cache by its name
 	*	@param string $helperName The name of the desired Helper
-	*	@return object|null 
+	*	@return object|null
 	*/
 	public function getHelper($helperName) {
 		//first check if we've already instantiated this Helper

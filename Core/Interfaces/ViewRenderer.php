@@ -1,6 +1,6 @@
 <?php
 namespace Core\Interfaces;
-/** 
+/**
 *	An interface defining a ViewRenderer
 *	ViewRenderers are utilized by controllers and handle the presentation of data to the user
 *	Built in implementations are HTMLViewRenderer and JSONViewRenderer
@@ -17,9 +17,10 @@ interface ViewRenderer {
 
 	/**
 	*	@param string $viewName A string representing the name of the view
+	*	@param boolean $isAdmin Define the view as admin or standard
 	*	@return void
 	*/
-	public function setView($viewName);
+	public function setView($viewName,$isAdmin);
 
 	/**
 	*	Set all variables associated with the view at once.
@@ -49,5 +50,18 @@ interface ViewRenderer {
 	*	@return mixed $viewVariable
 	*/
 	public function getViewVariable($name);
-}
 
+	/**
+	*	Push to the array of registered appContext variables
+	*	@param string $name - The name of the variable
+	*	@param mixed $data - The value(s) of the view variable
+	*	@return void
+	*/
+	public function registerAppContextProperty($name,$data);
+
+	/*
+	*	Registers the current page with the ViewRenderer
+	*	@param \Core\Interfaces\SitePage $page The current SitePage
+	*/
+	public function setPage($page);
+}

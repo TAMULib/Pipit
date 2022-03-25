@@ -39,31 +39,28 @@ class UserCAS extends UserDB {
 	public function processLogIn($ticket) {
 		$file = file_get_contents($this->casPaths['urls']['check']."&ticket={$ticket}");
 		if (!$file) {
+			$this->getLogger()->error("Failed to retrieve CAS XML");
 			die("The authentication process failed to validate through CAS.");
 		}
 
-		if (!empty($file)) {
- 			$casXml = simplexml_load_string($file,null, 0, 'cas', true);
-			$casXml->registerXPathNamespace("cas", 'http://www.yale.edu/tp/cas');
-			$casUserName = $casXml->authenticationSuccess->user;
-			$tusers = $this->usersRepo;
-			//find an existing, active user or create a new one
-			if (($user = $tusers->searchAdvanced(array("username"=>$casUserName)))) {
-				if ($user[0]['inactive'] == 0) {
-					$userId = $user[0]['id'];
-				}
-			} elseif (!empty($casUserName)) {
-				$userId = $tusers->add(array("username"=>$casUserName,"iscas"=>1));
+		$casXml = simplexml_load_string($file,null, 0, 'cas', true);
+		$casXml->registerXPathNamespace("cas", 'http://www.yale.edu/tp/cas');
+		$casUserName = $casXml->authenticationSuccess->user;
+		$tusers = $this->usersRepo;
+		//find an existing, active user or create a new one
+		if (($user = $tusers->searchAdvanced(array("username"=>$casUserName)))) {
+			if ($user[0]['inactive'] == 0) {
+				$userId = $user[0]['id'];
 			}
-			if (!empty($userId)) {
-				session_regenerate_id(true);
-				session_start();
-				$this->setSessionUserId($userId);
-				$this->buildProfile();
-				return true;
-			}
-		} else {
-			$this->getLogger()->error("Failed to retrieve CAS XML");
+		} elseif (!empty($casUserName)) {
+			$userId = $tusers->add(array("username"=>$casUserName,"iscas"=>1));
+		}
+		if (!empty($userId)) {
+			session_regenerate_id(true);
+			session_start();
+			$this->setSessionUserId($userId);
+			$this->buildProfile();
+			return true;
 		}
 		return false;
 	}
@@ -79,8 +76,9 @@ class UserCAS extends UserDB {
 	*	Log the User out from the application, then redirect to the configured CAS Server's logout URL
 	*/
 	public function logOut() {
-		parent::logOut();
+		$logOutResult = parent::logOut();
 		header("Location: {$this->casPaths['urls']['logout']}");
+		return $logOutResult;
 	}
 }
 

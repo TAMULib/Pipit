@@ -35,7 +35,7 @@ abstract class AbstractController extends CoreObject implements Interfaces\Contr
 
 	/**
 	*	Gets the Site context for Controllers
-	*	@return Core\Interfaces\Site The active Site implementation
+	*	@return \Core\Interfaces\Site The active Site implementation
 	*/
 	protected function getSite() {
 		return $this->site;
@@ -43,7 +43,7 @@ abstract class AbstractController extends CoreObject implements Interfaces\Contr
 
 	/**
 	*	Sets the Site context for Controllers
-	*	@param Core\Interfaces\Site The active Site implementation
+	*	@param \Core\Interfaces\Site $site The active Site implementation
 	*/
 	protected function setSite($site) {
 		$this->site = $site;

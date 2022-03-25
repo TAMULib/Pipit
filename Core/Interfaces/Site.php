@@ -27,7 +27,7 @@ interface Site {
 	/**
 	*	Define a redirect URL.
 	*
-	*	@param ViewRenderer $viewRenderer
+	*	@param string $redirectUrl
 	*	@return void
 	*/
 	public function setRedirectUrl($redirectUrl);
@@ -49,6 +49,12 @@ interface Site {
 	*	@return void
 	*/
 	public function setPages($pages);
+
+	/**
+	*	Gets the currently requested page
+	*	@return \Core\Interfaces\SitePage The currently requested SitePage
+	*/
+	public function getCurrentPage();
 
 	/**
 	*	Get a representation of the application user associated with a request. 

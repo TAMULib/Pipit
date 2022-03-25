@@ -29,13 +29,13 @@ class HTMLViewRenderer extends CoreClasses\CoreObject implements Interfaces\View
 
 	/**
 	*	Initializes the ViewRenderer with the state of the application
-	*	@param Core\Data\User $globalUser The User or UserCAS
-	*	@param Core\Interfaces\SitePage[] $pages The application pages
+	*	@param \Core\Interfaces\User $globalUser The User or UserCAS
+	*	@param \Core\Interfaces\SitePage[] $pages The application pages
 	*	@param mixed[] $data The data to be presented by the views
 	*	@param string $controllerName The name of the active Controller. Helps with discrete loading of Controller specific static resources
 	*	@todo Either handle the case of the missing $GLOBALS['config'] with a meaningful exception or ideally, 
 	*/
-	public function __construct($globalUser,$pages,$data,$controllerName) {
+	public function __construct(Interfaces\User $globalUser,$pages,$data,$controllerName) {
 		$this->registerAppContextProperty("config", $GLOBALS['config']);
 		$this->registerAppContextProperty("globalUser", $globalUser);
 		$this->registerAppContextProperty("pages", $pages);
@@ -135,7 +135,7 @@ class HTMLViewRenderer extends CoreClasses\CoreObject implements Interfaces\View
 	}
 
 	/**
-	*	@param string Sets the admin view path, which is a subdirectory within the $viewPath
+	*	@param string $adminPath Sets the admin view path, which is a subdirectory within the $viewPath
 	*/
 	protected function setAdminViewPath($adminPath) {
 		$this->adminPath = $adminPath;

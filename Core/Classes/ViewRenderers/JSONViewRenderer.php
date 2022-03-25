@@ -28,7 +28,7 @@ class JSONViewRenderer implements Interfaces\ViewRenderer {
 									JSON_ERROR_UTF16 => 'Malformed UTF-16 characters, possibly incorrectly encoded');
 
 	private function getEncodeErrors() {
-		return static::$encodeErrors;
+		return self::$encodeErrors;
 	}
 
 	/**

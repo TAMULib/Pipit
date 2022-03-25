@@ -80,7 +80,7 @@ interface SitePage {
 
 	/**
 	*	Set the user facing action options associated with the page.
-	*	@return array[] $options
+	*	@return void
 	*/
 	public function setOptions($options);
 

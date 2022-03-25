@@ -13,15 +13,15 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	private $globalUser;
 	/** @var mixed[] $siteConfig An array containing the site configuration */
 	private $siteConfig;
-	/** @var Core\Interfaces\ViewRenderer A ViewRenderer implementation */
+	/** @var \Core\Interfaces\ViewRenderer A ViewRenderer implementation */
 	private $viewRenderer;
-	/** @var Core\Interfaces\SitePage[] An array of SitePage */
+	/** @var \Core\Interfaces\SitePage[] An array of SitePage */
 	private $pages;
 	/** @var mixed[] $inputData A sanitized version of GET/POST/REQUEST input */
 	private $inputData;
-	/** @var Core\Interfaces\SystemMessage[] An array of SystemMessage */
+	/** @var \Core\Interfaces\SystemMessage[] An array of SystemMessage */
 	protected $systemMessages;
-	/** @var Core\Interfaces\SitePage The currently requested SitePage */
+	/** @var \Core\Interfaces\SitePage The currently requested SitePage */
 	protected $currentPage;
 	/** @var array HTTP Request (GET, POST, etc..) data. */
 	protected $sanitizedInputData;
@@ -86,6 +86,7 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	abstract public function getControllerClass($controllerName);
 
 	protected function generateSanitizedInputData() {
+		$data = [];
 		if (!empty($_GET['action'])) {
 			//restrict any controller actions that alter DB data to POST
 			$restrictedActions = array("insert","remove","update");
@@ -124,14 +125,14 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	/**
 	*	Provides a uniform approach to fetching Interfaces\DataRepository
 	*	Should handle all instantiation and any desired caching of repositories
-	*	@param string The name of the desired Interfaces\DataRepository
+	*	@param string $repositoryName The name of the desired Interfaces\DataRepository
 	*/
 	abstract public function getDataRepository($repositoryName);
 
 	/**
 	*	Provides a uniform approach to fetching Helper service classes
 	*	Should handle all instantiation and any desired caching of Helpers
-	*	@param string The name of the desired Helper
+	*	@param string $helperName The name of the desired Helper
 	*/
 	abstract public function getHelper($helperName);
 }

@@ -21,9 +21,9 @@ use Core\Lib as CoreLib;
 class CoreLoader implements CoreInterfaces\Loader {
 	/** @var mixed[] $config The app configuration */
 	private $config;
-	/** @var Interfaces\Logger $logger A Logger implementation */
+	/** @var \Core\Interfaces\Logger $logger A Logger implementation */
 	private $logger;
-	/** @var Interfaces\Site $site The Site context */
+	/** @var \Core\Interfaces\Site $site The Site context */
 	private $site;
 
 	public function __construct($config) {
@@ -41,7 +41,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 
 	/**
 	*	Gets the Site context
-	*	@return Core\Interfaces\Site The active Site implementation
+	*	@return \Core\Interfaces\Site The active Site implementation
 	*/
 	protected function getSite() {
 		return $this->site;
@@ -49,7 +49,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 
 	/**
 	*	Sets the Site context
-	*	@param Core\Interfaces\Site The active Site implementation
+	*	@param \Core\Interfaces\Site $site The active Site implementation
 	*/
 	protected function setSite($site) {
 		$this->site = $site;
@@ -98,10 +98,6 @@ class CoreLoader implements CoreInterfaces\Loader {
 		} else {
 			$site = new CoreClasses\CoreSite($config);
 			$this->logger->debug("Loaded Core Site Class");
-		}
-		if (empty($site)) {
-			$this->logger->error("Site Class not found");
-			exit;
 		}
 		$this->setSite($site);
 	}

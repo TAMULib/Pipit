@@ -11,12 +11,6 @@ class LDAPConnector {
 	private $handle;
 
 	function __construct($url=NULL,$port=NULL,$user=NULL,$password=NULL) {
-
-		$this->ldapServer['url'] = $GLOBALS['config']['LDAP_URL'];
-		$this->ldapServer['port'] = $GLOBALS['config']['LDAP_PORT'];
-		$this->ldapServer['user'] = $GLOBALS['config']['LDAP_USER'];
-		$this->ldapServer['password'] = $GLOBALS['config']['LDAP_PASSWORD'];
-
 		$this->url = ($url) ?$url:$GLOBALS['config']['LDAP_URL'];
 		$this->port = ($port) ? $port:$GLOBALS['config']['LDAP_PORT'];
 		if ($user) {

@@ -8,12 +8,12 @@ use Core\Lib as CoreLib;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 class CoreObject {
-	/** @var Interfaces\Logger $logger This provides the configured Logger to all extenders of this class */
+	/** @var \Core\Interfaces\Logger $logger This provides the configured Logger to all extenders of this class */
 	private $logger = null;
 
 	/**
 	*	Sets the Logger
-	*	@param Core\Interfaces\Logger An instance of a Logger implementation
+	*	@param \Core\Interfaces\Logger $logger An instance of a Logger implementation
 	*/
 	private function setLogger($logger) {
 		$this->logger = $logger;
@@ -21,7 +21,7 @@ class CoreObject {
 
 	/**
 	*	Provides a single instance of a configured Logger to all extenders of CoreObject
-	*	@return Interfaces\Logger 
+	*	@return \Core\Interfaces\Logger
 	*/
 	public function getLogger() {
 	    if ($this->logger) {

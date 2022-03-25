@@ -31,7 +31,7 @@ abstract class AbstractSitePage implements Interfaces\SitePage {
 	*
 	*	@param string $name The name of the page
 	*	@param string $path The relative directory path to the page
-	*	@param int $accesslevel The security restriction for the page
+	*	@param int $accessLevel The security restriction for the page
 	*/
 	public function __construct($name,$path,$accessLevel) {
 		$this->setName($name);
@@ -49,7 +49,7 @@ abstract class AbstractSitePage implements Interfaces\SitePage {
 
 	/**
 	*	Sets the access level for the page
-	*	@param int The access level for the page (Defaults to 0)
+	*	@param int $accessLevel The access level for the page (Defaults to 0)
 	*/
 	public function setAccessLevel($accessLevel=0) {
 		$this->accessLevel = $accessLevel;
@@ -65,7 +65,7 @@ abstract class AbstractSitePage implements Interfaces\SitePage {
 
 	/**
 	*	Sets the name of the page
-	*	@param string The name of the page
+	*	@param string $name The name of the page
 	*/
 	public function setName($name) {
 		$this->name = $name;
