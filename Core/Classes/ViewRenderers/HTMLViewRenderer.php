@@ -21,8 +21,6 @@ class HTMLViewRenderer extends CoreClasses\CoreObject implements Interfaces\View
 	private $appContext = null;
 	/** @var string $viewPath The directory path to the views */
 	private $viewPath = '';
-	/** @var string $adminPath The directory within the $viewPath that contains the admin views */
-	private $adminPath = '';
 	/** @var string $viewDirectory An optional subdirectory within the $viewPath that contains a collection of related views */
 	private $viewDirectory = '';
 	
@@ -132,13 +130,6 @@ class HTMLViewRenderer extends CoreClasses\CoreObject implements Interfaces\View
 	*/
 	protected function getAdminViewPath() {
 		return $this->getViewPath();
-	}
-
-	/**
-	*	@param string $adminPath Sets the admin view path, which is a subdirectory within the $viewPath
-	*/
-	protected function setAdminViewPath($adminPath) {
-		$this->adminPath = $adminPath;
 	}
 
 	public function setViewVariables($data) {

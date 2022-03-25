@@ -9,7 +9,7 @@ use App\Classes\Data as AppData;
 */
 
 abstract class AbstractSite extends CoreObject implements Interfaces\Site {
-	/** @var mixed[] $globalUser An array containing data about the logged in user */
+	/** @var \Core\Interfaces\User $globalUser An array containing data about the logged in user */
 	private $globalUser;
 	/** @var mixed[] $siteConfig An array containing the site configuration */
 	private $siteConfig;
@@ -17,8 +17,6 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	private $viewRenderer;
 	/** @var \Core\Interfaces\SitePage[] An array of SitePage */
 	private $pages;
-	/** @var mixed[] $inputData A sanitized version of GET/POST/REQUEST input */
-	private $inputData;
 	/** @var \Core\Interfaces\SystemMessage[] An array of SystemMessage */
 	protected $systemMessages;
 	/** @var \Core\Interfaces\SitePage The currently requested SitePage */
@@ -112,7 +110,7 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	/**
 	*	Set a representation of the application user associated with a request. 
 	*
-	*	@param mixed[] $globalUser The application user
+	*	@param \Core\Interfaces\User $globalUser The application user
 	*/
 	protected function setGlobalUser($globalUser) {
 		$this->globalUser = $globalUser;

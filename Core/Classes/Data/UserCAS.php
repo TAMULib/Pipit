@@ -43,7 +43,7 @@ class UserCAS extends UserDB {
 			die("The authentication process failed to validate through CAS.");
 		}
 
-		$casXml = simplexml_load_string($file,null, 0, 'cas', true);
+		$casXml = simplexml_load_string($file,'SimpleXMLElement::class', 0, 'cas', true);
 		$casXml->registerXPathNamespace("cas", 'http://www.yale.edu/tp/cas');
 		$casUserName = $casXml->authenticationSuccess->user;
 		$tusers = $this->usersRepo;

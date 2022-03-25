@@ -24,7 +24,7 @@ class CoreObject {
 	*	@return \Core\Interfaces\Logger
 	*/
 	public function getLogger() {
-	    if ($this->logger) {
+	    if ($this->logger != null) {
 	        return $this->logger;
 	    }
 		$this->setLogger(CoreLib\getLogger());

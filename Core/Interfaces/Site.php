@@ -80,12 +80,12 @@ interface Site {
 	public function getSanitizedInputData();
 
 	/**
-	*	Push to the Site's array of SystemMessages	
+	*	Push a new message string to the Site's system messages
 	*
-	*	@param SystemMessage $systemMessage
+	*	@param string $message
 	*	@return void
 	*/
-	public function addSystemMessage($systemMessage);
+	public function addSystemMessage($message);
 
 	/**
 	*	Get the Site's SystemMessages	

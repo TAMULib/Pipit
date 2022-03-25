@@ -78,7 +78,7 @@ class CoreSite extends AbstractSite {
 		if (array_key_exists($controllerName,$this->getPages()) || $controllerName == 'user') {
 			if ($controllerName == 'user') {
 				$this->setCurrentPage(new CoreSitePage('user','user',SECURITY_PUBLIC));
-			} elseif ($this->getPages()[$controllerName]) {
+			} elseif (array_key_exists($controllerName, $this->getPages())) {
 				$this->setCurrentPage($this->getPages()[$controllerName]);
 			}
 			$currentPage = $this->getCurrentPage();
