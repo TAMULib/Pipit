@@ -28,6 +28,7 @@
         }
     },
     "require-dev": {
-        "codeception/codeception": "^4.1"
+        "codeception/codeception": "^4.1",
+        "phpstan/phpstan": "^1.5"
     }
 }
