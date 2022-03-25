@@ -2,6 +2,12 @@
 namespace Core\Lib;
 use Core\Classes as CoreClasses;
 
+/**
+ * Creates a logger property in $GLOBALS from
+ * - A client app config for a defined LOGGER_CLASS constant
+ * - Falls back to an instance of \Core\Classes\CoreLogger 
+ * @return \Core\Interfaces\Logger
+ */
 function getLogger() {
     if (empty($GLOBALS['logger'])) {
         //if a logger has been configured, prefer it to the CoreLogger
@@ -17,6 +23,13 @@ function getLogger() {
     return $GLOBALS['logger'];
 }
 
+/**
+ * Require a file with the given parameters
+ * @param string $class The class name
+ * @param string $nameSpace The namespace of the class
+ * @param string $baseDirectory The directory path the class file resides in
+ * @return void
+ */
 function loadFile($class,$nameSpace,$baseDirectory) {
     $len = strlen($nameSpace);
     if (strncmp($nameSpace, $class, $len) == 0) {
@@ -31,6 +44,11 @@ function loadFile($class,$nameSpace,$baseDirectory) {
     }
 }
 
+/**
+ * Convert a given namespace to its corresponding file path
+ * @param string $nameSpace
+ * @return string 
+ */
 function nameSpaceToPath($nameSpace) {
     return str_replace('\\', '/', $nameSpace);
 }

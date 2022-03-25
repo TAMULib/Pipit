@@ -26,15 +26,25 @@ class CoreLoader implements CoreInterfaces\Loader {
 	/** @var \Core\Interfaces\Site $site The Site context */
 	private $site;
 
+	/**
+	 * @param mixed[] $config The app configuration
+	 */
 	public function __construct($config) {
 		$this->config = $config;
 		$this->logger = CoreLib\getLogger();
 	}
 
+	/**
+	 * @param mixed[] $config The app configuration
+	 * @return void
+	 */
 	protected function setConfig($config) {
 		$this->config = $config;
 	}
 
+	/**
+	 * @return mixed[]
+	 */
 	protected function getConfig() {
 		return $this->config;
 	}
@@ -50,6 +60,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 	/**
 	*	Sets the Site context
 	*	@param \Core\Interfaces\Site $site The active Site implementation
+	*	@return void
 	*/
 	protected function setSite($site) {
 		$this->site = $site;
@@ -76,7 +87,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 
 	/**
 	*	Check for and execute any $config requested redirects
-	*
+	*	@return void
 	*/
 	protected function checkRedirect() {
 		if (!empty($this->getConfig()['forceRedirectUrl'])) {
@@ -87,6 +98,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 
 	/**
 	*	Looks for a configured Site implementation to utilize, falls back to CoreSite if none are found
+	*	@return void
 	*/
 	protected function loadSiteClass() {
 		$site = null;
@@ -104,6 +116,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 
 	/**
 	*	Finds an appropriate ViewRenderer and sets it up for use
+	*	@return void
 	*/
 	protected function applyViewRenderer() {
 		//set the ViewRenderer
@@ -153,6 +166,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 
 	/**
 	*	Looks for the configured Controller and hands over control by executing its evaluate() method
+	*	@return void
 	*/
 	protected function loadController() {
 		//try to load the controller
@@ -174,6 +188,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 
 	/**
 	*	Asks the ViewRenderer to render the response
+	*	@return void
 	*/
 	protected function render() {
 		if ($this->getSite()->hasRedirectUrl()) {

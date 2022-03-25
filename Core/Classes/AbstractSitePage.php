@@ -19,7 +19,7 @@ abstract class AbstractSitePage implements Interfaces\SitePage {
 	protected $title;
 	/** @var string $name The UI display subtitle of the page */
 	protected $subTitle;
-	/** @var array[] $options The UI displayed subnavigation for the page */
+	/** @var string[] $options The UI displayed subnavigation for the page */
 	protected $options = array();
 	/** @var boolean $isSearchable Should UIs with search capability show a search box for this page? */
 	protected $isSearchable = false;

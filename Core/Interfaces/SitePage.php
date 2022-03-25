@@ -43,6 +43,7 @@ interface SitePage {
 	/**
 	*	Set the relative path to the page.
 	*	@param string $path
+	*   @return void
 	*/
 	public function setPath($path);
 
@@ -74,12 +75,13 @@ interface SitePage {
 
 	/**
 	*	Get the user facing action options associated with the page.
-	*	@return array[] $options
+	*	@return string[] $options
 	*/
 	public function getOptions();
 
 	/**
 	*	Set the user facing action options associated with the page.
+	*	@param string[] $options
 	*	@return void
 	*/
 	public function setOptions($options);
@@ -87,6 +89,7 @@ interface SitePage {
 	/**
 	*	Enable/Disable user facing searching
 	*	@param boolean $isSearchable
+	*	@return void
 	*/
 	public function setIsSearchable($isSearchable);
 
@@ -99,6 +102,7 @@ interface SitePage {
 	/**
 	*	Explicitly define the field names that should be searched.
 	*	@param string[] $searchableFields
+	*	@return void
 	*/
 	public function setSearchableFields($searchableFields);
 

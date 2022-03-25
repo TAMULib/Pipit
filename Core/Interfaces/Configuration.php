@@ -9,6 +9,7 @@ namespace Core\Interfaces;
 interface Configuration {
 	/**
 	*	Provides an associative array of all the properties defined by the Configuration implementation instance
+	*	@return mixed[]
 	*/
 	public function getAllProperties();
 }

@@ -14,6 +14,7 @@ class JSONViewRenderer implements Interfaces\ViewRenderer {
 	/** @var mixed[] $appContext An array of data for the views geared toward the app environment (User session, server paths, config)  */
 	private $appContext = null;
 
+	/** @var string[] $encodeErrors An array of potential JSON encoding errors  */
 	private static $encodeErrors = array(
 									JSON_ERROR_NONE => 'No error has occurred',
 									JSON_ERROR_DEPTH => 'The maximum stack depth has been exceeded',
@@ -27,12 +28,17 @@ class JSONViewRenderer implements Interfaces\ViewRenderer {
 									JSON_ERROR_INVALID_PROPERTY_NAME => 'A property name that cannot be encoded was given',
 									JSON_ERROR_UTF16 => 'Malformed UTF-16 characters, possibly incorrectly encoded');
 
+	/**
+	 * Return an array of potential JSON encode errors
+	 * @return string[] 
+	 */
 	private function getEncodeErrors() {
 		return self::$encodeErrors;
 	}
 
 	/**
 	*	Render as JSON any registered view variables
+	*	@return void
 	*/
 	public function renderView() {
 		header('Content-Type: application/json;charset=utf-8');
@@ -44,9 +50,6 @@ class JSONViewRenderer implements Interfaces\ViewRenderer {
 		}
 	}
 
-	/*
-	*	An implmentation is required by the ViewRenderer interface, but this method is not currently used by JSONViewRenderer
-	*/
 	public function setView($viewFile,$isAdmin=false) {
 	}
 
@@ -70,12 +73,22 @@ class JSONViewRenderer implements Interfaces\ViewRenderer {
 		$this->appContext[$name] =& $data;
 	}
 
+	/**
+	*	Returns the requested appContext variable
+	*	@param string $name The name of the variable
+	*	@return mixed|null Returns the variable or null if it was not found
+	*/
 	public function getAppContextProperty($name) {
-		return $this->appContext[$name];
+		if (isset($this->appContext[$name])) {
+			return $this->appContext[$name];
+		}
+		return null;
 	}
 
-	/*
+	/**
 	*	An implmentation is required by the ViewRenderer interface, but this method is not currently used by JSONViewRenderer
+	*	@param \Core\Interfaces\SitePage $page The current SitePage
+	*	@return void
 	*/
 	public function setPage($page) {
 	}

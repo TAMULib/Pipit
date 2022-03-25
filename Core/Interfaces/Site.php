@@ -32,7 +32,14 @@ interface Site {
 	*/
 	public function setRedirectUrl($redirectUrl);
 
+	/**
+	 * @return boolean
+	 */
 	public function hasRedirectUrl();
+
+	/**
+	 * @return void
+	 */
 	public function redirect();
 
 	/**

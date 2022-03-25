@@ -8,11 +8,13 @@ namespace Core\Classes\ViewRenderers;
 */
 
 class CSVViewRenderer extends JSONViewRenderer {
+	/** @var string $csvFileName The filename to give to the generated CSV file */
 	protected $csvFileName = 'data.csv';
 
 	/**
 	* 	This method will produce a downloadable CSV by taking the *first* registered view variable (others will be ignored)
 	*	and using it to generate field names from the first row and writing the rest to the CSV as data.
+	*	@return void
 	*
 	*/
 	public function renderView() {
@@ -35,8 +37,8 @@ class CSVViewRenderer extends JSONViewRenderer {
 
 	/**
 	*	This method can be used to override the default file name for the generated csv.
-	*
 	*	@param string $csvFileName The desired filename
+	*	@return void
 	*/
 	public function setCsvFileName($csvFileName) {
 		$this->csvFileName = $csvFileName;

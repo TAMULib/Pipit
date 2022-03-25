@@ -7,7 +7,6 @@ namespace Core\Interfaces;
 *
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
-
 interface ViewRenderer {
 	/**
 	*	Display the content of the view
@@ -59,9 +58,10 @@ interface ViewRenderer {
 	*/
 	public function registerAppContextProperty($name,$data);
 
-	/*
+	/**
 	*	Registers the current page with the ViewRenderer
 	*	@param \Core\Interfaces\SitePage $page The current SitePage
+	*	@return void
 	*/
 	public function setPage($page);
 }

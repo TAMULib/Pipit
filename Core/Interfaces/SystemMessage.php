@@ -10,6 +10,7 @@ interface SystemMessage {
 	/**
 	*	Set the type of the message
 	*	@param mixed $messageType
+	*	@return void
 	*/
 	public function setType($messageType);
 
@@ -22,6 +23,7 @@ interface SystemMessage {
 	/**
 	*	Set the content of the message
 	*	@param string $message
+	*	@return void
 	*/
 	public function setMessage($message);
 

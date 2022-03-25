@@ -44,6 +44,7 @@ abstract class AbstractController extends CoreObject implements Interfaces\Contr
 	/**
 	*	Sets the Site context for Controllers
 	*	@param \Core\Interfaces\Site $site The active Site implementation
+	*   @return void
 	*/
 	protected function setSite($site) {
 		$this->site = $site;
@@ -125,12 +126,14 @@ abstract class AbstractController extends CoreObject implements Interfaces\Contr
 
 	/**
 	*	Override to handle any Controller specific configurations, e.g. Page details, DataRepository fetching.
+	*   @return void
 	*/
 	protected function configure() {
 	}
 
 	/**
 	*	This is a extending Controller's default endpoint method, executed by ::evaluate(), when no other endpoint methods match the request
+	*   @return void
 	*/
 	abstract protected function loadDefault();
 }

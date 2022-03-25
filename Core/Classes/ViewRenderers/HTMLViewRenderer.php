@@ -91,7 +91,8 @@ class HTMLViewRenderer extends CoreClasses\CoreObject implements Interfaces\View
 	/**
 	*	Allows for defining a subdirectory for views which will be appended to the primary view path. 
 	*	For example, all views for a Controller can be put in a view subdirectory, and that Controller will set the viewDirectory to match that location.
-	*
+	*	@param string $directoryName The subdirectory location of the view files within the primary views directory
+	*	@return void
 	*/
 	public function setViewDirectory($directoryName) {
 		$this->viewDirectory = $directoryName;
@@ -99,6 +100,7 @@ class HTMLViewRenderer extends CoreClasses\CoreObject implements Interfaces\View
 
 	/**
 	*	Gets the (optional) subdirectory for views which will be appended to the primary view path. 
+	*	@return string
 	*/
 	protected function getViewDirectory() {
 		return $this->viewDirectory;
@@ -120,6 +122,7 @@ class HTMLViewRenderer extends CoreClasses\CoreObject implements Interfaces\View
 
 	/**
 	*	@param string $viewPath Sets the full directory path to the views
+	*	@return void
 	*/
 	protected function setViewPath($viewPath) {
 		$this->viewPath = $viewPath;
@@ -170,9 +173,10 @@ class HTMLViewRenderer extends CoreClasses\CoreObject implements Interfaces\View
 		return null;
 	}
 
-	/*
+	/**
 	*	Registers the current page as an appContext variable
-	*	@param Core\Interfaces\SitePage $page The current SitePage
+	*	@param \Core\Interfaces\SitePage $page The current SitePage
+	*	@return void
 	*/
 	public function setPage($page) {
 		$this->registerAppContextProperty("page",$page);
