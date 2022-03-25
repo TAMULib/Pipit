@@ -13,3 +13,5 @@ jobs:
         uses: php-actions/phpstan@master
         with:
           path: Core/
+          configuration: phpstan.dist
+          level: 6
