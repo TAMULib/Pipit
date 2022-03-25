@@ -69,7 +69,7 @@ class CoreSite extends AbstractSite {
 	*	If no controller is found for the given controller name, the method will fall back to either DefaultController or DefaultAdminController
 	*
 	*	@param string $controllerName The name of the desired controller
-	*	@return \Core\Interfaces\Controller
+	*	@return String
 	*
 	*/
 	public function getControllerClass($controllerName) {

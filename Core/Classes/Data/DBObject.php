@@ -191,7 +191,7 @@ class DBObject extends CoreClasses\CoreObject {
 	*	Builds and executes an insert statement
 	*	@param mixed[] $data An associative array (ColumnName->Value) of data representing the new DB record
 	*	@param string $table Optional - The table to insert the new record into. Defaults to $primaryTable
-	*	@return int/false Returns the ID of the new record on success, false on failure
+	*	@return int|false Returns the ID of the new record on success, false on failure
 	*/
 	protected function buildInsertStatement($data,$table=null) {
 		if (!$table) {
