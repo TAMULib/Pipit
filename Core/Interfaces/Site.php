@@ -66,7 +66,7 @@ interface Site {
 	/**
 	*	Get a representation of the application user associated with a request.
 	*
-	*	@return mixed
+	*	@return \Core\Interfaces\User
 	*/
 	public function getGlobalUser();
 

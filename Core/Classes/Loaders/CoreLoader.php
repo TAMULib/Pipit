@@ -62,7 +62,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 	*	@param \Core\Interfaces\Site $site The active Site implementation
 	*	@return void
 	*/
-	protected function setSite($site) {
+	protected function setSite(\Core\Interfaces\Site $site) {
 		$this->site = $site;
 	}
 
@@ -103,15 +103,25 @@ class CoreLoader implements CoreInterfaces\Loader {
 	protected function loadSiteClass() {
 		$site = null;
 		$config = $this->getConfig();
+
 		if (!empty($config['SITE_CLASS'])) {
 			$className = "{$config['NAMESPACE_APP']}Classes\\{$config['SITE_CLASS']}";
 			$site = new $className($config);
+
+			$potentialSiteClass = new $className($config);
+			if ($potentialSiteClass instanceof \Core\Interfaces\Site) {
+				$this->setSite($potentialSiteClass);
+				unset($potentialSiteClass);
+			}
 			$this->logger->debug("Loaded Configured Class: {$className}");
-		} else {
-			$site = new CoreClasses\CoreSite($config);
+		}
+		if (!($this->getSite() instanceof \Core\Interfaces\Site)) {
+			$coreSite = new CoreClasses\CoreSite($config);
+			if ($coreSite instanceof \Core\Interfaces\Site) {
+				$this->setSite($coreSite);
+			}
 			$this->logger->debug("Loaded Core Site Class");
 		}
-		$this->setSite($site);
 	}
 
 	/**
@@ -122,9 +132,16 @@ class CoreLoader implements CoreInterfaces\Loader {
 		//set the ViewRenderer
 		$config = $this->getConfig();
 		$inputData = $this->getSite()->getSanitizedInputData();
+		$hasViewRenderer = false;
 		if ($viewRendererName = $this->getViewRendererName()) {
-			$this->getSite()->setViewRenderer(new $viewRendererName($this->getSite()->getGlobalUser(),$this->getSite()->getPages(),$inputData,(!empty($config['controllerConfig']) ? $config['controllerConfig']['name']:null)));
-		} else {
+			$potentialViewRenderer = new $viewRendererName($this->getSite()->getGlobalUser(),$this->getSite()->getPages(),$inputData,(!empty($config['controllerConfig']) ? $config['controllerConfig']['name']:null));
+			if ($potentialViewRenderer instanceof \Core\Interfaces\ViewRenderer) {
+				$this->getSite()->setViewRenderer($potentialViewRenderer);
+				unset($potentialViewRenderer);
+				$hasViewRenderer = true;
+			}
+		}
+		if (!$hasViewRenderer) {
 			$this->logger->error("ViewRenderer Class not found");
 			exit;
 		}
@@ -177,7 +194,11 @@ class CoreLoader implements CoreInterfaces\Loader {
 			if (class_exists($className)) {
 				$site = $this->getSite();
 				$controller = new $className($site, $config['controllerConfig']);
-				$controller->evaluate();
+				if ($controller instanceof \Core\Interfaces\Controller) {
+					$controller->evaluate();
+				} else {
+					$controller = null;
+				}
 			}
 		}
 		if (!$controller) {

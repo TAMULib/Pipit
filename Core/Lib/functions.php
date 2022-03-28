@@ -12,8 +12,14 @@ function getLogger() {
     if (empty($GLOBALS['logger'])) {
         //if a logger has been configured, prefer it to the CoreLogger
         if (!empty($GLOBALS['config']['LOGGER_CLASS'])) {
-            $GLOBALS['logger'] = new $GLOBALS['config']['LOGGER_CLASS']();
-        } else {
+            $potentialLogger = new $GLOBALS['config']['LOGGER_CLASS']();
+            if ($potentialLogger instanceof \Core\Interfaces\Logger) {
+                $GLOBALS['logger'] = $potentialLogger;
+                unset($potentialLogger);
+            }
+        }
+
+        if (empty($GLOBALS['logger'])) {
             $GLOBALS['logger'] = new CoreClasses\CoreLogger();
         }
         if (isset($GLOBALS['config']['LOG_LEVEL'])) {

@@ -162,7 +162,7 @@ class FileManager extends AbstractHelper {
 		$filePath = $this->getBaseFilePath().$fileName;
 		$this->checkFile($filePath);
 		$fileInfo = pathinfo($this->getBaseFilePath().$fileName);
-		return new CoreData\SimpleFile($fileInfo['filename'],null,$fileInfo['extension'],$fileInfo['basename']);
+		return new CoreData\SimpleFile($fileInfo['filename'],null,array_key_exists('extension',$fileInfo) ? $fileInfo['extension']:null,$fileInfo['basename']);
 	}
 
 	/**

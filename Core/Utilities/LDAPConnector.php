@@ -66,7 +66,10 @@ class LDAPConnector {
 	* @return boolean
 	*/
 	private function bind() {
-		return ldap_bind($this->handle, $this->user, $this->password);
+		if ($this->handle) {
+			return ldap_bind($this->handle, $this->user, $this->password);
+		}
+		return false;
 	}
 
 	/**

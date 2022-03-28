@@ -8,9 +8,6 @@ define('APP_DIRECTORY', 'Pipit-seed');
 
 define('PATH_APP', PATH_ROOT.APP_DIRECTORY.'/');
 
-define('WITH_COMPOSER',true);
-
-
 if (WITH_COMPOSER) {
 	define('VENDOR_DIRECTORY', 'vendor'); 
 	define('PATH_VENDOR', PATH_APP.VENDOR_DIRECTORY.'/');

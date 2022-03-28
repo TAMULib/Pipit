@@ -23,7 +23,7 @@ class CSVViewRenderer extends JSONViewRenderer {
 		$out = fopen('php://output', 'w');
 		$viewVars = $this->getViewVariables();
 		$csvRows = reset($viewVars);
-		if (is_array($csvRows)) {
+		if ($out && is_array($csvRows)) {
 			$fields = array_keys(reset($csvRows));
 			if (is_array($fields)) {
 				fputcsv($out, $fields);
