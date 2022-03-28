@@ -17,7 +17,7 @@ abstract class AbstractSitePage implements Interfaces\SitePage {
 	protected $path;
 	/** @var string $title The UI display title of the page */
 	protected $title;
-	/** @var string $name The UI display subtitle of the page */
+	/** @var string $subTitle The UI display subtitle of the page */
 	protected $subTitle;
 	/** @var string[] $options The UI displayed subnavigation for the page */
 	protected $options = array();

@@ -30,6 +30,7 @@ class CoreSite extends AbstractSite {
 
 	/**
 	*	Associates the session User with CoreSite
+	*	@return void
 	*/
 	protected function setUser() {
 		if (!empty($this->getSiteConfig()['USER_CLASS'])) {
@@ -53,6 +54,7 @@ class CoreSite extends AbstractSite {
 	/**
 	*	Adds an error message to the systemMessages array
 	*	@param string $message The error message
+	*	@return void
 	*/
 	public function addSystemError($message) {
 		$this->addSystemMessage($message,'error');
@@ -143,6 +145,7 @@ class CoreSite extends AbstractSite {
 	*	Adds a new DataRepository to the list of previously requested DataRepositories
 	*	@param string $repositoryName The name of the DataRepository
 	*	@param \Core\Interfaces\DataRepository $dataRepository An instance of a DataRepository implementation
+	*	@return void
 	*/
 	protected function addCachedDataRepository($repositoryName,$dataRepository) {
 		$this->cachedDataRepositories[$repositoryName] = $dataRepository;
@@ -186,10 +189,20 @@ class CoreSite extends AbstractSite {
 		return $helper;
 	}
 
+	/**
+	 * Adds a Helper instance to the cache
+	 * @param string $helperName The name of the Helper instance
+	 * @param \Core\Classes\Helpers\AbstractHelper $helperInstance The Helper instance to cache
+	 * @return void
+	 */
 	protected function addCachedHelper($helperName,$helperInstance) {
 		$this->cachedHelpers[$helperName] = $helperInstance;
 	}
 
+	/**
+	 * @param string $helperName The name of the helper to retrieve from the cache
+	 * @return \Core\Classes\Helpers\AbstractHelper|null
+	 */
 	protected function getCachedHelper($helperName) {
 		return array_key_exists($helperName, $this->cachedHelpers) ? $this->cachedHelpers[$helperName]:null;
 	}
@@ -209,10 +222,19 @@ class CoreSite extends AbstractSite {
 		exit;
 	}
 
+	/**
+	 * Returns the dynamicRepositoryKey
+	 * @return string|null
+	 */
 	protected function getDynamicRepositoryKey() {
 		return $this->dynamicRepositoryKey;
 	}
 
+	/**
+	 * Sets the configured dynamicRepositoryKey
+	 * @param string $dynamicRepositoryKey
+	 * @return void
+	 */
 	protected function setDynamicRepositoryKey($dynamicRepositoryKey) {
 		$this->dynamicRepositoryKey = $dynamicRepositoryKey;
 	}

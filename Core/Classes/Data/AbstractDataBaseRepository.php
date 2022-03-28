@@ -45,7 +45,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	/**
 	*	Get all rows from the $primaryTable, optionally ordered by $defaultOrderBy, with selected columns optionally limited to $gettableColumns
 	*
-	*	@return array[] $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2"))
+	*	@return array<array<string,string>>|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
 	public function get() {
 		$sql = "SELECT ".(($this->gettableColumns) ? "{$this->primaryKey},".implode(",",$this->gettableColumns):"*")." FROM {$this->primaryTable}";
@@ -59,7 +59,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	*	Get all rows from the $primaryTable matching the search %$term% against a 'name' field
 	*	
 	*	@param string $term The search criteria
-	*	@return array[]|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
+	*	@return array<array<string,string>>|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
 	public function search($term) {
 		if ($this->getSearchableColumns()) {
@@ -83,6 +83,28 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	}
 
 	/**
+	*	Get all rows from the $primaryTable matching the provided field/value pairs search %$term% against a 'name' field
+	*	
+	*	@param array<string,string> $data The search criteria field/value pair(s)
+	*	@return array<array<string,string>>|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
+	*/
+	public function searchAdvanced($data) {
+		$sql = "SELECT * FROM {$this->primaryTable} u ";
+		$conj = "WHERE";
+		$bindparams = array();
+		foreach ($data as $field=>$value) {
+			$sql .= "{$conj} {$field}=:{$field} ";
+			$bindparams[":{$field}"] = $value;
+			$conj = "AND";
+		}
+
+		if ($result = $this->executeQuery($sql,$bindparams)) {
+			return $result;
+		}
+		return false;
+	}
+
+	/**
 	* Returns an array of column names that should be used to perform searches on records in a repository
 	* @return string[] $searchableColumns An array of string containing the searchable columns
 	*/
@@ -94,7 +116,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	*	Get the row whose 'id' matches the passed $id
 	*	
 	*	@param mixed $id The unique identifier for the row
-	*	@return array|false $results An array representing the resulting DB row, empty array if no match, false if the request failed
+	*	@return string[]|false $results An array representing the resulting DB row, empty array if no match, false if the request failed
 	*/
 	public function getById($id) {
 		$sql = "SELECT * FROM {$this->primaryTable} WHERE {$this->primaryKey}=:id";

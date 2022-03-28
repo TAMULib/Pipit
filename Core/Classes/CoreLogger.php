@@ -80,7 +80,7 @@ class CoreLogger implements Interfaces\Logger {
 	/**
 	*	Writes an entry to the PHP error log using PHP's trigger_error() function
 	*	@param mixed[] $entry An array of log entry data: array(0=>$loggerTypes index,1=>The log message))
-	*
+	*	@return void
 	*/
 	protected function writeToLog($entry) {
 		if ($entry[0] >= $this->logLevel) {
@@ -91,6 +91,7 @@ class CoreLogger implements Interfaces\Logger {
 	/**
 	*	Sets the threshold for which log entries should actually get written to the log
 	*	@param int $logLevel Corresponds to an index of $loggerTypes
+	*	@return void
 	*/
 	public function setLogLevel($logLevel) {
  		if (is_int($logLevel) && $logLevel <= count($this->loggerTypes)) {
@@ -101,6 +102,10 @@ class CoreLogger implements Interfaces\Logger {
 		}
 	}
 
+	/**
+	 * Build the debug backtrace and extrac the calling class
+	 * @return mixed[] The details of the calling class
+	 */
 	protected function getCaller() {
 		$backTrace = debug_backtrace();
 		$caller = array();
@@ -113,6 +118,10 @@ class CoreLogger implements Interfaces\Logger {
 		return $caller;
 	}
 
+	/**
+	 * Returns the calling class info as a string
+	 * @return string
+	 */
 	protected function getFormattedCaller() {
 		$rawCaller = $this->getCaller();
 		return implode(', ',array("line"=>"L{$rawCaller['line']}","file"=>"File: {$rawCaller['file']}","function"=>"Function: {$rawCaller['function']}"));

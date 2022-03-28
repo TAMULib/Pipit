@@ -30,13 +30,22 @@ interface DataRepository {
 	public function removeById($id);
 
 	/**
-	* 	Get a single record by its unique ID
+	* 	Find a single record by search criteria
 	*
 	*	@param mixed $data The search criteria
 	*	@return mixed[] The search results
 	*	
 	*/
 	public function search($data);
+
+	/**
+	* 	Find a single record by field/value search criteria
+	*
+	*	@param array<string,string> $data The search criteria as field/value pairs
+	*	@return mixed[] The search results
+	*	
+	*/
+	public function searchAdvanced($data);
 
 	/**
 	* 	Add a single record to a data store

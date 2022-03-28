@@ -21,7 +21,7 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	protected $systemMessages;
 	/** @var \Core\Interfaces\SitePage The currently requested SitePage */
 	protected $currentPage;
-	/** @var array HTTP Request (GET, POST, etc..) data. */
+	/** @var string[] $sanitizedInputData HTTP Request (GET, POST, etc..) data. */
 	protected $sanitizedInputData;
 
 	/**
@@ -35,6 +35,7 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	/**
 	*	Sets the site configuration
 	*	@param mixed[] $siteConfig The site configuration
+	*	@return void
 	*/
 	protected function setSiteConfig($siteConfig) {
 		$this->siteConfig = $siteConfig;
@@ -42,6 +43,7 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 
 	/**
 	*	Sets the logged in user
+	*	@return void
 	*/
 	abstract protected function setUser();
 
@@ -56,6 +58,7 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	/**
 	*	Sets the currently requested page
 	*	@param Interfaces\SitePage $page The currently requested SitePage
+	*	@return void
 	*/
 	public function setCurrentPage($page) {
 		$this->currentPage = $page;
@@ -83,7 +86,13 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 
 	abstract public function getControllerClass($controllerName);
 
-	protected function generateSanitizedInputData() {
+	/**
+	 * Generate safe input data from GET/POST/REQUEST
+	 * Restricts basic repo actions (insert,remove,update) to POST
+	 * Override this method to restrict additional app specific actions
+	 * @return void
+	 */
+	public function generateSanitizedInputData() {
 		$data = [];
 		if (!empty($_GET['action'])) {
 			//restrict any controller actions that alter DB data to POST
@@ -109,8 +118,8 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 
 	/**
 	*	Set a representation of the application user associated with a request. 
-	*
 	*	@param \Core\Interfaces\User $globalUser The application user
+	*	@return void
 	*/
 	protected function setGlobalUser($globalUser) {
 		$this->globalUser = $globalUser;
@@ -124,6 +133,7 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	*	Provides a uniform approach to fetching Interfaces\DataRepository
 	*	Should handle all instantiation and any desired caching of repositories
 	*	@param string $repositoryName The name of the desired Interfaces\DataRepository
+	*	@return \Core\Interfaces\DataRepository|null
 	*/
 	abstract public function getDataRepository($repositoryName);
 
@@ -131,6 +141,7 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	*	Provides a uniform approach to fetching Helper service classes
 	*	Should handle all instantiation and any desired caching of Helpers
 	*	@param string $helperName The name of the desired Helper
+	*	@return \Core\Classes\Helpers\AbstractHelper|null
 	*/
 	abstract public function getHelper($helperName);
 }

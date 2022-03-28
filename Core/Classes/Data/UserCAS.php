@@ -6,13 +6,16 @@ namespace Core\Classes\Data;
 *	Handles session management, authentication through CAS, and authorization
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
-
 class UserCAS extends UserDB {
+	/** @var mixed[] $casPaths A string array representing the CAS configuration */
 	private $casPaths;
+	/** @var \Core\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'iscas' fields) */
 	private $usersRepo;
 
 	/**
 	*	Instantiates a new UserCAS by negotiating the login process with a configured CAS Server
+	*	@param mixed[] $inputData The input data from the request
+	*	@param \Core\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'iscas' fields)
 	*/
 	public function __construct($inputData,$usersRepo=null) {
 		parent::__construct();
@@ -67,6 +70,7 @@ class UserCAS extends UserDB {
 
 	/**
 	*	Redirect to the configured CAS Server's login URL
+	*	@return void
 	*/
 	public function initiatelogIn() {
 		header("Location: {$this->casPaths['urls']['login']}");

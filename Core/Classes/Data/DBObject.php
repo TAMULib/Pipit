@@ -8,17 +8,29 @@ use \PDO;
 *	@todo Remove hidden dependency on $GLOBALS or throw a meaningful exception when the db config vars are missing
 *
 */
-
 class db {
+	/** @var \PDO $handle A PDO instance */
 	public $handle;
-	private static $instance;
+	/** @var \Core\Classes\Data\db $instance An instance of this db class */
+	private static $instance = null;
 
+	/**
+	*	Instantiates a new \PDO instance using the $GLOBALS 'DB_' config
+	*	$GLOBALS['config']['DB_DSN']
+	*	$GLOBALS['config']['DB_USER']
+	*	$GLOBALS['config']['DB_PASSWORD']
+	*
+	*/
     private function __construct() {
 		$this->handle = new PDO($GLOBALS['config']['DB_DSN'], $GLOBALS['config']['DB_USER'], $GLOBALS['config']['DB_PASSWORD']);
 	}
 
+	/**
+	*	Returns a singleton instance of the db class
+	*	@return \Core\Classes\Data\db
+	*/
     public static function getInstance() {
-        if (!isset(self::$instance)) {
+        if (self::$instance == null) {
             $object = __CLASS__;
             self::$instance = new $object;
         }
@@ -35,7 +47,7 @@ class db {
 *	@todo Provide getter/setter for $primaryTable to be utilized by extending classes
 */
 class DBObject extends CoreClasses\CoreObject {
-	/** @var db An instance of the db class, providing the connection to the DB */
+	/** @var \Core\Classes\Data\db An instance of the db class, providing the connection to the DB */
 	protected $db;
 	/** @var string The name of the main db table associated with an instance of DBObject */
 	protected $primaryTable;
@@ -49,7 +61,8 @@ class DBObject extends CoreClasses\CoreObject {
 
 	/**
 	*	Returns an appropriate date format function for the SQL language
-	*	@return string $sql
+	*	@param string $field The name of the field to format
+	*	@return string
 	*/
 	protected function dbFormatDate($field) {
 		if (strtolower($GLOBALS['dbconfig']['dbtype']) == 'mssql') {
@@ -62,7 +75,9 @@ class DBObject extends CoreClasses\CoreObject {
 
 	/**
 	*	Returns an appropriate text search function for the SQL language
-	*	@return string $sql
+	*	@param string $fields The fields to use for the search (field1,field2,..)
+	*	@param string $value The search criteria
+	*	@return string
 	*/
 	protected function dbTextMatch($fields,$value) {
 		if (strtolower($GLOBALS['dbconfig']['dbtype']) == strtolower('mssql')) {
@@ -75,7 +90,7 @@ class DBObject extends CoreClasses\CoreObject {
 
 	/**
 	*	Returns an appropriate CURRENT TIME function for the SQL language
-	*	@return string $sql
+	*	@return string
 	*/
 	protected function dbNow() {
 		if ( strtolower($GLOBALS['dbconfig']['dbtype']) == strtolower('mssql')) {
@@ -90,7 +105,7 @@ class DBObject extends CoreClasses\CoreObject {
 	*	Execute a query and return the results as an array
 	* 	@param string $sql the SQL query
 	*  	@param mixed[] $bindparams: an array of values to be binded by PDO to any query parameters
-	*	@return array[]|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
+	*	@return array<array<string,string>>|false A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
 	protected function executeQuery($sql,$bindparams=NULL) {
 		$result = $this->db->handle->prepare($sql);
@@ -120,9 +135,8 @@ class DBObject extends CoreClasses\CoreObject {
 
 	/**
 	*	Returns the id of the most recent insert query
-	*	@return int The id of the last inserted record
+	*	@return string The id of the last inserted record
 	*/
-
 	protected function getLastInsertId() {
 		return $this->db->handle->lastInsertId();
 	}
@@ -133,9 +147,8 @@ class DBObject extends CoreClasses\CoreObject {
 	*   @param string $index The table's primary key
 	*	@param string $findex An optional foreign key from the table (when used, returns a 2 dimensional array, indexed first by $index, second by $findex)
 	*  	@param mixed[] $bindparams An array of values to be binded by PDO to any query parameters
-	*	@return array[]|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
+	*	@return array<array<string,string>>|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
-
 	protected function queryWithIndex($sql,$index,$findex=NULL,$bindparams=NULL) {
 		if ($result = $this->executeQuery($sql,$bindparams)) {
 			$temp = array();
@@ -154,7 +167,9 @@ class DBObject extends CoreClasses\CoreObject {
 	}
 	
 	/** 
+	*	@Deprecated Use bind parameters option provided by sql execution methods instead
 	*	Escape a @value to prep for use in a DB query
+	*	@param string $value The value to escape
 	*	@return string The escaped $value
 	*/
 	protected function quote($value) {
@@ -162,7 +177,9 @@ class DBObject extends CoreClasses\CoreObject {
 	}
 
 	/**
+	*	@Deprecated Use bind parameters option provided by sql execution methods instead
 	*	Escapes the contents of an array and returns the result
+	*	@param string[] $ar An array of string values to escape
 	*	@return string[] The escaped array
 	*/
 	protected function quoteArray($ar) {
@@ -191,7 +208,7 @@ class DBObject extends CoreClasses\CoreObject {
 	*	Builds and executes an insert statement
 	*	@param mixed[] $data An associative array (ColumnName->Value) of data representing the new DB record
 	*	@param string $table Optional - The table to insert the new record into. Defaults to $primaryTable
-	*	@return int|false Returns the ID of the new record on success, false on failure
+	*	@return string|false Returns the ID of the new record on success, false on failure
 	*/
 	protected function buildInsertStatement($data,$table=null) {
 		if (!$table) {
@@ -269,8 +286,9 @@ class DBObject extends CoreClasses\CoreObject {
 
 	/**
 	* 	Logs SQL errors to the logger
-	*	@param array $error A PDO::errorInfo() error
+	*	@param string[] $error A PDO::errorInfo() error or similar structure
 	*	@param string $sql The SQL query that triggered the error
+	*	@return void
 	*/
 	protected function logStatementError($error,$sql=null) {
 		if (!empty($GLOBALS['config']['DB_DEBUG'])) {

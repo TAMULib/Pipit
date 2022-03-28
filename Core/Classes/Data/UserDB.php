@@ -7,7 +7,6 @@ use Core\Interfaces as Interfaces;
 *	Handles session management, authentication, and authorization
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
-
 class UserDB extends DBObject implements Interfaces\User {
 	/** @var string $sessionName A string scoping the user's session variables within their larger PHP $_SESSION array */
 	private $sessionName;
@@ -37,18 +36,28 @@ class UserDB extends DBObject implements Interfaces\User {
 		return $this->sessionName;
 	}
 
+	/**
+	*	Set the name of the session, which is used as a key within the $_SESSION array
+	*	@param string $sessionName The name of the session
+	*	@return void
+	*/
 	protected function setSessionName($sessionName) {
 		$this->sessionName = $sessionName;
 	}
 
 	/**
 	*	Get the unique identifier for the User as stored in $_SESSION
-	*	@return mixed The User's ID
+	*	@return mixed $userId The User's ID
 	*/
-	protected function getSessionUserId($userId=null) {
+	protected function getSessionUserId() {
 		return $this->sessionUserId;
 	}
 
+	/**
+	*	Set the unique identifier for the User as stored in $_SESSION
+	*	@param mixed $sessionUserId The User's ID
+	*	@return void
+	*/
 	protected function setSessionUserId($sessionUserId=null) {
 		if ($sessionUserId) {
 			$_SESSION[$this->getSessionName()]['sessionData']['userId'] = $sessionUserId;
@@ -109,6 +118,7 @@ class UserDB extends DBObject implements Interfaces\User {
 
 	/**
 	*	Builds the User's profile data which is exposed to the application
+	*	@return void
 	*/
 	protected function buildProfile() {
 		$sql = "SELECT * FROM {$this->primaryTable} WHERE id=:id";

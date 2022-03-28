@@ -14,6 +14,7 @@ class CoreObject {
 	/**
 	*	Sets the Logger
 	*	@param \Core\Interfaces\Logger $logger An instance of a Logger implementation
+	*	@return void
 	*/
 	private function setLogger($logger) {
 		$this->logger = $logger;

@@ -5,6 +5,11 @@ namespace Core\Classes\Configuration;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 class AbstractConfiguration {
+
+	/**
+	 * Returns an array of all the defined properties for the instance
+	 * @return array<string,string>
+	 */
 	public function getAllProperties() {
 		$configProperties = array();
 		foreach (get_class_methods($this) as $methodName) {
