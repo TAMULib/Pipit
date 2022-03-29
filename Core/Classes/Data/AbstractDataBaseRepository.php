@@ -59,7 +59,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	*	Get all rows from the $primaryTable matching the search %$term% against a 'name' field
 	*	
 	*	@param string $term The search criteria
-	*	@return array<array<string,string>>|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
+	*	@return mixed[]|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
 	public function search($term) {
 		if ($this->getSearchableColumns()) {
@@ -86,7 +86,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	*	Get all rows from the $primaryTable matching the provided field/value pairs search %$term% against a 'name' field
 	*	
 	*	@param array<string,string> $data The search criteria field/value pair(s)
-	*	@return array<array<string,string>>|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
+	*	@return mixed[]|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
 	public function searchAdvanced($data) {
 		$sql = "SELECT * FROM {$this->primaryTable} u ";
@@ -116,12 +116,14 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	*	Get the row whose 'id' matches the passed $id
 	*	
 	*	@param mixed $id The unique identifier for the row
-	*	@return string[]|false $results An array representing the resulting DB row, empty array if no match, false if the request failed
+	*	@return mixed[]|false $results An array representing the resulting DB row, empty array if no match, false if the request failed
 	*/
 	public function getById($id) {
 		$sql = "SELECT * FROM {$this->primaryTable} WHERE {$this->primaryKey}=:id";
-		$temp = $this->executeQuery($sql,array(":id"=>$id));
-		return $temp[0];
+		if ($temp = $this->executeQuery($sql,array(":id"=>$id))) {
+			return $temp[0];
+		}
+		return false;
 	}
 
 	/**

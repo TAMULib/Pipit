@@ -105,7 +105,7 @@ class DBObject extends CoreClasses\CoreObject {
 	*	Execute a query and return the results as an array
 	* 	@param string $sql the SQL query
 	*  	@param mixed[] $bindparams: an array of values to be binded by PDO to any query parameters
-	*	@return array<array<string,string>>|false A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
+	*	@return mixed[]|false A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
 	protected function executeQuery($sql,$bindparams=NULL) {
 		$result = $this->db->handle->prepare($sql);
@@ -135,7 +135,7 @@ class DBObject extends CoreClasses\CoreObject {
 
 	/**
 	*	Returns the id of the most recent insert query
-	*	@return string The id of the last inserted record
+	*	@return string|false The id of the last inserted record
 	*/
 	protected function getLastInsertId() {
 		return $this->db->handle->lastInsertId();
@@ -147,7 +147,7 @@ class DBObject extends CoreClasses\CoreObject {
 	*   @param string $index The table's primary key
 	*	@param string $findex An optional foreign key from the table (when used, returns a 2 dimensional array, indexed first by $index, second by $findex)
 	*  	@param mixed[] $bindparams An array of values to be binded by PDO to any query parameters
-	*	@return array<array<string,string>>|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
+	*	@return mixed[]|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
 	protected function queryWithIndex($sql,$index,$findex=NULL,$bindparams=NULL) {
 		if ($result = $this->executeQuery($sql,$bindparams)) {
@@ -233,7 +233,7 @@ class DBObject extends CoreClasses\CoreObject {
 
 	/**
 	*	Builds and executes a single insert statement that inserts multiple new records
-	*	@param mixed[][] $rows An array of associative arrays (ColumnName->Value) of data representing the new DB records
+	*	@param mixed[] $rows An array of associative arrays (ColumnName->Value) of data representing the new DB records
 	*	@param string $table Optional - The table to insert the new records into. Defaults to $primaryTable
 	*	@return boolean True on success, false on failure
 	*/
@@ -243,20 +243,24 @@ class DBObject extends CoreClasses\CoreObject {
 		}
 		$bindparams = array();
 		$sqlRows = NULL;
-		$sqlFields = implode(',',array_keys(current($rows)));
-		$x = 1;
-		foreach ($rows as $data) {
-			$sqlValues = NULL;
-			foreach ($data as $field=>$value) {
-				$sqlValues .= ":{$field}{$x},";
-				$bindparams[":{$field}{$x}"] = $value;
+		$fieldKeys = current($rows);
+		if ($fieldKeys) {
+			$sqlFields = implode(',',array_keys($fieldKeys));
+			$x = 1;
+			foreach ($rows as $data) {
+				$sqlValues = NULL;
+				foreach ($data as $field=>$value) {
+					$sqlValues .= ":{$field}{$x},";
+					$bindparams[":{$field}{$x}"] = $value;
+				}
+				$sqlValues = rtrim($sqlValues,',');
+				$sqlRows .= "({$sqlValues}),";
+				$x++;
 			}
-			$sqlValues = rtrim($sqlValues,',');
-			$sqlRows .= "({$sqlValues}),";
-			$x++;
+			$sql = "INSERT INTO {$table} ({$sqlFields}) VALUES ".rtrim($sqlRows,',');
+			return $this->executeUpdate($sql,$bindparams);
 		}
-		$sql = "INSERT INTO {$table} ({$sqlFields}) VALUES ".rtrim($sqlRows,',');
-		return $this->executeUpdate($sql,$bindparams);
+		return false;
 	}
 
 	/**

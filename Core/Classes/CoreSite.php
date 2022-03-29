@@ -9,7 +9,7 @@ namespace Core\Classes;
 class CoreSite extends AbstractSite {
 	/** @var \Core\Interfaces\DataRepository[] $cachedDataRepositories A store of DataRepositories to provide (singletons) to requestors */
 	protected $cachedDataRepositories = array();
-	/** @var object[] $cachedHelpers A store of Helpers to provide (singletons) to requestors */
+	/** @var \Core\Classes\Helpers\AbstractHelper[] $cachedHelpers A store of Helpers to provide (singletons) to requestors */
 	protected $cachedHelpers = array();
 	/** @var string $redirectUrl A url to be redirected to */
 	private $redirectUrl = null;
@@ -36,7 +36,13 @@ class CoreSite extends AbstractSite {
 		if (!empty($this->getSiteConfig()['USER_CLASS'])) {
 			$className = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Data\\{$this->getSiteConfig()['USER_CLASS']}";
 			if (class_exists($className)) {
-				$this->setGlobalUser(new $className());
+				$userClass = new $className();
+				if ($userClass instanceof \Core\Interfaces\User) {
+					$this->setGlobalUser($userClass);
+					unset($userClass);
+				} else {
+					$this->getLogger()->error("Configured User class does not implement: Core\Interfaces\User");
+				}
 			} else {
 				$this->getLogger()->error("Configured User class not found: {$className}");
 			}
@@ -126,12 +132,19 @@ class CoreSite extends AbstractSite {
 				//We found a DataRepository named $repositoryName, so let's instantiate, configure and cache it
 				if (class_exists($className)) {
 					$repository = new $className();
-					$repository->configure($this);
-					$this->addCachedDataRepository($repositoryName,$repository);
+					if (!($repository instanceof \Core\Interfaces\DataRepository)) {
+						$repository = null;
+					} elseif ($repository instanceof \Core\Interfaces\Configurable) {
+						$repository->configure($this);
+						$this->addCachedDataRepository($repositoryName,$repository);
+					} else {
+						$this->getLogger()->error("Repositories must implement Core\Interfaces\Configurable: ".$repositoryName);
+						$repository = null;
+					}
 				}
 			}
 			if (!$repository) {
-				$this->getLogger()->error("Could not find Repository: ".$repositoryName);
+				$this->getLogger()->error("Could not find valid Repository: ".$repositoryName);
 			} else {
 				$this->getLogger()->debug("Providing FRESH Repo: ".$repositoryName);
 			}
@@ -174,14 +187,19 @@ class CoreSite extends AbstractSite {
 				//We found a Helper named $helperName, so let's instantiate, configure and cache it
 				if (class_exists($className)) {
 					$helper = new $className();
-					$helper->configure($this);
-					$this->addCachedHelper($helperName,$helper);
-					$this->getLogger()->debug("Providing FRESH Helper: ".$helperName);
-					break;
+					if ($helper instanceof \Core\Classes\Helpers\AbstractHelper) {
+						$helper->configure($this);
+						$this->addCachedHelper($helperName,$helper);
+						$this->getLogger()->debug("Providing FRESH Helper: ".$helperName);
+						break;
+					} else {
+						$helper = null;
+						$this->getLogger()->error("Helpers must extend Core\Classes\Helpers\AbstractHelper: ".$helperName);
+					}
 				}
 			}
 			if (!$helper) {
-				$this->getLogger()->error("Could not find Helper: ".$helperName);
+				$this->getLogger()->error("Could not find valid Helper: ".$helperName);
 			}
 		} else {
 			$this->getLogger()->debug("Providing CACHED Helper: ".$helperName);

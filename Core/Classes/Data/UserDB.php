@@ -92,7 +92,7 @@ class UserDB extends DBObject implements Interfaces\User {
 	/**
 	*	Hash a plaintext password
 	*	@param string $plaintext The plaintext password
-	*	@return string The password hash
+	*	@return string|false The password hash
 	*/
 	public static function hashPassword($plaintext) {
 		return password_hash($plaintext, PASSWORD_DEFAULT);
@@ -122,7 +122,9 @@ class UserDB extends DBObject implements Interfaces\User {
 	*/
 	protected function buildProfile() {
 		$sql = "SELECT * FROM {$this->primaryTable} WHERE id=:id";
-		if ($user = $this->executeQuery($sql,array(":id"=>$this->getSessionUserId()))[0]) {
+		$userResult = $this->executeQuery($sql,array(":id"=>$this->getSessionUserId()));
+		if ($userResult) {
+			$user = $userResult[0];
 			unset($user['password']);
 			foreach ($user as $field=>$value) {
 				$this->profile[$field] = $value;

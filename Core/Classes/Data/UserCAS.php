@@ -47,23 +47,25 @@ class UserCAS extends UserDB {
 		}
 
 		$casXml = simplexml_load_string($file,'SimpleXMLElement::class', 0, 'cas', true);
-		$casXml->registerXPathNamespace("cas", 'http://www.yale.edu/tp/cas');
-		$casUserName = $casXml->authenticationSuccess->user;
-		$tusers = $this->usersRepo;
-		//find an existing, active user or create a new one
-		if (($user = $tusers->searchAdvanced(array("username"=>$casUserName)))) {
-			if ($user[0]['inactive'] == 0) {
-				$userId = $user[0]['id'];
+		if ($casXml) {
+			$casXml->registerXPathNamespace("cas", 'http://www.yale.edu/tp/cas');
+			$casUserName = $casXml->authenticationSuccess->user;
+			$tusers = $this->usersRepo;
+			//find an existing, active user or create a new one
+			if (($user = $tusers->searchAdvanced(array("username"=>$casUserName)))) {
+				if ($user[0]['inactive'] == 0) {
+					$userId = $user[0]['id'];
+				}
+			} elseif (!empty($casUserName)) {
+				$userId = $tusers->add(array("username"=>$casUserName,"iscas"=>1));
 			}
-		} elseif (!empty($casUserName)) {
-			$userId = $tusers->add(array("username"=>$casUserName,"iscas"=>1));
-		}
-		if (!empty($userId)) {
-			session_regenerate_id(true);
-			session_start();
-			$this->setSessionUserId($userId);
-			$this->buildProfile();
-			return true;
+			if (!empty($userId)) {
+				session_regenerate_id(true);
+				session_start();
+				$this->setSessionUserId($userId);
+				$this->buildProfile();
+				return true;
+			}
 		}
 		return false;
 	}
