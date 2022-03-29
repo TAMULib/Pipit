@@ -41,8 +41,9 @@ class HTMLViewRenderer extends CoreClasses\CoreObject implements Interfaces\View
 		$this->registerAppContextProperty("controllerName", $controllerName);
 		if (!empty($GLOBALS['config']['ACTIVE_THEME'])) {
 			$themeFolder = $GLOBALS['config']['ACTIVE_THEME'];
-		 	if (is_dir($this->getAppContextProperty('config')['PATH_VIEWS'].$themeFolder)) {
-				$this->setViewPath($themeFolder);
+			$viewPath = $GLOBALS['config']['PATH_VIEWS'].$themeFolder;
+		 	if (is_dir($viewPath)) {
+				$this->setViewPath($viewPath);
 			} else {
 				$this->getLogger()->info("Could not find theme folder: ".$themeFolder.", falling back to default");
 				$this->setViewPath('html');
@@ -117,7 +118,7 @@ class HTMLViewRenderer extends CoreClasses\CoreObject implements Interfaces\View
 	*	@return string The full directory path to the views
 	*/
 	protected function getViewPath() {
-		return "{$this->getAppContextProperty('config')['PATH_VIEWS']}{$this->viewPath}/";
+		return $this->viewPath;
 	}
 
 	/**

@@ -7,7 +7,7 @@ namespace Core\Classes\Data;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 class UserCAS extends UserDB {
-	/** @var mixed[] $casPaths A string array representing the CAS configuration */
+	/** @var array<string,array<string,string>> $casPaths A string array representing the CAS configuration */
 	private $casPaths;
 	/** @var \Core\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'iscas' fields) */
 	private $usersRepo;
@@ -18,18 +18,26 @@ class UserCAS extends UserDB {
 	*	@param \Core\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'iscas' fields)
 	*/
 	public function __construct($inputData,$usersRepo) {
-		parent::__construct();
-		$this->casPaths['urls']['login'] = $GLOBALS['config']['CAS_URLS_LOGIN'];
-		$this->casPaths['urls']['check'] = $GLOBALS['config']['CAS_URLS_CHECK'];
-		$this->casPaths['urls']['logout'] = $GLOBALS['config']['CAS_URLS_LOGOUT'];
-		if (!empty($inputData['ticket'])) {
-			$this->usersRepo = $usersRepo;
+		if (is_array($GLOBALS['config'])
+			&& is_string($GLOBALS['config']['CAS_URLS_LOGIN'])
+			&& is_string($GLOBALS['config']['CAS_URLS_CHECK'])
+			&& is_string($GLOBALS['config']['CAS_URLS_LOGOUT'])
+		) {
+			parent::__construct();
+			$this->casPaths['urls']['login'] = $GLOBALS['config']['CAS_URLS_LOGIN'];
+			$this->casPaths['urls']['check'] = $GLOBALS['config']['CAS_URLS_CHECK'];
+			$this->casPaths['urls']['logout'] = $GLOBALS['config']['CAS_URLS_LOGOUT'];
+			if (!empty($inputData['ticket'])) {
+				$this->usersRepo = $usersRepo;
 
-			if ($this->processLogIn($inputData['ticket'])) {
-				header("Location:{$GLOBALS['config']['CAS_REDIRECT_URL']}");
+				if (is_string($inputData['ticket']) && $this->processLogIn($inputData['ticket'])) {
+					header("Location:{$GLOBALS['config']['CAS_REDIRECT_URL']}");
+				}
+			} elseif (!$this->isLoggedIn() && !isset($inputData['action'])) {
+				$this->initiateLogIn();
 			}
-		} elseif (!$this->isLoggedIn() && !isset($inputData['action'])) {
-			$this->initiateLogIn();
+		} else {
+			throw new \RuntimeException("CAS urls must be configured");
 		}
 	}
 
@@ -52,7 +60,8 @@ class UserCAS extends UserDB {
 			$casUserName = $casXml->authenticationSuccess->user;
 			$tusers = $this->usersRepo;
 			//find an existing, active user or create a new one
-			if (($user = $tusers->searchAdvanced(array("username"=>$casUserName)))) {
+			$user = $tusers->searchAdvanced(array("username"=>$casUserName));
+			if ($user && is_array($user)) {
 				if ($user[0]['inactive'] == 0) {
 					$userId = $user[0]['id'];
 				}

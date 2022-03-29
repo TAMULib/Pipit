@@ -4,22 +4,25 @@ use Core\Interfaces as Interfaces;
 use Core\Classes\Data as CoreData;
 
 class FileManager extends AbstractHelper {
+	/** @var string $baseFilePath The directory path to store uploaded files */
+	private $baseFilePath;
 	/**
 	 * @param \Core\Interfaces\Site $site An implementation of \Interfaces\Site
 	 * @return void
 	 */
 	public function configure(Interfaces\Site $site) {
 		parent::configure($site);
-		if (!$this->getSite()->getSiteConfig()['UPLOAD_PATH']) {
+		if (!is_array($this->getSite()->getSiteConfig()) || !is_string($this->getSite()->getSiteConfig()['UPLOAD_PATH'])) {
 			throw new \RuntimeException("The upload path has not been configured!");
 		}
+		$this->baseFilePath = $this->getSite()->getSiteConfig()['UPLOAD_PATH'];
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getBaseFilePath() {
-		return $this->getSite()->getSiteConfig()['UPLOAD_PATH'];
+		return $this->baseFilePath;
 	}
 
 	/**

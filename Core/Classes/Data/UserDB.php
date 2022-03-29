@@ -108,7 +108,7 @@ class UserDB extends DBObject implements Interfaces\User {
 		session_regenerate_id(true);
 		$sql = "SELECT id,password FROM {$this->primaryTable} WHERE username=:username AND inactive=0";
 		if ($result = $this->executeQuery($sql,array(":username"=>$username))) {
-			if (password_verify($password,$result[0]['password'])) {
+			if (is_array($result[0]) && password_verify($password,$result[0]['password'])) {
 				$this->setSessionUserId($result[0]['id']);
 				return true;			
 			}
@@ -123,7 +123,7 @@ class UserDB extends DBObject implements Interfaces\User {
 	protected function buildProfile() {
 		$sql = "SELECT * FROM {$this->primaryTable} WHERE id=:id";
 		$userResult = $this->executeQuery($sql,array(":id"=>$this->getSessionUserId()));
-		if ($userResult) {
+		if (is_array($userResult) && count($userResult) > 0) {
 			$user = $userResult[0];
 			unset($user['password']);
 			foreach ($user as $field=>$value) {

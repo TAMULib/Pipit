@@ -90,8 +90,8 @@ class CoreLoader implements CoreInterfaces\Loader {
 	*	@return void
 	*/
 	protected function checkRedirect() {
-		if (!empty($this->getConfig()['forceRedirectUrl'])) {
-			$this->getSite()->setRedirectUrl("{$this->getConfig()['forceRedirectUrl']}");
+		if (is_string($this->getConfig()['forceRedirectUrl'])) {
+			$this->getSite()->setRedirectUrl($this->getConfig()['forceRedirectUrl']);
 			$this->getSite()->redirect();
 		}
 	}
@@ -104,7 +104,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 		$site = null;
 		$config = $this->getConfig();
 
-		if (!empty($config['SITE_CLASS'])) {
+		if (is_string($config['NAMESPACE_APP']) && is_string($config['SITE_CLASS'])) {
 			$className = "{$config['NAMESPACE_APP']}Classes\\{$config['SITE_CLASS']}";
 			$site = new $className($config);
 
@@ -134,7 +134,12 @@ class CoreLoader implements CoreInterfaces\Loader {
 		$inputData = $this->getSite()->getSanitizedInputData();
 		$hasViewRenderer = false;
 		if ($viewRendererName = $this->getViewRendererName()) {
-			$potentialViewRenderer = new $viewRendererName($this->getSite()->getGlobalUser(),$this->getSite()->getPages(),$inputData,(!empty($config['controllerConfig']) ? $config['controllerConfig']['name']:null));
+			$potentialViewRenderer = new $viewRendererName(
+											$this->getSite()->getGlobalUser(),
+											$this->getSite()->getPages(),
+											$inputData,
+											(is_array($config['controllerConfig']) && array_key_exists('name', $config['controllerConfig']) ? $config['controllerConfig']['name']:null)
+										);
 			if ($potentialViewRenderer instanceof \Core\Interfaces\ViewRenderer) {
 				$this->getSite()->setViewRenderer($potentialViewRenderer);
 				unset($potentialViewRenderer);
@@ -160,23 +165,24 @@ class CoreLoader implements CoreInterfaces\Loader {
 		$availableCoreRenderers = array("json","csv","html");
 
 		$viewRenderOverride = null;
-
-		//legacy support for original GET request of JSONViewRenderer
-		if (!empty($inputData['json'])) {
-			$viewRenderOverride = "JSONViewRenderer";
-		} else if (!empty($inputData['view_renderer']) && in_array($inputData['view_renderer'],$availableCoreRenderers)) {
-			$viewRenderOverride = strtoupper($inputData['view_renderer'])."ViewRenderer";
-		}
-		if ($viewRenderOverride) {
-			$viewRendererName = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$viewRenderOverride}";
-		} else if (!empty($config['VIEW_RENDERER'])) {
-			if (class_exists("{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {
-				$viewRendererName = "{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}";
-			} elseif (class_exists("{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {
-				$viewRendererName = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}";
+		if (is_string($config['NAMESPACE_CORE']) && is_string($config['NAMESPACE_APP'])) {
+			//legacy support for original GET request of JSONViewRenderer
+			if (!empty($inputData['json'])) {
+				$viewRenderOverride = "JSONViewRenderer";
+			} else if (!empty($inputData['view_renderer']) && in_array($inputData['view_renderer'],$availableCoreRenderers) && is_string($inputData['view_renderer'])) {
+				$viewRenderOverride = strtoupper($inputData['view_renderer'])."ViewRenderer";
 			}
-		} else {
-			$viewRendererName = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\HTMLViewRenderer";
+			if ($viewRenderOverride) {
+				$viewRendererName = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$viewRenderOverride}";
+			} else if (is_string($config['VIEW_RENDERER'])) {
+				if (class_exists("{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {
+					$viewRendererName = "{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}";
+				} elseif (class_exists("{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {
+					$viewRendererName = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}";
+				}
+			} else {
+				$viewRendererName = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\HTMLViewRenderer";
+			}
 		}
 		return $viewRendererName;
 	}
@@ -189,7 +195,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 		//try to load the controller
 		$config = $this->getConfig();
 		$controller = null;
-		if (!empty($config['controllerConfig']['name'])) {
+		if (is_array($config['controllerConfig']) && is_string($config['controllerConfig']['name'])) {
 			$className = $this->getSite()->getControllerClass($config['controllerConfig']['name']);
 			if (class_exists($className)) {
 				$site = $this->getSite();
@@ -203,7 +209,11 @@ class CoreLoader implements CoreInterfaces\Loader {
 		}
 		if (!$controller) {
 			$this->logger->warn("Did not find Controller Class");
-			$this->getSite()->setRedirectUrl($config['PATH_HTTP']);
+			if (is_string($config['PATH_HTTP'])) {
+				$this->getSite()->setRedirectUrl($config['PATH_HTTP']);
+			} else {
+				exit;
+			}
 		}
 	}
 
