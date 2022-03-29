@@ -112,7 +112,7 @@ abstract class AbstractController extends CoreObject implements Interfaces\Contr
 			if (!empty($data['subaction'])) {
 				$methodName = $methodName.$data['subaction'];
 			}
-			if (method_exists($this,$methodName)) {
+			if (is_string($methodName) && method_exists($this,$methodName)) {
 				$this->$methodName();
 			}
 		} else {

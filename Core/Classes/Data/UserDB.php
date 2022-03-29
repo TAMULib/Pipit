@@ -108,8 +108,9 @@ class UserDB extends DBObject implements Interfaces\User {
 		session_regenerate_id(true);
 		$sql = "SELECT id,password FROM {$this->primaryTable} WHERE username=:username AND inactive=0";
 		if ($result = $this->executeQuery($sql,array(":username"=>$username))) {
-			if (is_array($result[0]) && password_verify($password,$result[0]['password'])) {
-				$this->setSessionUserId($result[0]['id']);
+			$row = current($result);
+			if (is_array($row) && password_verify($password,$row['password'])) {
+				$this->setSessionUserId($row['id']);
 				return true;			
 			}
 		}
@@ -124,7 +125,7 @@ class UserDB extends DBObject implements Interfaces\User {
 		$sql = "SELECT * FROM {$this->primaryTable} WHERE id=:id";
 		$userResult = $this->executeQuery($sql,array(":id"=>$this->getSessionUserId()));
 		if (is_array($userResult) && count($userResult) > 0) {
-			$user = $userResult[0];
+			$user = current($userResult);
 			unset($user['password']);
 			foreach ($user as $field=>$value) {
 				$this->profile[$field] = $value;

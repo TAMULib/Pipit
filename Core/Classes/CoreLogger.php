@@ -79,7 +79,7 @@ class CoreLogger implements Interfaces\Logger {
 
 	/**
 	*	Writes an entry to the PHP error log using PHP's trigger_error() function
-	*	@param mixed[] $entry An array of log entry data: array(0=>$loggerTypes index,1=>The log message))
+	*	@param array<int,int|string> $entry An array of log entry data: array(0=>$loggerTypes index,1=>The log message))
 	*	@return void
 	*/
 	protected function writeToLog($entry) {
@@ -124,7 +124,7 @@ class CoreLogger implements Interfaces\Logger {
 	 */
 	protected function getFormattedCaller() {
 		$rawCaller = $this->getCaller();
-		return implode(', ',array("line"=>"L{$rawCaller['line']}","file"=>"File: {$rawCaller['file']}","function"=>"Function: {$rawCaller['function']}"));
+		return implode(', ',array("line"=>"L".$rawCaller['line'],"file"=>"File: ".$rawCaller['file'],"function"=>"Function: ".$rawCaller['function']));
 	}
 }
 

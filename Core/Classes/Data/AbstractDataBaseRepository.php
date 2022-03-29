@@ -45,7 +45,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	/**
 	*	Get all rows from the $primaryTable, optionally ordered by $defaultOrderBy, with selected columns optionally limited to $gettableColumns
 	*
-	*	@return array<array<string,string>>|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
+	*	@return mixed[]|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
 	public function get() {
 		$sql = "SELECT ".(($this->gettableColumns) ? "{$this->primaryKey},".implode(",",$this->gettableColumns):"*")." FROM {$this->primaryTable}";
@@ -121,7 +121,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	public function getById($id) {
 		$sql = "SELECT * FROM {$this->primaryTable} WHERE {$this->primaryKey}=:id";
 		if ($temp = $this->executeQuery($sql,array(":id"=>$id))) {
-			return $temp[0];
+			return current($temp);
 		}
 		return false;
 	}
@@ -150,7 +150,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	/**
 	*	Update the row having ID of $id with the key/value pairs in $data
 	*	
-	*	@param mixed $id The unique identifier for the row to be updated
+	*	@param string $id The unique identifier for the row to be updated
 	*	@param mixed[] $data The data with which to update the row
 	*	@return boolean True on success, false on failure
 	*/

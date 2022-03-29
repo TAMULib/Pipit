@@ -9,14 +9,14 @@ namespace Core\Interfaces;
 interface SystemMessage {
 	/**
 	*	Set the type of the message
-	*	@param mixed $messageType
+	*	@param string $messageType
 	*	@return void
 	*/
 	public function setType($messageType);
 
 	/**
 	*	Get the type of the message
-	*	@return mixed $messageType
+	*	@return string $messageType
 	*/
 	public function getType();
 

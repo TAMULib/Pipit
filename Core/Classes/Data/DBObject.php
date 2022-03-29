@@ -105,7 +105,7 @@ class DBObject extends CoreClasses\CoreObject {
 	*	Execute a query and return the results as an array
 	* 	@param string $sql the SQL query
 	*  	@param mixed[] $bindparams: an array of values to be binded by PDO to any query parameters
-	*	@return mixed[]|false A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
+	*	@return array<string,array<string,string>>|false A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
 	protected function executeQuery($sql,$bindparams=NULL) {
 		$result = $this->db->handle->prepare($sql);
@@ -147,14 +147,17 @@ class DBObject extends CoreClasses\CoreObject {
 	*   @param string $index The table's primary key
 	*	@param string $findex An optional foreign key from the table (when used, returns a 2 dimensional array, indexed first by $index, second by $findex)
 	*  	@param mixed[] $bindparams An array of values to be binded by PDO to any query parameters
-	*	@return mixed[]|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
+	*	@return mixed[]|false $results A two (or three) dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
 	protected function queryWithIndex($sql,$index,$findex=NULL,$bindparams=NULL) {
-		if ($result = $this->executeQuery($sql,$bindparams)) {
+		$result = $this->executeQuery($sql,$bindparams);
+		if (is_array($result)) {
 			$temp = array();
 			if ($findex) {
 				foreach ($result as $row) {
-					$temp[$row[$findex]][$row[$index]] = $row;
+					if (is_array($row)) {
+						$temp[$row[$findex]][$row[$index]] = $row;
+					}
 				}
 			} else {
 				foreach ($result as $row) {
@@ -235,7 +238,7 @@ class DBObject extends CoreClasses\CoreObject {
 
 	/**
 	*	Builds and executes a single insert statement that inserts multiple new records
-	*	@param mixed[] $rows An array of associative arrays (ColumnName->Value) of data representing the new DB records
+	*	@param array<array<string,string>> $rows An array of associative arrays (ColumnName->Value) of data representing the new DB records
 	*	@param string $table Optional - The table to insert the new records into. Defaults to $primaryTable
 	*	@return boolean True on success, false on failure
 	*/
@@ -269,7 +272,7 @@ class DBObject extends CoreClasses\CoreObject {
 
 	/**
 	*	Builds and executes an update statement
-	*	@param int $id The id of the record to be updated
+	*	@param string $id The id of the record to be updated
 	*	@param mixed[] $data An associative array (ColumnName->Value) of data representing the updated data
 	*	@param string $table Optional - The table to insert the new record into. Defaults to $primaryTable
 	*	@return boolean True on success, false on failure
