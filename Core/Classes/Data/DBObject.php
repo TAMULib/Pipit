@@ -222,11 +222,13 @@ class DBObject extends CoreClasses\CoreObject {
 			$sql_values .= ":{$field},";
 			$bindparams[":{$field}"] = $value;
 		}
-		$sql_fields = rtrim($sql_fields,',');
-		$sql_values = rtrim($sql_values,',');
-		$sql = "INSERT INTO {$table} ({$sql_fields}) VALUES ({$sql_values})";
-		if ($this->executeUpdate($sql,$bindparams)) {
-			return $this->getLastInsertId();
+		if ($sql_fields && $sql_values) {
+			$sql_fields = rtrim($sql_fields,',');
+			$sql_values = rtrim($sql_values,',');
+			$sql = "INSERT INTO {$table} ({$sql_fields}) VALUES ({$sql_values})";
+			if ($this->executeUpdate($sql,$bindparams)) {
+				return $this->getLastInsertId();
+			}
 		}
 		return false;
 	}
@@ -241,24 +243,26 @@ class DBObject extends CoreClasses\CoreObject {
 		if (!$table) {
 			$table = $this->primaryTable;
 		}
-		$bindparams = array();
-		$sqlRows = NULL;
-		$fieldKeys = current($rows);
-		if ($fieldKeys) {
-			$sqlFields = implode(',',array_keys($fieldKeys));
-			$x = 1;
-			foreach ($rows as $data) {
-				$sqlValues = NULL;
-				foreach ($data as $field=>$value) {
-					$sqlValues .= ":{$field}{$x},";
-					$bindparams[":{$field}{$x}"] = $value;
+		if (count($rows) > 0) {
+			$bindparams = array();
+			$sqlRows = "";
+			$fieldKeys = current($rows);
+			if ($fieldKeys) {
+				$sqlFields = implode(',',array_keys($fieldKeys));
+				$x = 1;
+				foreach ($rows as $data) {
+					$sqlValues = "";
+					foreach ($data as $field=>$value) {
+						$sqlValues .= ":{$field}{$x},";
+						$bindparams[":{$field}{$x}"] = $value;
+					}
+					$sqlValues = rtrim($sqlValues,',');
+					$sqlRows .= "({$sqlValues}),";
+					$x++;
 				}
-				$sqlValues = rtrim($sqlValues,',');
-				$sqlRows .= "({$sqlValues}),";
-				$x++;
+				$sql = "INSERT INTO {$table} ({$sqlFields}) VALUES ".rtrim($sqlRows,',');
+				return $this->executeUpdate($sql,$bindparams);
 			}
-			$sql = "INSERT INTO {$table} ({$sqlFields}) VALUES ".rtrim($sqlRows,',');
-			return $this->executeUpdate($sql,$bindparams);
 		}
 		return false;
 	}

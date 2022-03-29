@@ -9,11 +9,11 @@ use Core\Interfaces as Interfaces;
 class SimpleFile implements Interfaces\File {
 	/** @var string $fileName The file name */
 	private $fileName;
-	/** @var string $filePath The path to the file */
+	/** @var string|null $filePath The path to the file */
 	private $filePath;
-	/** @var string $fileType The file type */
+	/** @var string|null $fileType The file type */
 	private $fileType;
-	/** @var string $gloss A display friendly name for the file */
+	/** @var string|null $gloss A display friendly name for the file */
 	private $gloss;
 
 	/** 
@@ -38,7 +38,7 @@ class SimpleFile implements Interfaces\File {
 	}
 
 	/** 
-	*	@param string $filePath Set the file path
+	*	@param string|null $filePath Set the file path
 	*	@return void
 	*/
 	protected function setFilePath($filePath) {
@@ -46,7 +46,7 @@ class SimpleFile implements Interfaces\File {
 	}
 
 	/** 
-	*	@param string $fileType Set the file type
+	*	@param string|null $fileType Set the file type
 	*	@return void
 	*/
 	protected function setFileType($fileType) {
@@ -54,7 +54,7 @@ class SimpleFile implements Interfaces\File {
 	}
 
 	/** 
-	*	@param string $gloss Set the display friendly gloss for the file
+	*	@param string|null $gloss Set the display friendly gloss for the file
 	*	@return void
 	*/
 	protected function setGloss($gloss) {
@@ -71,7 +71,7 @@ class SimpleFile implements Interfaces\File {
 
 	/** 
 	* 	Get the file path
-	*	@return string
+	*	@return string|null
 	*/
 	public function getFilePath() {
 		return $this->filePath;

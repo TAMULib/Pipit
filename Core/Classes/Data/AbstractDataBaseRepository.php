@@ -16,11 +16,11 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	protected $primaryTable;
 	/** @var string $primaryKey This is the name of the Primary Key for the $primaryTable managed by DatabaseRepositories extending this class */
 	protected $primaryKey = 'id';
-	/** @var string $defaultOrderBy If provided, AbstractDataBaseRepository::get()) will ORDER BY this property. */
+	/** @var string|null $defaultOrderBy If provided, AbstractDataBaseRepository::get()) will ORDER BY this property. */
 	protected $defaultOrderBy;
-	/** @var string[] $gettableColumns If provided, AbstractDataBaseRepository::get()) will only SELECT the columns present in this array. */
+	/** @var string[]|null $gettableColumns If provided, AbstractDataBaseRepository::get()) will only SELECT the columns present in this array. */
 	protected $gettableColumns;
-	/** @var string[] $searchableColumns If provided, AbstractDataBaseRepository::search()) will carry out its search on these columns */
+	/** @var string[]|null $searchableColumns If provided, AbstractDataBaseRepository::search()) will carry out its search on these columns */
 	protected $searchableColumns;
 
 	/**
@@ -28,9 +28,9 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	*
 	*	@param string $primaryTable Required. This specializes an instance of an extending class to the given DB table name
 	*	@param string $primaryKey Required. Extending classes define the Primary Key of the table they manage
-	*	@param string $defaultOrderBy Optional. Explicitly define a column to order query results by
-	*	@param string[] $gettableColumns Optional. AbstractDataBaseRepository::get()) will SELECT only these fields, when passed
-	*	@param string[] $searchableColumns Optional. AbstractDataBaseRepository::search()) will search these columns
+	*	@param string|null $defaultOrderBy Optional. Explicitly define a column to order query results by
+	*	@param string[]|null $gettableColumns Optional. AbstractDataBaseRepository::get()) will SELECT only these fields, when passed
+	*	@param string[]|null $searchableColumns Optional. AbstractDataBaseRepository::search()) will search these columns
 	*
 	*/
 	protected function __construct($primaryTable,$primaryKey,$defaultOrderBy=null,$gettableColumns=null,$searchableColumns=null) {
@@ -106,7 +106,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 
 	/**
 	* Returns an array of column names that should be used to perform searches on records in a repository
-	* @return string[] $searchableColumns An array of string containing the searchable columns
+	* @return string[]|null $searchableColumns An array of string containing the searchable columns
 	*/
 	protected function getSearchableColumns() {
 		return $this->searchableColumns;

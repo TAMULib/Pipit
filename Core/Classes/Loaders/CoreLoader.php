@@ -150,7 +150,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 	/**
 	*	Provides the fully qualified class name of the ViewRenderer that should be used to render the response
 	*	App level extenders of CoreLoader can override this method to use their own criteria to select the ViewRenderer
-	*	@return string $viewRendererName - The fully qualified class name of the ViewRenderer to be used to render the response
+	*	@return string|null $viewRendererName - The fully qualified class name of the ViewRenderer to be used to render the response
 	*/
 	protected function getViewRendererName() {
 		$config = $this->getConfig();

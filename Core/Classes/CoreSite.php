@@ -47,7 +47,13 @@ class CoreSite extends AbstractSite {
 				$this->getLogger()->error("Configured User class not found: {$className}");
 			}
 		} else if (isset($this->getSiteConfig()['USECAS']) && $this->getSiteConfig()['USECAS']) {
-			$this->setGlobalUser(new Data\UserCAS($this->getSanitizedInputData(),$this->getDataRepository('Users')));
+			$userRepo = $this->getDataRepository('Users');
+			if ($userRepo instanceof \Core\Interfaces\DataRepository) {
+				$this->setGlobalUser(new Data\UserCAS($this->getSanitizedInputData(),$userRepo));
+				unset($userRepo);
+			} else {
+				throw new \RuntimeException("UserCAS requires a DataRepository");
+			}
 		} else {
 			$this->setGlobalUser(new Data\UserDB());
 		}
@@ -77,11 +83,11 @@ class CoreSite extends AbstractSite {
 	*	If no controller is found for the given controller name, the method will fall back to either DefaultController or DefaultAdminController
 	*
 	*	@param string $controllerName The name of the desired controller
-	*	@return String
+	*	@return string
 	*
 	*/
 	public function getControllerClass($controllerName) {
-		$controllerClass = null;
+		$controllerClass = "";
 
 		if (array_key_exists($controllerName,$this->getPages()) || $controllerName == 'user') {
 			if ($controllerName == 'user') {

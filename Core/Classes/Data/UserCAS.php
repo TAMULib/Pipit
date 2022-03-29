@@ -17,7 +17,7 @@ class UserCAS extends UserDB {
 	*	@param mixed[] $inputData The input data from the request
 	*	@param \Core\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'iscas' fields)
 	*/
-	public function __construct($inputData,$usersRepo=null) {
+	public function __construct($inputData,$usersRepo) {
 		parent::__construct();
 		$this->casPaths['urls']['login'] = $GLOBALS['config']['CAS_URLS_LOGIN'];
 		$this->casPaths['urls']['check'] = $GLOBALS['config']['CAS_URLS_CHECK'];
