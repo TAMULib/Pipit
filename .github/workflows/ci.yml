@@ -1,17 +1,20 @@
 name: CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
-  phpstan:
+  test:
+    name: Tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: php-actions/composer@v5
-
-      - name: PHPStan Static Analysis
+      - name: Run PHPStan Static Analysis
         uses: php-actions/phpstan@master
         with:
           path: Core/
           configuration: phpstan.dist
           level: 9
+      - name: Run Codeception tests
+        uses: "joelwmale/codeception-action@master@104032c6a73aa7f1ad17dc81a9eebf7d122d76b6"
+
