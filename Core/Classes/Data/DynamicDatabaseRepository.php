@@ -13,6 +13,7 @@ class DynamicDataBaseRepository extends AbstractDataBaseRepository {
 	* @param \Core\Classes\Configuration\DynamicDatabaseRepositoryConfiguration $configuration An instance of DynamicRepositoryConfiguration
 	*/
 	public function __construct($configuration) {
-		parent::__construct($configuration->getTableName(),$configuration->getPrimaryKey(),$configuration->getDefaultOrderBy(),$configuration->getGettableColumns(),$configuration->getSearchableColumns());
+		$config = $configuration;
+		parent::__construct($config->getTableName(),$config->getPrimaryKey(),$config->getDefaultOrderBy(),$config->getGettableColumns(),$config->getSearchableColumns());
 	}
 }

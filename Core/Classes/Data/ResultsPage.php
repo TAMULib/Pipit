@@ -7,9 +7,13 @@ use Core\Interfaces as Interfaces;
  * @author Jason Savell <jsavell@library.tamu.edu>
  */
 class ResultsPage implements \JsonSerializable {
+	/** @var int $page The page number represented by this ResultsPage */
     private $page = 1;
+	/** @var int $resultsPerPage The number of results included per page */
     private $resultsPerPage = 25;
+	/** @var int $pageCount The total number of pages in this result */
     private $pageCount;
+	/** @var mixed[] A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")) */
     private $pageResults;
 
     protected function __construct() {
@@ -40,7 +44,7 @@ class ResultsPage implements \JsonSerializable {
     *	@return void
     */
     protected function calculatePageCount($resultsCount) {
-        $this->setPageCount(ceil($resultsCount/$this->getResultsPerPage()));
+        $this->setPageCount(intval(ceil($resultsCount/$this->getResultsPerPage())));
     }
 
     /**
@@ -54,7 +58,7 @@ class ResultsPage implements \JsonSerializable {
 
     /**
     *	Set the page results
-    *	@param array[] $results
+    *	@param mixed[] $results
     *	@param integer $resultsCount
     *	@return void
     */
@@ -75,7 +79,7 @@ class ResultsPage implements \JsonSerializable {
     /**
 	*	Get the results
 	*
-	*	@return array[] A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2"))
+	*	@return mixed[] A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2"))
 	*/
     public function getPageResults() {
         return $this->pageResults;
@@ -101,8 +105,9 @@ class ResultsPage implements \JsonSerializable {
 
 	/**
 	*	Creates a new ResultsPage
-	*
-	*	@return Core\Data\ResultsPage A new ResultsPage, ready to be populated with results
+	*   @param int $page The desired page number of the results
+    *   @param int $resultsPerPage The number of results to include per page
+	*	@return \Core\Classes\Data\ResultsPage A new ResultsPage, ready to be populated with results
 	*/
     public static function getNewResultsPage(int $page, int $resultsPerPage) {
         $resultsPage = new ResultsPage();

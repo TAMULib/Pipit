@@ -60,7 +60,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	public function search($term) {
 		if ($this->getSearchableColumns()) {
 			$searchQuery = $this->getSearchQuery($term);
-			if ($result = $this->executeQuery($searchQuery->sql,$searchQuery->bindparams)) {
+			if ($result = $this->executeQuery($searchQuery['sql'],$searchQuery['bindparams'])) {
 				return $result;
 			}
 		}
@@ -69,7 +69,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 
 	/**
 	*	Get all rows from the $primaryTable matching the provided field/value pairs search %$term% against a 'name' field
-	*	
+	*
 	*	@param array<string,string> $data The search criteria field/value pair(s)
 	*	@return mixed[]|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
@@ -134,7 +134,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 
 	/**
 	*	Update the row having ID of $id with the key/value pairs in $data
-	*	
+	*
 	*	@param string $id The unique identifier for the row to be updated
 	*	@param mixed[] $data The data with which to update the row
 	*	@return boolean True on success, false on failure
@@ -164,6 +164,10 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 		$this->setSite($site);
 	}
 
+	/**
+	 * Provides the default get query for the extending repository
+	 * @return string
+	 */
 	protected function getGetQuery() {
 		$sql = "SELECT ".(($this->gettableColumns) ? "{$this->primaryKey},".implode(",",$this->gettableColumns):"*")."  {$this->getBaseQuery()}";
 		if ($this->defaultOrderBy) {
@@ -172,31 +176,47 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 		return $sql;
 	}
 
+	/**
+	 * Provides the base query for the extending repository
+	 * @return string
+	 */
 	protected function getBaseQuery() {
-		return  "FROM {$this->primaryTable}";
+		return "FROM {$this->primaryTable}";
 	}
 
+	/**
+	 * Provides the default search query for the extending repository
+	 * @param string $term The search term
+	 * @return array{'sql': string, 'bindparams': array<string,string>}
+	 */
 	protected function getSearchQuery($term) {
 		$searchQuery = $this->getBaseSearchQuery($term);
-		$searchQuery->sql = "SELECT * {$searchQuery->sql} ";
+		$searchQuery['sql'] = "SELECT * {$searchQuery['sql']} ";
 		return $searchQuery;
 	}
 
+	/**
+	 * Provides the default search query base for the extending repository
+	 * @param string $term The search term
+	 * @return array{'sql': string, 'bindparams': array<string,string>}
+	 */
 	protected function getBaseSearchQuery($term) {
 		$sql = "FROM {$this->primaryTable} WHERE ";
 		$searchColumns = $this->getSearchableColumns();
-		$bindParams = array();
-		$columnCount = count($searchColumns);
-		for ($x=0;$x<$columnCount;$x++) {
-			$sql .= "({$searchColumns[$x]} LIKE :t{$x})";
-			if ($columnCount > 1 && $x != ($columnCount-1)) {
-				$sql .= " OR ";
+		$bindparams = array();
+		if (is_array($searchColumns)) {
+			$columnCount = count($searchColumns);
+			for ($x=0;$x<$columnCount;$x++) {
+				$sql .= "({$searchColumns[$x]} LIKE :t{$x})";
+				if ($columnCount > 1 && $x != ($columnCount-1)) {
+					$sql .= " OR ";
+				}
+				$bindparams[":t{$x}"] = "%".$term."%";
 			}
-			$bindparams[":t{$x}"] = "%".$term."%";
 		}
-		$queryParts = new \StdClass();
-		$queryParts->sql = $sql;
-		$queryParts->bindparams = $bindparams;
+		$queryParts = [];
+		$queryParts['sql'] = $sql;
+		$queryParts['bindparams'] = $bindparams;
 		return $queryParts;
 	}
 }
