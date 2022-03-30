@@ -1,7 +1,7 @@
 <?php
 namespace Core\Classes\Data;
 use Core\Interfaces as Interfaces;
-/** 
+/**
 *	An abstract implementation of the DataBaseRepository interface
 *	Extending this provides CRUD interaction with the configured database table
 *
@@ -48,34 +48,19 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	*	@return mixed[]|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
 	public function get() {
-		$sql = "SELECT ".(($this->gettableColumns) ? "{$this->primaryKey},".implode(",",$this->gettableColumns):"*")." FROM {$this->primaryTable}";
-		if ($this->defaultOrderBy) {
-			$sql .= " ORDER BY {$this->defaultOrderBy}";
-		}
-		return $this->queryWithIndex($sql,$this->primaryKey);
+		return $this->queryWithIndex($this->getGetQuery(),$this->primaryKey);
 	}
 
 	/**
 	*	Get all rows from the $primaryTable matching the search %$term% against a 'name' field
-	*	
+	*
 	*	@param string $term The search criteria
 	*	@return mixed[]|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
 	public function search($term) {
 		if ($this->getSearchableColumns()) {
-			$sql = "SELECT * FROM {$this->primaryTable} WHERE ";
-
-			$searchColumns = $this->getSearchableColumns();
-			$bindParams = array();
-			$columnCount = count($searchColumns);
-			for ($x=0;$x<$columnCount;$x++) {
-				$sql .= "({$searchColumns[$x]} LIKE :t{$x})";
-				if ($columnCount > 1 && $x != ($columnCount-1)) {
-					$sql .= " OR ";
-				}
-				$bindparams[":t{$x}"] = "%".$term."%";
-			}
-			if ($result = $this->executeQuery($sql,$bindparams)) {
+			$searchQuery = $this->getSearchQuery($term);
+			if ($result = $this->executeQuery($searchQuery->sql,$searchQuery->bindparams)) {
 				return $result;
 			}
 		}
@@ -114,7 +99,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 
 	/**
 	*	Get the row whose 'id' matches the passed $id
-	*	
+	*
 	*	@param mixed $id The unique identifier for the row
 	*	@return mixed[]|false $results An array representing the resulting DB row, empty array if no match, false if the request failed
 	*/
@@ -128,7 +113,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 
 	/**
 	*	Remove a row from the DB with an 'id' matching the passed $id
-	*	
+	*
 	*	@param mixed $id The unique identifier for the row to be removed
 	*	@return boolean $result true on removal, false on failure
 	*/
@@ -139,7 +124,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 
 	/**
 	*	Insert a row into the DB using $data
-	*	
+	*
 	*	@param mixed[] $data The data to be inserted into the $primaryTable
 	*	@return string|false The id of the inserted row on success, false on failure
 	*/
@@ -177,5 +162,41 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 
 	public function configure(Interfaces\Site $site) {
 		$this->setSite($site);
+	}
+
+	protected function getGetQuery() {
+		$sql = "SELECT ".(($this->gettableColumns) ? "{$this->primaryKey},".implode(",",$this->gettableColumns):"*")."  {$this->getBaseQuery()}";
+		if ($this->defaultOrderBy) {
+			$sql .= " ORDER BY {$this->defaultOrderBy}";
+		}
+		return $sql;
+	}
+
+	protected function getBaseQuery() {
+		return  "FROM {$this->primaryTable}";
+	}
+
+	protected function getSearchQuery($term) {
+		$searchQuery = $this->getBaseSearchQuery($term);
+		$searchQuery->sql = "SELECT * {$searchQuery->sql} ";
+		return $searchQuery;
+	}
+
+	protected function getBaseSearchQuery($term) {
+		$sql = "FROM {$this->primaryTable} WHERE ";
+		$searchColumns = $this->getSearchableColumns();
+		$bindParams = array();
+		$columnCount = count($searchColumns);
+		for ($x=0;$x<$columnCount;$x++) {
+			$sql .= "({$searchColumns[$x]} LIKE :t{$x})";
+			if ($columnCount > 1 && $x != ($columnCount-1)) {
+				$sql .= " OR ";
+			}
+			$bindparams[":t{$x}"] = "%".$term."%";
+		}
+		$queryParts = new \StdClass();
+		$queryParts->sql = $sql;
+		$queryParts->bindparams = $bindparams;
+		return $queryParts;
 	}
 }
