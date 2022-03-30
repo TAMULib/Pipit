@@ -27,12 +27,12 @@ class CoreSiteTest extends \Codeception\Test\Unit
     // tests
     public function testConfiguredUser()
     {
-        $coreSite = $this->getCoreSiteInstance('TestUser',array("Test" => new PipitCore\Classes\CoreSitePage("Test","Test",SECURITY_PUBLIC)));
+        $coreSite = $this->getCoreSiteInstance();
         $this->assertEquals('TestFiles\Classes\Data\TestUser',get_class($coreSite->getGlobalUser()));
     }
 
     public function testControllerFetching() {
-        $coreSite = $this->getCoreSiteInstance('TestUser',array("Test" => new PipitCore\Classes\CoreSitePage("Test","Test",SECURITY_PUBLIC)));
+        $coreSite = $this->getCoreSiteInstance();
 
         $coreSite->setViewRenderer(new PipitCore\Classes\ViewRenderers\HTMLViewRenderer($coreSite->getGlobalUser(),$coreSite->getPages(),$this->config,null));
         // Try to load a controller that doesn't exist
@@ -46,10 +46,9 @@ class CoreSiteTest extends \Codeception\Test\Unit
 
     public function testAdminControllerFetching() {
         // As an admin level user....
-        $coreSite = $this->getCoreSiteInstance('TestAdminUser',array("Test" => new PipitCore\Classes\CoreSitePage("Test","Test",SECURITY_ADMIN)));
+        $coreSite = $this->getCoreSiteInstance('TestAdminUser',["Test" => new PipitCore\Classes\CoreSitePage("Test","Test",SECURITY_ADMIN)]);
 
         $coreSite->setViewRenderer(new PipitCore\Classes\ViewRenderers\HTMLViewRenderer($coreSite->getGlobalUser(),$coreSite->getPages(),$this->config,null));
-
         // Try to load a controller that exists
         $this->assertEquals('TestFiles\Classes\Controllers\TestAdminController',$coreSite->getControllerClass("Test"));
     }
@@ -83,13 +82,13 @@ class CoreSiteTest extends \Codeception\Test\Unit
     }
 
     public function testGetDataRepository() {
-        $coreSite = $this->getCoreSiteInstance('TestUser');
+        $coreSite = $this->getCoreSiteInstance();
         $repositoryName = 'TestDataRepository';
         $this->assertEquals('TestFiles\Classes\Data\TestDataRepository',get_class($coreSite->getDataRepository($repositoryName)));
     }
 
     public function testGetHelper() {
-        $coreSite = $this->getCoreSiteInstance('TestUser');
+        $coreSite = $this->getCoreSiteInstance();
         $helperName = 'TestHelper';
         $this->assertTrue($coreSite->getHelper($helperName) instanceof \TestFiles\Classes\Helpers\TestHelper);
     }
@@ -115,20 +114,29 @@ class CoreSiteTest extends \Codeception\Test\Unit
         $this->assertTrue(count($this->config) == count($coreSiteConfig));
     }
 
-    /*
-    public function testPages() {}
+    public function testPages() {
+        $coreSite = $this->getCoreSiteInstance();
+        $this->assertTrue(count($coreSite->getPages()) == count($this->config['sitePages']));
+    }
 
-    public function testCurrentPage() {}
-*/
+    public function testCurrentPage() {
+        $coreSite = $this->getCoreSiteInstance();
+        $testPage = current($coreSite->getPages());
+        $this->assertTrue($coreSite->getCurrentPage()==null);
+        $coreSite->setCurrentPage($testPage);
+        $this->assertTrue($coreSite->getCurrentPage()==$testPage);
+    }
 
-
-    private function getCoreSiteInstance($userClass=null,$sitePages=array()) {
+    private function getCoreSiteInstance($userClass=null,$sitePages=null) {
         if ($userClass) {
             $this->config['USER_CLASS'] = $userClass;
         } else {
             $this->config['USER_CLASS'] = 'TestUser';
         }
-        $this->config['sitePages'] = $sitePages;
+
+        if (is_array($sitePages)) {
+            $this->config['sitePages'] = $sitePages;
+        }
         return new PipitCore\Classes\CoreSite($this->config);
     }
 
