@@ -36,7 +36,7 @@ class CoreSite extends AbstractSite {
 	*	@return void
 	*/
 	protected function setUser() {
-		$config = $this->getSiteConfig()['USER_CLASS'];
+		$config = $this->getSiteConfig();
 		if (is_array($config) && is_string($config['USER_CLASS']) && is_string($config['NAMESPACE_APP'])) {
 			$className = "{$config['NAMESPACE_APP']}Classes\\Data\\{$config['USER_CLASS']}";
 			if (class_exists($className)) {
