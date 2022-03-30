@@ -15,6 +15,6 @@ jobs:
           path: Core/
           configuration: phpstan.dist
           level: 9
-      - name: Run Codeception tests
-        uses: joelwmale/codeception-action@104032c6a73aa7f1ad17dc81a9eebf7d122d76b6
+      - name: Run Codeception Tests
+        run:  php vendor/bin/codecept
 
