@@ -14,4 +14,4 @@ jobs:
         with:
           path: Core/
           configuration: phpstan.dist
-          level: 10
+          level: 9

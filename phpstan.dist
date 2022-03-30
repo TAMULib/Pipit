@@ -1,6 +1,6 @@
 parameters:
     paths:
         - Core
-    level: 10
+    level: 9
     bootstrapFiles:
         - ./phpstan/constants.php
