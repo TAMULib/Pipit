@@ -16,5 +16,5 @@ jobs:
           configuration: phpstan.dist
           level: 9
       - name: Run Codeception Tests
-        run:  php vendor/bin/codecept
+        run:  php vendor/bin/codecept run
 
