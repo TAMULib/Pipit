@@ -47,7 +47,13 @@ abstract class AbstractSite extends CoreObject implements Interfaces\Site {
 	*/
 	abstract protected function setUser();
 
-	public function setPages($pages) {
+	/**
+	*	Set the pages for the Site.
+	*
+	*	@param \Core\Interfaces\SitePage[] $pages An array of SitePage
+	*	@return void
+	*/
+	protected function setPages($pages) {
 		$this->pages = $pages;
 	}
 

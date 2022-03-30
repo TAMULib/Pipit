@@ -88,7 +88,7 @@ class CoreSite extends AbstractSite {
 	*
 	*	@param string $controllerName The name of the desired controller
 	*	@return string|null
-	*
+	*	@todo Throw appropriate exceptions (particularly when app hasn't provided default controllers)
 	*/
 	public function getControllerClass($controllerName) {
 		$controllerClass = null;
@@ -130,7 +130,7 @@ class CoreSite extends AbstractSite {
 	*	Provides a unified source for DataRepository singletons in response to requests for a DataRepository
 	*	@param string $repositoryName The name of the desired DataRepository
 	*	@return \Core\Interfaces\DataRepository|null The resulting DataRepository if found, null otherwise
-	*
+	*	@todo Throw appropriate exceptions
 	*/
 	public function getDataRepository($repositoryName) {
 		//first check if we've already instantiated this DataRepository
@@ -191,6 +191,7 @@ class CoreSite extends AbstractSite {
 	*	Fetch a Helper from the cache by its name
 	*	@param string $helperName The name of the desired Helper
 	*	@return object|null
+	*	@todo Throw appropriate exceptions
 	*/
 	public function getHelper($helperName) {
 		//first check if we've already instantiated this Helper

@@ -13,9 +13,11 @@ class CoreSiteTest extends \Codeception\Test\Unit
 
     protected $config;
 
+    const SYSTEM_MESSAGES = ['A Message','Another Message','A third Message'];
+
     protected function _before()
     {
-        $this->config = get_defined_constants(true)["user"];
+        $this->config = $GLOBALS['config'];
     }
 
     protected function _after()
@@ -53,8 +55,8 @@ class CoreSiteTest extends \Codeception\Test\Unit
     }
 
     public function testAddingSystemMessage() {
-        $coreSite = $this->getCoreSiteInstance('TestUser');
-        $theMessage = 'A Message';
+        $coreSite = $this->getCoreSiteInstance();
+        $theMessage = self::SYSTEM_MESSAGES[0];
         $coreSite->addSystemMessage($theMessage);
 
         $this->assertEquals($theMessage,$coreSite->getSystemMessages()[0]->getMessage());
@@ -62,17 +64,70 @@ class CoreSiteTest extends \Codeception\Test\Unit
     }
 
     public function testAddingSystemError() {
-        $coreSite = $this->getCoreSiteInstance('TestUser');
-        $theMessage = 'An Error Message';
-        $coreSite->addSystemMessage($theMessage,'error');
+        $coreSite = $this->getCoreSiteInstance();
+        $coreSite->addSystemMessage(self::SYSTEM_MESSAGES[0],'error');
 
         $this->assertEquals('error',$coreSite->getSystemMessages()[0]->getType());
 
     }
 
-    private function getCoreSiteInstance($userClass='TestUser',$sitePages=array()) {
-        $this->config['USER_CLASS'] = $userClass;
+    public function testGetSystemMessages() {
+        $coreSite = $this->getCoreSiteInstance();
+        $theMessages = self::SYSTEM_MESSAGES;
+        foreach ($theMessages as $theMessage) {
+            $coreSite->addSystemMessage($theMessage);
+        }
 
+        $this->assertEquals(count(self::SYSTEM_MESSAGES),count($coreSite->getSystemMessages()));
+
+    }
+
+    public function testGetDataRepository() {
+        $coreSite = $this->getCoreSiteInstance('TestUser');
+        $repositoryName = 'TestDataRepository';
+        $this->assertEquals('TestFiles\Classes\Data\TestDataRepository',get_class($coreSite->getDataRepository($repositoryName)));
+    }
+
+    public function testGetHelper() {
+        $coreSite = $this->getCoreSiteInstance('TestUser');
+        $helperName = 'TestHelper';
+        $this->assertTrue($coreSite->getHelper($helperName) instanceof \TestFiles\Classes\Helpers\TestHelper);
+    }
+
+    public function testRedirectUrl() {
+        $redirectUrl = "redirect.here";
+        $coreSite = $this->getCoreSiteInstance();
+        $this->assertEquals($coreSite->hasRedirectUrl(),false);
+        $coreSite->setRedirectUrl($redirectUrl);
+        $this->assertEquals($coreSite->hasRedirectUrl(),true);
+    }
+
+    public function testViewRenderer() {
+        $coreSite = $this->getCoreSiteInstance();
+        $coreSite->setViewRenderer(new \Core\Classes\ViewRenderers\HTMLViewRenderer($coreSite->getGlobalUser(),$coreSite->getPages(),$coreSite->getSanitizedInputData(),'DefaultController'));
+        $activeViewRenderer = $coreSite->getViewRenderer();
+        $this->assertTrue($activeViewRenderer instanceof \Core\Classes\ViewRenderers\HTMLViewRenderer);
+    }
+
+    public function testGetSiteConfig() {
+        $coreSite = $this->getCoreSiteInstance();
+        $coreSiteConfig = $coreSite->getSiteConfig();
+        $this->assertTrue(count($this->config) == count($coreSiteConfig));
+    }
+
+    /*
+    public function testPages() {}
+
+    public function testCurrentPage() {}
+*/
+
+
+    private function getCoreSiteInstance($userClass=null,$sitePages=array()) {
+        if ($userClass) {
+            $this->config['USER_CLASS'] = $userClass;
+        } else {
+            $this->config['USER_CLASS'] = 'TestUser';
+        }
         $this->config['sitePages'] = $sitePages;
         return new PipitCore\Classes\CoreSite($this->config);
     }

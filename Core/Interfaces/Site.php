@@ -50,14 +50,6 @@ interface Site {
 	public function getPages();
 
 	/**
-	*	Set the pages for the Site.
-	*
-	*	@param SitePage[] $pages An array of SitePage
-	*	@return void
-	*/
-	public function setPages($pages);
-
-	/**
 	*	Gets the currently requested page
 	*	@return \Core\Interfaces\SitePage The currently requested SitePage
 	*/
