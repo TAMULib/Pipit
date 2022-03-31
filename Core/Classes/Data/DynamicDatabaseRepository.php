@@ -1,5 +1,6 @@
 <?php
 namespace Core\Classes\Data;
+use Core\Classes\Configuration\DynamicDatabaseRepositoryConfiguration;
 /** 
 *	A basic DB Repository class providing generic CRUD interaction with the configured database table
 *
@@ -10,10 +11,9 @@ class DynamicDataBaseRepository extends AbstractDataBaseRepository {
 	/**
 	* Constructor for DynamicDatabaseRepository
 	*
-	* @param \Core\Classes\Configuration\DynamicDatabaseRepositoryConfiguration $configuration An instance of DynamicRepositoryConfiguration
+	* @param \Core\Classes\Configuration\DynamicDatabaseRepositoryConfiguration $configuration An instance of DynamicDatabaseRepositoryConfiguration
 	*/
-	public function __construct($configuration) {
-		$config = $configuration;
-		parent::__construct($config->getTableName(),$config->getPrimaryKey(),$config->getDefaultOrderBy(),$config->getGettableColumns(),$config->getSearchableColumns());
+	public function __construct(DynamicDatabaseRepositoryConfiguration $configuration) {
+		parent::__construct($configuration->getTableName(),$configuration->getPrimaryKey(),$configuration->getDefaultOrderBy(),$configuration->getGettableColumns(),$configuration->getSearchableColumns());
 	}
 }

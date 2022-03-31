@@ -43,7 +43,7 @@ class HTMLViewRenderer extends CoreClasses\CoreObject implements Interfaces\View
 			$themeFolder = $GLOBALS['config']['ACTIVE_THEME'];
 			$viewPath = $GLOBALS['config']['PATH_VIEWS'].$themeFolder;
 		 	if (is_dir($viewPath)) {
-				$this->setViewPath($viewPath);
+				$this->setViewPath($viewPath.'/');
 			} else {
 				$this->getLogger()->info("Could not find theme folder: ".$themeFolder.", falling back to default");
 				$this->setViewPath('html');
@@ -64,7 +64,6 @@ class HTMLViewRenderer extends CoreClasses\CoreObject implements Interfaces\View
 		$app_http = $this->getAppContextProperty("app_http");
 		$controllerName = $this->getAppContextProperty("controllerName");
 		$systemMessages = $this->getAppContextProperty("systemMessages");
-		
 		include "{$this->getViewPath()}layouts/header.lo.php";
 		if (!empty($this->getViewFile())) {
 			$parameters = $this->getViewVariables();
@@ -183,4 +182,3 @@ class HTMLViewRenderer extends CoreClasses\CoreObject implements Interfaces\View
 		$this->registerAppContextProperty("page",$page);
 	}
 }
-
