@@ -1,53 +1,14 @@
 <?php
-namespace Core\Classes;
+namespace Core\Classes\Loggers;
 use Core\Interfaces as Interfaces;
-
-/** 
-*	A helper class for CoreLogger that defines how a CoreLogger log level corresponds to a PHP error code.
-*
-*	@author Jason Savell <jsavell@library.tamu.edu>
-*/
-class LoggerLevel {
-	/** @var string $name The name of the logger level */
-	private $name;
-	/** @var int $phpErrorCode The PHP error code the CoreLogger level maps to */
-	private $phpErrorCode;
-
-	/**
-	*	Constructs a new LoggerLevel
-	*	@param string $name The name of the level
-	*	@param int $phpErrorCode The PHP error code the CoreLogger level maps to
-	*
-	*/
-	public function __construct($name,$phpErrorCode) {
-		$this->name = $name;
-		$this->phpErrorCode = $phpErrorCode;
-	}
-
-	/**
-	*	Provides the name of the LoggerLevel
-	*	@return string The name of the LoggerLevel
-	*/
-	public function getName() {
-		return $this->name;
-	}
-
-	/**
-	*	Provides the corresponding PHP error code of the LoggerLevel
-	*	@return int The corresponding PHP error code of the LoggerLevel
-	*/
-	public function getPhpErrorCode() {
-		return $this->phpErrorCode;
-	}
-}
-
+use Psr\Log\AbstractLogger as PsrAbstractLogger;
 /** 
 *	The default implementation of the Logger interface.
 * 	The active logger can be defined in the config file.
 *
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
-class CoreLogger implements Interfaces\Logger {
+class CoreLogger extends PsrAbstractLogger implements Interfaces\Logger {
 	/** @var LoggerLevel[] $loggerTypes The valid log levels */
 	private $loggerTypes = array();
 	/** @var int $logLevel The log level of a CoreLogger instance (defaults to 3) */
@@ -63,28 +24,24 @@ class CoreLogger implements Interfaces\Logger {
 									new LoggerLevel("error",E_USER_ERROR));
 	}
 
-	public function info($message) {
-		$this->writeToLog(array(0,$message));
-	}
-	public function debug($message) {
-		$this->writeToLog(array(1,$message));
-	}
 	public function warn($message) {
-		$this->writeToLog(array(2,$message));
+		$this->writeToLog(2,$message);
 	}
 
-	public function error($message) {
-		$this->writeToLog(array(3,$message));
+	public function log($level, $message, $context=[]) {
+		if (is_int($level) && is_string($message)) {
+			$this->writeToLog((int) $level,(string) $message);
+		}
 	}
-
 	/**
 	*	Writes an entry to the PHP error log using PHP's trigger_error() function
-	*	@param array<int,int|string> $entry An array of log entry data: array(0=>$loggerTypes index,1=>The log message))
+	*	@param int $level The log level
+	*	@param string $message The log message
 	*	@return void
 	*/
-	protected function writeToLog($entry) {
-		if ($entry[0] >= $this->logLevel) {
-			trigger_error("** ".$this->getFormattedCaller()." ** {$entry[1]} **",$this->loggerTypes[$entry[0]]->getPhpErrorCode());
+	protected function writeToLog($level,$message) {
+		if ($level >= $this->logLevel) {
+			trigger_error("** ".$this->getFormattedCaller()." ** {$level} **",$this->loggerTypes[$message]->getPhpErrorCode());
 		}
 	}
 

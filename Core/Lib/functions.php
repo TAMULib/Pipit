@@ -5,7 +5,7 @@ use Core\Classes as CoreClasses;
 /**
  * Creates a logger property in $GLOBALS from
  * - A client app config for a defined LOGGER_CLASS constant
- * - Falls back to an instance of \Core\Classes\CoreLogger 
+ * - Falls back to an instance of \Core\Classes\Loggers\CoreLogger 
  * @return \Core\Interfaces\Logger
  */
 function getLogger() {
@@ -20,7 +20,7 @@ function getLogger() {
         }
 
         if (empty($GLOBALS['logger'])) {
-            $GLOBALS['logger'] = new CoreClasses\CoreLogger();
+            $GLOBALS['logger'] = new CoreClasses\Loggers\CoreLogger();
         }
         if (isset($GLOBALS['config']['LOG_LEVEL'])) {
             $GLOBALS['logger']->setLogLevel($GLOBALS['config']['LOG_LEVEL']);

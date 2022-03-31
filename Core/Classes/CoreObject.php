@@ -1,6 +1,7 @@
 <?php
 namespace Core\Classes;
 use Core\Lib as CoreLib;
+use Psr\Log\LoggerInterface as PsrLoggerInterface;
 
 /** 
 *	A base class for many Core classes to provide shared access to resources and common functions
@@ -16,7 +17,7 @@ class CoreObject {
 	*	@param \Core\Interfaces\Logger $logger An instance of a Logger implementation
 	*	@return void
 	*/
-	private function setLogger($logger) {
+	private function setLogger(\Core\Interfaces\Logger $logger) {
 		$this->logger = $logger;
 	}
 
