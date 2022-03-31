@@ -2,46 +2,36 @@
 namespace Core\Classes\Loggers;
 use Core\Interfaces as Interfaces;
 use Psr\Log\AbstractLogger as PsrAbstractLogger;
-/** 
+use Psr\Log\LogLevel;
+/**
 *	The default implementation of the Logger interface.
 * 	The active logger can be defined in the config file.
 *
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 class CoreLogger extends PsrAbstractLogger implements Interfaces\Logger {
-	/** @var LoggerLevel[] $loggerTypes The valid log levels */
-	private $loggerTypes = array();
 	/** @var int $logLevel The log level of a CoreLogger instance (defaults to 3) */
 	private $logLevel = 3;
 
-	/**
-	*	Instantiates a CoreLogger by defining its valid $loggerTypes
-	*/
-	public function __construct() {
-		array_push($this->loggerTypes,new LoggerLevel("info",E_USER_NOTICE),
-									new LoggerLevel("debug",E_USER_NOTICE),
-									new LoggerLevel("warn",E_USER_WARNING),
-									new LoggerLevel("error",E_USER_ERROR));
-	}
-
 	public function warn($message) {
-		$this->writeToLog(2,$message);
+		$this->writeToLog(LogLevel::WARNING,$message);
 	}
 
 	public function log($level, $message, $context=[]) {
-		if (is_int($level) && is_string($message)) {
-			$this->writeToLog((int) $level,(string) $message);
+		if (is_string($level) && is_string($message)) {
+			$this->writeToLog($level,(string) $message);
 		}
 	}
 	/**
 	*	Writes an entry to the PHP error log using PHP's trigger_error() function
-	*	@param int $level The log level
+	*	@param string $level The log level
 	*	@param string $message The log message
 	*	@return void
 	*/
 	protected function writeToLog($level,$message) {
-		if ($level >= $this->logLevel) {
-			trigger_error("** ".$this->getFormattedCaller()." ** {$level} **",$this->loggerTypes[$message]->getPhpErrorCode());
+		$internalLevel = LoggerLevel::getInternalLogLevel($level);
+		if ($internalLevel >= $this->logLevel) {
+			trigger_error("** ".$this->getFormattedCaller()." ** {$message} **", LoggerLevel::getPhpErrorCodeByInternalLevel($internalLevel));
 		}
 	}
 
@@ -51,16 +41,16 @@ class CoreLogger extends PsrAbstractLogger implements Interfaces\Logger {
 	*	@return void
 	*/
 	public function setLogLevel($logLevel) {
- 		if (is_int($logLevel) && $logLevel <= count($this->loggerTypes)) {
+		if (is_int($logLevel) && $logLevel <= LoggerLevel::getMaxInternalLevel()) {
 			$this->logLevel = $logLevel;
-			$this->debug("Log level was set to: {$this->loggerTypes[$logLevel]->getName()}");
+			$this->debug("Log level was set to: ".$logLevel);
 		} else {
 			$this->warn("Invalid Log Level was requested");
 		}
 	}
 
 	/**
-	 * Build the debug backtrace and extrac the calling class
+	 * Build the debug backtrace and extract the calling class
 	 * @return mixed[] The details of the calling class
 	 */
 	protected function getCaller() {
@@ -84,4 +74,3 @@ class CoreLogger extends PsrAbstractLogger implements Interfaces\Logger {
 		return implode(', ',array("line"=>"L".$rawCaller['line'],"file"=>"File: ".$rawCaller['file'],"function"=>"Function: ".$rawCaller['function']));
 	}
 }
-
