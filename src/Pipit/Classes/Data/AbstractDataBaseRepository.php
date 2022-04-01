@@ -106,7 +106,13 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	public function getById($id) {
 		$sql = "SELECT * FROM {$this->primaryTable} WHERE {$this->primaryKey}=:id";
 		if ($temp = $this->executeQuery($sql,array(":id"=>$id))) {
-			return current($temp);
+			$result = null;
+			if ($this instanceof Interfaces\EntityRepository) {
+				$result = $this->getEntityBuilder()(current($temp));
+			} else {
+				$result = current($temp);
+			}
+			return $result;
 		}
 		return false;
 	}

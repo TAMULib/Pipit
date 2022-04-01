@@ -52,6 +52,8 @@ abstract class AbstractPageableDatabaseRepository extends AbstractDataBaseReposi
         $results = $this->executeQuery($this->getPagedQuery($query,$resultsPage),$bindparams);
         if (!is_array($results)) {
             $results = [];
+        } else if ($this instanceof Interfaces\EntityRepository) {
+            $results = array_map($this->getEntityBuilder(),$results);
         }
         $resultsPage->setPageResults($results,$resultsCount);
         return $resultsPage;
