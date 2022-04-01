@@ -1,7 +1,9 @@
 <?php
 namespace Tests;
 use TestFiles;
-use Core as PipitCore;
+use Pipit\Classes\Site\CoreSite;
+use Pipit\Classes\Site\CoreSitePage;
+use Pipit\Classes\ViewRenderers\HTMLViewRenderer;
 
 
 class CoreSiteTest extends \Codeception\Test\Unit
@@ -34,7 +36,7 @@ class CoreSiteTest extends \Codeception\Test\Unit
     public function testControllerFetching() {
         $coreSite = $this->getCoreSiteInstance();
 
-        $coreSite->setViewRenderer(new PipitCore\Classes\ViewRenderers\HTMLViewRenderer($coreSite->getGlobalUser(),$coreSite->getPages(),$this->config,null));
+        $coreSite->setViewRenderer(new HTMLViewRenderer($coreSite->getGlobalUser(),$coreSite->getPages(),$this->config,null));
         // Try to load a controller that doesn't exist
         $this->assertEquals('TestFiles\Classes\Controllers\DefaultController',$coreSite->getControllerClass("Nonexistentcontroller"));
         // Try to load a controller that exists
@@ -46,9 +48,9 @@ class CoreSiteTest extends \Codeception\Test\Unit
 
     public function testAdminControllerFetching() {
         // As an admin level user....
-        $coreSite = $this->getCoreSiteInstance('TestAdminUser',["Test" => new PipitCore\Classes\Site\CoreSitePage("Test","Test",SECURITY_ADMIN)]);
+        $coreSite = $this->getCoreSiteInstance('TestAdminUser',["Test" => new CoreSitePage("Test","Test",SECURITY_ADMIN)]);
 
-        $coreSite->setViewRenderer(new PipitCore\Classes\ViewRenderers\HTMLViewRenderer($coreSite->getGlobalUser(),$coreSite->getPages(),$this->config,null));
+        $coreSite->setViewRenderer(new HTMLViewRenderer($coreSite->getGlobalUser(),$coreSite->getPages(),$this->config,null));
         // Try to load a controller that exists
         $this->assertEquals('TestFiles\Classes\Controllers\TestAdminController',$coreSite->getControllerClass("Test"));
     }
@@ -103,9 +105,9 @@ class CoreSiteTest extends \Codeception\Test\Unit
 
     public function testViewRenderer() {
         $coreSite = $this->getCoreSiteInstance();
-        $coreSite->setViewRenderer(new \Core\Classes\ViewRenderers\HTMLViewRenderer($coreSite->getGlobalUser(),$coreSite->getPages(),$coreSite->getSanitizedInputData(),'DefaultController'));
+        $coreSite->setViewRenderer(new HTMLViewRenderer($coreSite->getGlobalUser(),$coreSite->getPages(),$coreSite->getSanitizedInputData(),'DefaultController'));
         $activeViewRenderer = $coreSite->getViewRenderer();
-        $this->assertTrue($activeViewRenderer instanceof \Core\Classes\ViewRenderers\HTMLViewRenderer);
+        $this->assertTrue($activeViewRenderer instanceof HTMLViewRenderer);
     }
 
     public function testGetSiteConfig() {
@@ -137,7 +139,7 @@ class CoreSiteTest extends \Codeception\Test\Unit
         if (is_array($sitePages)) {
             $this->config['sitePages'] = $sitePages;
         }
-        return new PipitCore\Classes\Site\CoreSite($this->config);
+        return new CoreSite($this->config);
     }
 
 }

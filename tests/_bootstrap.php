@@ -1,10 +1,11 @@
 <?php
-use Core\Lib;
-use Core\Classes\Configuration as Configuration;
+use Pipit\Lib;
+use Pipit\Classes\Configuration as Configuration;
+use Pipit\Classes\Site\CoreSitePage;
 
 define('PATH_CORE', './src/');
 
-define('PATH_CORE_LIB', PATH_CORE.str_replace('\\', '/', "Core\\")."Lib/");
+define('PATH_CORE_LIB', PATH_CORE.str_replace('\\', '/', "Pipit\\")."Lib/");
 
 define('APP_DIRECTORY', 'testdir');
 
@@ -12,7 +13,7 @@ define('PATH_HTTP', "testurl");
 
 define("SESSION_SCOPE",APP_DIRECTORY);
 
-define("NAMESPACE_CORE",'Core\\');
+define("NAMESPACE_CORE",'Pipit\\');
 define("NAMESPACE_APP",'TestFiles\\');
 define('DYNAMIC_REPOSITORY_KEY','dynamicRepositories');
 
@@ -28,5 +29,5 @@ require_once PATH_CORE_LIB."functions.php";
 $GLOBALS['config'] = get_defined_constants(true)["user"];
 
 $GLOBALS['config'][DYNAMIC_REPOSITORY_KEY] = array("Users"=>new Configuration\DynamicDatabaseRepositoryConfiguration('users','id','name_last',null,null));
-$GLOBALS['config']['sitePages'] = ["Test" => new \Core\Classes\Site\CoreSitePage("Test","Test",SECURITY_PUBLIC)];
+$GLOBALS['config']['sitePages'] = ["Test" => new CoreSitePage("Test","Test",SECURITY_PUBLIC)];
 ?>

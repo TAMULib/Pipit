@@ -1,7 +1,7 @@
 <?php
 namespace Tests;
 use TestFiles;
-use Core\Classes\Site\CoreSitePage;
+use Pipit\Classes\Site\CoreSitePage;
 
 
 class CoreSitePageTest extends \Codeception\Test\Unit

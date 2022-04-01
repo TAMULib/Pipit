@@ -1,6 +1,6 @@
 <?php
 namespace TestFiles\Classes\Data;
-use Core\Interfaces as Interfaces;
+use Pipit\Interfaces as Interfaces;
 
 class TestUser implements Interfaces\User {
 	public function logOut() {

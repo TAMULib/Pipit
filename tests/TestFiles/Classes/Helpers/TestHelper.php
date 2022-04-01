@@ -1,7 +1,6 @@
 <?php
 namespace TestFiles\Classes\Helpers;
-use Core\Interfaces as Interfaces;
-use Core\Classes\Data as CoreData;
+use \Pipit\Classes\Helpers\AbstractHelper;
 
-class TestHelper extends \Core\Classes\Helpers\AbstractHelper {
+class TestHelper extends \Pipit\Classes\Helpers\AbstractHelper {
 }
