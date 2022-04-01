@@ -19,6 +19,17 @@ class CoreLogger extends PsrAbstractLogger implements Interfaces\Logger {
 
 	public function log($level, $message, $context=[]) {
 		if (is_string($level) && is_string($message)) {
+			$messageReplacements = [];
+			if (count($context) > 0) {
+				foreach ($context as $key=>$value) {
+					if (!is_array($value) && (!is_object($value) || method_exists($value, '__toString'))) {
+						$messageReplacements['{'.$key.'}'] = $value;
+					}
+				}
+				if (count($messageReplacements) > 0) {
+					$message = strtr($message, $messageReplacements);
+				}
+			}
 			$this->writeToLog($level,(string) $message);
 		}
 	}
