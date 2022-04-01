@@ -2,7 +2,7 @@
 use Core\Lib;
 use Core\Classes\Configuration as Configuration;
 
-define('PATH_CORE', './');
+define('PATH_CORE', './src/');
 
 define('PATH_CORE_LIB', PATH_CORE.str_replace('\\', '/', "Core\\")."Lib/");
 

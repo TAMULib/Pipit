@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Core\\": "Core"
+            "Core\\": "src/Core"
         }
     },
     "autoload-dev": {
