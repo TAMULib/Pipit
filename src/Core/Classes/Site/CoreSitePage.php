@@ -1,5 +1,5 @@
 <?php
-namespace Core\Classes;
+namespace Core\Classes\Site;
 
 /** 
 *	The app level implementation of a SitePage

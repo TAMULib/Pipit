@@ -1,7 +1,7 @@
 <?php
 namespace Tests;
 use TestFiles;
-use Core\Classes as CoreClasses;
+use Core\Classes\Site\CoreSitePage;
 
 
 class CoreSitePageTest extends \Codeception\Test\Unit
@@ -19,10 +19,10 @@ class CoreSitePageTest extends \Codeception\Test\Unit
     {
         $this->config = $GLOBALS['config'];
         $this->coreSitePages = [
-			    "widgets" => new CoreClasses\CoreSitePage("widgets","widgets",SECURITY_USER),
-			    "DynamicRepo" => new CoreClasses\CoreSitePage("dynamic repo","dynamic-repo",SECURITY_PUBLIC),
-			    "files" => new CoreClasses\CoreSitePage("File Manager","files",SECURITY_USER),
-			    "users" => new CoreClasses\CoreSitePage("users","users",SECURITY_ADMIN)];
+			    "widgets" => new CoreSitePage("widgets","widgets",SECURITY_USER),
+			    "DynamicRepo" => new CoreSitePage("dynamic repo","dynamic-repo",SECURITY_PUBLIC),
+			    "files" => new CoreSitePage("File Manager","files",SECURITY_USER),
+			    "users" => new CoreSitePage("users","users",SECURITY_ADMIN)];
     }
 
     public function testGetAccessLevel() {

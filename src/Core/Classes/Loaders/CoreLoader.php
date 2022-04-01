@@ -116,7 +116,7 @@ class CoreLoader implements CoreInterfaces\Loader {
 			$this->logger->debug("Loaded Configured Class: {$className}");
 		}
 		if (!($this->getSite() instanceof \Core\Interfaces\Site)) {
-			$coreSite = new CoreClasses\CoreSite($config);
+			$coreSite = new CoreClasses\Site\CoreSite($config);
 			if ($coreSite instanceof \Core\Interfaces\Site) {
 				$this->setSite($coreSite);
 			}

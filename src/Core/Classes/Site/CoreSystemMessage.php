@@ -1,5 +1,5 @@
 <?php
-namespace Core\Classes;
+namespace Core\Classes\Site;
 use Core\Interfaces as Interfaces;
 
 /** 

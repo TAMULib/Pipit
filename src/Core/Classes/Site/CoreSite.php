@@ -1,5 +1,6 @@
 <?php
-namespace Core\Classes;
+namespace Core\Classes\Site;
+use Core\Classes\Data as Data;
 
 /**
 *	The primary site manager

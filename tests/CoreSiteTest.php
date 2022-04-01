@@ -46,7 +46,7 @@ class CoreSiteTest extends \Codeception\Test\Unit
 
     public function testAdminControllerFetching() {
         // As an admin level user....
-        $coreSite = $this->getCoreSiteInstance('TestAdminUser',["Test" => new PipitCore\Classes\CoreSitePage("Test","Test",SECURITY_ADMIN)]);
+        $coreSite = $this->getCoreSiteInstance('TestAdminUser',["Test" => new PipitCore\Classes\Site\CoreSitePage("Test","Test",SECURITY_ADMIN)]);
 
         $coreSite->setViewRenderer(new PipitCore\Classes\ViewRenderers\HTMLViewRenderer($coreSite->getGlobalUser(),$coreSite->getPages(),$this->config,null));
         // Try to load a controller that exists
@@ -137,7 +137,7 @@ class CoreSiteTest extends \Codeception\Test\Unit
         if (is_array($sitePages)) {
             $this->config['sitePages'] = $sitePages;
         }
-        return new PipitCore\Classes\CoreSite($this->config);
+        return new PipitCore\Classes\Site\CoreSite($this->config);
     }
 
 }

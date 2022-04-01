@@ -1,7 +1,9 @@
 <?php
-namespace Core\Classes;
+namespace Core\Classes\Site;
 use Core\Interfaces as Interfaces;
 use App\Classes\Data as AppData;
+use Core\Classes\CoreObject;
+
 /** 
 *	An abstract implementation of the Site interface
 *

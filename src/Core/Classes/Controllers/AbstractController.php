@@ -1,6 +1,7 @@
 <?php
-namespace Core\Classes;
+namespace Core\Classes\Controllers;
 use Core\Interfaces as Interfaces;
+use Core\Classes\CoreObject;
 /** 
 *	An abstract implementation of the Controller interface, intended to be extended by App controllers
 *

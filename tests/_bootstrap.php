@@ -28,5 +28,5 @@ require_once PATH_CORE_LIB."functions.php";
 $GLOBALS['config'] = get_defined_constants(true)["user"];
 
 $GLOBALS['config'][DYNAMIC_REPOSITORY_KEY] = array("Users"=>new Configuration\DynamicDatabaseRepositoryConfiguration('users','id','name_last',null,null));
-$GLOBALS['config']['sitePages'] = ["Test" => new \Core\Classes\CoreSitePage("Test","Test",SECURITY_PUBLIC)];
+$GLOBALS['config']['sitePages'] = ["Test" => new \Core\Classes\Site\CoreSitePage("Test","Test",SECURITY_PUBLIC)];
 ?>
