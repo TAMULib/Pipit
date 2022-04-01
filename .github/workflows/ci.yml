@@ -12,7 +12,7 @@ jobs:
       - name: Run PHPStan Static Analysis
         uses: php-actions/phpstan@master
         with:
-          path: Core/
+          path: src/Pipit/
           configuration: phpstan.dist
           level: 9
       - name: Run Codeception Tests
