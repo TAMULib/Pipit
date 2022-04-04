@@ -48,7 +48,11 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	*	@return mixed[]|false $results A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")), false on failure
 	*/
 	public function get() {
-		return $this->queryWithIndex($this->getGetQuery(),$this->primaryKey);
+		$results = $this->queryWithIndex($this->getGetQuery(),$this->primaryKey);
+		if ($results) {
+			return $this->processResults($results);
+		}
+		return $results;
 	}
 
 	/**
