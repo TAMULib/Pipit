@@ -50,12 +50,9 @@ abstract class AbstractPageableDatabaseRepository extends AbstractDataBaseReposi
     protected function getNewResultsPage($page,$resultsPerPage,$query,$resultsCount,$bindparams=null) {
         $resultsPage = ResultsPage::getNewResultsPage($page,$resultsPerPage);
         $results = $this->executeQuery($this->getPagedQuery($query,$resultsPage),$bindparams);
-        if (!is_array($results)) {
-            $results = [];
-        } else if ($this instanceof Interfaces\EntityRepository) {
-            $results = array_map($this->getEntityBuilder(),$results);
+        if ($results) {
+            $resultsPage->setPageResults($this->processResults($results),$resultsCount);
         }
-        $resultsPage->setPageResults($results,$resultsCount);
         return $resultsPage;
     }
 

@@ -61,7 +61,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 		if ($this->getSearchableColumns()) {
 			$searchQuery = $this->getSearchQuery($term);
 			if ($result = $this->executeQuery($searchQuery['sql'],$searchQuery['bindparams'])) {
-				return $result;
+				return $this->processResults($result);
 			}
 		}
 		return false;
@@ -84,7 +84,7 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 		}
 
 		if ($result = $this->executeQuery($sql,$bindparams)) {
-			return $result;
+			return $this->processResults($result);
 		}
 		return false;
 	}
@@ -101,18 +101,12 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 	*	Get the row whose 'id' matches the passed $id
 	*
 	*	@param mixed $id The unique identifier for the row
-	*	@return mixed[]|false $results An array representing the resulting DB row, empty array if no match, false if the request failed
+	*	@return mixed|false $results An array representing the resulting DB row, empty array if no match, false if the request failed
 	*/
 	public function getById($id) {
 		$sql = "SELECT * FROM {$this->primaryTable} WHERE {$this->primaryKey}=:id";
 		if ($temp = $this->executeQuery($sql,array(":id"=>$id))) {
-			$result = null;
-			if ($this instanceof Interfaces\EntityRepository) {
-				$result = $this->getEntityBuilder()(current($temp));
-			} else {
-				$result = current($temp);
-			}
-			return $result;
+			return $this->processResult($temp);
 		}
 		return false;
 	}
@@ -224,5 +218,35 @@ abstract class AbstractDataBaseRepository extends DBObject implements Interfaces
 		$queryParts['sql'] = $sql;
 		$queryParts['bindparams'] = $bindparams;
 		return $queryParts;
+	}
+
+	/**
+	 * Apply any needed processing to a single db result array
+	 * @param mixed[] $result
+	 * @return mixed[]|\Pipit\Interfaces\Entity
+	 */
+	protected function processResult($result) {
+		$resultRow = current($result);
+		if ($this instanceof Interfaces\EntityRepository && is_callable($this->getEntityBuilder())) {
+			$resultRow = $this->getEntityBuilder()($resultRow);
+			if ($resultRow instanceof Interfaces\Entity) {
+				return $resultRow;
+			}
+		}
+		return $resultRow;
+	}
+
+	/**
+	 * Apply any needed processing to a db results array
+	 * @param mixed[] $results
+	 * @return mixed[]
+	 */
+	protected function processResults($results) {
+        if (!is_array($results)) {
+            $results = [];
+        } else if ($this instanceof Interfaces\EntityRepository && is_callable($this->getEntityBuilder())) {
+            $results = array_map($this->getEntityBuilder(),$results);
+        }
+		return $results;
 	}
 }
