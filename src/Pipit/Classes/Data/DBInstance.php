@@ -19,15 +19,36 @@ class DBInstance {
 	*	Instantiates a new \PDO instance using the DBInstance.config config file
 	*/
     private function __construct() {
+        $dbConfig = null;
 		try {
 			$dbConfig = $this->getConfigurationFromFileName("DBInstance.config");
-            if (is_string($dbConfig['dsn']) && is_string($dbConfig['user']) && is_string($dbConfig['password'])) {
-                $this->handle = new PDO($dbConfig['dsn'], $dbConfig['user'], $dbConfig['password']);
+            $checkKeys = ['dsn','host','database','user','password'];
+            $validConfig = true;
+            foreach ($checkKeys as $key) {
+                if (!array_key_exists($key, $dbConfig) || !is_string($dbConfig[$key])) {
+                    $validConfig = false;
+                    break;
+                }
+            }
+            if ($validConfig) {
+                $replaceKeys = [];
+                $replaceValues = [];
+                //remove dsn from keys
+                unset($checkKeys[0]);
+                foreach ($checkKeys as $key) {
+                    $keyWrap = '{'.$key.'}';
+                    if (strripos($dbConfig['dsn'], $keyWrap)) {
+                        $replaceKeys[] = $keyWrap;
+                        $replaceValues[] = $dbConfig[$key];
+                    }
+                }
+                $dsn = str_replace($replaceKeys, $replaceValues, $dbConfig['dsn']);
+                $this->handle = new PDO($dsn, $dbConfig['user'], $dbConfig['password']);
             } else {
                 throw new \RuntimeException("Problem with database configuration");
             }
         } catch (\RuntimeException $e) {
-			CoreFunctions::getInstance()->getLogger()->debug("DBInstance.config file not found");
+			CoreFunctions::getInstance()->getLogger()->error("Error processing DBInstance config");
 		}
 	}
 

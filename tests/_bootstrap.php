@@ -34,5 +34,4 @@ define('SECURITY_MANAGER',2);
 $GLOBALS['config'] = CoreFunctions::getInstance()->getAppConfiguration();
 
 $GLOBALS['config'][DYNAMIC_REPOSITORY_KEY] = array("Users"=>new Configuration\DynamicDatabaseRepositoryConfiguration('users','id','name_last',null,null));
-$GLOBALS['config']['sitePages'] = ["Test" => new CoreSitePage("Test","Test",SECURITY_PUBLIC)];
 ?>
