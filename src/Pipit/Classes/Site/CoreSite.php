@@ -1,6 +1,7 @@
 <?php
 namespace Pipit\Classes\Site;
 use Pipit\Classes\Data as Data;
+use Pipit\Classes\Configuration\DynamicDatabaseRepositoryConfiguration;
 
 /**
 *	The primary site manager
@@ -14,8 +15,6 @@ class CoreSite extends AbstractSite {
 	protected $cachedHelpers = array();
 	/** @var string $redirectUrl A url to be redirected to */
 	private $redirectUrl = null;
-	/** @var string|null $dynamicRepositoryKey The key to the location in $siteConfig of an array of DynamicRepositoryConfiguration */
-	private $dynamicRepositoryKey;
 
 	/**
 	*	Constructs an instance of CoreSite
@@ -25,7 +24,6 @@ class CoreSite extends AbstractSite {
 		$this->setSiteConfig($siteConfig);
 		$this->setPages();
 		$this->generateSanitizedInputData();
-		$this->setDynamicRepositoryKey(is_string($siteConfig['DYNAMIC_REPOSITORY_KEY']) ? $siteConfig['DYNAMIC_REPOSITORY_KEY'] : null);
 		$this->setUser();
 	}
 
@@ -134,10 +132,24 @@ class CoreSite extends AbstractSite {
 		//first check if we've already instantiated this DataRepository
 		$repository = $this->getCachedDataRepository($repositoryName);
 		if (!$repository) {
-			if (isset($this->getSiteConfig()[$this->getDynamicRepositoryKey()]) && is_array($this->getSiteConfig()[$this->getDynamicRepositoryKey()]) && array_key_exists($repositoryName, $this->getSiteConfig()[$this->getDynamicRepositoryKey()])) {
-				$repository = new Data\DynamicDataBaseRepository($this->getSiteConfig()[$this->getDynamicRepositoryKey()][$repositoryName]);
-				$this->addCachedDataRepository($repositoryName,$repository);
-			} else {
+			$dynamicConfigFile = "dynamic.db.repositories.config";
+			$foundRepository = false;
+			if ($this->configurationFileExists($dynamicConfigFile)) {
+				$dynamicRepoConfigData = $this->getConfigurationFromFileName($dynamicConfigFile);
+				if (is_array($dynamicRepoConfigData) && array_key_exists($repositoryName, $dynamicRepoConfigData)) {
+					$config = $dynamicRepoConfigData[$repositoryName];
+					$dynamicRepoConfig = new DynamicDatabaseRepositoryConfiguration(
+										$config['tableName'],
+										$config['primaryKey'],
+										$config['defaultOrderBy'],
+										$config['gettableColumns'],
+										$config['searchableColumns']
+									);
+					$this->addCachedDataRepository($repositoryName, new Data\DynamicDataBaseRepository($dynamicRepoConfig));
+					$foundRepository = true;
+				}
+			}
+			if (!$foundRepository) {
 				if (is_string($this->getSiteConfig()['NAMESPACE_APP'])) {
 					$className = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Data\\{$repositoryName}";
 					//We found a DataRepository named $repositoryName, so let's instantiate, configure and cache it
@@ -253,22 +265,5 @@ class CoreSite extends AbstractSite {
 		$this->getLogger()->debug("REDIRECTING TO: {$this->redirectUrl}");
 		header("Location: {$this->redirectUrl}");
 		exit;
-	}
-
-	/**
-	 * Returns the dynamicRepositoryKey
-	 * @return string|null
-	 */
-	protected function getDynamicRepositoryKey() {
-		return $this->dynamicRepositoryKey;
-	}
-
-	/**
-	 * Sets the configured dynamicRepositoryKey
-	 * @param string|null $dynamicRepositoryKey
-	 * @return void
-	 */
-	protected function setDynamicRepositoryKey($dynamicRepositoryKey) {
-		$this->dynamicRepositoryKey = $dynamicRepositoryKey;
 	}
 }

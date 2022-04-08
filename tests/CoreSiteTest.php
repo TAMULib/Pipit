@@ -130,15 +130,11 @@ class CoreSiteTest extends \Codeception\Test\Unit
         $this->assertTrue($coreSite->getCurrentPage()==$testPage);
     }
 
-    private function getCoreSiteInstance($userClass=null,$sitePages=null) {
+    private function getCoreSiteInstance($userClass=null) {
         if ($userClass) {
             $this->config['USER_CLASS'] = $userClass;
         } else {
             $this->config['USER_CLASS'] = 'TestUser';
-        }
-
-        if (is_array($sitePages)) {
-            $this->config['sitePages'] = $sitePages;
         }
         return new CoreSite($this->config);
     }
