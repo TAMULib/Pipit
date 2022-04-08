@@ -16,7 +16,7 @@ class DBObject extends CoreObject {
 	protected $db;
 	/** @var string The name of the main db table associated with an instance of DBObject */
 	protected $primaryTable;
-	
+
 	/**
 	*	Gets a db instance and assigns it to the $db property
 	*/
@@ -30,7 +30,7 @@ class DBObject extends CoreObject {
 	*	@return string
 	*/
 	protected function dbFormatDate($field) {
-		if (strtolower($GLOBALS['dbconfig']['dbtype']) == 'mssql') {
+		if ($this->db->getType() == 'mssql') {
 			$sql = "CONVERT(VARCHAR(10), {$field},101)";
 		} else {
 			$sql = "CAST({$field} AS CHAR(10))";
@@ -45,7 +45,7 @@ class DBObject extends CoreObject {
 	*	@return string
 	*/
 	protected function dbTextMatch($fields,$value) {
-		if (strtolower($GLOBALS['dbconfig']['dbtype']) == strtolower('mssql')) {
+		if ($this->db->getType() == 'mssql') {
 			$sql = "FREETEXT(({$fields}),{$value})";
 		} else {
 			$sql = "MATCH({$fields}) AGAINST({$value})";
@@ -58,7 +58,7 @@ class DBObject extends CoreObject {
 	*	@return string
 	*/
 	protected function dbNow() {
-		if ( strtolower($GLOBALS['dbconfig']['dbtype']) == strtolower('mssql')) {
+		if ($this->db->getType() == 'mssql') {
 			$sql = "GETDATE()";
 		} else {
 			$sql = "NOW()";
@@ -267,7 +267,7 @@ class DBObject extends CoreObject {
 	*	@return void
 	*/
 	protected function logStatementError($error,$sql=null) {
-		if (!empty($GLOBALS['config']['DB_DEBUG'])) {
+		if ($this->db->isDebug()) {
 			$message = "Error with query - CODE: {$error[1]}";
 			if ($sql) {
 				$message .= " QUERY: {$sql}";

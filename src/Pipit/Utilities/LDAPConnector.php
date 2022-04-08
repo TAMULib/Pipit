@@ -1,5 +1,6 @@
 <?php
 namespace Pipit\Utilities;
+use Pipit\Lib\CoreFunctions;
 
 class LDAPConnector {
 	/** @var string $url The url to connect to */
@@ -23,17 +24,22 @@ class LDAPConnector {
 	*
 	*/	
 	function __construct($url=NULL,$port=NULL,$user=NULL,$password=NULL) {
-		$this->url = ($url) ?$url:$GLOBALS['config']['LDAP_URL'];
-		$this->port = ($port) ? $port:$GLOBALS['config']['LDAP_PORT'];
-		if ($user) {
-			$this->setProperty('user',$user);
-		} elseif ($GLOBALS['config']['LDAP_USER']) {
-			$this->setProperty('user',$GLOBALS['config']['LDAP_USER']);
-		}
-		if ($password) {
-			$this->setProperty('password',$password);
-		} elseif ($GLOBALS['config']['LDAP_USER']) {
-			$this->setProperty('password',$GLOBALS['config']['LDAP_PASSWORD']);
+		$config = CoreFunctions::getInstance()->getAppConfiguration();
+		if (is_string($config['LDAP_URL']) && is_int($config['LDAP_PORT'])) {
+			$this->url = ($url) ?$url:$config['LDAP_URL'];
+			$this->port = ($port) ? $port:$config['LDAP_PORT'];
+			if ($user) {
+				$this->setProperty('user',$user);
+			} elseif ($config['LDAP_USER']) {
+				$this->setProperty('user',$config['LDAP_USER']);
+			}
+			if ($password) {
+				$this->setProperty('password',$password);
+			} elseif ($config['LDAP_USER']) {
+				$this->setProperty('password',$config['LDAP_PASSWORD']);
+			}
+		} else {
+			throw new \RuntimeException("Problem with LDAP configuration");
 		}
 	}
 

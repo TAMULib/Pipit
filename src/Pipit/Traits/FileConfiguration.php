@@ -1,5 +1,6 @@
 <?php
 namespace Pipit\Traits;
+use Pipit\Lib\CoreFunctions;
 
 trait FileConfiguration {
 	/** @var array<string,mixed[]> $configs An array of configuration arrays */
@@ -11,7 +12,7 @@ trait FileConfiguration {
      * @return void
      */
     private function loadConfigurationFile($configurationFileName) {
-        $config = parse_ini_file($GLOBALS['config']['PATH_CONFIG'].$configurationFileName.".ini", true);
+        $config = parse_ini_file(CoreFunctions::getInstance()->getAppConfiguration()['PATH_CONFIG'].$configurationFileName.".ini", true);
         if (!$config || !is_array($config)) {
             throw new \RuntimeException("Error parsing configuration file: {$configurationFileName}");
         }
@@ -36,6 +37,6 @@ trait FileConfiguration {
      * @return boolean
      */
     protected function configurationFileExists($configurationFileName) {
-        return is_file($GLOBALS['config']['PATH_CONFIG'].$configurationFileName.".ini");
+        return is_file(CoreFunctions::getInstance()->getAppConfiguration()['PATH_CONFIG'].$configurationFileName.".ini");
     }
 }

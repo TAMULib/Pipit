@@ -12,7 +12,12 @@ class DBInstance {
 
 	/** @var \PDO $handle A PDO instance */
 	public $handle;
-	/** @var \Pipit\Classes\Data\DBInstance $instance An instance of this db class */
+	/** @var string $type The SQL type */
+    private $type = 'mysql';
+	/** @var boolean $debug The debug status */
+    private $debug = false;
+
+    /** @var \Pipit\Classes\Data\DBInstance $instance An instance of this db class */
 	private static $instance = null;
 
 	/**
@@ -44,6 +49,16 @@ class DBInstance {
                 }
                 $dsn = str_replace($replaceKeys, $replaceValues, $dbConfig['dsn']);
                 $this->handle = new PDO($dsn, $dbConfig['user'], $dbConfig['password']);
+
+                if (array_key_exists('type', $dbConfig)) {
+                    $dbType = strtolower($dbConfig['type']);
+                    if (in_array($dbType, ['mysql','mssql'])) {
+                        $this->type = $dbType;
+                    }
+                }
+                if (array_key_exists('debug', $dbConfig) && $dbConfig['debug']) {
+                    $this->debug = true;
+                }
             } else {
                 throw new \RuntimeException("Problem with database configuration");
             }
@@ -51,6 +66,22 @@ class DBInstance {
 			CoreFunctions::getInstance()->getLogger()->error("Error processing DBInstance config");
 		}
 	}
+
+    /**
+     * Returns the type of the DBInstance
+     * @return string 
+     */
+    public function getType() {
+        return $this->type;
+    }
+
+    /**
+     * Returns whether or not the DBInstance is in debug mode
+     * @return boolean
+     */
+    public function isDebug() {
+        return $this->debug;
+    }
 
 	/**
 	*	Returns a singleton instance of the db class

@@ -32,17 +32,17 @@ class HTMLViewRenderer extends CoreObject implements ViewRenderer {
 	*	@param \Pipit\Interfaces\SitePage[] $pages The application pages
 	*	@param mixed[] $data The data to be presented by the views
 	*	@param string $controllerName The name of the active Controller. Helps with discrete loading of Controller specific static resources
-	*	@todo Either handle the case of the missing $GLOBALS['config'] with a meaningful exception or ideally, 
 	*/
 	public function __construct(User $globalUser,$pages,$data,$controllerName) {
-		$this->registerAppContextProperty("config", $GLOBALS['config']);
+		$config = $this->getAppConfiguration();
+		$this->registerAppContextProperty("config", $config);
 		$this->registerAppContextProperty("globalUser", $globalUser);
 		$this->registerAppContextProperty("pages", $pages);
 		$this->registerAppContextProperty("data", $data);
 		$this->registerAppContextProperty("controllerName", $controllerName);
-		if (!empty($GLOBALS['config']['ACTIVE_THEME'])) {
-			$themeFolder = $GLOBALS['config']['ACTIVE_THEME'];
-			$viewPath = $GLOBALS['config']['PATH_VIEWS'].$themeFolder;
+		if (!empty($config['ACTIVE_THEME'])) {
+			$themeFolder = $config['ACTIVE_THEME'];
+			$viewPath = $config['PATH_VIEWS'].$themeFolder;
 		 	if (is_dir($viewPath)) {
 				$this->setViewPath($viewPath.'/');
 			} else {

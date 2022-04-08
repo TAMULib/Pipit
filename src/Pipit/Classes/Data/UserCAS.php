@@ -18,20 +18,21 @@ class UserCAS extends UserDB {
 	*	@param \Pipit\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'iscas' fields)
 	*/
 	public function __construct($inputData,$usersRepo) {
-		if (is_array($GLOBALS['config'])
-			&& is_string($GLOBALS['config']['CAS_URLS_LOGIN'])
-			&& is_string($GLOBALS['config']['CAS_URLS_CHECK'])
-			&& is_string($GLOBALS['config']['CAS_URLS_LOGOUT'])
+		$config = $this-> getAppConfiguration();
+		if (is_array($config)
+			&& is_string($config['CAS_URLS_LOGIN'])
+			&& is_string($config['CAS_URLS_CHECK'])
+			&& is_string($config['CAS_URLS_LOGOUT'])
 		) {
 			parent::__construct();
-			$this->casPaths['urls']['login'] = $GLOBALS['config']['CAS_URLS_LOGIN'];
-			$this->casPaths['urls']['check'] = $GLOBALS['config']['CAS_URLS_CHECK'];
-			$this->casPaths['urls']['logout'] = $GLOBALS['config']['CAS_URLS_LOGOUT'];
+			$this->casPaths['urls']['login'] = $config['CAS_URLS_LOGIN'];
+			$this->casPaths['urls']['check'] = $config['CAS_URLS_CHECK'];
+			$this->casPaths['urls']['logout'] = $config['CAS_URLS_LOGOUT'];
 			if (!empty($inputData['ticket'])) {
 				$this->usersRepo = $usersRepo;
 
 				if (is_string($inputData['ticket']) && $this->processLogIn($inputData['ticket'])) {
-					header("Location:{$GLOBALS['config']['CAS_REDIRECT_URL']}");
+					header("Location:{$config['CAS_REDIRECT_URL']}");
 				}
 			} elseif (!$this->isLoggedIn() && !isset($inputData['action'])) {
 				$this->initiateLogIn();

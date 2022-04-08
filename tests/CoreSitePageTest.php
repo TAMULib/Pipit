@@ -1,6 +1,7 @@
 <?php
 namespace Tests;
 use TestFiles;
+use Pipit\Lib\CoreFunctions;
 use Pipit\Classes\Site\CoreSitePage;
 
 
@@ -17,7 +18,7 @@ class CoreSitePageTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $this->config = $GLOBALS['config'];
+        $this->config = CoreFunctions::getInstance()->getAppConfiguration();
         $this->coreSitePages = [
 			    "widgets" => new CoreSitePage("widgets","widgets",SECURITY_USER),
 			    "DynamicRepo" => new CoreSitePage("dynamic repo","dynamic-repo",SECURITY_PUBLIC),

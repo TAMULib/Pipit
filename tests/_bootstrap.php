@@ -26,8 +26,4 @@ define('SECURITY_PUBLIC',-1);
 define('SECURITY_USER',0);
 define('SECURITY_ADMIN',1);
 define('SECURITY_MANAGER',2);
-
-//require_once PATH_CORE_LIB."functions.php";
-
-$GLOBALS['config'] = CoreFunctions::getInstance()->getAppConfiguration();
 ?>
