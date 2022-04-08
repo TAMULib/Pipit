@@ -48,7 +48,7 @@ class CoreLogger extends PsrAbstractLogger implements Logger {
 
 	/**
 	*	Sets the threshold for which log entries should actually get written to the log
-	*	@param int $logLevel Corresponds to an index of $loggerTypes
+	*	@param int $logLevel Range of 0-3, with 3 being the least verbose
 	*	@return void
 	*/
 	public function setLogLevel($logLevel) {

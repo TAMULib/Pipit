@@ -23,10 +23,7 @@ class CoreSite extends AbstractSite {
 	*/
 	public function __construct(&$siteConfig) {
 		$this->setSiteConfig($siteConfig);
-		if (is_array($siteConfig['sitePages'])) {
-			$sitePages = array_filter($siteConfig['sitePages'], function($row) { return ($row instanceof \Pipit\Interfaces\SitePage); });
-			$this->setPages($sitePages);
-		}
+		$this->setPages();
 		$this->generateSanitizedInputData();
 		$this->setDynamicRepositoryKey(is_string($siteConfig['DYNAMIC_REPOSITORY_KEY']) ? $siteConfig['DYNAMIC_REPOSITORY_KEY'] : null);
 		$this->setUser();

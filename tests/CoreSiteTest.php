@@ -1,6 +1,7 @@
 <?php
 namespace Tests;
 use TestFiles;
+use Pipit\Lib\CoreFunctions;
 use Pipit\Classes\Site\CoreSite;
 use Pipit\Classes\Site\CoreSitePage;
 use Pipit\Classes\ViewRenderers\HTMLViewRenderer;
@@ -19,7 +20,7 @@ class CoreSiteTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $this->config = $GLOBALS['config'];
+        $this->config = CoreFunctions::getInstance()->getAppConfiguration();
     }
 
     protected function _after()
@@ -48,11 +49,11 @@ class CoreSiteTest extends \Codeception\Test\Unit
 
     public function testAdminControllerFetching() {
         // As an admin level user....
-        $coreSite = $this->getCoreSiteInstance('TestAdminUser',["Test" => new CoreSitePage("Test","Test",SECURITY_ADMIN)]);
+        $coreSite = $this->getCoreSiteInstance('TestAdminUser');
 
         $coreSite->setViewRenderer(new HTMLViewRenderer($coreSite->getGlobalUser(),$coreSite->getPages(),$this->config,null));
         // Try to load a controller that exists
-        $this->assertEquals('TestFiles\Classes\Controllers\TestAdminController',$coreSite->getControllerClass("Test"));
+        $this->assertEquals('TestFiles\Classes\Controllers\SecureTestAdminController',$coreSite->getControllerClass("SecureTest"));
     }
 
     public function testAddingSystemMessage() {
@@ -118,7 +119,7 @@ class CoreSiteTest extends \Codeception\Test\Unit
 
     public function testPages() {
         $coreSite = $this->getCoreSiteInstance();
-        $this->assertTrue(count($coreSite->getPages()) == count($this->config['sitePages']));
+        $this->assertTrue(count($coreSite->getPages()) > 0);
     }
 
     public function testCurrentPage() {

@@ -2,41 +2,6 @@
 namespace Pipit\Classes\Data;
 use Pipit\Classes\CoreObject;
 use \PDO;
-/** 
-* 	Provides a PDO DB connection to instances of dbobject and its descendants
-*	@author Jason Savell <jsavell@library.tamu.edu>
-*	@todo Remove hidden dependency on $GLOBALS or throw a meaningful exception when the db config vars are missing
-*
-*/
-class db {
-	/** @var \PDO $handle A PDO instance */
-	public $handle;
-	/** @var \Pipit\Classes\Data\db $instance An instance of this db class */
-	private static $instance = null;
-
-	/**
-	*	Instantiates a new \PDO instance using the $GLOBALS 'DB_' config
-	*	$GLOBALS['config']['DB_DSN']
-	*	$GLOBALS['config']['DB_USER']
-	*	$GLOBALS['config']['DB_PASSWORD']
-	*
-	*/
-    private function __construct() {
-		$this->handle = new PDO($GLOBALS['config']['DB_DSN'], $GLOBALS['config']['DB_USER'], $GLOBALS['config']['DB_PASSWORD']);
-	}
-
-	/**
-	*	Returns a singleton instance of the db class
-	*	@return \Pipit\Classes\Data\db
-	*/
-    public static function getInstance() {
-        if (self::$instance == null) {
-            $object = __CLASS__;
-            self::$instance = new $object;
-        }
-        return self::$instance;
-    }
-}
 
 /** 
 *	A base class to be extended by any class that needs to access the DB
@@ -47,7 +12,7 @@ class db {
 *	@todo Provide getter/setter for $primaryTable to be utilized by extending classes
 */
 class DBObject extends CoreObject {
-	/** @var \Pipit\Classes\Data\db An instance of the db class, providing the connection to the DB */
+	/** @var \Pipit\Classes\Data\DBInstance An instance of the db class, providing the connection to the DB */
 	protected $db;
 	/** @var string The name of the main db table associated with an instance of DBObject */
 	protected $primaryTable;
@@ -56,7 +21,7 @@ class DBObject extends CoreObject {
 	*	Gets a db instance and assigns it to the $db property
 	*/
 	protected function __construct() {
-		$this->db = db::getInstance();
+		$this->db = DBInstance::getInstance();
 	}
 
 	/**

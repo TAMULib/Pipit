@@ -10,6 +10,8 @@ use Pipit\Classes\CoreObject;
 */
 
 abstract class AbstractSite extends CoreObject implements Site {
+	use \Pipit\Traits\FileConfiguration;
+
 	/** @var \Pipit\Interfaces\User $globalUser An array containing data about the logged in user */
 	private $globalUser;
 	/** @var mixed[] $siteConfig An array containing the site configuration */
@@ -51,10 +53,28 @@ abstract class AbstractSite extends CoreObject implements Site {
 	/**
 	*	Set the pages for the Site.
 	*
-	*	@param \Pipit\Interfaces\SitePage[] $pages An array of SitePage
 	*	@return void
 	*/
-	protected function setPages($pages) {
+	protected function setPages() {
+		$pages = [];
+		try {
+			$pageConfig = $this->getConfigurationFromFileName("SitePages.config");
+			if (count($pageConfig) > 0) {
+				$pageLoadingError = false;
+				foreach($pageConfig as $key=>$page) {
+					if (is_array($page) && array_key_exists('name', $page) && array_key_exists('path', $page) && array_key_exists('accessLevel', $page)) {
+						$pages[$key] = new CoreSitePage($page['name'],$page['path'],$page['accessLevel']);
+					} else {
+						$pageLoadingError = true;
+					}
+				}
+				if ($pageLoadingError) {
+					throw new \RuntimeException("Error loading site pages from configuration");
+				}
+			}
+		} catch (\RuntimeException $e) {
+			$this->getLogger()->debug("Error processing SitePages configuration");
+		}
 		$this->pages = $pages;
 	}
 

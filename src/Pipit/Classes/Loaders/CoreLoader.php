@@ -4,8 +4,8 @@ use Pipit\Interfaces\Loader;
 use Pipit\Interfaces\Controller;
 use Pipit\Interfaces\ViewRenderer;
 use Pipit\Interfaces\Site;
+use Pipit\Classes\CoreObject;
 use Pipit\Classes\Site\CoreSite;
-use Pipit\Lib as PipitLib;
 
 /**
 *	The CoreLoader is the default implementation of the Loader interface.
@@ -21,11 +21,9 @@ use Pipit\Lib as PipitLib;
 *
 */
 
-class CoreLoader implements Loader {
+class CoreLoader extends CoreObject implements Loader {
 	/** @var mixed[] $config The app configuration */
 	private $config;
-	/** @var \Pipit\Interfaces\Logger $logger A Logger implementation */
-	private $logger;
 	/** @var \Pipit\Interfaces\Site $site The Site context */
 	private $site;
 
@@ -34,7 +32,6 @@ class CoreLoader implements Loader {
 	 */
 	public function __construct($config) {
 		$this->config = $config;
-		$this->logger = PipitLib\getLogger();
 	}
 
 	/**
@@ -116,14 +113,14 @@ class CoreLoader implements Loader {
 				$this->setSite($potentialSiteClass);
 				unset($potentialSiteClass);
 			}
-			$this->logger->debug("Loaded Configured Class: {$className}");
+			$this->getLogger()->debug("Loaded Configured Class: {$className}");
 		}
 		if (!($this->getSite() instanceof Site)) {
 			$coreSite = new CoreSite($config);
 			if ($coreSite instanceof Site) {
 				$this->setSite($coreSite);
 			}
-			$this->logger->debug("Loaded CoreSite Class");
+			$this->getLogger()->debug("Loaded CoreSite Class");
 		}
 	}
 
@@ -150,7 +147,7 @@ class CoreLoader implements Loader {
 			}
 		}
 		if (!$hasViewRenderer) {
-			$this->logger->error("ViewRenderer Class not found");
+			$this->getLogger()->error("ViewRenderer Class not found");
 			exit;
 		}
 	}
@@ -211,7 +208,7 @@ class CoreLoader implements Loader {
 			}
 		}
 		if (!$controller) {
-			$this->logger->warn("Did not find Controller Class");
+			$this->getLogger()->warn("Did not find Controller Class");
 			if (is_string($config['PATH_HTTP'])) {
 				$this->getSite()->setRedirectUrl($config['PATH_HTTP']);
 			} else {

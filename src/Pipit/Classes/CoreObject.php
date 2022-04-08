@@ -1,6 +1,6 @@
 <?php
 namespace Pipit\Classes;
-use Pipit\Lib as PipitLib;
+use Pipit\Lib\CoreFunctions;
 use Psr\Log\LoggerInterface as PsrLoggerInterface;
 
 /** 
@@ -9,28 +9,19 @@ use Psr\Log\LoggerInterface as PsrLoggerInterface;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 class CoreObject {
-	/** @var \Pipit\Interfaces\Logger $logger This provides the configured Logger to all extenders of this class */
-	private $logger = null;
-
-	/**
-	*	Sets the Logger
-	*	@param \Pipit\Interfaces\Logger $logger An instance of a Logger implementation
-	*	@return void
-	*/
-	private function setLogger(\Pipit\Interfaces\Logger $logger) {
-		$this->logger = $logger;
-	}
-
 	/**
 	*	Provides a single instance of a configured Logger to all extenders of CoreObject
 	*	@return \Pipit\Interfaces\Logger
 	*/
 	public function getLogger() {
-	    if ($this->logger != null) {
-	        return $this->logger;
-	    }
-		$this->setLogger(PipitLib\getLogger());
-		return $this->logger;
+		return CoreFunctions::getInstance()->getLogger();
+	}
+
+	/**
+	*	Provides a single instance of the global app configuration to all extenders of CoreObject
+	*	@return mixed[]
+	*/
+	public function getAppConfiguration() {
+		return CoreFunctions::getInstance()->getAppConfiguration();
 	}
 }
-

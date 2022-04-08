@@ -16,4 +16,11 @@ interface Logger extends LoggerInterface {
 	*	@return void
 	*/
 	public function warn($message);
+
+	/**
+	*	Sets the threshold for which log entries should actually get written to the log
+	*	@param int $logLevel Range of 0-3, with 3 being the least verbose
+	*	@return void
+	*/
+	public function setLogLevel($logLevel);
 }
