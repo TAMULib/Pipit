@@ -3,6 +3,7 @@ namespace Pipit\Utilities;
 use Pipit\Lib\CoreFunctions;
 
 class LDAPConnector {
+    use \Pipit\Traits\FileConfiguration;
 	/** @var string $url The url to connect to */
 	private $url;
 	/** @var int $port The port to connect to */
@@ -17,30 +18,60 @@ class LDAPConnector {
 	/**
 	*	Uses either parameters or global config properties to prep for connecting to an LDAP server
 	*
-	*	@param string $url The url to connect to
-	*	@param int $port The port to connect to
-	*	@param string $user The user to connect with
-	*	@param string $password The password to connect with
+	*	@param string|null $url The url to connect to
+	*	@param int|null $port The port to connect to
+	*	@param string|null $user The user to connect with
+	*	@param string|null $password The password to connect with
 	*
 	*/	
 	function __construct($url=NULL,$port=NULL,$user=NULL,$password=NULL) {
-		$config = CoreFunctions::getInstance()->getAppConfiguration();
-		if (is_string($config['LDAP_URL']) && is_int($config['LDAP_PORT'])) {
-			$this->url = ($url) ?$url:$config['LDAP_URL'];
-			$this->port = ($port) ? $port:$config['LDAP_PORT'];
-			if ($user) {
-				$this->setProperty('user',$user);
-			} elseif ($config['LDAP_USER']) {
-				$this->setProperty('user',$config['LDAP_USER']);
+		if (!self::configIsValid($url, $port, $user, $password)) {
+			$configurationFileName = "LDAPConnector";
+			$config = null;
+			if ($this->configurationFileExists($configurationFileName)) {
+				$config = $this->getConfigurationFromFileName($configurationFileName);
+			} else {
+				throw new \RuntimeException("LDAPConnector config file does not exist");
 			}
-			if ($password) {
-				$this->setProperty('password',$password);
-			} elseif ($config['LDAP_USER']) {
-				$this->setProperty('password',$config['LDAP_PASSWORD']);
+
+			if ($config) {
+				if (!$url && is_string($config['url'])) {
+					$url = $config['url'];
+				}
+				if (!$port && is_int($config['port'])) {
+					$port = $config['port'];
+				}
+
+				if (!$user && is_string($config['user'])) {
+					$user = $config['user'];
+				}
+
+				if (!$password && is_string($config['password'])) {
+					$password = $config['password'];
+				}
 			}
+		}
+
+		if (self::configIsValid($url, $port, $user, $password)) {
+			$this->setProperty('url', $url);
+			$this->setProperty('port', $port);
+			$this->setProperty('user', $user);
+			$this->setProperty('password', $password);
 		} else {
 			throw new \RuntimeException("Problem with LDAP configuration");
 		}
+	}
+
+	/**
+	 * Checks the given parameters for validity
+	 * @param string|null $url An ldap url
+	 * @param int|null $port The port of the ldap server
+	 * @param string|null $user The user to connect as
+	 * @param string|null $password The password to authenticate with
+	 * @return boolean
+	 */
+	static private function configIsValid($url, $port, $user, $password) {
+		return (!$url || ! $port || !$user || !$password);
 	}
 
 	/**
@@ -79,7 +110,7 @@ class LDAPConnector {
 	}
 
 	/**
-	* Creates a new property on the class with the given $name and $value
+	* Assigns a property on the class with the given $name and $value
 	* @param string $name The name of the property to create
 	* @param mixed $value The value of the property to create
 	* @return void
