@@ -160,6 +160,7 @@ class CoreSite extends AbstractSite {
 						} elseif ($repository instanceof \Pipit\Interfaces\Configurable) {
 							$repository->configure($this);
 							$this->addCachedDataRepository($repositoryName,$repository);
+							$foundRepository = true;
 						} else {
 							$this->getLogger()->error("Repositories must implement Pipit\Interfaces\Configurable: ".$repositoryName);
 							$repository = null;
@@ -167,10 +168,11 @@ class CoreSite extends AbstractSite {
 					}
 				}
 			}
-			if (!$repository) {
+			if (!$foundRepository) {
 				$this->getLogger()->error("Could not find valid Repository: ".$repositoryName);
 			} else {
 				$this->getLogger()->debug("Providing FRESH Repo: ".$repositoryName);
+				$repository = $this->getCachedDataRepository($repositoryName);
 			}
 		} else {
 			$this->getLogger()->debug("Providing CACHED Repo: ".$repositoryName);
