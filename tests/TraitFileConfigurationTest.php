@@ -11,13 +11,12 @@ class TraitFileConfigurationTest extends \Codeception\Test\Unit {
         $mockInstance = $this->getObjectForTrait('Pipit\Traits\FileConfiguration');
         $config = $this->invokeMethod($mockInstance, 'getConfigurationFromFileName', ['fileName'=>'test.templated.config']);
 
-//        $this->assertEquals('value1',$config['testKey1']);
-//        $this->assertEquals('value2',$config['testKey2']);
+        $this->assertEquals('value1',$config['testKey1']);
+        $this->assertEquals('value2',$config['testKey2']);
         $this->assertEquals('contains value1',$config['testTemplateKey1']);
-//        $this->assertEquals('contains value2',$config['testTemplateKey2'],);
-//        $this->assertEquals('contains value1 and value2',$config['testTemplateKeyAll']);
-
-//        $this->assertEquals('section value contains value1',$config['section']['testSectionKey1']);
+        $this->assertEquals('contains value2',$config['testTemplateKey2'],);
+        $this->assertEquals('contains value1 and value2',$config['testTemplateKeyAll']);
+        $this->assertEquals('section value contains value1',$config['section']['testSectionKey1']);
     }
 
     protected function invokeMethod(&$object, $methodName, $parameters=[]) {

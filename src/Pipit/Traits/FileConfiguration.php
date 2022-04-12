@@ -18,13 +18,18 @@ trait FileConfiguration {
         }
 
         if ($config) {
+            $replaceables = [];
             foreach ($config as $key=>$value) {
-                $replaceables = self::processMatches($key, $value);
+                $replaceable = self::processMatches($key, $value);
+                if (count($replaceable) > 0) {
+                    $replaceables = array_merge($replaceables, $replaceable);
+                }
             }
-            $replaceHierarchy = [];
-            $replaceKeys = [];
-            $replaceValues = [];
+
             foreach ($replaceables as $configField=>$templateKeys) {
+                $replaceHierarchy = [];
+                $replaceKeys = [];
+                $replaceValues = [];
                 $replaceHierarchy[] = $configField;
                 foreach ($templateKeys as $templateKey) {
                     if (is_array($templateKey)) {
@@ -37,16 +42,11 @@ trait FileConfiguration {
                         }
                     } else {
                         $replaceKeys[] = '{{'.$templateKey.'}}';
-                        $replaceValues = $config[$configField];
+                        $replaceValues[] = $config[$templateKey];
                     }
                 }
+                self::replaceValue($config, $replaceHierarchy, $replaceKeys, $replaceValues);
             }
-            echo 'test:';
-            print_r($replaceHierarchy);
-            print_r($replaceKeys);
-            print_r($replaceValues);
-            ob_flush();
-            self::replaceValue($config, $replaceHierarchy, $replaceKeys, $replaceValues);
             $this->configs[$configurationFileName] = $config;
         }
     }
@@ -78,6 +78,8 @@ trait FileConfiguration {
             foreach ($matches as $matchGroup) {
                 $replaceables[$key][] = $matchGroup[1];
             }
+        } else {
+            unset($replaceables[$key]);
         }
         return $replaceables;
     }
