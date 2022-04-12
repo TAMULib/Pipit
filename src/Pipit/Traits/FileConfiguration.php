@@ -17,20 +17,20 @@ trait FileConfiguration {
             throw new \RuntimeException("Error parsing configuration file: {$configurationFileName}");
         }
 
-        if ($config) {
-            $replaceables = [];
-            foreach ($config as $key=>$value) {
-                $replaceable = self::processMatches($key, $value);
-                if (count($replaceable) > 0) {
-                    $replaceables = array_merge($replaceables, $replaceable);
-                }
+        $replaceables = [];
+        foreach ($config as $key=>$value) {
+            $replaceable = self::processMatches($key, $value);
+            if (count($replaceable) > 0) {
+                $replaceables = array_merge($replaceables, $replaceable);
             }
+        }
 
-            foreach ($replaceables as $configField=>$templateKeys) {
-                $replaceHierarchy = [];
-                $replaceKeys = [];
-                $replaceValues = [];
-                $replaceHierarchy[] = $configField;
+        foreach ($replaceables as $configField=>$templateKeys) {
+            $replaceHierarchy = [];
+            $replaceKeys = [];
+            $replaceValues = [];
+            $replaceHierarchy[] = $configField;
+            if (is_array($templateKeys)) {
                 foreach ($templateKeys as $templateKey) {
                     if (is_array($templateKey)) {
                         foreach ($templateKey as $parentKey=>$children) {
@@ -44,10 +44,17 @@ trait FileConfiguration {
                 }
                 self::replaceValue($config, $replaceHierarchy, $replaceKeys, $replaceValues);
             }
-            $this->configs[$configurationFileName] = $config;
         }
+        $this->configs[$configurationFileName] = $config;
     }
 
+    /**
+     * @param mixed[] $config
+     * @param array<mixed> $children
+     * @param string[] $replaceKeys
+     * @param mixed[] $replaceValues
+     * @return void
+     */
     static private function pairKeyValue($config, $children, &$replaceKeys, &$replaceValues) {
         foreach ($children as $key=>$value) {
             if (!is_array($value)) {
@@ -59,17 +66,30 @@ trait FileConfiguration {
         }
     }
 
-
+    /**
+     * @param array<mixed> $configLevel
+     * @param array<string> $hierarchy
+     * @param array<string> $replaceKeys
+     * @param array<string> $replaceValues
+     * @return void
+     */
     static private function replaceValue(&$configLevel, $hierarchy, $replaceKeys, $replaceValues) {
-        if (count($hierarchy) > 1) {
+        if (count($hierarchy) > 1 && array_key_exists($hierarchy[0], $configLevel)) {
             $nextLevel = &$configLevel[$hierarchy[0]];
             array_shift($hierarchy);
-            return self::replaceValue($nextLevel,$hierarchy, $replaceKeys, $replaceValues);
+            self::replaceValue($nextLevel,$hierarchy, $replaceKeys, $replaceValues);
         } else {
-            $configLevel[$hierarchy[0]] = str_replace($replaceKeys, $replaceValues, $configLevel[$hierarchy[0]]);
+            if (is_string($configLevel[$hierarchy[0]]) || is_array($configLevel[$hierarchy[0]])) {
+                $configLevel[$hierarchy[0]] = str_replace($replaceKeys, $replaceValues, $configLevel[$hierarchy[0]]);
+            }
         }
     }
 
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @return array<mixed>
+     */
     static private function processMatches($key, $value) {
         $bracketRegex = '/{{(\w*)}}/m';
         $replaceables = [];
@@ -82,15 +102,16 @@ trait FileConfiguration {
             return $replaceables;
         }
 
-        $matchCount = preg_match_all($bracketRegex, $value, $matches, PREG_SET_ORDER, 0);
-        if ($matchCount && $matchCount > 0) {
+        $matches = [];
+        $matchCount = is_string($value) ? preg_match_all($bracketRegex, $value, $matches, PREG_SET_ORDER, 0):0;
+        $finalReplaceables = [];
+        if ($matchCount > 0) {
             foreach ($matches as $matchGroup) {
                 $replaceables[$key][] = $matchGroup[1];
             }
-        } else {
-            unset($replaceables[$key]);
+            $finalReplaceables[$key] = $replaceables[$key];
         }
-        return $replaceables;
+        return $finalReplaceables;
     }
 
     /**
