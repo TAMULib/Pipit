@@ -35,10 +35,7 @@ trait FileConfiguration {
                     if (is_array($templateKey)) {
                         foreach ($templateKey as $parentKey=>$children) {
                             $replaceHierarchy[] = $parentKey;
-                            foreach ($children as $childKey=>$childValue) {
-                                $replaceKeys[] = '{{'.$childValue.'}}';
-                                $replaceValues[] = $config[$childValue];
-                            }
+                            self::pairKeyValue($config, $children, $replaceKeys,$replaceValues);
                         }
                     } else {
                         $replaceKeys[] = '{{'.$templateKey.'}}';
@@ -50,6 +47,18 @@ trait FileConfiguration {
             $this->configs[$configurationFileName] = $config;
         }
     }
+
+    static private function pairKeyValue($config, $children, &$replaceKeys, &$replaceValues) {
+        foreach ($children as $key=>$value) {
+            if (!is_array($value)) {
+                $replaceKeys[] = '{{'.$value.'}}';
+                $replaceValues[] = $config[$value];
+            } else {
+                self::pairKeyValue($config, $value, $replaceKeys, $replaceValues);
+            }
+        }
+    }
+
 
     static private function replaceValue(&$configLevel, $hierarchy, $replaceKeys, $replaceValues) {
         if (count($hierarchy) > 1) {

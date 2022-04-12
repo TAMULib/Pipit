@@ -17,6 +17,8 @@ class TraitFileConfigurationTest extends \Codeception\Test\Unit {
         $this->assertEquals('contains value2',$config['testTemplateKey2'],);
         $this->assertEquals('contains value1 and value2',$config['testTemplateKeyAll']);
         $this->assertEquals('section value contains value1',$config['section']['testSectionKey1']);
+        $this->assertEquals('regular value',$config['section2']['test']['deepsection1']);
+        $this->assertEquals('deep templated value2',$config['section2']['test']['deepsection2']);
     }
 
     protected function invokeMethod(&$object, $methodName, $parameters=[]) {
