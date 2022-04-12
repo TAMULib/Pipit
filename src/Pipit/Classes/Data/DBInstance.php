@@ -38,17 +38,8 @@ class DBInstance {
             if ($validConfig) {
                 $replaceKeys = [];
                 $replaceValues = [];
-                //remove dsn from keys
-                unset($checkKeys[0]);
-                foreach ($checkKeys as $key) {
-                    $keyWrap = '{'.$key.'}';
-                    if (strripos($dbConfig['dsn'], $keyWrap)) {
-                        $replaceKeys[] = $keyWrap;
-                        $replaceValues[] = $dbConfig[$key];
-                    }
-                }
-                $dsn = str_replace($replaceKeys, $replaceValues, $dbConfig['dsn']);
-                $this->handle = new PDO($dsn, $dbConfig['user'], $dbConfig['password']);
+
+                $this->handle = new PDO($dbConfig['dsn'], $dbConfig['user'], $dbConfig['password']);
 
                 if (array_key_exists('type', $dbConfig)) {
                     $dbType = strtolower($dbConfig['type']);
