@@ -18,100 +18,48 @@ trait FileConfiguration {
         }
 
         $replaceables = [];
-        foreach ($config as $key=>$value) {
-            $replaceable = self::processMatches($key, $value);
-            if (count($replaceable) > 0) {
-                $replaceables = array_merge($replaceables, $replaceable);
-            }
-        }
-
-        foreach ($replaceables as $configField=>$templateKeys) {
-            $replaceHierarchy = [];
-            $replaceKeys = [];
-            $replaceValues = [];
-            $replaceHierarchy[] = $configField;
-            if (is_array($templateKeys)) {
-                foreach ($templateKeys as $templateKey) {
-                    if (is_array($templateKey)) {
-                        foreach ($templateKey as $parentKey=>$children) {
-                            $replaceHierarchy[] = $parentKey;
-                            self::pairKeyValue($config, $children, $replaceKeys,$replaceValues);
-                        }
-                    } else {
-                        $replaceKeys[] = '{{'.$templateKey.'}}';
-                        $replaceValues[] = $config[$templateKey];
+        $configKeys = [];
+        //find all template keys in the config array
+        array_walk_recursive($config, function($configEntry) use (&$configKeys) { 
+            $bracketRegex = '/{{(\w*)}}/m';
+            if (is_string($configEntry) && !in_array($configEntry, $configKeys)) {
+                $keyMatches = [];
+                $matchCount = preg_match_all($bracketRegex, $configEntry, $keyMatches, PREG_SET_ORDER, 0);
+                if ($matchCount > 0) {
+                    foreach ($keyMatches as $keyMatchGroup) {
+                        $configKeys[] = $keyMatchGroup[1];
                     }
                 }
-                self::replaceValue($config, $replaceHierarchy, $replaceKeys, $replaceValues);
             }
-        }
+        });
+        $configKeys = array_unique($configKeys);
+        $configKeyValuePairs = [];
+
+        //pair all template keys with their value from the config array
+        array_walk_recursive($config, function($configEntry, $configKey) use ($configKeys, &$configKeyValuePairs) {
+            if (in_array($configKey, $configKeys)) {
+                $configKeyValuePairs[$configKey] = $configEntry;
+            }
+        });
+
+        //apply all template key/values in the config array
+        array_walk_recursive($config, function(&$configEntry, $configKey) use ($configKeyValuePairs) {
+            if (is_string($configEntry)) {
+                $replaceKeys = [];
+                $replaceValues = [];
+                foreach ($configKeyValuePairs as $key=>$value) {
+                    if (stripos($configEntry, '{{'.$key.'}}') !== false) {
+                        $replaceKeys[] = '{{'.$key.'}}';
+                        $replaceValues[] = $value;
+                    }
+                }
+                if (count($replaceKeys) > 0) {
+                    $configEntry = str_replace($replaceKeys, $replaceValues, $configEntry);
+                }
+            }
+        });
+
         $this->configs[$configurationFileName] = $config;
-    }
-
-    /**
-     * @param mixed[] $config
-     * @param array<mixed> $children
-     * @param string[] $replaceKeys
-     * @param mixed[] $replaceValues
-     * @return void
-     */
-    static private function pairKeyValue($config, $children, &$replaceKeys, &$replaceValues) {
-        foreach ($children as $key=>$value) {
-            if (!is_array($value)) {
-                $replaceKeys[] = '{{'.$value.'}}';
-                $replaceValues[] = $config[$value];
-            } else {
-                self::pairKeyValue($config, $value, $replaceKeys, $replaceValues);
-            }
-        }
-    }
-
-    /**
-     * @param array<mixed> $configLevel
-     * @param array<string> $hierarchy
-     * @param array<string> $replaceKeys
-     * @param array<string> $replaceValues
-     * @return void
-     */
-    static private function replaceValue(&$configLevel, $hierarchy, $replaceKeys, $replaceValues) {
-        if (count($hierarchy) > 1 && array_key_exists($hierarchy[0], $configLevel)) {
-            $nextLevel = &$configLevel[$hierarchy[0]];
-            array_shift($hierarchy);
-            self::replaceValue($nextLevel,$hierarchy, $replaceKeys, $replaceValues);
-        } else {
-            if (is_string($configLevel[$hierarchy[0]]) || is_array($configLevel[$hierarchy[0]])) {
-                $configLevel[$hierarchy[0]] = str_replace($replaceKeys, $replaceValues, $configLevel[$hierarchy[0]]);
-            }
-        }
-    }
-
-    /**
-     * @param string $key
-     * @param mixed $value
-     * @return array<mixed>
-     */
-    static private function processMatches($key, $value) {
-        $bracketRegex = '/{{(\w*)}}/m';
-        $replaceables = [];
-        if (is_array($value)) {
-            $nestedReplaceables = [];
-            foreach ($value as $nestedKey=>$nestedValue) {
-                $nestedReplaceables[$nestedKey] = self::processMatches($nestedKey, $nestedValue);
-            }
-            $replaceables[$key] = $nestedReplaceables;
-            return $replaceables;
-        }
-
-        $matches = [];
-        $matchCount = is_string($value) ? preg_match_all($bracketRegex, $value, $matches, PREG_SET_ORDER, 0):0;
-        $finalReplaceables = [];
-        if ($matchCount > 0) {
-            foreach ($matches as $matchGroup) {
-                $replaceables[$key][] = $matchGroup[1];
-            }
-            $finalReplaceables[$key] = $replaceables[$key];
-        }
-        return $finalReplaceables;
     }
 
     /**
