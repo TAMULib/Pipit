@@ -30,15 +30,15 @@ class UserCAS extends UserDB {
 
 		if (is_array($config)
 			&& is_string($config['urls']['login'])
-			&& is_string($config['url']['check'])
-			&& is_string($config['url']['logout'])
+			&& is_string($config['urls']['check'])
+			&& is_string($config['urls']['logout'])
 		) {
 			parent::__construct();
 			$appConfig = $this->getAppConfiguration();
 			$redirectUrl = is_string($config['url']['redirect']) ? $config['url']['redirect']:$appConfig['PATH_HTTP'];
 			$this->casPaths['urls']['login'] = $config['urls']['login'];
-			$this->casPaths['urls']['check'] = $config['url']['check'];
-			$this->casPaths['urls']['logout'] = $config['url']['logout'];
+			$this->casPaths['urls']['check'] = $config['urls']['check'];
+			$this->casPaths['urls']['logout'] = $config['urls']['logout'];
 			if (!empty($inputData['ticket'])) {
 				$this->usersRepo = $usersRepo;
 
