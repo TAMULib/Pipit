@@ -7,6 +7,8 @@ namespace Pipit\Classes\Data;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 class UserCAS extends UserDB {
+	use \Pipit\Traits\FileConfiguration;
+
 	/** @var array<string,array<string,string>> $casPaths A string array representing the CAS configuration */
 	private $casPaths;
 	/** @var \Pipit\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'iscas' fields) */
@@ -18,21 +20,30 @@ class UserCAS extends UserDB {
 	*	@param \Pipit\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'iscas' fields)
 	*/
 	public function __construct($inputData,$usersRepo) {
-		$config = $this-> getAppConfiguration();
+		$configurationFileName = "user.cas.config";
+		$config = null;
+		if ($this->configurationFileExists($configurationFileName)) {
+			$config = $this->getConfigurationFromFileName($configurationFileName);
+		} else {
+			throw new \RuntimeException("CAS config file does not exist");
+		}
+
 		if (is_array($config)
-			&& is_string($config['CAS_URLS_LOGIN'])
-			&& is_string($config['CAS_URLS_CHECK'])
-			&& is_string($config['CAS_URLS_LOGOUT'])
+			&& is_string($config['urls']['login'])
+			&& is_string($config['url']['check'])
+			&& is_string($config['url']['logout'])
 		) {
 			parent::__construct();
-			$this->casPaths['urls']['login'] = $config['CAS_URLS_LOGIN'];
-			$this->casPaths['urls']['check'] = $config['CAS_URLS_CHECK'];
-			$this->casPaths['urls']['logout'] = $config['CAS_URLS_LOGOUT'];
+			$appConfig = $this->getAppConfiguration();
+			$redirectUrl = is_string($config['url']['redirect']) ? $config['url']['redirect']:$appConfig['PATH_HTTP'];
+			$this->casPaths['urls']['login'] = $config['urls']['login'];
+			$this->casPaths['urls']['check'] = $config['url']['check'];
+			$this->casPaths['urls']['logout'] = $config['url']['logout'];
 			if (!empty($inputData['ticket'])) {
 				$this->usersRepo = $usersRepo;
 
 				if (is_string($inputData['ticket']) && $this->processLogIn($inputData['ticket'])) {
-					header("Location:{$config['CAS_REDIRECT_URL']}");
+					header("Location:".$redirectUrl);
 				}
 			} elseif (!$this->isLoggedIn() && !isset($inputData['action'])) {
 				$this->initiateLogIn();
@@ -86,6 +97,10 @@ class UserCAS extends UserDB {
 	*/
 	public function initiatelogIn() {
 		header("Location: {$this->casPaths['urls']['login']}");
+	}
+
+	public function logIn($username,$password) {
+		return false;
 	}
 
 	/**

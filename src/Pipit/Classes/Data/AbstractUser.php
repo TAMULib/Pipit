@@ -2,7 +2,7 @@
 namespace Pipit\Classes\Data;
 use Pipit\Interfaces as Interfaces;
 
-/** 
+/**
 *	Represents the application user
 *	Handles session management, authentication, and authorization
 *	@author Jason Savell <jsavell@library.tamu.edu>
@@ -79,7 +79,7 @@ abstract class AbstractUser extends DBObject implements Interfaces\User {
 	}
 
 	/**
-	*	Log in a User	
+	*	Log in a User
 	*	@param string $username The User's username
 	*	@param string $password The User's password
 	*	@return boolean True on successful login, false on anything else
