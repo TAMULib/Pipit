@@ -21,6 +21,12 @@ class TraitFileConfigurationTest extends \Codeception\Test\Unit {
         $this->assertEquals('deep templated value2',$config['section2']['test']['deepsection2']);
     }
 
+    public function testMissingConfigurationFileThrowsConfigurationException() {
+        $this->expectException('Pipit\Classes\Exceptions\ConfigurationException');
+        $mockInstance = $this->getObjectForTrait('Pipit\Traits\FileConfiguration');
+        $this->invokeMethod($mockInstance, 'getConfigurationFromFileName', ['fileName'=>'nonexistent.config']);
+    }
+
     protected function invokeMethod(&$object, $methodName, $parameters=[]) {
         $reflection = new \ReflectionClass(get_class($object));
         $method = $reflection->getMethod($methodName);
