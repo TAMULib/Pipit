@@ -2,8 +2,8 @@
 namespace Pipit\Interfaces;
 
 interface EntityRepository {
-	/**
-	 * @return string
-	 */
-	public function getEntityBuilder();
+    /**
+     * @return string
+     */
+    public function getEntityBuilder();
 }

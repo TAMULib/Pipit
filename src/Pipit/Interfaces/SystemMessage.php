@@ -7,30 +7,30 @@ namespace Pipit\Interfaces;
 */
 
 interface SystemMessage {
-	/**
-	*	Set the type of the message
-	*	@param string $messageType
-	*	@return void
-	*/
-	public function setType($messageType);
+    /**
+    *	Set the type of the message
+    *	@param string $messageType
+    *	@return void
+    */
+    public function setType($messageType);
 
-	/**
-	*	Get the type of the message
-	*	@return string $messageType
-	*/
-	public function getType();
+    /**
+    *	Get the type of the message
+    *	@return string $messageType
+    */
+    public function getType();
 
-	/**
-	*	Set the content of the message
-	*	@param string $message
-	*	@return void
-	*/
-	public function setMessage($message);
+    /**
+    *	Set the content of the message
+    *	@param string $message
+    *	@return void
+    */
+    public function setMessage($message);
 
-	/**
-	*	Get the content of the message
-	*	@return string $message
-	*/
-	public function getMessage();
+    /**
+    *	Get the content of the message
+    *	@return string $message
+    */
+    public function getMessage();
 }
 

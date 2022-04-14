@@ -11,19 +11,19 @@ use \PDO;
 class DBInstance {
     use \Pipit\Traits\FileConfiguration;
 
-	/** @var \PDO $handle A PDO instance */
-	public $handle;
-	/** @var string $type The SQL type */
+    /** @var \PDO $handle A PDO instance */
+    public $handle;
+    /** @var string $type The SQL type */
     private $type = 'mysql';
-	/** @var boolean $debug The debug status */
+    /** @var boolean $debug The debug status */
     private $debug = false;
 
     /** @var \Pipit\Classes\Data\DBInstance $instance An instance of this db class */
-	private static $instance = null;
+    private static $instance = null;
 
-	/**
-	*	Instantiates a new \PDO instance using the DBInstance.config config file
-	*/
+    /**
+    *	Instantiates a new \PDO instance using the DBInstance.config config file
+    */
     private function __construct() {
         $dbConfig = null;
         $dbConfig = $this->getConfigurationFromFileName("db.instance.config");
@@ -53,7 +53,7 @@ class DBInstance {
         } else {
             throw new ConfigurationException("Problem with database configuration");
         }
-	}
+    }
 
     /**
      * Returns the type of the DBInstance
@@ -71,10 +71,10 @@ class DBInstance {
         return $this->debug;
     }
 
-	/**
-	*	Returns a singleton instance of the db class
-	*	@return \Pipit\Classes\Data\DBInstance
-	*/
+    /**
+    *	Returns a singleton instance of the db class
+    *	@return \Pipit\Classes\Data\DBInstance
+    */
     public static function getInstance() {
         if (self::$instance == null) {
             $object = __CLASS__;

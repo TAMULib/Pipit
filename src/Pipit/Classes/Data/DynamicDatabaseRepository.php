@@ -8,12 +8,12 @@ use Pipit\Classes\Configuration\DynamicDatabaseRepositoryConfiguration;
 */
 
 class DynamicDataBaseRepository extends AbstractDataBaseRepository {
-	/**
-	* Constructor for DynamicDatabaseRepository
-	*
-	* @param \Pipit\Classes\Configuration\DynamicDatabaseRepositoryConfiguration $configuration An instance of DynamicDatabaseRepositoryConfiguration
-	*/
-	public function __construct(DynamicDatabaseRepositoryConfiguration $configuration) {
-		parent::__construct($configuration->getTableName(),$configuration->getPrimaryKey(),$configuration->getDefaultOrderBy(),$configuration->getGettableColumns(),$configuration->getSearchableColumns());
-	}
+    /**
+    * Constructor for DynamicDatabaseRepository
+    *
+    * @param \Pipit\Classes\Configuration\DynamicDatabaseRepositoryConfiguration $configuration An instance of DynamicDatabaseRepositoryConfiguration
+    */
+    public function __construct(DynamicDatabaseRepositoryConfiguration $configuration) {
+        parent::__construct($configuration->getTableName(),$configuration->getPrimaryKey(),$configuration->getDefaultOrderBy(),$configuration->getGettableColumns(),$configuration->getSearchableColumns());
+    }
 }

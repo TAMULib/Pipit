@@ -8,9 +8,9 @@ namespace Pipit\Interfaces;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 interface Loader {
-	/**
-	*	Start the execution of the application.
-	*	@return void	
-	*/
-	public function load();
+    /**
+    *	Start the execution of the application.
+    *	@return void	
+    */
+    public function load();
 }

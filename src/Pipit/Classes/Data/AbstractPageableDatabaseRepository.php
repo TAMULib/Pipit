@@ -9,24 +9,24 @@ use Pipit\Interfaces as Interfaces;
 */
 
 abstract class AbstractPageableDatabaseRepository extends AbstractDataBaseRepository implements Interfaces\PageableDataRepository {
-	/** @var int $resultsPerPage The number of results to include per page */
-	protected $resultsPerPage;
+    /** @var int $resultsPerPage The number of results to include per page */
+    protected $resultsPerPage;
 
-	/**
-	*	Extending classes configure themselves using this constructor.
-	*
-	*	@param string $primaryTable Required. This specializes an instance of an extending class to the given DB table name
-	*	@param string $primaryKey Required. Extending classes define the Primary Key of the table they manage
-	*	@param string|null $defaultOrderBy Optional. Explicitly define a column to order query results by
-	*	@param string[]|null $gettableColumns Optional. AbstractDataBaseRepository::get()) will SELECT only these fields, when passed
-	*	@param string[]|null $searchableColumns Optional. AbstractDataBaseRepository::search()) will search these columns
+    /**
+    *	Extending classes configure themselves using this constructor.
+    *
+    *	@param string $primaryTable Required. This specializes an instance of an extending class to the given DB table name
+    *	@param string $primaryKey Required. Extending classes define the Primary Key of the table they manage
+    *	@param string|null $defaultOrderBy Optional. Explicitly define a column to order query results by
+    *	@param string[]|null $gettableColumns Optional. AbstractDataBaseRepository::get()) will SELECT only these fields, when passed
+    *	@param string[]|null $searchableColumns Optional. AbstractDataBaseRepository::search()) will search these columns
     *   @param integer $resultsPerPage Optional. How many results to include per page. Defaults to 20
-	*
-	*/
-	protected function __construct($primaryTable,$primaryKey,$defaultOrderBy=null,$gettableColumns=null,$searchableColumns=null,$resultsPerPage=20) {
-		parent::__construct($primaryTable,$primaryKey,$defaultOrderBy,$gettableColumns,$searchableColumns);
-		$this->setResultsPerPage($resultsPerPage);
-	}
+    *
+    */
+    protected function __construct($primaryTable,$primaryKey,$defaultOrderBy=null,$gettableColumns=null,$searchableColumns=null,$resultsPerPage=20) {
+        parent::__construct($primaryTable,$primaryKey,$defaultOrderBy,$gettableColumns,$searchableColumns);
+        $this->setResultsPerPage($resultsPerPage);
+    }
 
     /**
      * Returns the original query string plus sql LIMITing based on page data from a \Pipit\Classes\Data\ResultsPage
@@ -95,21 +95,21 @@ abstract class AbstractPageableDatabaseRepository extends AbstractDataBaseReposi
         $this->resultsPerPage = $resultsPerPage;
     }
 
-	/**
-	*	Get the results of the base query for the given page number
-	*   @param integer $page Optional. The page of results to retrieve. Defaults to 1
-	*	@return \Pipit\Classes\Data\ResultsPage The ResultsPage of the base query for the given page
-	*/
+    /**
+    *	Get the results of the base query for the given page number
+    *   @param integer $page Optional. The page of results to retrieve. Defaults to 1
+    *	@return \Pipit\Classes\Data\ResultsPage The ResultsPage of the base query for the given page
+    */
     public function pagedGet($page=1) {
         return $this->getNewResultsPage($page,$this->resultsPerPage,$this->getGetQuery(),$this->countGet());
     }
 
     /**
-	*	Get the results of the base search query for the given search term and page number
+    *	Get the results of the base search query for the given search term and page number
     *   @param string $term The search term
-	*   @param integer $page Optional. The page of results to retrieve. Defaults to 1
-	*	@return \Pipit\Classes\Data\ResultsPage The ResultsPage of the base search query for the given term and page
-	*/
+    *   @param integer $page Optional. The page of results to retrieve. Defaults to 1
+    *	@return \Pipit\Classes\Data\ResultsPage The ResultsPage of the base search query for the given term and page
+    */
     public function pagedSearch($term,$page=1) {
         $searchQuery = $this->getSearchQuery($term);
         return $this->getNewResultsPage($page,$this->resultsPerPage,$searchQuery['sql'],$this->countSearch($term),$searchQuery['bindparams']);

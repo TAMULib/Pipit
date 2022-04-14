@@ -20,10 +20,10 @@ class CoreSitePageTest extends \Codeception\Test\Unit
     {
         $this->config = CoreFunctions::getInstance()->getAppConfiguration();
         $this->coreSitePages = [
-			    "widgets" => new CoreSitePage("widgets","widgets",SECURITY_USER),
-			    "DynamicRepo" => new CoreSitePage("dynamic repo","dynamic-repo",SECURITY_PUBLIC),
-			    "files" => new CoreSitePage("File Manager","files",SECURITY_USER),
-			    "users" => new CoreSitePage("users","users",SECURITY_ADMIN)];
+                "widgets" => new CoreSitePage("widgets","widgets",SECURITY_USER),
+                "DynamicRepo" => new CoreSitePage("dynamic repo","dynamic-repo",SECURITY_PUBLIC),
+                "files" => new CoreSitePage("File Manager","files",SECURITY_USER),
+                "users" => new CoreSitePage("users","users",SECURITY_ADMIN)];
     }
 
     public function testGetAccessLevel() {

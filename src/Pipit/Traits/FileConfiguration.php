@@ -4,7 +4,7 @@ use Pipit\Lib\CoreFunctions;
 use Pipit\Classes\Exceptions\ConfigurationException;
 
 trait FileConfiguration {
-	/** @var array<string,mixed[]> $configs An array of configuration arrays */
+    /** @var array<string,mixed[]> $configs An array of configuration arrays */
     private $configs = [];
 
     /**

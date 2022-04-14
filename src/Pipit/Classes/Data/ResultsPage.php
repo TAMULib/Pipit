@@ -7,13 +7,13 @@ use Pipit\Interfaces as Interfaces;
  * @author Jason Savell <jsavell@library.tamu.edu>
  */
 class ResultsPage implements \JsonSerializable {
-	/** @var int $page The page number represented by this ResultsPage */
+    /** @var int $page The page number represented by this ResultsPage */
     private $page = 1;
-	/** @var int $resultsPerPage The number of results included per page */
+    /** @var int $resultsPerPage The number of results included per page */
     private $resultsPerPage = 25;
-	/** @var int $pageCount The total number of pages in this result */
+    /** @var int $pageCount The total number of pages in this result */
     private $pageCount;
-	/** @var mixed[] A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")) */
+    /** @var mixed[] A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2")) */
     private $pageResults;
 
     protected function __construct() {
@@ -67,48 +67,48 @@ class ResultsPage implements \JsonSerializable {
         $this->pageResults = $results;
     }
 
-	/**
-	*	Get the page number of this ResultsPage
-	*
-	*	@return integer The page number
-	*/
+    /**
+    *	Get the page number of this ResultsPage
+    *
+    *	@return integer The page number
+    */
     public function getPage() {
         return $this->page;
     }
 
     /**
-	*	Get the results
-	*
-	*	@return mixed[] A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2"))
-	*/
+    *	Get the results
+    *
+    *	@return mixed[] A two dimensional array representing the resulting rows: array(array("id"=>1,"field"=>"value1"),array("id"=>2","field"=>"value2"))
+    */
     public function getPageResults() {
         return $this->pageResults;
     }
 
-	/**
-	*	Get the results per page for this ResultsPage
-	*
-	*	@return integer The page number
-	*/
+    /**
+    *	Get the results per page for this ResultsPage
+    *
+    *	@return integer The page number
+    */
     public function getResultsPerPage() {
         return $this->resultsPerPage;
     }
 
-	/**
-	*	Get the total number of pages for this results set
-	*
-	*	@return integer The total number of pages
-	*/
+    /**
+    *	Get the total number of pages for this results set
+    *
+    *	@return integer The total number of pages
+    */
     public function getPageCount() {
         return $this->pageCount;
     }
 
-	/**
-	*	Creates a new ResultsPage
-	*   @param int $page The desired page number of the results
+    /**
+    *	Creates a new ResultsPage
+    *   @param int $page The desired page number of the results
     *   @param int $resultsPerPage The number of results to include per page
-	*	@return \Pipit\Classes\Data\ResultsPage A new ResultsPage, ready to be populated with results
-	*/
+    *	@return \Pipit\Classes\Data\ResultsPage A new ResultsPage, ready to be populated with results
+    */
     public static function getNewResultsPage(int $page, int $resultsPerPage) {
         $resultsPage = new ResultsPage();
         $resultsPage->setPage(intval($page));
@@ -116,7 +116,7 @@ class ResultsPage implements \JsonSerializable {
         return $resultsPage;
     }
 
-	public function jsonSerialize() {
-		return get_object_vars($this);
-	}
+    public function jsonSerialize() {
+        return get_object_vars($this);
+    }
 }

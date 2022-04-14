@@ -9,19 +9,19 @@ use Psr\Log\LoggerInterface as PsrLoggerInterface;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 class CoreObject {
-	/**
-	*	Provides a single instance of a configured Logger to all extenders of CoreObject
-	*	@return \Pipit\Interfaces\Logger
-	*/
-	public function getLogger() {
-		return CoreFunctions::getInstance()->getLogger();
-	}
+    /**
+    *	Provides a single instance of a configured Logger to all extenders of CoreObject
+    *	@return \Pipit\Interfaces\Logger
+    */
+    public function getLogger() {
+        return CoreFunctions::getInstance()->getLogger();
+    }
 
-	/**
-	*	Provides a single instance of the global app configuration to all extenders of CoreObject
-	*	@return mixed[]
-	*/
-	public function getAppConfiguration() {
-		return CoreFunctions::getInstance()->getAppConfiguration();
-	}
+    /**
+    *	Provides a single instance of the global app configuration to all extenders of CoreObject
+    *	@return mixed[]
+    */
+    public function getAppConfiguration() {
+        return CoreFunctions::getInstance()->getAppConfiguration();
+    }
 }
