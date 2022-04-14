@@ -15,11 +15,11 @@ class FileManager extends AbstractHelper {
 	 */
 	public function configure(Interfaces\Site $site) {
 		parent::configure($site);
-		$this->getConfigurationFromFileName("file.manager.config");
-		if (!is_array($this->getSite()->getSiteConfig()) || !is_string($this->getSite()->getSiteConfig()['UPLOAD_PATH'])) {
+		$config = $this->getConfigurationFromFileName("file.manager.config");
+		if (!is_array($config) || !is_string($config['upload_path'])) {
 			throw new ConfigurationException("The upload path has not been configured!");
 		}
-		$this->baseFilePath = $this->getSite()->getSiteConfig()['UPLOAD_PATH'];
+		$this->baseFilePath = $config['upload_path'];
 	}
 
 	/**
