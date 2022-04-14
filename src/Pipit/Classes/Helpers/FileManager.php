@@ -5,6 +5,8 @@ use Pipit\Classes\Data\SimpleFile;
 use Pipit\Classes\Exceptions\ConfigurationException;
 
 class FileManager extends AbstractHelper {
+	use \Pipit\Traits\FileConfiguration;
+
 	/** @var string $baseFilePath The directory path to store uploaded files */
 	private $baseFilePath;
 	/**
@@ -13,6 +15,7 @@ class FileManager extends AbstractHelper {
 	 */
 	public function configure(Interfaces\Site $site) {
 		parent::configure($site);
+		$this->getConfigurationFromFileName("file.manager.config");
 		if (!is_array($this->getSite()->getSiteConfig()) || !is_string($this->getSite()->getSiteConfig()['UPLOAD_PATH'])) {
 			throw new ConfigurationException("The upload path has not been configured!");
 		}

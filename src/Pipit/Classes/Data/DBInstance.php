@@ -26,7 +26,7 @@ class DBInstance {
 	*/
     private function __construct() {
         $dbConfig = null;
-        $dbConfig = $this->getConfigurationFromFileName("DBInstance.config");
+        $dbConfig = $this->getConfigurationFromFileName("db.instance.config");
         $checkKeys = ['dsn','host','database','user','password'];
         $validConfig = true;
         foreach ($checkKeys as $key) {

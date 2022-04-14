@@ -27,7 +27,7 @@ class LDAPConnector {
 	*/	
 	function __construct($url=NULL,$port=NULL,$user=NULL,$password=NULL) {
 		if (!self::configIsValid($url, $port, $user, $password)) {
-			$configurationFileName = "LDAPConnector";
+			$configurationFileName = "ldap.connector";
 			$config = null;
 			if ($this->configurationFileExists($configurationFileName)) {
 				$config = $this->getConfigurationFromFileName($configurationFileName);
