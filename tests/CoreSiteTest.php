@@ -27,11 +27,45 @@ class CoreSiteTest extends \Codeception\Test\Unit
     {
     }
 
-    // tests
     public function testConfiguredUser()
     {
         $coreSite = $this->getCoreSiteInstance();
         $this->assertEquals('TestFiles\Classes\Data\TestUser',get_class($coreSite->getGlobalUser()));
+    }
+
+    public function testConfiguredCasUser()
+    {
+        $this->config['CAS_USER_REPO'] = 'TestDataRepository';
+        $coreSite = $this->getCoreSiteInstance('TestUserCAS');
+        $this->assertEquals('TestFiles\Classes\Data\TestUserCAS',get_class($coreSite->getGlobalUser()));
+    }
+
+    public function testConfiguredCasUserWithNoRepository()
+    {
+        $this->config['USECAS'] = true;
+        $this->config['CAS_USER_REPO'] = null;
+
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage("UserCAS requires CAS_USER_REPO to be defined with a Pipit\Interfaces\DataRepository");
+
+        $coreSite = $this->getCoreSiteInstance('TestUserCAS');
+    }
+
+    public function testDefaultCasUser()
+    {
+        $this->config['USE_CAS'] = true;
+        //We will fail to connect to a non-existent database, but we're only testing that the right class is set for the globalUser
+        $this->expectException(\PDOException::class);
+        $coreSite = $this->getDefaultCoreSiteInstance();
+        $this->assertEquals('Pipit\Classes\Data\UserCAS',get_class($coreSite->getGlobalUser()));
+    }
+
+    public function testDefaultUser()
+    {
+        //We will fail to connect to a non-existent database, but we're only testing that the right class is set for the globalUser
+        $this->expectException(\PDOException::class);
+        $coreSite = $this->getDefaultCoreSiteInstance();
+        $this->assertEquals('Pipit\Classes\Data\UserDB',get_class($coreSite->getGlobalUser()));
     }
 
     public function testControllerFetching() {
@@ -139,4 +173,7 @@ class CoreSiteTest extends \Codeception\Test\Unit
         return new CoreSite($this->config);
     }
 
+    private function getDefaultCoreSiteInstance() {
+        return new CoreSite($this->config);
+    }
 }

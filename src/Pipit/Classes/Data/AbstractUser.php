@@ -20,7 +20,7 @@ abstract class AbstractUser extends DBObject implements Interfaces\User {
 	*/
 	public function __construct() {
         parent::__construct();
-        $this->setSessionName(SESSION_SCOPE);
+        $this->setSessionName($this->getAppConfiguration()['SESSION_SCOPE']);
         $this->setSessionUserId();
         if ($this->isLoggedIn()) {
             $this->buildProfile();

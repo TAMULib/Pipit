@@ -33,30 +33,43 @@ class CoreSite extends AbstractSite {
 	*/
 	protected function setUser() {
 		$config = $this->getSiteConfig();
-		if (is_array($config) && is_string($config['USER_CLASS']) && is_string($config['NAMESPACE_APP'])) {
-			$className = "{$config['NAMESPACE_APP']}Classes\\Data\\{$config['USER_CLASS']}";
-			if (class_exists($className)) {
-				$userClass = new $className();
-				if ($userClass instanceof \Pipit\Interfaces\User) {
-					$this->setGlobalUser($userClass);
-					unset($userClass);
+		$userClass = null;
+		if (is_array($config)) {
+			if (array_key_exists('USER_CLASS', $config) && is_string($config['USER_CLASS']) && is_string($config['NAMESPACE_APP'])) {
+				$className = "{$config['NAMESPACE_APP']}Classes\\Data\\{$config['USER_CLASS']}";
+				if (class_exists($className)) {
+					$userClass = new $className();
+					if (!($userClass instanceof \Pipit\Interfaces\User)) {
+						$this->getLogger()->error("Configured User class does not implement: Pipit\Interfaces\User");
+						$userClass = null;
+					}
 				} else {
-					$this->getLogger()->error("Configured User class does not implement: Pipit\Interfaces\User");
+					$this->getLogger()->error("Configured User class not found: {$className}");
 				}
-			} else {
-				$this->getLogger()->error("Configured User class not found: {$className}");
 			}
-		} else if (is_array($config) && is_bool($config['USECAS']) && $config['USECAS']) {
-			$userRepo = $this->getDataRepository('Users');
-			if ($userRepo instanceof \Pipit\Interfaces\DataRepository) {
-				$this->setGlobalUser(new Data\UserCAS($this->getSanitizedInputData(),$userRepo));
-				unset($userRepo);
-			} else {
-				throw new \RuntimeException("UserCAS requires a DataRepository");
+			if ($userClass && is_bool($config['USECAS']) && $config['USECAS']) {
+				if ($config['CAS_USER_REPO']) {
+					$userRepo = $this->getDataRepository($config['CAS_USER_REPO']);
+					if ($userRepo instanceof \Pipit\Interfaces\DataRepository) {
+						if ($userClass instanceof \Pipit\Classes\Data\UserCAS) {
+							$userClass = new Data\UserCAS($this->getSanitizedInputData(),$userRepo);
+							unset($userRepo);
+						} else {
+							$this->getLogger()->error("Configured UserCAS classes must extend Pipit\Classes\Data\UserCAS");
+							$userClass = null;
+						}
+					} else {
+						throw new \RuntimeException("UserCAS requires a Pipit\Interfaces\DataRepository");
+					}
+				} else {
+					throw new \RuntimeException("UserCAS requires CAS_USER_REPO to be defined with a Pipit\Interfaces\DataRepository");
+				}
 			}
-		} else {
-			$this->setGlobalUser(new Data\UserDB());
 		}
+		if (!$userClass) {
+			$userClass = new Data\UserDB();
+		}
+		$this->setGlobalUser($userClass);
 	}
 
 	public function addSystemMessage($message,$type="info") {

@@ -51,10 +51,10 @@ class DBInstance {
                     $this->debug = true;
                 }
             } else {
-                throw new \RuntimeException("Problem with database configuration");
+                throw new ConfigurationException("Problem with database configuration");
             }
-        } catch (\RuntimeException $e) {
-			CoreFunctions::getInstance()->getLogger()->error("Error processing DBInstance config");
+        } catch (ConfigurationException $e) {
+            CoreFunctions::getInstance()->getLogger()->error("Error processing DBInstance config");
 		}
 	}
 
