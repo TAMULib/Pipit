@@ -26,37 +26,33 @@ class DBInstance {
 	*/
     private function __construct() {
         $dbConfig = null;
-		try {
-			$dbConfig = $this->getConfigurationFromFileName("DBInstance.config");
-            $checkKeys = ['dsn','host','database','user','password'];
-            $validConfig = true;
-            foreach ($checkKeys as $key) {
-                if (!array_key_exists($key, $dbConfig) || !is_string($dbConfig[$key])) {
-                    $validConfig = false;
-                    break;
+        $dbConfig = $this->getConfigurationFromFileName("DBInstance.config");
+        $checkKeys = ['dsn','host','database','user','password'];
+        $validConfig = true;
+        foreach ($checkKeys as $key) {
+            if (!array_key_exists($key, $dbConfig) || !is_string($dbConfig[$key])) {
+                $validConfig = false;
+                break;
+            }
+        }
+        if ($validConfig) {
+            $replaceKeys = [];
+            $replaceValues = [];
+
+            $this->handle = new PDO($dbConfig['dsn'], $dbConfig['user'], $dbConfig['password']);
+
+            if (array_key_exists('type', $dbConfig)) {
+                $dbType = strtolower($dbConfig['type']);
+                if (in_array($dbType, ['mysql','mssql'])) {
+                    $this->type = $dbType;
                 }
             }
-            if ($validConfig) {
-                $replaceKeys = [];
-                $replaceValues = [];
-
-                $this->handle = new PDO($dbConfig['dsn'], $dbConfig['user'], $dbConfig['password']);
-
-                if (array_key_exists('type', $dbConfig)) {
-                    $dbType = strtolower($dbConfig['type']);
-                    if (in_array($dbType, ['mysql','mssql'])) {
-                        $this->type = $dbType;
-                    }
-                }
-                if (array_key_exists('debug', $dbConfig) && $dbConfig['debug']) {
-                    $this->debug = true;
-                }
-            } else {
-                throw new ConfigurationException("Problem with database configuration");
+            if (array_key_exists('debug', $dbConfig) && $dbConfig['debug']) {
+                $this->debug = true;
             }
-        } catch (ConfigurationException $e) {
-            CoreFunctions::getInstance()->getLogger()->error("Error processing DBInstance config");
-		}
+        } else {
+            throw new ConfigurationException("Problem with database configuration");
+        }
 	}
 
     /**
