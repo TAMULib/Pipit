@@ -63,8 +63,7 @@ class UserCAS extends UserDB {
 	public function processLogIn($ticket) {
 		$file = file_get_contents($this->casPaths['urls']['check']."&ticket={$ticket}");
 		if (!$file) {
-			$this->getLogger()->error("Failed to retrieve CAS XML");
-			die("The authentication process failed to validate through CAS.");
+			throw new \RuntimeException("Failed to retrieve CAS XML");
 		}
 
 		$casXml = simplexml_load_string($file,'SimpleXMLElement::class', 0, 'cas', true);

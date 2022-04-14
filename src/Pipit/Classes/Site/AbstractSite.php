@@ -58,23 +58,19 @@ abstract class AbstractSite extends CoreObject implements Site {
 	*/
 	protected function setPages() {
 		$pages = [];
-		try {
-			$pageConfig = $this->getConfigurationFromFileName("site.pages.config");
-			if (count($pageConfig) > 0) {
-				$pageLoadingError = false;
-				foreach($pageConfig as $key=>$page) {
-					if (is_array($page) && array_key_exists('name', $page) && array_key_exists('path', $page) && array_key_exists('accessLevel', $page)) {
-						$pages[$key] = new CoreSitePage($page['name'],$page['path'],$page['accessLevel']);
-					} else {
-						$pageLoadingError = true;
-					}
-				}
-				if ($pageLoadingError) {
-					throw new ConfigurationException("Error loading site pages from configuration");
+		$pageConfig = $this->getConfigurationFromFileName("site.pages.config");
+		if (count($pageConfig) > 0) {
+			$pageLoadingError = false;
+			foreach($pageConfig as $key=>$page) {
+				if (is_array($page) && array_key_exists('name', $page) && array_key_exists('path', $page) && array_key_exists('accessLevel', $page)) {
+					$pages[$key] = new CoreSitePage($page['name'],$page['path'],$page['accessLevel']);
+				} else {
+					$pageLoadingError = true;
 				}
 			}
-		} catch (\RuntimeException $e) {
-			$this->getLogger()->debug("Error processing SitePages configuration");
+			if ($pageLoadingError) {
+				throw new ConfigurationException("Error loading site pages from configuration");
+			}
 		}
 		$this->pages = $pages;
 	}

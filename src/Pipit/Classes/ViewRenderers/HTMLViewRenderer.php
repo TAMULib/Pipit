@@ -46,7 +46,7 @@ class HTMLViewRenderer extends CoreObject implements ViewRenderer {
 		 	if (is_dir($viewPath)) {
 				$this->setViewPath($viewPath.'/');
 			} else {
-				$this->getLogger()->info("Could not find theme folder: ".$themeFolder.", falling back to default");
+				$this->getLogger()->warn("Could not find theme folder: ".$themeFolder.", falling back to default");
 				$this->setViewPath('html');
 			}
 		}

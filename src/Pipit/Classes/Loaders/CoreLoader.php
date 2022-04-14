@@ -232,4 +232,3 @@ class CoreLoader extends CoreObject implements Loader {
 		$this->getSite()->getViewRenderer()->renderView();
 	}
 }
-

@@ -41,11 +41,11 @@ class CoreSite extends AbstractSite {
 				if (class_exists($className)) {
 					$userClass = new $className();
 					if (!($userClass instanceof \Pipit\Interfaces\User)) {
-						$this->getLogger()->error("Configured User class does not implement: Pipit\Interfaces\User");
 						$userClass = null;
+						throw new ConfigurationException("Configured User class does not implement: Pipit\Interfaces\User");
 					}
 				} else {
-					$this->getLogger()->error("Configured User class not found: {$className}");
+					throw new ConfigurationException("Configured User class not found: {$className}");
 				}
 			}
 			if ($userClass && is_bool($config['USECAS']) && $config['USECAS']) {
@@ -56,8 +56,8 @@ class CoreSite extends AbstractSite {
 							$userClass = new Data\UserCAS($this->getSanitizedInputData(),$userRepo);
 							unset($userRepo);
 						} else {
-							$this->getLogger()->error("Configured UserCAS classes must extend Pipit\Classes\Data\UserCAS");
 							$userClass = null;
+							throw new ConfigurationException("Configured UserCAS classes must extend Pipit\Classes\Data\UserCAS");
 						}
 					} else {
 						throw new ConfigurationException("UserCAS requires a Pipit\Interfaces\DataRepository");
@@ -176,14 +176,14 @@ class CoreSite extends AbstractSite {
 							$this->addCachedDataRepository($repositoryName,$repository);
 							$foundRepository = true;
 						} else {
-							$this->getLogger()->error("Repositories must implement Pipit\Interfaces\Configurable: ".$repositoryName);
 							$repository = null;
+							throw new \RuntimeException("Repositories must implement Pipit\Interfaces\Configurable: ".$repositoryName);
 						}
 					}
 				}
 			}
 			if (!$foundRepository) {
-				$this->getLogger()->error("Could not find valid Repository: ".$repositoryName);
+				throw new \RuntimeException("Could not find valid Repository: ".$repositoryName);
 			} else {
 				$this->getLogger()->debug("Providing FRESH Repo: ".$repositoryName);
 				$repository = $this->getCachedDataRepository($repositoryName);
@@ -236,13 +236,13 @@ class CoreSite extends AbstractSite {
 							break;
 						} else {
 							$helper = null;
-							$this->getLogger()->error("Helpers must extend Pipit\Classes\Helpers\AbstractHelper: ".$helperName);
+							throw new \RuntimeException("Helpers must extend Pipit\Classes\Helpers\AbstractHelper: ".$helperName);
 						}
 					}
 				}
 			}
 			if (!$helper) {
-				$this->getLogger()->error("Could not find valid Helper: ".$helperName);
+				throw new \RuntimeException("Could not find valid Helper: ".$helperName);
 			}
 		} else {
 			$this->getLogger()->debug("Providing CACHED Helper: ".$helperName);
