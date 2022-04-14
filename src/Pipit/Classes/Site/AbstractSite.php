@@ -2,6 +2,7 @@
 namespace Pipit\Classes\Site;
 use Pipit\Interfaces\Site;
 use Pipit\Classes\CoreObject;
+use Pipit\Classes\Exceptions\ConfigurationException;
 
 /** 
 *	An abstract implementation of the Site interface
@@ -69,7 +70,7 @@ abstract class AbstractSite extends CoreObject implements Site {
 					}
 				}
 				if ($pageLoadingError) {
-					throw new \RuntimeException("Error loading site pages from configuration");
+					throw new ConfigurationException("Error loading site pages from configuration");
 				}
 			}
 		} catch (\RuntimeException $e) {

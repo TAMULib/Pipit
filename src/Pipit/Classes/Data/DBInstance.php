@@ -1,6 +1,7 @@
 <?php
 namespace Pipit\Classes\Data;
 use Pipit\Lib\CoreFunctions;
+use Pipit\Classes\Exceptions\ConfigurationException;
 use \PDO;
 /**
 * 	Provides a PDO DB connection to instances of \Pipit\Classes\Data\DBObject and its descendants

@@ -1,5 +1,6 @@
 <?php
 namespace Pipit\Classes\Data;
+use Pipit\Classes\Exceptions\ConfigurationException;
 
 /** 
 *	Represents the application user
@@ -25,7 +26,7 @@ class UserCAS extends UserDB {
 		if ($this->configurationFileExists($configurationFileName)) {
 			$config = $this->getConfigurationFromFileName($configurationFileName);
 		} else {
-			throw new \RuntimeException("CAS config file does not exist");
+			throw new ConfigurationException("CAS config file does not exist");
 		}
 
 		if (is_array($config)
@@ -49,7 +50,7 @@ class UserCAS extends UserDB {
 				$this->initiateLogIn();
 			}
 		} else {
-			throw new \RuntimeException("CAS urls must be configured");
+			throw new ConfigurationException("CAS urls must be configured");
 		}
 	}
 

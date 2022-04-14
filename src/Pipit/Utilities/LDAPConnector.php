@@ -1,6 +1,7 @@
 <?php
 namespace Pipit\Utilities;
 use Pipit\Lib\CoreFunctions;
+use Pipit\Classes\Exceptions\ConfigurationException;
 
 class LDAPConnector {
     use \Pipit\Traits\FileConfiguration;
@@ -31,7 +32,7 @@ class LDAPConnector {
 			if ($this->configurationFileExists($configurationFileName)) {
 				$config = $this->getConfigurationFromFileName($configurationFileName);
 			} else {
-				throw new \RuntimeException("LDAPConnector config file does not exist");
+				throw new ConfigurationException("LDAPConnector config file does not exist");
 			}
 
 			if ($config) {
@@ -58,7 +59,7 @@ class LDAPConnector {
 			$this->setProperty('user', $user);
 			$this->setProperty('password', $password);
 		} else {
-			throw new \RuntimeException("Problem with LDAP configuration");
+			throw new ConfigurationException("Problem with LDAP configuration");
 		}
 	}
 

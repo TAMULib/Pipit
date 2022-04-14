@@ -2,6 +2,7 @@
 namespace Pipit\Classes\Site;
 use Pipit\Classes\Data as Data;
 use Pipit\Classes\Configuration\DynamicDatabaseRepositoryConfiguration;
+use Pipit\Classes\Exceptions\ConfigurationException;
 
 /**
 *	The primary site manager
@@ -59,10 +60,10 @@ class CoreSite extends AbstractSite {
 							$userClass = null;
 						}
 					} else {
-						throw new \RuntimeException("UserCAS requires a Pipit\Interfaces\DataRepository");
+						throw new ConfigurationException("UserCAS requires a Pipit\Interfaces\DataRepository");
 					}
 				} else {
-					throw new \RuntimeException("UserCAS requires CAS_USER_REPO to be defined with a Pipit\Interfaces\DataRepository");
+					throw new ConfigurationException("UserCAS requires CAS_USER_REPO to be defined with a Pipit\Interfaces\DataRepository");
 				}
 			}
 		}
