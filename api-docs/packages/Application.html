@@ -56,23 +56,27 @@
                     <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="namespaces/core.html" class="">Core</a>
+    <a href="namespaces/pipit.html" class="">Pipit</a>
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/core-classes.html" class="">Classes</a>
+                <a href="namespaces/pipit-classes.html" class="">Classes</a>
                 
             </li>
                     <li>
-                <a href="namespaces/core-interfaces.html" class="">Interfaces</a>
+                <a href="namespaces/pipit-interfaces.html" class="">Interfaces</a>
                 
             </li>
                     <li>
-                <a href="namespaces/core-lib.html" class="">Lib</a>
+                <a href="namespaces/pipit-lib.html" class="">Lib</a>
                 
             </li>
                     <li>
-                <a href="namespaces/core-utilities.html" class="">Utilities</a>
+                <a href="namespaces/pipit-traits.html" class="">Traits</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/pipit-utilities.html" class="">Utilities</a>
                 
             </li>
             </ul>
@@ -114,260 +118,127 @@
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Core-Interfaces-Configurable.html"><abbr title="\Core\Interfaces\Configurable">Configurable</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-Configurable.html"><abbr title="\Pipit\Interfaces\Configurable">Configurable</abbr></a></dt>
         <dd>An interface defining a Configurable class</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Core-Interfaces-Configuration.html"><abbr title="\Core\Interfaces\Configuration">Configuration</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-Configuration.html"><abbr title="\Pipit\Interfaces\Configuration">Configuration</abbr></a></dt>
         <dd>An interface defining a Configuration</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Core-Interfaces-Controller.html"><abbr title="\Core\Interfaces\Controller">Controller</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-Controller.html"><abbr title="\Pipit\Interfaces\Controller">Controller</abbr></a></dt>
         <dd>An interface defining a Controller</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Core-Interfaces-DataRepository.html"><abbr title="\Core\Interfaces\DataRepository">DataRepository</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-DataRepository.html"><abbr title="\Pipit\Interfaces\DataRepository">DataRepository</abbr></a></dt>
         <dd>An interface defining a DataRepository
 DataRepositories are utilized to perform CRUD actions on data stores</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Core-Interfaces-File.html"><abbr title="\Core\Interfaces\File">File</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-Entity.html"><abbr title="\Pipit\Interfaces\Entity">Entity</abbr></a></dt>
         <dd></dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Core-Interfaces-Loader.html"><abbr title="\Core\Interfaces\Loader">Loader</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-EntityRepository.html"><abbr title="\Pipit\Interfaces\EntityRepository">EntityRepository</abbr></a></dt>
+        <dd></dd>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-File.html"><abbr title="\Pipit\Interfaces\File">File</abbr></a></dt>
+        <dd></dd>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-Loader.html"><abbr title="\Pipit\Interfaces\Loader">Loader</abbr></a></dt>
         <dd>Loaders are the primary engine of applications
 They marshall all of the different components of the app stack, resulting in the rendered content seen by the user.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Core-Interfaces-Logger.html"><abbr title="\Core\Interfaces\Logger">Logger</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-Logger.html"><abbr title="\Pipit\Interfaces\Logger">Logger</abbr></a></dt>
         <dd>An interface defining a Logger</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Core-Interfaces-Site.html"><abbr title="\Core\Interfaces\Site">Site</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-PageableDataRepository.html"><abbr title="\Pipit\Interfaces\PageableDataRepository">PageableDataRepository</abbr></a></dt>
+        <dd>An interface defining a DataRepository with Pageable result sets
+DataRepositories are utilized to perform CRUD actions on data stores</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a></dt>
         <dd>An interface defining a Site
 Sites provide a single, unified application context throughout the execution of the application, providing state information to components, and allowing them to alter the flow of the application without
 direct knowledge of the inner workings of the other components.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Core-Interfaces-SitePage.html"><abbr title="\Core\Interfaces\SitePage">SitePage</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-SitePage.html"><abbr title="\Pipit\Interfaces\SitePage">SitePage</abbr></a></dt>
         <dd>An interface defining a SitePage
 SitePages are used to define metadata like subaction options, titles and user security levels</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Core-Interfaces-SystemMessage.html"><abbr title="\Core\Interfaces\SystemMessage">SystemMessage</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-SystemMessage.html"><abbr title="\Pipit\Interfaces\SystemMessage">SystemMessage</abbr></a></dt>
         <dd>SystemMessage is used to provide UI updates to users.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Core-Interfaces-User.html"><abbr title="\Core\Interfaces\User">User</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-User.html"><abbr title="\Pipit\Interfaces\User">User</abbr></a></dt>
         <dd>An interface defining a User
 Pipit Core doesn&#039;t really need to know anything specific about a User class beyond its existence, but defining this interface helps guarantee consistency between client app User implementations.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Core-Interfaces-ViewRenderer.html"><abbr title="\Core\Interfaces\ViewRenderer">ViewRenderer</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-ViewRenderer.html"><abbr title="\Pipit\Interfaces\ViewRenderer">ViewRenderer</abbr></a></dt>
         <dd>An interface defining a ViewRenderer
 ViewRenderers are utilized by controllers and handle the presentation of data to the user
 Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-AbstractController.html"><abbr title="\Core\Classes\AbstractController">AbstractController</abbr></a></dt>
-        <dd>An abstract implementation of the Controller interface, intended to be extended by App controllers</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-AbstractSite.html"><abbr title="\Core\Classes\AbstractSite">AbstractSite</abbr></a></dt>
-        <dd>An abstract implementation of the Site interface</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-AbstractSitePage.html"><abbr title="\Core\Classes\AbstractSitePage">AbstractSitePage</abbr></a></dt>
-        <dd>An abstract implementation of a SitePage
-SitePages are used to define metadata like subaction options, titles and user security levels</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-Configuration-AbstractConfiguration.html"><abbr title="\Core\Classes\Configuration\AbstractConfiguration">AbstractConfiguration</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Configuration-AbstractConfiguration.html"><abbr title="\Pipit\Classes\Configuration\AbstractConfiguration">AbstractConfiguration</abbr></a></dt>
         <dd>An abstract implementation of the Configuration class</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-Configuration-DynamicDatabaseRepositoryConfiguration.html"><abbr title="\Core\Classes\Configuration\DynamicDatabaseRepositoryConfiguration">DynamicDatabaseRepositoryConfiguration</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Configuration-DynamicDatabaseRepositoryConfiguration.html"><abbr title="\Pipit\Classes\Configuration\DynamicDatabaseRepositoryConfiguration">DynamicDatabaseRepositoryConfiguration</abbr></a></dt>
         <dd>A Configuration class representing a DynamicDatabaseRepository configuration</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-LoggerLevel.html"><abbr title="\Core\Classes\LoggerLevel">LoggerLevel</abbr></a></dt>
-        <dd>A helper class for CoreLogger that defines how a CoreLogger log level corresponds to a PHP error code.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-CoreLogger.html"><abbr title="\Core\Classes\CoreLogger">CoreLogger</abbr></a></dt>
-        <dd>The default implementation of the Logger interface.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-CoreObject.html"><abbr title="\Core\Classes\CoreObject">CoreObject</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Controllers-AbstractController.html"><abbr title="\Pipit\Classes\Controllers\AbstractController">AbstractController</abbr></a></dt>
+        <dd>An abstract implementation of the Controller interface, intended to be extended by App controllers</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-CoreObject.html"><abbr title="\Pipit\Classes\CoreObject">CoreObject</abbr></a></dt>
         <dd>A base class for many Core classes to provide shared access to resources and common functions</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-CoreSite.html"><abbr title="\Core\Classes\CoreSite">CoreSite</abbr></a></dt>
-        <dd>The primary site manager</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-CoreSitePage.html"><abbr title="\Core\Classes\CoreSitePage">CoreSitePage</abbr></a></dt>
-        <dd>The app level implementation of a SitePage
-SitePages are used to define metadata like subaction options, titles and user security levels</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-CoreSystemMessage.html"><abbr title="\Core\Classes\CoreSystemMessage">CoreSystemMessage</abbr></a></dt>
-        <dd>The default implementation of the SystemMessage interface</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-Data-AbstractDataBaseRepository.html"><abbr title="\Core\Classes\Data\AbstractDataBaseRepository">AbstractDataBaseRepository</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Data-AbstractDataBaseRepository.html"><abbr title="\Pipit\Classes\Data\AbstractDataBaseRepository">AbstractDataBaseRepository</abbr></a></dt>
         <dd>An abstract implementation of the DataBaseRepository interface
 Extending this provides CRUD interaction with the configured database table</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-Data-db.html"><abbr title="\Core\Classes\Data\db">db</abbr></a></dt>
-        <dd>Provides a PDO DB connection to instances of dbobject and its descendants</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-Data-DBObject.html"><abbr title="\Core\Classes\Data\DBObject">DBObject</abbr></a></dt>
-        <dd>A base class to be extended by any class that needs to access the DB
-Provides a DB connection instance and several abstractions for DB interaction</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-Data-DynamicDataBaseRepository.html"><abbr title="\Core\Classes\Data\DynamicDataBaseRepository">DynamicDataBaseRepository</abbr></a></dt>
-        <dd>A basic DB Repository class providing generic CRUD interaction with the configured database table</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-Data-SimpleFile.html"><abbr title="\Core\Classes\Data\SimpleFile">SimpleFile</abbr></a></dt>
-        <dd>Represents a file entry</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-Data-UserCAS.html"><abbr title="\Core\Classes\Data\UserCAS">UserCAS</abbr></a></dt>
-        <dd>Represents the application user
-Handles session management, authentication through CAS, and authorization</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-Data-UserDB.html"><abbr title="\Core\Classes\Data\UserDB">UserDB</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Data-AbstractPageableDatabaseRepository.html"><abbr title="\Pipit\Classes\Data\AbstractPageableDatabaseRepository">AbstractPageableDatabaseRepository</abbr></a></dt>
+        <dd>A Pageable implementation of the DataBaseRepository interface
+Extending this provides Pageable CRUD interaction with the configured database table</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Data-AbstractUser.html"><abbr title="\Pipit\Classes\Data\AbstractUser">AbstractUser</abbr></a></dt>
         <dd>Represents the application user
 Handles session management, authentication, and authorization</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-Helpers-AbstractHelper.html"><abbr title="\Core\Classes\Helpers\AbstractHelper">AbstractHelper</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Data-DBInstance.html"><abbr title="\Pipit\Classes\Data\DBInstance">DBInstance</abbr></a></dt>
+        <dd>Provides a PDO DB connection to instances of \Pipit\Classes\Data\DBObject and its descendants</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Data-DBObject.html"><abbr title="\Pipit\Classes\Data\DBObject">DBObject</abbr></a></dt>
+        <dd>A base class to be extended by any class that needs to access the DB
+Provides a DB connection instance and several abstractions for DB interaction</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Data-DynamicDataBaseRepository.html"><abbr title="\Pipit\Classes\Data\DynamicDataBaseRepository">DynamicDataBaseRepository</abbr></a></dt>
+        <dd>A basic DB Repository class providing generic CRUD interaction with the configured database table</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Data-ResultsPage.html"><abbr title="\Pipit\Classes\Data\ResultsPage">ResultsPage</abbr></a></dt>
+        <dd>Represents a Page of DataRepository results</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Data-SimpleFile.html"><abbr title="\Pipit\Classes\Data\SimpleFile">SimpleFile</abbr></a></dt>
+        <dd>Represents a file entry</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Data-UserCAS.html"><abbr title="\Pipit\Classes\Data\UserCAS">UserCAS</abbr></a></dt>
+        <dd>Represents the application user
+Handles session management, authentication through CAS, and authorization</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Data-UserDB.html"><abbr title="\Pipit\Classes\Data\UserDB">UserDB</abbr></a></dt>
+        <dd>Represents the application user
+Handles session management, authentication, and authorization</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Exceptions-ConfigurationException.html"><abbr title="\Pipit\Classes\Exceptions\ConfigurationException">ConfigurationException</abbr></a></dt>
+        <dd></dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Helpers-AbstractHelper.html"><abbr title="\Pipit\Classes\Helpers\AbstractHelper">AbstractHelper</abbr></a></dt>
         <dd>A base class for many Core classes to provide shared access to resources and common functions</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-Helpers-FileManager.html"><abbr title="\Core\Classes\Helpers\FileManager">FileManager</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Helpers-FileManager.html"><abbr title="\Pipit\Classes\Helpers\FileManager">FileManager</abbr></a></dt>
         <dd>A base class for many Core classes to provide shared access to resources and common functions</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-Loaders-CoreLoader.html"><abbr title="\Core\Classes\Loaders\CoreLoader">CoreLoader</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Loaders-CoreLoader.html"><abbr title="\Pipit\Classes\Loaders\CoreLoader">CoreLoader</abbr></a></dt>
         <dd>The CoreLoader is the default implementation of the Loader interface.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-ViewRenderers-CSVViewRenderer.html"><abbr title="\Core\Classes\ViewRenderers\CSVViewRenderer">CSVViewRenderer</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Loggers-CoreLogger.html"><abbr title="\Pipit\Classes\Loggers\CoreLogger">CoreLogger</abbr></a></dt>
+        <dd>The default implementation of the Logger interface.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Loggers-LoggerLevel.html"><abbr title="\Pipit\Classes\Loggers\LoggerLevel">LoggerLevel</abbr></a></dt>
+        <dd>A helper class for CoreLogger that defines how a CoreLogger log level corresponds to a PHP error code.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Site-AbstractSite.html"><abbr title="\Pipit\Classes\Site\AbstractSite">AbstractSite</abbr></a></dt>
+        <dd>An abstract implementation of the Site interface</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Site-AbstractSitePage.html"><abbr title="\Pipit\Classes\Site\AbstractSitePage">AbstractSitePage</abbr></a></dt>
+        <dd>An abstract implementation of a SitePage
+SitePages are used to define metadata like subaction options, titles and user security levels</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Site-CoreSite.html"><abbr title="\Pipit\Classes\Site\CoreSite">CoreSite</abbr></a></dt>
+        <dd>The primary site manager</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Site-CoreSitePage.html"><abbr title="\Pipit\Classes\Site\CoreSitePage">CoreSitePage</abbr></a></dt>
+        <dd>The app level implementation of a SitePage
+SitePages are used to define metadata like subaction options, titles and user security levels</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-Site-CoreSystemMessage.html"><abbr title="\Pipit\Classes\Site\CoreSystemMessage">CoreSystemMessage</abbr></a></dt>
+        <dd>The default implementation of the SystemMessage interface</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-ViewRenderers-CSVViewRenderer.html"><abbr title="\Pipit\Classes\ViewRenderers\CSVViewRenderer">CSVViewRenderer</abbr></a></dt>
         <dd>An implementation of the ViewRenderer interface for rendering registered viewvariables as CSV</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-ViewRenderers-HTMLViewRenderer.html"><abbr title="\Core\Classes\ViewRenderers\HTMLViewRenderer">HTMLViewRenderer</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html"><abbr title="\Pipit\Classes\ViewRenderers\HTMLViewRenderer">HTMLViewRenderer</abbr></a></dt>
         <dd>The default implementation of the ViewRenderer interface.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Classes-ViewRenderers-JSONViewRenderer.html"><abbr title="\Core\Classes\ViewRenderers\JSONViewRenderer">JSONViewRenderer</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Classes-ViewRenderers-JSONViewRenderer.html"><abbr title="\Pipit\Classes\ViewRenderers\JSONViewRenderer">JSONViewRenderer</abbr></a></dt>
         <dd>An implementation of the ViewRenderer interface for rendering registered viewvariables as JSON</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Core-Utilities-LDAPConnector.html"><abbr title="\Core\Utilities\LDAPConnector">LDAPConnector</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Lib-CoreAutoload.html"><abbr title="\Pipit\Lib\CoreAutoload">CoreAutoload</abbr></a></dt>
+        <dd>A fallback autoloader to use when not using Composer&#039;s autoloaders</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Lib-CoreFunctions.html"><abbr title="\Pipit\Lib\CoreFunctions">CoreFunctions</abbr></a></dt>
+        <dd>A library class that provides shared access to resources and common functions</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pipit-Utilities-LDAPConnector.html"><abbr title="\Pipit\Utilities\LDAPConnector">LDAPConnector</abbr></a></dt>
         <dd></dd>
     
+            <dt class="phpdocumentor-table-of-contents__entry -trait"><a href="classes/Pipit-Traits-FileConfiguration.html"><abbr title="\Pipit\Traits\FileConfiguration">FileConfiguration</abbr></a></dt>
+        <dd></dd>
     
     </dl>
 
 
-<h3 id="toc">
-    Table of Contents
-    <a href="#toc" class="headerlink"><i class="fas fa-link"></i></a>
-</h3>
-
-<dl class="phpdocumentor-table-of-contents">
-                            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a href="namespaces/core-lib.html#function_getLogger">getLogger()</a>
-    <span>
-                                &nbsp;: mixed    </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a href="namespaces/core-lib.html#function_loadFile">loadFile()</a>
-    <span>
-                                &nbsp;: mixed    </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a href="namespaces/core-lib.html#function_nameSpaceToPath">nameSpaceToPath()</a>
-    <span>
-                                &nbsp;: mixed    </span>
-</dt>
-<dd></dd>
-
-    </dl>
 
         
 
-            <section class="phpdocumentor-functions">
-        <h3 class="phpdocumentor-elements__header" id="functions">
-            Functions
-            <a href="packages/Application.html#functions" class="headerlink"><i class="fas fa-link"></i></a>
-        </h3>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_getLogger">
-        getLogger()
-        <a href="namespaces/core-lib.html#function_getLogger" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Core/Lib/functions.php"><a href="files/core-lib-functions.html"><abbr title="Core/Lib/functions.php">functions.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">5</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                <span class="phpdocumentor-signature__name">getLogger</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
         
-    
-</article>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_loadFile">
-        loadFile()
-        <a href="namespaces/core-lib.html#function_loadFile" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Core/Lib/functions.php"><a href="files/core-lib-functions.html"><abbr title="Core/Lib/functions.php">functions.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">20</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                <span class="phpdocumentor-signature__name">loadFile</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$class</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$nameSpace</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$baseDirectory</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-        <section class="phpdocumentor-description"></section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$class</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$nameSpace</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$baseDirectory</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
-    
-</article>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_nameSpaceToPath">
-        nameSpaceToPath()
-        <a href="namespaces/core-lib.html#function_nameSpaceToPath" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Core/Lib/functions.php"><a href="files/core-lib-functions.html"><abbr title="Core/Lib/functions.php">functions.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">34</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                <span class="phpdocumentor-signature__name">nameSpaceToPath</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$nameSpace</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-        <section class="phpdocumentor-description"></section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$nameSpace</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
-    
-</article>
-            </section>
-
     </article>
                 <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
