@@ -14,11 +14,22 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=7.4",
+        "psr/log": "^1.1"
     },
     "autoload": {
         "psr-4": {
-            "Core\\": "/Core"
+            "Pipit\\": "src/Pipit"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/",
+            "TestFiles\\": "tests/TestFiles/"
+        }
+    },
+    "require-dev": {
+        "codeception/codeception": "^4.1",
+        "phpstan/phpstan": "^1.5"
     }
 }

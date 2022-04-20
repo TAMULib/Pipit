@@ -1,2 +1,4 @@
 App/Config/config.php
+vendor/
 composer.lock
+phpstan.neon
