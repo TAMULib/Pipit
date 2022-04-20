@@ -28,6 +28,8 @@ abstract class AbstractSite extends CoreObject implements Site {
     /** @var string[] $sanitizedInputData HTTP Request (GET, POST, etc..) data. */
     protected $sanitizedInputData;
 
+    private const SITE_PAGES_CONFIG_FILE = "site.pages";
+
     /**
     *	Returns the site configuration
     *	@return mixed[] $siteConfig
@@ -58,7 +60,7 @@ abstract class AbstractSite extends CoreObject implements Site {
     */
     protected function setPages() {
         $pages = [];
-        $pageConfig = $this->getConfigurationFromFileName("site.pages");
+        $pageConfig = $this->getConfigurationFromFileName(self::SITE_PAGES_CONFIG_FILE);
         if (count($pageConfig) > 0) {
             $pageLoadingError = false;
             foreach($pageConfig as $key=>$page) {

@@ -17,6 +17,8 @@ class CoreSite extends AbstractSite {
     /** @var string $redirectUrl A url to be redirected to */
     private $redirectUrl = null;
 
+    private const DYNAMIC_REPO_CONFIG_FILE = "dynamic.db.repositories";
+
     /**
     *	Constructs an instance of CoreSite
     *	@param mixed[] &$siteConfig A reference to the global site configuration
@@ -146,7 +148,7 @@ class CoreSite extends AbstractSite {
         //first check if we've already instantiated this DataRepository
         $repository = $this->getCachedDataRepository($repositoryName);
         if (!$repository) {
-            $dynamicConfigFile = "dynamic.db.repositories.config";
+            $dynamicConfigFile = self::DYNAMIC_REPO_CONFIG_FILE;
             $foundRepository = false;
             if ($this->configurationFileExists($dynamicConfigFile)) {
                 $dynamicRepoConfigData = $this->getConfigurationFromFileName($dynamicConfigFile);
