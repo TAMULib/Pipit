@@ -58,7 +58,7 @@ abstract class AbstractSite extends CoreObject implements Site {
     */
     protected function setPages() {
         $pages = [];
-        $pageConfig = $this->getConfigurationFromFileName("site.pages.config");
+        $pageConfig = $this->getConfigurationFromFileName("site.pages");
         if (count($pageConfig) > 0) {
             $pageLoadingError = false;
             foreach($pageConfig as $key=>$page) {

@@ -15,13 +15,15 @@ class UserCAS extends UserDB {
     /** @var \Pipit\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'iscas' fields) */
     private $usersRepo;
 
+    private const CONFIG_FILE = "user.cas";
+
     /**
     *	Instantiates a new UserCAS by negotiating the login process with a configured CAS Server
     *	@param mixed[] $inputData The input data from the request
     *	@param \Pipit\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'iscas' fields)
     */
     public function __construct($inputData,$usersRepo) {
-        $configurationFileName = "user.cas.config";
+        $configurationFileName = self::CONFIG_FILE;
         $config = null;
         if ($this->configurationFileExists($configurationFileName)) {
             $config = $this->getConfigurationFromFileName($configurationFileName);

@@ -16,6 +16,8 @@ class LDAPConnector {
     /** @var resource|false $handle The LDAP Connection */
     private $handle;
 
+    private const CONFIG_FILE = "ldap.connector";
+
     /**
     *	Uses either parameters or global config properties to prep for connecting to an LDAP server
     *
@@ -27,7 +29,7 @@ class LDAPConnector {
     */	
     function __construct($url=NULL,$port=NULL,$user=NULL,$password=NULL) {
         if (!self::configIsValid($url, $port, $user, $password)) {
-            $configurationFileName = "ldap.connector";
+            $configurationFileName = self::CONFIG_FILE;
             $config = null;
             if ($this->configurationFileExists($configurationFileName)) {
                 $config = $this->getConfigurationFromFileName($configurationFileName);

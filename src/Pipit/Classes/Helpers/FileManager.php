@@ -9,13 +9,16 @@ class FileManager extends AbstractHelper {
 
     /** @var string $baseFilePath The directory path to store uploaded files */
     private $baseFilePath;
+
+    private const CONFIG_FILE = "file.manager";
+
     /**
      * @param \Pipit\Interfaces\Site $site An implementation of \Interfaces\Site
      * @return void
      */
     public function configure(Interfaces\Site $site) {
         parent::configure($site);
-        $config = $this->getConfigurationFromFileName("file.manager.config");
+        $config = $this->getConfigurationFromFileName(self::CONFIG_FILE);
         if (!is_array($config) || !is_string($config['upload_path'])) {
             throw new ConfigurationException("The upload path has not been configured!");
         }

@@ -21,12 +21,14 @@ class DBInstance {
     /** @var \Pipit\Classes\Data\DBInstance $instance An instance of this db class */
     private static $instance = null;
 
+    private const CONFIG_FILE = "db.instance";
+
     /**
     *	Instantiates a new \PDO instance using the DBInstance.config config file
     */
     private function __construct() {
         $dbConfig = null;
-        $dbConfig = $this->getConfigurationFromFileName("db.instance.config");
+        $dbConfig = $this->getConfigurationFromFileName(self::CONFIG_FILE);
         $checkKeys = ['dsn','host','database','user','password'];
         $validConfig = true;
         foreach ($checkKeys as $key) {

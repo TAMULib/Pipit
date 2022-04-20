@@ -9,7 +9,7 @@ use Pipit\Classes\ViewRenderers\HTMLViewRenderer;
 class TraitFileConfigurationTest extends \Codeception\Test\Unit {
     public function testGetConfigurationFromFileName() {
         $mockInstance = $this->getObjectForTrait('Pipit\Traits\FileConfiguration');
-        $config = $this->invokeMethod($mockInstance, 'getConfigurationFromFileName', ['fileName'=>'test.templated.config']);
+        $config = $this->invokeMethod($mockInstance, 'getConfigurationFromFileName', ['fileName'=>'test.templated']);
 
         $this->assertEquals('value1',$config['testKey1']);
         $this->assertEquals('value2',$config['testKey2']);
