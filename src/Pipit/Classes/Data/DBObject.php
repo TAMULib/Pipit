@@ -28,7 +28,7 @@ class DBObject extends CoreObject {
     *   @return string
     */
     protected function getPrimaryTable() {
-        return $this->$primaryTable;
+        return $this->primaryTable;
     }
 
     /**
