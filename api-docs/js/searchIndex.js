@@ -491,6 +491,11 @@ Search.appendIndex(
             "summary": "Gets\u0020a\u0020db\u0020instance\u0020and\u0020assigns\u0020it\u0020to\u0020the\u0020\u0024db\u0020property",
             "url": "classes/Pipit-Classes-Data-DBObject.html#method___construct"
         },                {
+            "fqsen": "\\Pipit\\Classes\\Data\\DBObject\u003A\u003AgetPrimaryTable\u0028\u0029",
+            "name": "getPrimaryTable",
+            "summary": "Provides\u0020the\u0020name\u0020of\u0020the\u0020primary\u0020table\u0020associated\u0020with\u0020the\u0020instance",
+            "url": "classes/Pipit-Classes-Data-DBObject.html#method_getPrimaryTable"
+        },                {
             "fqsen": "\\Pipit\\Classes\\Data\\DBObject\u003A\u003AdbFormatDate\u0028\u0029",
             "name": "dbFormatDate",
             "summary": "Returns\u0020an\u0020appropriate\u0020date\u0020format\u0020function\u0020for\u0020the\u0020SQL\u0020language",
