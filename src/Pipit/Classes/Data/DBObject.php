@@ -3,13 +3,12 @@ namespace Pipit\Classes\Data;
 use Pipit\Classes\CoreObject;
 use \PDO;
 
-/** 
+/**
 *	A base class to be extended by any class that needs to access the DB
 *	Provides a DB connection instance and several abstractions for DB interaction
 *	@author Jason Savell <jsavell@library.tamu.edu>
 *
 *	@todo Make abstract and leave implementing of relevant methods to specific implementers (MySqlObject, MsSqlObject)
-*	@todo Provide getter/setter for $primaryTable to be utilized by extending classes
 */
 class DBObject extends CoreObject {
     /** @var \Pipit\Classes\Data\DBInstance An instance of the db class, providing the connection to the DB */
@@ -22,6 +21,14 @@ class DBObject extends CoreObject {
     */
     protected function __construct() {
         $this->db = DBInstance::getInstance();
+    }
+
+    /**
+    *	Provides the name of the primary table associated with the instance
+    *   @return string
+    */
+    protected function getPrimaryTable() {
+        return $this->primaryTable;
     }
 
     /**
@@ -66,7 +73,7 @@ class DBObject extends CoreObject {
         return $sql;
     }
 
-    /** 
+    /**
     *	Execute a query and return the results as an array
     * 	@param string $sql the SQL query
     *  	@param mixed[] $bindparams: an array of values to be binded by PDO to any query parameters
@@ -77,12 +84,12 @@ class DBObject extends CoreObject {
         $result->execute($bindparams);
         if ($result->errorCode() == '00000') {
             return $result->fetchAll(PDO::FETCH_ASSOC);
-        } 
+        }
         $this->logStatementError($result->errorInfo(),$sql);
         return false;
     }
 
-    /** 
+    /**
     *	Execute an update query
     * 	@param string $sql The SQL query
     *  	@param mixed[] $bindparams An array of values to be binded by PDO to any query parameters
@@ -93,7 +100,7 @@ class DBObject extends CoreObject {
         $result->execute($bindparams);
         if ($result->errorCode() == '00000') {
             return true;
-        } 
+        }
         $this->logStatementError($result->errorInfo(),$sql);
         return false;
     }
@@ -106,7 +113,7 @@ class DBObject extends CoreObject {
         return $this->db->handle->lastInsertId();
     }
 
-    /**  
+    /**
     *	Query the DB and return the rows as a 1 or 2 dimensional indexed array
     *	@param string $sql The query string
     *   @param string $index The table's primary key
@@ -133,8 +140,8 @@ class DBObject extends CoreObject {
         }
         return false;
     }
-    
-    /** 
+
+    /**
     *	@Deprecated Use bind parameters option provided by sql execution methods instead
     *	Escape a @value to prep for use in a DB query
     *	@param string $value The value to escape
@@ -154,7 +161,7 @@ class DBObject extends CoreObject {
         return array_map(array($this,"quote"),$ar);
     }
 
-    /** 
+    /**
     *	Returns a parametrized IN clause for use in a prepared statement
     *	@param mixed[] $ar An array of values representing the contents of the IN clause
     *	@param mixed[] $bindparams A reference to the caller's array of binded parameters
@@ -251,7 +258,7 @@ class DBObject extends CoreObject {
             $sql .= "{$field}=:{$field},";
             $bindparams[":{$field}"] = $value;
         }
-        
+
         $sql = rtrim($sql,',')." WHERE id=:id";
         $bindparams[":id"] = $id;
         if ($this->executeUpdate($sql,$bindparams)) {

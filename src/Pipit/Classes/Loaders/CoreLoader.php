@@ -16,7 +16,7 @@ use Pipit\Classes\Site\CoreSite;
 *		Managing an implementation of the Site class
 *		Using the Site class to get the logged in User
 *		Using the Site class to load appropriate controllers and render views
-*	
+*
 *	@author Jason Savell <jsavell@library.tamu.edu>
 *
 */
