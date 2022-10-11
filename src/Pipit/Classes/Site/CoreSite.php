@@ -160,7 +160,7 @@ class CoreSite extends AbstractSite {
                                         $config['gettableColumns'],
                                         $config['searchableColumns']
                                     );
-                    $this->addCachedDataRepository($repositoryName, new Data\DynamicDataBaseRepository($dynamicRepoConfig));
+                    $this->addCachedDataRepository($repositoryName, new Data\DynamicDatabaseRepository($dynamicRepoConfig));
                     $foundRepository = true;
                 }
             }
