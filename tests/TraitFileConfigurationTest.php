@@ -9,7 +9,7 @@ use Pipit\Classes\ViewRenderers\HTMLViewRenderer;
 class TraitFileConfigurationTest extends \Codeception\Test\Unit {
     public function testGetConfigurationFromFileName() {
         $mockInstance = $this->getObjectForTrait('Pipit\Traits\FileConfiguration');
-        $config = $this->invokeMethod($mockInstance, 'getConfigurationFromFileName', ['fileName'=>'test.templated']);
+        $config = $this->invokeMethod($mockInstance, 'getConfigurationFromFileName', ['configurationFileName'=>'test.templated']);
 
         $this->assertEquals('value1',$config['testKey1']);
         $this->assertEquals('value2',$config['testKey2']);
@@ -24,7 +24,7 @@ class TraitFileConfigurationTest extends \Codeception\Test\Unit {
     public function testMissingConfigurationFileThrowsConfigurationException() {
         $this->expectException('Pipit\Classes\Exceptions\ConfigurationException');
         $mockInstance = $this->getObjectForTrait('Pipit\Traits\FileConfiguration');
-        $this->invokeMethod($mockInstance, 'getConfigurationFromFileName', ['fileName'=>'nonexistent.config']);
+        $this->invokeMethod($mockInstance, 'getConfigurationFromFileName', ['configurationFileName'=>'nonexistent.config']);
     }
 
     protected function invokeMethod(&$object, $methodName, $parameters=[]) {
