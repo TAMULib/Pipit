@@ -50,6 +50,24 @@ class CoreSite extends AbstractSite {
                     throw new ConfigurationException("Configured User class not found: {$className}");
                 }
             }
+            if ($userClass && is_bool($config['USESAML']) && $config['USESAML']) {
+                if ($config['SAML_USER_REPO']) {
+                    $userRepo = $this->getDataRepository($config['SAML_USER_REPO']);
+                    if ($userRepo instanceof \Pipit\Interfaces\DataRepository) {
+                        if ($userClass instanceof \Pipit\Classes\Data\UserSAML) {
+                            $userClass = new Data\UserSAML($this->getSanitizedInputData(),$userRepo);
+                            unset($userRepo);
+                        } else {
+                            $userClass = null;
+                            throw new ConfigurationException("Configured UserSAML classes must extend Pipit\Classes\Data\UserSAML");
+                        }
+                    } else {
+                        throw new ConfigurationException("UserSAML requires a Pipit\Interfaces\DataRepository");
+                    }
+                } else {
+                    throw new ConfigurationException("UserSAML requires SAML_USER_REPO to be defined with a Pipit\Interfaces\DataRepository");
+                }
+            }
             if ($userClass && is_bool($config['USECAS']) && $config['USECAS']) {
                 if ($config['CAS_USER_REPO']) {
                     $userRepo = $this->getDataRepository($config['CAS_USER_REPO']);

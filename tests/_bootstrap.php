@@ -31,6 +31,8 @@ define('USECAS', false);
 //Optionally define a custom implementation of \Pipit\Interfaces\User to be used for the GlobalUser
 //define('USER_CLASS',NAMESPACE_CORE.'\\Classes\Data\\UserCAS');
 
+define('USESAML', false);
+
 define('SECURITY_PUBLIC',-1);
 define('SECURITY_USER',0);
 define('SECURITY_ADMIN',1);
