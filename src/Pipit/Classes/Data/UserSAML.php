@@ -44,11 +44,14 @@ class UserSAML extends UserDB {
 
     protected function checkSettings() {
         return (is_array($this->settings)
-                && is_string($this->settings['idp']['entityId'])
-                && is_string($this->settings['idp']['singleSignOnServiceUrl'])
-                && is_string($this->settings['idp']['singleLogoutServiceUrl'])
-                && is_string($this->settings['idp']['responseUrl'])
-                && is_string($this->settings['idp']['x509cert']));
+                && !empty($this->settings['sp']['entityId'])
+                && !empty($this->settings['sp']['assertionConsumerService']['url'])
+                && !empty($this->settings['sp']['singleLogoutService']['url'])
+                && !empty($this->settings['idp']['entityId'])
+                && !empty($this->settings['idp']['singleSignOnService']['url'])
+                && !empty($this->settings['idp']['singleLogoutService']['url'])
+                && !empty($this->settings['idp']['singleLogoutService']['responseUrl'])
+                && !empty($this->settings['idp']['x509cert']));
     }
 
     protected function loadSettings() {
@@ -60,7 +63,7 @@ class UserSAML extends UserDB {
             throw new ConfigurationException("SAML config file does not exist");
         }
 
-        $defaultSettingsFile = __DIR__."/../../../../../vendor/onelogin/php-saml/settings_example.php";
+        $defaultSettingsFile = __DIR__."/../../../../../../onelogin/php-saml/settings_example.php";
         if (is_file($defaultSettingsFile)) {
             require($defaultSettingsFile);
         } else {
