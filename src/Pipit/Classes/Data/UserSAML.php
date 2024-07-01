@@ -45,7 +45,8 @@ class UserSAML extends UserDB {
     protected function checkSettings() {
         return (is_array($this->settings)
                 && is_string($this->settings['idp']['entityId'])
-                && is_string($this->settings['idp']['singleLogoutService'])
+                && is_string($this->settings['idp']['singleSignOnServiceUrl'])
+                && is_string($this->settings['idp']['singleLogoutServiceUrl'])
                 && is_string($this->settings['idp']['responseUrl'])
                 && is_string($this->settings['idp']['x509cert']));
     }
