@@ -76,30 +76,30 @@ class UserSAML extends UserDB {
         }
     }
 
-	public function processLogIn() {
-		$auth = new Auth($this->settings);
+    public function processLogIn() {
+        $auth = new Auth($this->settings);
 
-		if (isset($_SESSION) && isset($_SESSION['AuthNRequestID'])) {
-			$requestId = $_SESSION['AuthNRequestID'];
-		} else {
-			$requestId = null;
-		}
+        if (isset($_SESSION) && isset($_SESSION['AuthNRequestID'])) {
+            $requestId = $_SESSION['AuthNRequestID'];
+        } else {
+            $requestId = null;
+        }
 
-		$auth->processResponse($requestId);
-		unset($_SESSION['AuthNRequestID']);
+        $auth->processResponse($requestId);
+        unset($_SESSION['AuthNRequestID']);
 
-		$errors = $auth->getErrors();
+        $errors = $auth->getErrors();
 
-		if (!empty($errors)) {
-			throw new \RuntimeException("SAML error: ".implode(', ',$errors));
-		}
+        if (!empty($errors)) {
+            throw new \RuntimeException("SAML error: ".implode(', ',$errors));
+        }
 
-		if (!$auth->isAuthenticated()) {
-			throw new \RuntimeException("SAML error: Not authenticated");
-		}
+        if (!$auth->isAuthenticated()) {
+            throw new \RuntimeException("SAML error: Not authenticated");
+        }
 
-		$samlUserNameParts = explode('@',$auth->getNameId());
-		$samlUserName = $samlUserNameParts[0];
+        $samlUserNameParts = explode('@',$auth->getNameId());
+        $samlUserName = $samlUserNameParts[0];
 
         $tusers = $this->usersRepo;
         //find an existing, active user or create a new one
@@ -118,19 +118,19 @@ class UserSAML extends UserDB {
             $this->buildProfile();
             return true;
         }
-		return false;
-	}
+        return false;
+    }
 
-	public function initiatelogIn() {
-		$auth = new Auth($this->settings);
-		$auth->login();
-	}
+    public function initiatelogIn() {
+        $auth = new Auth($this->settings);
+        $auth->login();
+    }
 
-	public function logOut() {
-		parent::logOut();
-		$auth = new Auth($this->settings);
-		$auth->logout();
-	}
+    public function logOut() {
+        parent::logOut();
+        $auth = new Auth($this->settings);
+        $auth->logout();
+    }
 
     public function logIn($username,$password) {
         return false;
