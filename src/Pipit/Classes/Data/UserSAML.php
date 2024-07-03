@@ -7,20 +7,18 @@ use OneLogin\Saml2\Auth;
 class UserSAML extends UserDB {
     use \Pipit\Traits\FileConfiguration;
 
-    /** @var array<string,array<string,string>> $casPaths A string array representing the CAS configuration */
-    private $samlPaths;
-    /** @var \Pipit\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'iscas' fields) */
+    /** @var \Pipit\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'issaml' fields) */
     private $usersRepo;
 
     private $settings;
 
     private const CONFIG_FILE = "user.saml";
-
+    private const DEFAULT_NETID_MAPPING = "netid";
 
     /**
-    *	Instantiates a new UserCAS by negotiating the login process with a configured CAS Server
+    *	Instantiates a new UserSAML by negotiating the login process with a configured SAML Server
     *	@param mixed[] $inputData The input data from the request
-    *	@param \Pipit\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'iscas' fields)
+    *	@param \Pipit\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'issaml' fields)
     */
     public function __construct($inputData, $usersRepo) {
 
@@ -29,7 +27,8 @@ class UserSAML extends UserDB {
         parent::__construct();
 
         $appConfig = $this->getAppConfiguration();
-        $redirectUrl = is_string($this->settings['redirect']) ? $this->settings['redirect']:$appConfig['PATH_HTTP'];
+        $redirectUrl = (array_key_exists('redirect', $this->settings) && is_string($this->settings['redirect'])) ?
+                            $this->settings['redirect']:$appConfig['PATH_HTTP'];
 
         if (!empty($inputData['SAMLResponse'])) {
             $this->usersRepo = $usersRepo;
@@ -98,18 +97,26 @@ class UserSAML extends UserDB {
             throw new \RuntimeException("SAML error: Not authenticated");
         }
 
-        $samlUserNameParts = explode('@',$auth->getNameId());
-        $samlUserName = $samlUserNameParts[0];
+        $netIdField = array_key_exists('netid', $this->settings['claims']) ? $this->settings['claims']['netid'] : self::DEFAULT_NETID_MAPPING;
 
+        if (!array_key_exists($netIdField, $auth->getAttributes())) {
+            throw new \RuntimeException("SAML error: {$netIdField} claim not present in SAML response");
+        }
+
+        $samlNetId = $auth->getAttributes()[$netIdField][0];
+        return $this->processUser($samlNetId);
+    }
+
+    protected function processUser($samlNetId) {
         $tusers = $this->usersRepo;
         //find an existing, active user or create a new one
-        $user = $tusers->searchAdvanced(array("username"=>$samlUserName));
+        $user = $tusers->searchAdvanced(array("username"=>$samlNetId));
         if ($user && is_array($user)) {
             if ($user[0]['inactive'] == 0) {
                 $userId = $user[0]['id'];
             }
-        } elseif (!empty($samlUserName)) {
-            $userId = $tusers->add(array("username"=>$samlUserName,"iscas"=>1));
+        } elseif (!empty($samlNetId)) {
+            $userId = $tusers->add(array("username"=>$samlNetId,"issaml"=>1));
         }
         if (!empty($userId)) {
             session_regenerate_id(true);
