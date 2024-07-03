@@ -13,7 +13,7 @@ class UserSAML extends UserDB {
     private $settings;
 
     private const CONFIG_FILE = "user.saml";
-    private const DEFAULT_NETID_MAPPING = "netid";
+    private const DEFAULT_USERNAME_MAPPING = "netid";
 
     /**
     *	Instantiates a new UserSAML by negotiating the login process with a configured SAML Server
@@ -97,26 +97,32 @@ class UserSAML extends UserDB {
             throw new \RuntimeException("SAML error: Not authenticated");
         }
 
-        $netIdField = array_key_exists('netid', $this->settings['claims']) ? $this->settings['claims']['netid'] : self::DEFAULT_NETID_MAPPING;
+        $userNameField = array_key_exists('username', $this->settings['claims']) ? $this->settings['claims']['username'] : self::DEFAULT_USERNAME_MAPPING;
 
-        if (!array_key_exists($netIdField, $auth->getAttributes())) {
-            throw new \RuntimeException("SAML error: {$netIdField} claim not present in SAML response");
+        if (!array_key_exists($userNameField, $auth->getAttributes())) {
+            throw new \RuntimeException("SAML error: {$userNameField} claim not present in SAML response");
         }
 
-        $samlNetId = $auth->getAttributes()[$netIdField][0];
-        return $this->processUser($samlNetId);
+        $samlUserName = $auth->getAttributes()[$userNameField][0];
+        return $this->processUser($samlUserName);
     }
 
-    protected function processUser($samlNetId) {
+    /**
+    *	Uses the provided username to find/create a matching local user and initiate the session
+    *	@param string $userName
+    *	@param \Pipit\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'issaml' fields)
+    *   @return boolean Returns true on success, false for anything else
+    */
+    protected function processUser($userName) {
         $tusers = $this->usersRepo;
         //find an existing, active user or create a new one
-        $user = $tusers->searchAdvanced(array("username"=>$samlNetId));
+        $user = $tusers->searchAdvanced(array("username"=>$userName));
         if ($user && is_array($user)) {
             if ($user[0]['inactive'] == 0) {
                 $userId = $user[0]['id'];
             }
         } elseif (!empty($samlNetId)) {
-            $userId = $tusers->add(array("username"=>$samlNetId,"issaml"=>1));
+            $userId = $tusers->add(array("username"=>$userName,"issaml"=>1));
         }
         if (!empty($userId)) {
             session_regenerate_id(true);
@@ -128,17 +134,27 @@ class UserSAML extends UserDB {
         return false;
     }
 
+    /**
+     * Triggers the SAML login request
+     */
+
     public function initiatelogIn() {
         $auth = new Auth($this->settings);
         $auth->login();
     }
 
+    /**
+     * Terminates the local session and Initiates the SAML logout process
+     */
     public function logOut() {
         parent::logOut();
         $auth = new Auth($this->settings);
         $auth->logout();
     }
 
+    /**
+     * Overrides the inherited UserDB login mechanism to guarantee no action/success
+     */
     public function logIn($username,$password) {
         return false;
     }
