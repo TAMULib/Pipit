@@ -137,7 +137,6 @@ class UserSAML extends UserDB {
     /**
      * Triggers the SAML login request
      */
-
     public function initiatelogIn() {
         $auth = new Auth($this->settings);
         $auth->login();
