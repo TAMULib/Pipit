@@ -121,7 +121,7 @@ class UserSAML extends UserDB {
             if ($user[0]['inactive'] == 0) {
                 $userId = $user[0]['id'];
             }
-        } elseif (!empty($samlNetId)) {
+        } elseif (!empty($userName)) {
             $userId = $tusers->add(array("username"=>$userName,"issaml"=>1));
         }
         if (!empty($userId)) {
