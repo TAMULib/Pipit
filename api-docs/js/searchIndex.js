@@ -816,6 +816,71 @@ Search.appendIndex(
             "summary": "Builds\u0020the\u0020User\u0027s\u0020profile\u0020data\u0020which\u0020is\u0020exposed\u0020to\u0020the\u0020application",
             "url": "classes/Pipit-Classes-Data-UserDB.html#method_buildProfile"
         },                {
+            "fqsen": "\\Pipit\\Classes\\Data\\UserSAML",
+            "name": "UserSAML",
+            "summary": "Represents\u0020the\u0020application\u0020user\nHandles\u0020session\u0020management,\u0020authentication,\u0020and\u0020authorization",
+            "url": "classes/Pipit-Classes-Data-UserSAML.html"
+        },                {
+            "fqsen": "\\Pipit\\Classes\\Data\\UserSAML\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Instantiates\u0020a\u0020new\u0020UserSAML\u0020by\u0020negotiating\u0020the\u0020login\u0020process\u0020with\u0020a\u0020configured\u0020SAML\u0020Server",
+            "url": "classes/Pipit-Classes-Data-UserSAML.html#method___construct"
+        },                {
+            "fqsen": "\\Pipit\\Classes\\Data\\UserSAML\u003A\u003AcheckSettings\u0028\u0029",
+            "name": "checkSettings",
+            "summary": "Verifies\u0020that\u0020all\u0020required\u0020settings\u0020have\u0020some\u0020value",
+            "url": "classes/Pipit-Classes-Data-UserSAML.html#method_checkSettings"
+        },                {
+            "fqsen": "\\Pipit\\Classes\\Data\\UserSAML\u003A\u003AloadSettings\u0028\u0029",
+            "name": "loadSettings",
+            "summary": "Loads\u0020the\u0020settings\u0020from\u0020Pipit\u0020configuration\u0020and\u0020merges\u0020them\u0020with\u0020the\u0020defaults\u0020from\u0020onelogin",
+            "url": "classes/Pipit-Classes-Data-UserSAML.html#method_loadSettings"
+        },                {
+            "fqsen": "\\Pipit\\Classes\\Data\\UserSAML\u003A\u003AprocessLogIn\u0028\u0029",
+            "name": "processLogIn",
+            "summary": "Processes\u0020the\u0020SAML\u0020response\u0020and\u0020uses\u0020it\u0020to\u0020login\u0020a\u0020user",
+            "url": "classes/Pipit-Classes-Data-UserSAML.html#method_processLogIn"
+        },                {
+            "fqsen": "\\Pipit\\Classes\\Data\\UserSAML\u003A\u003AprocessUser\u0028\u0029",
+            "name": "processUser",
+            "summary": "Uses\u0020the\u0020provided\u0020username\u0020to\u0020find\/create\u0020a\u0020matching\u0020local\u0020user\u0020and\u0020initiate\u0020the\u0020session",
+            "url": "classes/Pipit-Classes-Data-UserSAML.html#method_processUser"
+        },                {
+            "fqsen": "\\Pipit\\Classes\\Data\\UserSAML\u003A\u003AinitiatelogIn\u0028\u0029",
+            "name": "initiatelogIn",
+            "summary": "Triggers\u0020the\u0020SAML\u0020login\u0020request",
+            "url": "classes/Pipit-Classes-Data-UserSAML.html#method_initiatelogIn"
+        },                {
+            "fqsen": "\\Pipit\\Classes\\Data\\UserSAML\u003A\u003AlogOut\u0028\u0029",
+            "name": "logOut",
+            "summary": "Terminates\u0020the\u0020local\u0020session\u0020and\u0020Initiates\u0020the\u0020SAML\u0020logout\u0020process",
+            "url": "classes/Pipit-Classes-Data-UserSAML.html#method_logOut"
+        },                {
+            "fqsen": "\\Pipit\\Classes\\Data\\UserSAML\u003A\u003AlogIn\u0028\u0029",
+            "name": "logIn",
+            "summary": "Overrides\u0020the\u0020inherited\u0020UserDB\u0020login\u0020mechanism\u0020to\u0020guarantee\u0020no\u0020action\/success",
+            "url": "classes/Pipit-Classes-Data-UserSAML.html#method_logIn"
+        },                {
+            "fqsen": "\\Pipit\\Classes\\Data\\UserSAML\u003A\u003ACONFIG_FILE",
+            "name": "CONFIG_FILE",
+            "summary": "",
+            "url": "classes/Pipit-Classes-Data-UserSAML.html#constant_CONFIG_FILE"
+        },                {
+            "fqsen": "\\Pipit\\Classes\\Data\\UserSAML\u003A\u003ADEFAULT_USERNAME_MAPPING",
+            "name": "DEFAULT_USERNAME_MAPPING",
+            "summary": "",
+            "url": "classes/Pipit-Classes-Data-UserSAML.html#constant_DEFAULT_USERNAME_MAPPING"
+        },                {
+            "fqsen": "\\Pipit\\Classes\\Data\\UserSAML\u003A\u003A\u0024usersRepo",
+            "name": "usersRepo",
+            "summary": "",
+            "url": "classes/Pipit-Classes-Data-UserSAML.html#property_usersRepo"
+        },                {
+            "fqsen": "\\Pipit\\Classes\\Data\\UserSAML\u003A\u003A\u0024settings",
+            "name": "settings",
+            "summary": "",
+            "url": "classes/Pipit-Classes-Data-UserSAML.html#property_settings"
+        },                {
             "fqsen": "\\Pipit\\Classes\\Exceptions\\ConfigurationException",
             "name": "ConfigurationException",
             "summary": "",
