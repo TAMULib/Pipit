@@ -15,6 +15,7 @@ jobs:
       - name: Run PHPStan Static Analysis
         uses: php-actions/phpstan@v3
         with:
+          php_version: 8.1
           memory_limit: 512M
           path: src/Pipit/
           configuration: phpstan.dist
