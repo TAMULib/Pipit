@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/template.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
                 <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
         <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
         <script src="js/search.js"></script>
         <script defer src="js/searchIndex.js"></script>
     </head>
@@ -52,8 +53,8 @@
 <label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
     Menu
 </label>
-<aside class="phpdocumentor-column -four phpdocumentor-sidebar">
-                    <section class="phpdocumentor-sidebar__category">
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
+                    <section class="phpdocumentor-sidebar__category -namespaces">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="namespaces/pipit.html" class="">Pipit</a>
@@ -82,7 +83,7 @@
             </ul>
 
                         </section>
-                <section class="phpdocumentor-sidebar__category">
+                <section class="phpdocumentor-sidebar__category -packages">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/Application.html" class="">Application</a>
@@ -90,21 +91,22 @@
 
                         </section>
             
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -reports">
         <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
                 <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
     </section>
 
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -indices">
         <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
     </section>
 </aside>
 
-            <div class="phpdocumentor-column -eight phpdocumentor-content">
-                    <ul class="phpdocumentor-breadcrumbs">
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pipit.html">Pipit</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pipit-classes.html">Classes</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pipit-classes-site.html">Site</a></li>
@@ -128,8 +130,13 @@
     
     </h2>
 
+<div class="phpdocumentor-label-line">
+
+
+</div>
+
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-classes-site-coresitepage.html"><abbr title="Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-src-pipit-classes-site-coresitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">11</span>
 
@@ -140,9 +147,11 @@ SitePages are used to define metadata like subaction options, titles and user se
 
 
 
+
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pipit-Classes-Site-CoreSitePage.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
@@ -154,8 +163,7 @@ SitePages are used to define metadata like subaction options, titles and user se
 </section>
 
                                     </dd>
-                        </dl>
-
+                                            </dl>
 
 
 
@@ -163,200 +171,214 @@ SitePages are used to define metadata like subaction options, titles and user se
 
 <h3 id="toc">
     Table of Contents
-    <a href="#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Pipit-Classes-Site-CoreSitePage.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+
 </h3>
 
+
+
+
+
+
+
+
+
+<h4 id="toc-properties">
+    Properties
+    <a href="classes/Pipit-Classes-Site-CoreSitePage.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
 <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_accessLevel">$accessLevel</a>
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_accessLevel">$accessLevel</a>
     <span>
                         &nbsp;: int            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_isSearchable">$isSearchable</a>
+    <a class="" href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_isSearchable">$isSearchable</a>
     <span>
                         &nbsp;: bool            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_name">$name</a>
+    <a class="" href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_name">$name</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_options">$options</a>
+    <a class="" href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_options">$options</a>
     <span>
                         &nbsp;: array&lt;string|int, string&gt;            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_path">$path</a>
+    <a class="" href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_path">$path</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_searchableFields">$searchableFields</a>
+    <a class="" href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_searchableFields">$searchableFields</a>
     <span>
                         &nbsp;: array&lt;string|int, string&gt;            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_subTitle">$subTitle</a>
+    <a class="" href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_subTitle">$subTitle</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_title">$title</a>
+    <a class="" href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_title">$title</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
-<dd></dd>
 
-                <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method___construct">__construct()</a>
+    </dl>
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/Pipit-Classes-Site-CoreSitePage.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Pipit-Classes-Site-AbstractSitePage.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 <dd>Default constructor for extenders of AbstractSitePage</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_getAccessLevel">getAccessLevel()</a>
+    <a class="" href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_getAccessLevel">getAccessLevel()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
 <dd>Gets the access level for the page</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_getName">getName()</a>
+    <a class="" href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_getName">getName()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>Gets the name of the page</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_getOptions">getOptions()</a>
+    <a class="" href="classes/Pipit-Classes-Site-CoreSitePage.html#method_getOptions">getOptions()</a>
     <span>
                                 &nbsp;: array&lt;string|int, string&gt;    </span>
 </dt>
 <dd>Get the user facing action options associated with the page.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_getPath">getPath()</a>
+    <a class="" href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_getPath">getPath()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>Gets the relative directory path of the page</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_getSearchableFields">getSearchableFields()</a>
+    <a class="" href="classes/Pipit-Classes-Site-CoreSitePage.html#method_getSearchableFields">getSearchableFields()</a>
     <span>
                                 &nbsp;: array&lt;string|int, string&gt;    </span>
 </dt>
 <dd>Get the field names that should be searched.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_getSubTitle">getSubTitle()</a>
+    <a class="" href="classes/Pipit-Classes-Site-CoreSitePage.html#method_getSubTitle">getSubTitle()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>Get the user facing subtitle of the page.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_getTitle">getTitle()</a>
+    <a class="" href="classes/Pipit-Classes-Site-CoreSitePage.html#method_getTitle">getTitle()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>Get the user facing title of the page.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_isAdminPage">isAdminPage()</a>
+    <a class="" href="classes/Pipit-Classes-Site-CoreSitePage.html#method_isAdminPage">isAdminPage()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Is this page restricted to administrative users?</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_isPublicPage">isPublicPage()</a>
+    <a class="" href="classes/Pipit-Classes-Site-CoreSitePage.html#method_isPublicPage">isPublicPage()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Should this page be available to all users?</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_isSearchable">isSearchable()</a>
+    <a class="" href="classes/Pipit-Classes-Site-CoreSitePage.html#method_isSearchable">isSearchable()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Does this page have user facing searchable content?</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_setAccessLevel">setAccessLevel()</a>
+    <a class="" href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_setAccessLevel">setAccessLevel()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Sets the access level for the page</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setIsSearchable">setIsSearchable()</a>
+    <a class="" href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setIsSearchable">setIsSearchable()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Enable/Disable user facing searching</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_setName">setName()</a>
+    <a class="" href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_setName">setName()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Sets the name of the page</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setOptions">setOptions()</a>
+    <a class="" href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setOptions">setOptions()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Set the user facing action options associated with the page.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_setPath">setPath()</a>
+    <a class="" href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_setPath">setPath()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 <dd>Sets the path of the page</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setSearchableFields">setSearchableFields()</a>
+    <a class="" href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setSearchableFields">setSearchableFields()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Explicitly define the field names that should be searched.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setSubTitle">setSubTitle()</a>
+    <a class="" href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setSubTitle">setSubTitle()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Set the user facing subtitle of the page.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setTitle">setTitle()</a>
+    <a class="" href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setTitle">setTitle()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Set the user facing title of the page.</dd>
 
-        </dl>
+    </dl>
 
 
 
@@ -367,6 +389,7 @@ SitePages are used to define metadata like subaction options, titles and user se
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
             <a href="classes/Pipit-Classes-Site-CoreSitePage.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article
         class="
@@ -378,16 +401,18 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="property_accessLevel">
         $accessLevel
         <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_accessLevel" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-src-pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -398,6 +423,8 @@ SitePages are used to define metadata like subaction options, titles and user se
     
         <section class="phpdocumentor-description"><p>The security restriction for the page</p>
 </section>
+
+    
 
     
 
@@ -412,16 +439,18 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="property_isSearchable">
         $isSearchable
         <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_isSearchable" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-src-pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -432,6 +461,8 @@ SitePages are used to define metadata like subaction options, titles and user se
     
         <section class="phpdocumentor-description"><p>Should UIs with search capability show a search box for this page?</p>
 </section>
+
+    
 
     
 
@@ -446,16 +477,18 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="property_name">
         $name
         <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_name" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-src-pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -466,6 +499,8 @@ SitePages are used to define metadata like subaction options, titles and user se
     
         <section class="phpdocumentor-description"><p>The name of the page</p>
 </section>
+
+    
 
     
 
@@ -480,16 +515,18 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="property_options">
         $options
         <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_options" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-src-pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -500,6 +537,8 @@ SitePages are used to define metadata like subaction options, titles and user se
     
         <section class="phpdocumentor-description"><p>The UI displayed subnavigation for the page</p>
 </section>
+
+    
 
     
 
@@ -514,16 +553,18 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="property_path">
         $path
         <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_path" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-src-pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -534,6 +575,8 @@ SitePages are used to define metadata like subaction options, titles and user se
     
         <section class="phpdocumentor-description"><p>The relative directory path to the page</p>
 </section>
+
+    
 
     
 
@@ -548,16 +591,18 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="property_searchableFields">
         $searchableFields
         <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_searchableFields" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-src-pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -568,6 +613,8 @@ SitePages are used to define metadata like subaction options, titles and user se
     
         <section class="phpdocumentor-description"><p>The columns search implementors should use when querying a DataRepository</p>
 </section>
+
+    
 
     
 
@@ -582,16 +629,18 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="property_subTitle">
         $subTitle
         <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_subTitle" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-src-pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -602,6 +651,8 @@ SitePages are used to define metadata like subaction options, titles and user se
     
         <section class="phpdocumentor-description"><p>The UI display subtitle of the page</p>
 </section>
+
+    
 
     
 
@@ -616,16 +667,18 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="property_title">
         $title
         <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_title" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-src-pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -639,6 +692,8 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     
 
+    
+
 </article>
             </section>
 
@@ -646,6 +701,7 @@ SitePages are used to define metadata like subaction options, titles and user se
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
             <a href="classes/Pipit-Classes-Site-CoreSitePage.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article
         class="phpdocumentor-element
@@ -656,9 +712,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
         <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-src-pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">36</span>
 
@@ -668,8 +725,11 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$accessLevel</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$accessLevel</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -704,10 +764,8 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -719,9 +777,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_getAccessLevel">
         getAccessLevel()
         <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_getAccessLevel" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-src-pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">46</span>
 
@@ -731,19 +790,26 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getAccessLevel</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+                    <span class="phpdocumentor-signature__name">getAccessLevel</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">int</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The access level for the page</p>
+        <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The access level for the page</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -754,9 +820,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_getName">
         getName()
         <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_getName" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-src-pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">62</span>
 
@@ -766,19 +833,26 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getName</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getName</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>$name The name of the page</p>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>$name The name of the page</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -789,9 +863,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_getOptions">
         getOptions()
         <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_getOptions" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-classes-site-coresitepage.html"><abbr title="Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-src-pipit-classes-site-coresitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">38</span>
 
@@ -801,19 +876,26 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getOptions</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, string&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getOptions</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, string&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, string&gt;</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>$options</p>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, string&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>$options</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -824,9 +906,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_getPath">
         getPath()
         <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_getPath" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-src-pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">78</span>
 
@@ -836,19 +919,26 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getPath</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getPath</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The relative directory path of the page</p>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The relative directory path of the page</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -859,9 +949,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_getSearchableFields">
         getSearchableFields()
         <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_getSearchableFields" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-classes-site-coresitepage.html"><abbr title="Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-src-pipit-classes-site-coresitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">58</span>
 
@@ -871,19 +962,26 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getSearchableFields</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, string&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getSearchableFields</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, string&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, string&gt;</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>$searchableFields</p>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, string&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>$searchableFields</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -894,9 +992,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_getSubTitle">
         getSubTitle()
         <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_getSubTitle" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-classes-site-coresitepage.html"><abbr title="Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-src-pipit-classes-site-coresitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">34</span>
 
@@ -906,19 +1005,26 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getSubTitle</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getSubTitle</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>$subTitle</p>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>$subTitle</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -929,9 +1035,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_getTitle">
         getTitle()
         <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_getTitle" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-classes-site-coresitepage.html"><abbr title="Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-src-pipit-classes-site-coresitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">26</span>
 
@@ -941,19 +1048,26 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getTitle</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getTitle</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>$title</p>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>$title</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -964,9 +1078,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_isAdminPage">
         isAdminPage()
         <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_isAdminPage" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-classes-site-coresitepage.html"><abbr title="Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-src-pipit-classes-site-coresitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">13</span>
 
@@ -976,17 +1091,22 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">isAdminPage</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">isAdminPage</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -997,9 +1117,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_isPublicPage">
         isPublicPage()
         <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_isPublicPage" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-classes-site-coresitepage.html"><abbr title="Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-src-pipit-classes-site-coresitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">18</span>
 
@@ -1009,17 +1130,22 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">isPublicPage</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">isPublicPage</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1030,9 +1156,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_isSearchable">
         isSearchable()
         <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_isSearchable" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-classes-site-coresitepage.html"><abbr title="Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-src-pipit-classes-site-coresitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">50</span>
 
@@ -1042,19 +1169,26 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">isSearchable</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">isSearchable</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>$isSearchable</p>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>$isSearchable</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1065,9 +1199,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_setAccessLevel">
         setAccessLevel()
         <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_setAccessLevel" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-src-pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">54</span>
 
@@ -1077,15 +1212,18 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setAccessLevel</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$accessLevel</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setAccessLevel</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$accessLevel</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$accessLevel</span>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
+                 = <span class="phpdocumentor-signature__argument__default-value">0</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The access level for the page (Defaults to 0)</p>
 </section>
@@ -1095,10 +1233,8 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -1110,9 +1246,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_setIsSearchable">
         setIsSearchable()
         <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setIsSearchable" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-classes-site-coresitepage.html"><abbr title="Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-src-pipit-classes-site-coresitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">46</span>
 
@@ -1122,8 +1259,11 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setIsSearchable</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$isSearchable</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setIsSearchable</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$isSearchable</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1138,10 +1278,8 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -1153,9 +1291,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_setName">
         setName()
         <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_setName" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-src-pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">70</span>
 
@@ -1165,8 +1304,11 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1183,10 +1325,8 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -1198,9 +1338,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_setOptions">
         setOptions()
         <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setOptions" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-classes-site-coresitepage.html"><abbr title="Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-src-pipit-classes-site-coresitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">42</span>
 
@@ -1210,8 +1351,11 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setOptions</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setOptions</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1226,10 +1370,8 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -1241,9 +1383,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_setPath">
         setPath()
         <a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_setPath" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php"><a href="files/pipit-src-pipit-classes-site-abstractsitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/AbstractSitePage.php">AbstractSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">86</span>
 
@@ -1253,8 +1396,11 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setPath</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">setPath</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1271,10 +1417,8 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -1286,9 +1430,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_setSearchableFields">
         setSearchableFields()
         <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setSearchableFields" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-classes-site-coresitepage.html"><abbr title="Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-src-pipit-classes-site-coresitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">54</span>
 
@@ -1298,8 +1443,11 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setSearchableFields</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$searchableFields</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setSearchableFields</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$searchableFields</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1314,10 +1462,8 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -1329,9 +1475,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_setSubTitle">
         setSubTitle()
         <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setSubTitle" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-classes-site-coresitepage.html"><abbr title="Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-src-pipit-classes-site-coresitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">30</span>
 
@@ -1341,8 +1488,11 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setSubTitle</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$subTitle</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setSubTitle</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$subTitle</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1357,10 +1507,8 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -1372,9 +1520,10 @@ SitePages are used to define metadata like subaction options, titles and user se
     <h4 class="phpdocumentor-element__name" id="method_setTitle">
         setTitle()
         <a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setTitle" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-classes-site-coresitepage.html"><abbr title="Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php"><a href="files/pipit-src-pipit-classes-site-coresitepage.html"><abbr title="Pipit/src/Pipit/Classes/Site/CoreSitePage.php">CoreSitePage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">22</span>
 
@@ -1384,8 +1533,11 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setTitle</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$title</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setTitle</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$title</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1400,78 +1552,164 @@ SitePages are used to define metadata like subaction options, titles and user se
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
             </section>
 
-        
+        <div class="phpdocumentor-modal" id="source-view">
+    <div class="phpdocumentor-modal-bg" data-exit-button></div>
+    <div class="phpdocumentor-modal-container">
+        <div class="phpdocumentor-modal-content">
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/Pipit/src/Pipit/Classes/Site/CoreSitePage.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+        </div>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
+    </div>
+</div>
+
     <script type="text/javascript">
-        function loadExternalCodeSnippets(line) {
-            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                var src = pre.getAttribute('data-src').replace( /\\/g, '/');
-                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-                var language = 'php';
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
 
-                var code = document.createElement('code');
-                code.className = 'language-' + language;
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
 
-                pre.textContent = '';
+                    var xhr = new XMLHttpRequest();
 
-                pre.setAttribute('data-line', line)
-                code.textContent = 'Loading…';
+                    xhr.open('GET', src, true);
 
-                pre.appendChild(code);
-
-                var xhr = new XMLHttpRequest();
-
-                xhr.open('GET', src, true);
-
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
 
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
-
                             Prism.highlightElement(code);
+                            return;
                         }
-                        else if (xhr.status >= 400) {
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
                             code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
                         }
-                        else {
-                            code.textContent = '✖ Error: File does not exist, is empty or trying to view from localhost';
-                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
                     }
-                };
+                    modal.classList.add("phpdocumentor-modal__open");
 
-                xhr.send(null);
-            });
-        }
-
-        var modals = document.querySelectorAll("[data-modal]");
-
-        modals.forEach(function (trigger) {
-            trigger.addEventListener("click", function (event) {
-                //event.preventDefault();
-                const modal = document.getElementById(trigger.dataset.modal);
-                modal.classList.add("phpdocumentor-modal__open");
-                loadExternalCodeSnippets(trigger.dataset.line)
-                const exits = modal.querySelectorAll("[data-exit-button]");
-                exits.forEach(function (exit) {
-                    exit.addEventListener("click", function (event) {
-                        event.preventDefault();
-                        modal.classList.remove("phpdocumentor-modal__open");
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
                     });
                 });
             });
-        });
+        })();
     </script>
 
     </article>
-                <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                                
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                                            <li><a href="classes/Pipit-Classes-Site-CoreSitePage.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Pipit-Classes-Site-CoreSitePage.html#toc-methods">Methods</a></li>
+                                    </ul>
+            </li>
+            
+                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_accessLevel">$accessLevel</li>
+                                                    <li class=""><a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_isSearchable">$isSearchable</li>
+                                                    <li class=""><a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_name">$name</li>
+                                                    <li class=""><a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_options">$options</li>
+                                                    <li class=""><a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_path">$path</li>
+                                                    <li class=""><a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_searchableFields">$searchableFields</li>
+                                                    <li class=""><a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_subTitle">$subTitle</li>
+                                                    <li class=""><a href="classes/Pipit-Classes-Site-AbstractSitePage.html#property_title">$title</li>
+                                            </ul>
+                </li>
+            
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_getAccessLevel">getAccessLevel()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_getName">getName()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_getOptions">getOptions()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_getPath">getPath()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_getSearchableFields">getSearchableFields()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_getSubTitle">getSubTitle()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_getTitle">getTitle()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_isAdminPage">isAdminPage()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_isPublicPage">isPublicPage()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_isSearchable">isSearchable()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_setAccessLevel">setAccessLevel()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setIsSearchable">setIsSearchable()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_setName">setName()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setOptions">setOptions()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-AbstractSitePage.html#method_setPath">setPath()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setSearchableFields">setSearchableFields()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setSubTitle">setSubTitle()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Site-CoreSitePage.html#method_setTitle">setTitle()</a></li>
+                                    </ul>
+            </li>
+                    </ul>
+    </section>
+
+                </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
         <header class="phpdocumentor-search-results__header">
             <h2 class="phpdocumentor-search-results__title">Search results</h2>
@@ -1482,7 +1720,6 @@ SitePages are used to define metadata like subaction options, titles and user se
         </section>
     </section>
 </section>
-            </div>
         </div>
         <a href="classes/Pipit-Classes-Site-CoreSitePage.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 

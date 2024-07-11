@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/template.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
                 <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
         <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
         <script src="js/search.js"></script>
         <script defer src="js/searchIndex.js"></script>
     </head>
@@ -52,8 +53,8 @@
 <label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
     Menu
 </label>
-<aside class="phpdocumentor-column -four phpdocumentor-sidebar">
-                    <section class="phpdocumentor-sidebar__category">
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
+                    <section class="phpdocumentor-sidebar__category -namespaces">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="namespaces/pipit.html" class="">Pipit</a>
@@ -82,7 +83,7 @@
             </ul>
 
                         </section>
-                <section class="phpdocumentor-sidebar__category">
+                <section class="phpdocumentor-sidebar__category -packages">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/Application.html" class="">Application</a>
@@ -90,21 +91,22 @@
 
                         </section>
             
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -reports">
         <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
                 <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
     </section>
 
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -indices">
         <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
     </section>
 </aside>
 
-            <div class="phpdocumentor-column -eight phpdocumentor-content">
-                    <ul class="phpdocumentor-breadcrumbs">
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pipit.html">Pipit</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pipit-classes.html">Classes</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pipit-classes-viewrenderers.html">ViewRenderers</a></li>
@@ -131,14 +133,20 @@
     
     </h2>
 
+<div class="phpdocumentor-label-line">
+
+
+</div>
+
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
             <p class="phpdocumentor-summary">The default implementation of the ViewRenderer interface.</p>
+
 
     <section class="phpdocumentor-description"><p>Renders HTML with templated header and footer
 Would make a good starting point for integration with front end frameworks like Bootstrap</p>
@@ -147,7 +155,8 @@ Would make a good starting point for integration with front end frameworks like 
 
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
@@ -159,195 +168,202 @@ Would make a good starting point for integration with front end frameworks like 
 </section>
 
                                     </dd>
-                        </dl>
+                                            </dl>
 
 
 
-
-<h3 id="interfaces_class_traits">
-    Interfaces, Classes, Traits and Enums
-    <a href="#interfaces_class_traits" class="headerlink"><i class="fas fa-link"></i></a>
-</h3>
-
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-ViewRenderer.html"><abbr title="\Pipit\Interfaces\ViewRenderer">ViewRenderer</abbr></a></dt>
-        <dd>An interface defining a ViewRenderer
-ViewRenderers are utilized by controllers and handle the presentation of data to the user
-Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
-    
-    
-    
-    </dl>
 
 
 <h3 id="toc">
     Table of Contents
-    <a href="#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+
 </h3>
 
+
+
+    <h4 id="toc-interfaces">
+        Interfaces
+        <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-ViewRenderer.html"><abbr title="\Pipit\Interfaces\ViewRenderer">ViewRenderer</abbr></a></dt><dd>An interface defining a ViewRenderer
+ViewRenderers are utilized by controllers and handle the presentation of data to the user
+Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>    </dl>
+
+
+
+
+
+
+<h4 id="toc-properties">
+    Properties
+    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
 <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_appContext">$appContext</a>
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_appContext">$appContext</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_variables">$variables</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_variables">$variables</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_viewDirectory">$viewDirectory</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_viewDirectory">$viewDirectory</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_viewFile">$viewFile</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_viewFile">$viewFile</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_viewPath">$viewPath</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_viewPath">$viewPath</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
-<dd></dd>
 
-                <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method___construct">__construct()</a>
+    </dl>
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 <dd>Initializes the ViewRenderer with the state of the application</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-CoreObject.html#method_getAppConfiguration">getAppConfiguration()</a>
+    <a class="" href="classes/Pipit-Classes-CoreObject.html#method_getAppConfiguration">getAppConfiguration()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Provides a single instance of the global app configuration to all extenders of CoreObject</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getAppContextProperty">getAppContextProperty()</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getAppContextProperty">getAppContextProperty()</a>
     <span>
                                 &nbsp;: mixed|null    </span>
 </dt>
 <dd>Returns the requested appContext variable</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-CoreObject.html#method_getLogger">getLogger()</a>
+    <a class="" href="classes/Pipit-Classes-CoreObject.html#method_getLogger">getLogger()</a>
     <span>
                                 &nbsp;: <a href="classes/Pipit-Interfaces-Logger.html"><abbr title="\Pipit\Interfaces\Logger">Logger</abbr></a>    </span>
 </dt>
 <dd>Provides a single instance of a configured Logger to all extenders of CoreObject</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewVariable">getViewVariable()</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewVariable">getViewVariable()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 <dd>Get a single view variable by its name</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewVariables">getViewVariables()</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewVariables">getViewVariables()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Get the registered view variables</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_registerAppContextProperty">registerAppContextProperty()</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_registerAppContextProperty">registerAppContextProperty()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Register a reference to a variable for the views geared toward the app environment (User session, server paths, config)</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_registerViewVariable">registerViewVariable()</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_registerViewVariable">registerViewVariable()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Push to the array of registered view variables</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_renderView">renderView()</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_renderView">renderView()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Displays the response as HTML</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setPage">setPage()</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setPage">setPage()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Registers the current page as an appContext variable</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setView">setView()</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setView">setView()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Sets the view tasked with presenting the page specific response</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setViewDirectory">setViewDirectory()</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setViewDirectory">setViewDirectory()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Allows for defining a subdirectory for views which will be appended to the primary view path.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setViewVariables">setViewVariables()</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setViewVariables">setViewVariables()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Set all variables associated with the view at once.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getAdminViewPath">getAdminViewPath()</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getAdminViewPath">getAdminViewPath()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewDirectory">getViewDirectory()</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewDirectory">getViewDirectory()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>Gets the (optional) subdirectory for views which will be appended to the primary view path.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewFile">getViewFile()</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewFile">getViewFile()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewPath">getViewPath()</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewPath">getViewPath()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setViewPath">setViewPath()</a>
+    <a class="" href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setViewPath">setViewPath()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd></dd>
 
-        </dl>
+    </dl>
 
 
 
@@ -358,6 +374,7 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
             <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article
         class="
@@ -369,16 +386,18 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="property_appContext">
         $appContext
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_appContext" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -389,6 +408,8 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     
         <section class="phpdocumentor-description"><p>An array of data for the views geared toward the app environment (User session, server paths, config)</p>
 </section>
+
+    
 
     
 
@@ -403,16 +424,18 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="property_variables">
         $variables
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_variables" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -423,6 +446,8 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     
         <section class="phpdocumentor-description"><p>An array of application data to provide to the views</p>
 </section>
+
+    
 
     
 
@@ -437,16 +462,18 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="property_viewDirectory">
         $viewDirectory
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_viewDirectory" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -457,6 +484,8 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     
         <section class="phpdocumentor-description"><p>An optional subdirectory within the $viewPath that contains a collection of related views</p>
 </section>
+
+    
 
     
 
@@ -471,16 +500,18 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="property_viewFile">
         $viewFile
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_viewFile" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -491,6 +522,8 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     
         <section class="phpdocumentor-description"><p>The filename of the view to load</p>
 </section>
+
+    
 
     
 
@@ -505,16 +538,18 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="property_viewPath">
         $viewPath
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_viewPath" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -528,6 +563,8 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     
 
+    
+
 </article>
             </section>
 
@@ -535,6 +572,7 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
             <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article
         class="phpdocumentor-element
@@ -545,9 +583,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">36</span>
 
@@ -557,8 +596,11 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-User.html"><abbr title="\Pipit\Interfaces\User">User</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$globalUser</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, <a href="classes/Pipit-Interfaces-SitePage.html"><abbr title="\Pipit\Interfaces\SitePage">SitePage</abbr></a>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pages</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$controllerName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-User.html"><abbr title="\Pipit\Interfaces\User">User</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$globalUser</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, <a href="classes/Pipit-Interfaces-SitePage.html"><abbr title="\Pipit\Interfaces\SitePage">SitePage</abbr></a>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pages</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$controllerName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -602,10 +644,8 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -617,9 +657,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_getAppConfiguration">
         getAppConfiguration()
         <a href="classes/Pipit-Classes-CoreObject.html#method_getAppConfiguration" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/CoreObject.php"><a href="files/pipit-classes-coreobject.html"><abbr title="Pipit/Classes/CoreObject.php">CoreObject.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/CoreObject.php"><a href="files/pipit-src-pipit-classes-coreobject.html"><abbr title="Pipit/src/Pipit/Classes/CoreObject.php">CoreObject.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">24</span>
 
@@ -629,17 +670,22 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getAppConfiguration</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getAppConfiguration</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -650,9 +696,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_getAppContextProperty">
         getAppContextProperty()
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getAppContextProperty" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">170</span>
 
@@ -662,8 +709,11 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getAppContextProperty</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed|null</span></code>
+                    <span class="phpdocumentor-signature__name">getAppContextProperty</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed|null</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -680,13 +730,17 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     
 
+    
+
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed|null</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>Returns the variable or null if it was not found</p>
+        <span class="phpdocumentor-signature__response_type">mixed|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Returns the variable or null if it was not found</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -697,9 +751,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_getLogger">
         getLogger()
         <a href="classes/Pipit-Classes-CoreObject.html#method_getLogger" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/CoreObject.php"><a href="files/pipit-classes-coreobject.html"><abbr title="Pipit/Classes/CoreObject.php">CoreObject.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/CoreObject.php"><a href="files/pipit-src-pipit-classes-coreobject.html"><abbr title="Pipit/src/Pipit/Classes/CoreObject.php">CoreObject.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">16</span>
 
@@ -709,17 +764,22 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getLogger</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Logger.html"><abbr title="\Pipit\Interfaces\Logger">Logger</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getLogger</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Logger.html"><abbr title="\Pipit\Interfaces\Logger">Logger</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Logger.html"><abbr title="\Pipit\Interfaces\Logger">Logger</abbr></a></span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Logger.html"><abbr title="\Pipit\Interfaces\Logger">Logger</abbr></a></span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -730,9 +790,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_getViewVariable">
         getViewVariable()
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewVariable" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">151</span>
 
@@ -742,8 +803,11 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getViewVariable</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">getViewVariable</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -760,13 +824,17 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     
 
+    
+
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>$viewVariable</p>
+        <span class="phpdocumentor-signature__response_type">mixed</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>$viewVariable</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -777,9 +845,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_getViewVariables">
         getViewVariables()
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewVariables" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">147</span>
 
@@ -789,19 +858,26 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getViewVariables</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getViewVariables</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>$viewVariables</p>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>$viewVariables</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -812,9 +888,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_registerAppContextProperty">
         registerAppContextProperty()
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_registerAppContextProperty" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">161</span>
 
@@ -824,8 +901,11 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">registerAppContextProperty</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">registerAppContextProperty</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -851,10 +931,8 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -866,9 +944,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_registerViewVariable">
         registerViewVariable()
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_registerViewVariable" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">143</span>
 
@@ -878,8 +957,11 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">registerViewVariable</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">registerViewVariable</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -909,10 +991,8 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -924,9 +1004,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_renderView">
         renderView()
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_renderView" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">59</span>
 
@@ -936,16 +1017,17 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">renderView</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">renderView</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -957,9 +1039,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_setPage">
         setPage()
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setPage" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">182</span>
 
@@ -969,8 +1052,11 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setPage</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-SitePage.html"><abbr title="\Pipit\Interfaces\SitePage">SitePage</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setPage</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-SitePage.html"><abbr title="\Pipit\Interfaces\SitePage">SitePage</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -987,10 +1073,8 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -1002,9 +1086,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_setView">
         setView()
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setView" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">82</span>
 
@@ -1014,8 +1099,11 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setView</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$viewFile</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$isAdmin</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">setView</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$viewFile</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$isAdmin</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1041,13 +1129,17 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     
 
+    
+
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>Returns true if the file was found, false if not found</p>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Returns true if the file was found, false if not found</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1058,9 +1150,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_setViewDirectory">
         setViewDirectory()
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setViewDirectory" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">98</span>
 
@@ -1070,8 +1163,11 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setViewDirectory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$directoryName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setViewDirectory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$directoryName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
         <section class="phpdocumentor-description"><p>For example, all views for a Controller can be put in a view subdirectory, and that Controller will set the viewDirectory to match that location.</p>
 </section>
 
@@ -1090,10 +1186,8 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -1105,9 +1199,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_setViewVariables">
         setViewVariables()
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setViewVariables" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">139</span>
 
@@ -1117,8 +1212,11 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setViewVariables</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setViewVariables</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
         <section class="phpdocumentor-description"><p>This can also be expected to overwrite previously set view variables</p>
 </section>
 
@@ -1135,10 +1233,8 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -1150,9 +1246,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_getAdminViewPath">
         getAdminViewPath()
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getAdminViewPath" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">135</span>
 
@@ -1161,19 +1258,26 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">getAdminViewPath</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getAdminViewPath</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The full path to the admin views directory (by default, this is the same as the standard path)</p>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The full path to the admin views directory (by default, this is the same as the standard path)</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1184,9 +1288,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_getViewDirectory">
         getViewDirectory()
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewDirectory" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">106</span>
 
@@ -1196,17 +1301,22 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">getViewDirectory</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getViewDirectory</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1217,9 +1327,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_getViewFile">
         getViewFile()
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewFile" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">113</span>
 
@@ -1228,19 +1339,26 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">getViewFile</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getViewFile</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The $viewFile</p>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The $viewFile</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1251,9 +1369,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_getViewPath">
         getViewPath()
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewPath" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">120</span>
 
@@ -1262,19 +1381,26 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">getViewPath</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getViewPath</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The full directory path to the views</p>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The full directory path to the views</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1285,9 +1411,10 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     <h4 class="phpdocumentor-element__name" id="method_setViewPath">
         setViewPath()
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setViewPath" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php"><a href="files/pipit-src-pipit-classes-viewrenderers-htmlviewrenderer.html"><abbr title="Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php">HTMLViewRenderer.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">128</span>
 
@@ -1296,8 +1423,11 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">setViewPath</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$viewPath</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setViewPath</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$viewPath</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1314,78 +1444,160 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
             </section>
 
-        
+        <div class="phpdocumentor-modal" id="source-view">
+    <div class="phpdocumentor-modal-bg" data-exit-button></div>
+    <div class="phpdocumentor-modal-container">
+        <div class="phpdocumentor-modal-content">
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/Pipit/src/Pipit/Classes/ViewRenderers/HTMLViewRenderer.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+        </div>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
+    </div>
+</div>
+
     <script type="text/javascript">
-        function loadExternalCodeSnippets(line) {
-            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                var src = pre.getAttribute('data-src').replace( /\\/g, '/');
-                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-                var language = 'php';
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
 
-                var code = document.createElement('code');
-                code.className = 'language-' + language;
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
 
-                pre.textContent = '';
+                    var xhr = new XMLHttpRequest();
 
-                pre.setAttribute('data-line', line)
-                code.textContent = 'Loading…';
+                    xhr.open('GET', src, true);
 
-                pre.appendChild(code);
-
-                var xhr = new XMLHttpRequest();
-
-                xhr.open('GET', src, true);
-
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
 
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
-
                             Prism.highlightElement(code);
+                            return;
                         }
-                        else if (xhr.status >= 400) {
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
                             code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
                         }
-                        else {
-                            code.textContent = '✖ Error: File does not exist, is empty or trying to view from localhost';
-                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
                     }
-                };
+                    modal.classList.add("phpdocumentor-modal__open");
 
-                xhr.send(null);
-            });
-        }
-
-        var modals = document.querySelectorAll("[data-modal]");
-
-        modals.forEach(function (trigger) {
-            trigger.addEventListener("click", function (event) {
-                //event.preventDefault();
-                const modal = document.getElementById(trigger.dataset.modal);
-                modal.classList.add("phpdocumentor-modal__open");
-                loadExternalCodeSnippets(trigger.dataset.line)
-                const exits = modal.querySelectorAll("[data-exit-button]");
-                exits.forEach(function (exit) {
-                    exit.addEventListener("click", function (event) {
-                        event.preventDefault();
-                        modal.classList.remove("phpdocumentor-modal__open");
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
                     });
                 });
             });
-        });
+        })();
     </script>
 
     </article>
-                <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                                
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                                            <li><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#toc-methods">Methods</a></li>
+                                    </ul>
+            </li>
+            
+                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_appContext">$appContext</li>
+                                                    <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_variables">$variables</li>
+                                                    <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_viewDirectory">$viewDirectory</li>
+                                                    <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_viewFile">$viewFile</li>
+                                                    <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#property_viewPath">$viewPath</li>
+                                            </ul>
+                </li>
+            
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-CoreObject.html#method_getAppConfiguration">getAppConfiguration()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getAppContextProperty">getAppContextProperty()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-CoreObject.html#method_getLogger">getLogger()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewVariable">getViewVariable()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewVariables">getViewVariables()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_registerAppContextProperty">registerAppContextProperty()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_registerViewVariable">registerViewVariable()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_renderView">renderView()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setPage">setPage()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setView">setView()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setViewDirectory">setViewDirectory()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setViewVariables">setViewVariables()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getAdminViewPath">getAdminViewPath()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewDirectory">getViewDirectory()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewFile">getViewFile()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_getViewPath">getViewPath()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#method_setViewPath">setViewPath()</a></li>
+                                    </ul>
+            </li>
+                    </ul>
+    </section>
+
+                </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
         <header class="phpdocumentor-search-results__header">
             <h2 class="phpdocumentor-search-results__title">Search results</h2>
@@ -1396,7 +1608,6 @@ Built in implementations are HTMLViewRenderer and JSONViewRenderer</dd>
         </section>
     </section>
 </section>
-            </div>
         </div>
         <a href="classes/Pipit-Classes-ViewRenderers-HTMLViewRenderer.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 

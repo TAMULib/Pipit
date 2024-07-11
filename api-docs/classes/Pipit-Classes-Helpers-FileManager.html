@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/template.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
                 <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
         <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
         <script src="js/search.js"></script>
         <script defer src="js/searchIndex.js"></script>
     </head>
@@ -52,8 +53,8 @@
 <label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
     Menu
 </label>
-<aside class="phpdocumentor-column -four phpdocumentor-sidebar">
-                    <section class="phpdocumentor-sidebar__category">
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
+                    <section class="phpdocumentor-sidebar__category -namespaces">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="namespaces/pipit.html" class="">Pipit</a>
@@ -82,7 +83,7 @@
             </ul>
 
                         </section>
-                <section class="phpdocumentor-sidebar__category">
+                <section class="phpdocumentor-sidebar__category -packages">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/Application.html" class="">Application</a>
@@ -90,21 +91,22 @@
 
                         </section>
             
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -reports">
         <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
                 <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
     </section>
 
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -indices">
         <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
     </section>
 </aside>
 
-            <div class="phpdocumentor-column -eight phpdocumentor-content">
-                    <ul class="phpdocumentor-breadcrumbs">
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pipit.html">Pipit</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pipit-classes.html">Classes</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pipit-classes-helpers.html">Helpers</a></li>
@@ -127,12 +129,17 @@
     
     
             <span class="phpdocumentor-element__extends">
-            Uses
+            uses
                             <a href="classes/Pipit-Traits-FileConfiguration.html"><abbr title="\Pipit\Traits\FileConfiguration">FileConfiguration</abbr></a>                    </span>
     </h2>
 
+<div class="phpdocumentor-label-line">
+
+
+</div>
+
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-classes-helpers-filemanager.html"><abbr title="Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-src-pipit-classes-helpers-filemanager.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">7</span>
 
@@ -150,172 +157,194 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Pipit-Classes-Helpers-FileManager.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+
 </h3>
 
+
+
+
+
+
+
+<h4 id="toc-constants">
+    Constants
+    <a href="classes/Pipit-Classes-Helpers-FileManager.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -constant -private">
-    <a href="classes/Pipit-Classes-Helpers-FileManager.html#constant_CONFIG_FILE">CONFIG_FILE</a>
+    <a class="" href="classes/Pipit-Classes-Helpers-FileManager.html#constant_CONFIG_FILE">CONFIG_FILE</a>
     <span>
         &nbsp;= &quot;file.manager&quot;                            </span>
 </dt>
-<dd></dd>
 
-                    <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pipit-Classes-Helpers-FileManager.html#property_baseFilePath">$baseFilePath</a>
+    </dl>
+
+
+<h4 id="toc-properties">
+    Properties
+    <a href="classes/Pipit-Classes-Helpers-FileManager.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/Pipit-Classes-Helpers-FileManager.html#property_baseFilePath">$baseFilePath</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pipit-Traits-FileConfiguration.html#property_configs">$configs</a>
+    <a class="" href="classes/Pipit-Traits-FileConfiguration.html#property_configs">$configs</a>
     <span>
                         &nbsp;: array&lt;string, array&lt;string|int, mixed&gt;&gt;            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pipit-Classes-Helpers-AbstractHelper.html#property_site">$site</a>
+    <a class="" href="classes/Pipit-Classes-Helpers-AbstractHelper.html#property_site">$site</a>
     <span>
                         &nbsp;: <a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a>            </span>
 </dt>
-<dd></dd>
 
-                <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_configure">configure()</a>
+    </dl>
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/Pipit-Classes-Helpers-FileManager.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Pipit-Classes-Helpers-FileManager.html#method_configure">configure()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Override to handle any Helper specific configurations.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-CoreObject.html#method_getAppConfiguration">getAppConfiguration()</a>
+    <a class="" href="classes/Pipit-Classes-CoreObject.html#method_getAppConfiguration">getAppConfiguration()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Provides a single instance of the global app configuration to all extenders of CoreObject</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getBaseFilePath">getBaseFilePath()</a>
+    <a class="" href="classes/Pipit-Classes-Helpers-FileManager.html#method_getBaseFilePath">getBaseFilePath()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getDirectoryContents">getDirectoryContents()</a>
+    <a class="" href="classes/Pipit-Classes-Helpers-FileManager.html#method_getDirectoryContents">getDirectoryContents()</a>
     <span>
                                 &nbsp;: array&lt;int, array&lt;string, string&gt;&gt;    </span>
 </dt>
 <dd>Provides an array of \pathinfo results for the files in the given directory</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getDirectoryFiles">getDirectoryFiles()</a>
+    <a class="" href="classes/Pipit-Classes-Helpers-FileManager.html#method_getDirectoryFiles">getDirectoryFiles()</a>
     <span>
                                 &nbsp;: array&lt;string|int, <a href="classes/Pipit-Interfaces-File.html"><abbr title="\Pipit\Interfaces\File">File</abbr></a>&gt;    </span>
 </dt>
 <dd>Provides an array of \Pipit\Interfaces\File for a given directory</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getDownloadableFile">getDownloadableFile()</a>
+    <a class="" href="classes/Pipit-Classes-Helpers-FileManager.html#method_getDownloadableFile">getDownloadableFile()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Provides the specified \Interfaces\File as a downloadable attachment</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getDownloadableFileByFileName">getDownloadableFileByFileName()</a>
+    <a class="" href="classes/Pipit-Classes-Helpers-FileManager.html#method_getDownloadableFileByFileName">getDownloadableFileByFileName()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Provides the named file as a downloadable attachment</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getFileFromFileName">getFileFromFileName()</a>
+    <a class="" href="classes/Pipit-Classes-Helpers-FileManager.html#method_getFileFromFileName">getFileFromFileName()</a>
     <span>
                                 &nbsp;: <a href="classes/Pipit-Classes-Data-SimpleFile.html"><abbr title="\Pipit\Classes\Data\SimpleFile">SimpleFile</abbr></a>    </span>
 </dt>
 <dd>Provides a \Pipit\Interfaces\File for a given file name</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-CoreObject.html#method_getLogger">getLogger()</a>
+    <a class="" href="classes/Pipit-Classes-CoreObject.html#method_getLogger">getLogger()</a>
     <span>
                                 &nbsp;: <a href="classes/Pipit-Interfaces-Logger.html"><abbr title="\Pipit\Interfaces\Logger">Logger</abbr></a>    </span>
 </dt>
 <dd>Provides a single instance of a configured Logger to all extenders of CoreObject</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Helpers-AbstractHelper.html#method_getSite">getSite()</a>
+    <a class="" href="classes/Pipit-Classes-Helpers-AbstractHelper.html#method_getSite">getSite()</a>
     <span>
                                 &nbsp;: <a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a>    </span>
 </dt>
 <dd>Get the site associated with this Helper</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_processBase64File">processBase64File()</a>
+    <a class="" href="classes/Pipit-Classes-Helpers-FileManager.html#method_processBase64File">processBase64File()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_removeFile">removeFile()</a>
+    <a class="" href="classes/Pipit-Classes-Helpers-FileManager.html#method_removeFile">removeFile()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Attempts to delete a file represented by a \Pipit\Interfaces\File implementation</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_removeFileByFileName">removeFileByFileName()</a>
+    <a class="" href="classes/Pipit-Classes-Helpers-FileManager.html#method_removeFileByFileName">removeFileByFileName()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Attempts to delete a file with the given file name</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Helpers-AbstractHelper.html#method_setSite">setSite()</a>
+    <a class="" href="classes/Pipit-Classes-Helpers-AbstractHelper.html#method_setSite">setSite()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Set the site associated with this Helper</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Traits-FileConfiguration.html#method_configurationFileExists">configurationFileExists()</a>
+    <a class="" href="classes/Pipit-Traits-FileConfiguration.html#method_configurationFileExists">configurationFileExists()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Checks for the existence of a file with the given filename</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_createDirectory">createDirectory()</a>
+    <a class="" href="classes/Pipit-Classes-Helpers-FileManager.html#method_createDirectory">createDirectory()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Attempts to create a directory with the given name</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Traits-FileConfiguration.html#method_getConfigurationFromFileName">getConfigurationFromFileName()</a>
+    <a class="" href="classes/Pipit-Traits-FileConfiguration.html#method_getConfigurationFromFileName">getConfigurationFromFileName()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Retrieves a config array by its corresponding filename</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_checkFile">checkFile()</a>
+    <a class="" href="classes/Pipit-Classes-Helpers-FileManager.html#method_checkFile">checkFile()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Pipit-Traits-FileConfiguration.html#method_loadConfigurationFile">loadConfigurationFile()</a>
+    <a class="" href="classes/Pipit-Traits-FileConfiguration.html#method_loadConfigurationFile">loadConfigurationFile()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Loads and parses a php ini file into an array keyed by ini sections</dd>
 
-        </dl>
+    </dl>
 
 
 
@@ -324,20 +353,23 @@
         <h3 class="phpdocumentor-elements__header" id="constants">
             Constants
             <a href="classes/Pipit-Classes-Helpers-FileManager.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article class="phpdocumentor-element -constant -private ">
     <h4 class="phpdocumentor-element__name" id="constant_CONFIG_FILE">
         CONFIG_FILE
         <a href="classes/Pipit-Classes-Helpers-FileManager.html#constant_CONFIG_FILE" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-classes-helpers-filemanager.html"><abbr title="Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-src-pipit-classes-helpers-filemanager.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -347,9 +379,9 @@
 </code>
 
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
+    
+    
+    
 
     
 
@@ -361,6 +393,7 @@
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
             <a href="classes/Pipit-Classes-Helpers-FileManager.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article
         class="
@@ -372,16 +405,18 @@
     <h4 class="phpdocumentor-element__name" id="property_baseFilePath">
         $baseFilePath
         <a href="classes/Pipit-Classes-Helpers-FileManager.html#property_baseFilePath" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-classes-helpers-filemanager.html"><abbr title="Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-src-pipit-classes-helpers-filemanager.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">11</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -392,6 +427,8 @@
     
         <section class="phpdocumentor-description"><p>The directory path to store uploaded files</p>
 </section>
+
+    
 
     
 
@@ -406,16 +443,18 @@
     <h4 class="phpdocumentor-element__name" id="property_configs">
         $configs
         <a href="classes/Pipit-Traits-FileConfiguration.html#property_configs" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Traits/FileConfiguration.php"><a href="files/pipit-traits-fileconfiguration.html"><abbr title="Pipit/Traits/FileConfiguration.php">FileConfiguration.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Traits/FileConfiguration.php"><a href="files/pipit-src-pipit-traits-fileconfiguration.html"><abbr title="Pipit/src/Pipit/Traits/FileConfiguration.php">FileConfiguration.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">8</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -426,6 +465,8 @@
     
         <section class="phpdocumentor-description"><p>An array of configuration arrays</p>
 </section>
+
+    
 
     
 
@@ -440,16 +481,18 @@
     <h4 class="phpdocumentor-element__name" id="property_site">
         $site
         <a href="classes/Pipit-Classes-Helpers-AbstractHelper.html#property_site" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/AbstractHelper.php"><a href="files/pipit-classes-helpers-abstracthelper.html"><abbr title="Pipit/Classes/Helpers/AbstractHelper.php">AbstractHelper.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/AbstractHelper.php"><a href="files/pipit-src-pipit-classes-helpers-abstracthelper.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/AbstractHelper.php">AbstractHelper.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">9</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -463,6 +506,8 @@
 
     
 
+    
+
 </article>
             </section>
 
@@ -470,6 +515,7 @@
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
             <a href="classes/Pipit-Classes-Helpers-FileManager.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article
         class="phpdocumentor-element
@@ -480,9 +526,10 @@
     <h4 class="phpdocumentor-element__name" id="method_configure">
         configure()
         <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_configure" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-classes-helpers-filemanager.html"><abbr title="Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-src-pipit-classes-helpers-filemanager.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">19</span>
 
@@ -492,8 +539,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">configure</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$site</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">configure</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$site</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -510,10 +560,8 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -525,9 +573,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getAppConfiguration">
         getAppConfiguration()
         <a href="classes/Pipit-Classes-CoreObject.html#method_getAppConfiguration" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/CoreObject.php"><a href="files/pipit-classes-coreobject.html"><abbr title="Pipit/Classes/CoreObject.php">CoreObject.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/CoreObject.php"><a href="files/pipit-src-pipit-classes-coreobject.html"><abbr title="Pipit/src/Pipit/Classes/CoreObject.php">CoreObject.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">24</span>
 
@@ -537,17 +586,22 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getAppConfiguration</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getAppConfiguration</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -558,9 +612,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getBaseFilePath">
         getBaseFilePath()
         <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getBaseFilePath" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-classes-helpers-filemanager.html"><abbr title="Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-src-pipit-classes-helpers-filemanager.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">31</span>
 
@@ -569,17 +624,22 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getBaseFilePath</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getBaseFilePath</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -590,9 +650,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getDirectoryContents">
         getDirectoryContents()
         <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getDirectoryContents" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-classes-helpers-filemanager.html"><abbr title="Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-src-pipit-classes-helpers-filemanager.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">135</span>
 
@@ -602,8 +663,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getDirectoryContents</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$directoryPath</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filesOnly</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;int, array&lt;string, string&gt;&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getDirectoryContents</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$directoryPath</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filesOnly</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;int, array&lt;string, string&gt;&gt;</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -629,11 +693,13 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;int, array&lt;string, string&gt;&gt;</span>
-            &mdash;
-        
     
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;int, array&lt;string, string&gt;&gt;</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -644,9 +710,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getDirectoryFiles">
         getDirectoryFiles()
         <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getDirectoryFiles" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-classes-helpers-filemanager.html"><abbr title="Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-src-pipit-classes-helpers-filemanager.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">157</span>
 
@@ -656,8 +723,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getDirectoryFiles</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$directoryPath</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Pipit-Interfaces-File.html"><abbr title="\Pipit\Interfaces\File">File</abbr></a>&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getDirectoryFiles</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$directoryPath</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Pipit-Interfaces-File.html"><abbr title="\Pipit\Interfaces\File">File</abbr></a>&gt;</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -674,11 +744,13 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Pipit-Interfaces-File.html"><abbr title="\Pipit\Interfaces\File">File</abbr></a>&gt;</span>
-            &mdash;
-        
     
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Pipit-Interfaces-File.html"><abbr title="\Pipit\Interfaces\File">File</abbr></a>&gt;</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -689,9 +761,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getDownloadableFile">
         getDownloadableFile()
         <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getDownloadableFile" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-classes-helpers-filemanager.html"><abbr title="Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-src-pipit-classes-helpers-filemanager.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">85</span>
 
@@ -701,8 +774,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getDownloadableFile</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-File.html"><abbr title="\Pipit\Interfaces\File">File</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$file</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">getDownloadableFile</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-File.html"><abbr title="\Pipit\Interfaces\File">File</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$file</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -719,10 +795,8 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -734,9 +808,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getDownloadableFileByFileName">
         getDownloadableFileByFileName()
         <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getDownloadableFileByFileName" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-classes-helpers-filemanager.html"><abbr title="Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-src-pipit-classes-helpers-filemanager.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">76</span>
 
@@ -746,8 +821,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getDownloadableFileByFileName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">getDownloadableFileByFileName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -764,10 +842,8 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -779,9 +855,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getFileFromFileName">
         getFileFromFileName()
         <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getFileFromFileName" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-classes-helpers-filemanager.html"><abbr title="Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-src-pipit-classes-helpers-filemanager.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">171</span>
 
@@ -791,8 +868,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getFileFromFileName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Classes-Data-SimpleFile.html"><abbr title="\Pipit\Classes\Data\SimpleFile">SimpleFile</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getFileFromFileName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Classes-Data-SimpleFile.html"><abbr title="\Pipit\Classes\Data\SimpleFile">SimpleFile</abbr></a></span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -809,11 +889,13 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Classes-Data-SimpleFile.html"><abbr title="\Pipit\Classes\Data\SimpleFile">SimpleFile</abbr></a></span>
-            &mdash;
-        
     
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Classes-Data-SimpleFile.html"><abbr title="\Pipit\Classes\Data\SimpleFile">SimpleFile</abbr></a></span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -824,9 +906,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getLogger">
         getLogger()
         <a href="classes/Pipit-Classes-CoreObject.html#method_getLogger" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/CoreObject.php"><a href="files/pipit-classes-coreobject.html"><abbr title="Pipit/Classes/CoreObject.php">CoreObject.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/CoreObject.php"><a href="files/pipit-src-pipit-classes-coreobject.html"><abbr title="Pipit/src/Pipit/Classes/CoreObject.php">CoreObject.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">16</span>
 
@@ -836,17 +919,22 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getLogger</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Logger.html"><abbr title="\Pipit\Interfaces\Logger">Logger</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getLogger</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Logger.html"><abbr title="\Pipit\Interfaces\Logger">Logger</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Logger.html"><abbr title="\Pipit\Interfaces\Logger">Logger</abbr></a></span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Logger.html"><abbr title="\Pipit\Interfaces\Logger">Logger</abbr></a></span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -857,9 +945,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getSite">
         getSite()
         <a href="classes/Pipit-Classes-Helpers-AbstractHelper.html#method_getSite" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/AbstractHelper.php"><a href="files/pipit-classes-helpers-abstracthelper.html"><abbr title="Pipit/Classes/Helpers/AbstractHelper.php">AbstractHelper.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/AbstractHelper.php"><a href="files/pipit-src-pipit-classes-helpers-abstracthelper.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/AbstractHelper.php">AbstractHelper.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">15</span>
 
@@ -869,17 +958,22 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getSite</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getSite</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a></span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a></span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -890,9 +984,10 @@
     <h4 class="phpdocumentor-element__name" id="method_processBase64File">
         processBase64File()
         <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_processBase64File" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-classes-helpers-filemanager.html"><abbr title="Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-src-pipit-classes-helpers-filemanager.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">41</span>
 
@@ -901,8 +996,11 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">processBase64File</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$encodedFile</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileDirectory</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">processBase64File</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$encodedFile</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileDirectory</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -937,13 +1035,17 @@
 
     
 
+    
+
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The name of the created file</p>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The name of the created file</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -954,9 +1056,10 @@
     <h4 class="phpdocumentor-element__name" id="method_removeFile">
         removeFile()
         <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_removeFile" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-classes-helpers-filemanager.html"><abbr title="Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-src-pipit-classes-helpers-filemanager.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">109</span>
 
@@ -966,8 +1069,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">removeFile</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-File.html"><abbr title="\Pipit\Interfaces\File">File</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$file</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">removeFile</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-File.html"><abbr title="\Pipit\Interfaces\File">File</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$file</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -984,13 +1090,17 @@
 
     
 
+    
+
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>Returns true on successful deletion</p>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Returns true on successful deletion</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1001,9 +1111,10 @@
     <h4 class="phpdocumentor-element__name" id="method_removeFileByFileName">
         removeFileByFileName()
         <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_removeFileByFileName" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-classes-helpers-filemanager.html"><abbr title="Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-src-pipit-classes-helpers-filemanager.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">100</span>
 
@@ -1013,8 +1124,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">removeFileByFileName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">removeFileByFileName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1029,13 +1143,17 @@
 
     
 
+    
+
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>Returns true on successful deletion</p>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Returns true on successful deletion</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1046,9 +1164,10 @@
     <h4 class="phpdocumentor-element__name" id="method_setSite">
         setSite()
         <a href="classes/Pipit-Classes-Helpers-AbstractHelper.html#method_setSite" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/AbstractHelper.php"><a href="files/pipit-classes-helpers-abstracthelper.html"><abbr title="Pipit/Classes/Helpers/AbstractHelper.php">AbstractHelper.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/AbstractHelper.php"><a href="files/pipit-src-pipit-classes-helpers-abstracthelper.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/AbstractHelper.php">AbstractHelper.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">24</span>
 
@@ -1058,8 +1177,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setSite</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$site</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setSite</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$site</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1076,10 +1198,8 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -1091,9 +1211,10 @@
     <h4 class="phpdocumentor-element__name" id="method_configurationFileExists">
         configurationFileExists()
         <a href="classes/Pipit-Traits-FileConfiguration.html#method_configurationFileExists" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Traits/FileConfiguration.php"><a href="files/pipit-traits-fileconfiguration.html"><abbr title="Pipit/Traits/FileConfiguration.php">FileConfiguration.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Traits/FileConfiguration.php"><a href="files/pipit-src-pipit-traits-fileconfiguration.html"><abbr title="Pipit/src/Pipit/Traits/FileConfiguration.php">FileConfiguration.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">88</span>
 
@@ -1103,8 +1224,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">configurationFileExists</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$configurationFileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">configurationFileExists</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$configurationFileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1121,11 +1245,13 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
-            &mdash;
-        
     
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1136,9 +1262,10 @@
     <h4 class="phpdocumentor-element__name" id="method_createDirectory">
         createDirectory()
         <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_createDirectory" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-classes-helpers-filemanager.html"><abbr title="Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-src-pipit-classes-helpers-filemanager.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">121</span>
 
@@ -1148,8 +1275,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">createDirectory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$directory</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">createDirectory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$directory</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1166,10 +1296,8 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -1181,9 +1309,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getConfigurationFromFileName">
         getConfigurationFromFileName()
         <a href="classes/Pipit-Traits-FileConfiguration.html#method_getConfigurationFromFileName" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Traits/FileConfiguration.php"><a href="files/pipit-traits-fileconfiguration.html"><abbr title="Pipit/Traits/FileConfiguration.php">FileConfiguration.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Traits/FileConfiguration.php"><a href="files/pipit-src-pipit-traits-fileconfiguration.html"><abbr title="Pipit/src/Pipit/Traits/FileConfiguration.php">FileConfiguration.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">76</span>
 
@@ -1193,8 +1322,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">getConfigurationFromFileName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$configurationFileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getConfigurationFromFileName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$configurationFileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1211,11 +1343,13 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            &mdash;
-        
     
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1226,9 +1360,10 @@
     <h4 class="phpdocumentor-element__name" id="method_checkFile">
         checkFile()
         <a href="classes/Pipit-Classes-Helpers-FileManager.html#method_checkFile" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-classes-helpers-filemanager.html"><abbr title="Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Helpers/FileManager.php"><a href="files/pipit-src-pipit-classes-helpers-filemanager.html"><abbr title="Pipit/src/Pipit/Classes/Helpers/FileManager.php">FileManager.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">182</span>
 
@@ -1237,8 +1372,11 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">checkFile</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filePath</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">checkFile</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filePath</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1255,10 +1393,8 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -1270,9 +1406,10 @@
     <h4 class="phpdocumentor-element__name" id="method_loadConfigurationFile">
         loadConfigurationFile()
         <a href="classes/Pipit-Traits-FileConfiguration.html#method_loadConfigurationFile" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Traits/FileConfiguration.php"><a href="files/pipit-traits-fileconfiguration.html"><abbr title="Pipit/Traits/FileConfiguration.php">FileConfiguration.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Traits/FileConfiguration.php"><a href="files/pipit-src-pipit-traits-fileconfiguration.html"><abbr title="Pipit/src/Pipit/Traits/FileConfiguration.php">FileConfiguration.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">15</span>
 
@@ -1282,8 +1419,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">loadConfigurationFile</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$configurationFileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">loadConfigurationFile</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$configurationFileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1300,78 +1440,166 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
             </section>
 
-        
+        <div class="phpdocumentor-modal" id="source-view">
+    <div class="phpdocumentor-modal-bg" data-exit-button></div>
+    <div class="phpdocumentor-modal-container">
+        <div class="phpdocumentor-modal-content">
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/Pipit/src/Pipit/Classes/Helpers/FileManager.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+        </div>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
+    </div>
+</div>
+
     <script type="text/javascript">
-        function loadExternalCodeSnippets(line) {
-            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                var src = pre.getAttribute('data-src').replace( /\\/g, '/');
-                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-                var language = 'php';
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
 
-                var code = document.createElement('code');
-                code.className = 'language-' + language;
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
 
-                pre.textContent = '';
+                    var xhr = new XMLHttpRequest();
 
-                pre.setAttribute('data-line', line)
-                code.textContent = 'Loading…';
+                    xhr.open('GET', src, true);
 
-                pre.appendChild(code);
-
-                var xhr = new XMLHttpRequest();
-
-                xhr.open('GET', src, true);
-
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
 
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
-
                             Prism.highlightElement(code);
+                            return;
                         }
-                        else if (xhr.status >= 400) {
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
                             code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
                         }
-                        else {
-                            code.textContent = '✖ Error: File does not exist, is empty or trying to view from localhost';
-                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
                     }
-                };
+                    modal.classList.add("phpdocumentor-modal__open");
 
-                xhr.send(null);
-            });
-        }
-
-        var modals = document.querySelectorAll("[data-modal]");
-
-        modals.forEach(function (trigger) {
-            trigger.addEventListener("click", function (event) {
-                //event.preventDefault();
-                const modal = document.getElementById(trigger.dataset.modal);
-                modal.classList.add("phpdocumentor-modal__open");
-                loadExternalCodeSnippets(trigger.dataset.line)
-                const exits = modal.querySelectorAll("[data-exit-button]");
-                exits.forEach(function (exit) {
-                    exit.addEventListener("click", function (event) {
-                        event.preventDefault();
-                        modal.classList.remove("phpdocumentor-modal__open");
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
                     });
                 });
             });
-        });
+        })();
     </script>
 
     </article>
-                <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                                
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                        <li><a href="classes/Pipit-Classes-Helpers-FileManager.html#toc-constants">Constants</a></li>
+                                                            <li><a href="classes/Pipit-Classes-Helpers-FileManager.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Pipit-Classes-Helpers-FileManager.html#toc-methods">Methods</a></li>
+                                    </ul>
+            </li>
+                            <li class="phpdocumentor-on-this-page-section__title">Constants</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/Pipit-Classes-Helpers-FileManager.html#constant_CONFIG_FILE">CONFIG_FILE</a></li>
+                                            </ul>
+                </li>
+            
+                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/Pipit-Classes-Helpers-FileManager.html#property_baseFilePath">$baseFilePath</li>
+                                                    <li class=""><a href="classes/Pipit-Traits-FileConfiguration.html#property_configs">$configs</li>
+                                                    <li class=""><a href="classes/Pipit-Classes-Helpers-AbstractHelper.html#property_site">$site</li>
+                                            </ul>
+                </li>
+            
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/Pipit-Classes-Helpers-FileManager.html#method_configure">configure()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-CoreObject.html#method_getAppConfiguration">getAppConfiguration()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getBaseFilePath">getBaseFilePath()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getDirectoryContents">getDirectoryContents()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getDirectoryFiles">getDirectoryFiles()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getDownloadableFile">getDownloadableFile()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getDownloadableFileByFileName">getDownloadableFileByFileName()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Helpers-FileManager.html#method_getFileFromFileName">getFileFromFileName()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-CoreObject.html#method_getLogger">getLogger()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Helpers-AbstractHelper.html#method_getSite">getSite()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Helpers-FileManager.html#method_processBase64File">processBase64File()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Helpers-FileManager.html#method_removeFile">removeFile()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Helpers-FileManager.html#method_removeFileByFileName">removeFileByFileName()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Helpers-AbstractHelper.html#method_setSite">setSite()</a></li>
+                                            <li class=""><a href="classes/Pipit-Traits-FileConfiguration.html#method_configurationFileExists">configurationFileExists()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Helpers-FileManager.html#method_createDirectory">createDirectory()</a></li>
+                                            <li class=""><a href="classes/Pipit-Traits-FileConfiguration.html#method_getConfigurationFromFileName">getConfigurationFromFileName()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Helpers-FileManager.html#method_checkFile">checkFile()</a></li>
+                                            <li class=""><a href="classes/Pipit-Traits-FileConfiguration.html#method_loadConfigurationFile">loadConfigurationFile()</a></li>
+                                    </ul>
+            </li>
+                    </ul>
+    </section>
+
+                </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
         <header class="phpdocumentor-search-results__header">
             <h2 class="phpdocumentor-search-results__title">Search results</h2>
@@ -1382,7 +1610,6 @@
         </section>
     </section>
 </section>
-            </div>
         </div>
         <a href="classes/Pipit-Classes-Helpers-FileManager.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 

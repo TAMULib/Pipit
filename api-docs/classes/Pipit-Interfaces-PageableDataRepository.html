@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/template.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
                 <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
         <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
         <script src="js/search.js"></script>
         <script defer src="js/searchIndex.js"></script>
     </head>
@@ -52,8 +53,8 @@
 <label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
     Menu
 </label>
-<aside class="phpdocumentor-column -four phpdocumentor-sidebar">
-                    <section class="phpdocumentor-sidebar__category">
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
+                    <section class="phpdocumentor-sidebar__category -namespaces">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="namespaces/pipit.html" class="">Pipit</a>
@@ -82,7 +83,7 @@
             </ul>
 
                         </section>
-                <section class="phpdocumentor-sidebar__category">
+                <section class="phpdocumentor-sidebar__category -packages">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/Application.html" class="">Application</a>
@@ -90,21 +91,22 @@
 
                         </section>
             
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -reports">
         <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
                 <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
     </section>
 
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -indices">
         <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
     </section>
 </aside>
 
-            <div class="phpdocumentor-column -eight phpdocumentor-content">
-                    <ul class="phpdocumentor-breadcrumbs">
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pipit.html">Pipit</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pipit-interfaces.html">Interfaces</a></li>
     </ul>
@@ -124,7 +126,7 @@
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Interfaces/PageableDataRepository.php"><a href="files/pipit-interfaces-pageabledatarepository.html"><abbr title="Pipit/Interfaces/PageableDataRepository.php">PageableDataRepository.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Interfaces/PageableDataRepository.php"><a href="files/pipit-src-pipit-interfaces-pageabledatarepository.html"><abbr title="Pipit/src/Pipit/Interfaces/PageableDataRepository.php">PageableDataRepository.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">10</span>
 
@@ -135,9 +137,11 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
 
 
+
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pipit-Interfaces-PageableDataRepository.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
@@ -149,8 +153,7 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 </section>
 
                                     </dd>
-                        </dl>
-
+                                                                </dl>
 
 
 
@@ -158,74 +161,90 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
 <h3 id="toc">
     Table of Contents
-    <a href="#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Pipit-Interfaces-PageableDataRepository.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+
 </h3>
 
+
+
+
+
+
+
+
+
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/Pipit-Interfaces-PageableDataRepository.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
 <dl class="phpdocumentor-table-of-contents">
-                        <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Interfaces-DataRepository.html#method_add">add()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Pipit-Interfaces-DataRepository.html#method_add">add()</a>
     <span>
                                 &nbsp;: mixed|false    </span>
 </dt>
 <dd>Add a single record to a data store</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Interfaces-DataRepository.html#method_get">get()</a>
+    <a class="" href="classes/Pipit-Interfaces-DataRepository.html#method_get">get()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Get all records from a data source</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Interfaces-DataRepository.html#method_getById">getById()</a>
+    <a class="" href="classes/Pipit-Interfaces-DataRepository.html#method_getById">getById()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 <dd>Get a single record by its unique ID</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Interfaces-PageableDataRepository.html#method_pagedGet">pagedGet()</a>
+    <a class="" href="classes/Pipit-Interfaces-PageableDataRepository.html#method_pagedGet">pagedGet()</a>
     <span>
                                 &nbsp;: <a href="classes/Pipit-Classes-Data-ResultsPage.html"><abbr title="\Pipit\Classes\Data\ResultsPage">ResultsPage</abbr></a>    </span>
 </dt>
 <dd>Get a page of records from a data source</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Interfaces-PageableDataRepository.html#method_pagedSearch">pagedSearch()</a>
+    <a class="" href="classes/Pipit-Interfaces-PageableDataRepository.html#method_pagedSearch">pagedSearch()</a>
     <span>
                                 &nbsp;: <a href="classes/Pipit-Classes-Data-ResultsPage.html"><abbr title="\Pipit\Classes\Data\ResultsPage">ResultsPage</abbr></a>    </span>
 </dt>
 <dd>Get a page of search results</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Interfaces-DataRepository.html#method_removeById">removeById()</a>
+    <a class="" href="classes/Pipit-Interfaces-DataRepository.html#method_removeById">removeById()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Remove a single record by its unique ID</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Interfaces-DataRepository.html#method_search">search()</a>
+    <a class="" href="classes/Pipit-Interfaces-DataRepository.html#method_search">search()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Find a single record by search criteria</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Interfaces-DataRepository.html#method_searchAdvanced">searchAdvanced()</a>
+    <a class="" href="classes/Pipit-Interfaces-DataRepository.html#method_searchAdvanced">searchAdvanced()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Find a single record by field/value search criteria</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Interfaces-DataRepository.html#method_update">update()</a>
+    <a class="" href="classes/Pipit-Interfaces-DataRepository.html#method_update">update()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Update a single record in a store by its unique ID</dd>
 
-        </dl>
+    </dl>
+
 
 
 
@@ -235,6 +254,7 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
             <a href="classes/Pipit-Interfaces-PageableDataRepository.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article
         class="phpdocumentor-element
@@ -245,9 +265,10 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
     <h4 class="phpdocumentor-element__name" id="method_add">
         add()
         <a href="classes/Pipit-Interfaces-DataRepository.html#method_add" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Interfaces/DataRepository.php"><a href="files/pipit-interfaces-datarepository.html"><abbr title="Pipit/Interfaces/DataRepository.php">DataRepository.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Interfaces/DataRepository.php"><a href="files/pipit-src-pipit-interfaces-datarepository.html"><abbr title="Pipit/src/Pipit/Interfaces/DataRepository.php">DataRepository.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">55</span>
 
@@ -257,8 +278,11 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">add</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed|false</span></code>
+                    <span class="phpdocumentor-signature__name">add</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed|false</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -275,13 +299,17 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
     
 
+    
+
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed|false</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The unique ID of the record on success, false on failure</p>
+        <span class="phpdocumentor-signature__response_type">mixed|false</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The unique ID of the record on success, false on failure</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -292,9 +320,10 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
     <h4 class="phpdocumentor-element__name" id="method_get">
         get()
         <a href="classes/Pipit-Interfaces-DataRepository.html#method_get" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Interfaces/DataRepository.php"><a href="files/pipit-interfaces-datarepository.html"><abbr title="Pipit/Interfaces/DataRepository.php">DataRepository.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Interfaces/DataRepository.php"><a href="files/pipit-src-pipit-interfaces-datarepository.html"><abbr title="Pipit/src/Pipit/Interfaces/DataRepository.php">DataRepository.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">16</span>
 
@@ -304,19 +333,26 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">get</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">get</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The results</p>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The results</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -327,9 +363,10 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
     <h4 class="phpdocumentor-element__name" id="method_getById">
         getById()
         <a href="classes/Pipit-Interfaces-DataRepository.html#method_getById" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Interfaces/DataRepository.php"><a href="files/pipit-interfaces-datarepository.html"><abbr title="Pipit/Interfaces/DataRepository.php">DataRepository.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Interfaces/DataRepository.php"><a href="files/pipit-src-pipit-interfaces-datarepository.html"><abbr title="Pipit/src/Pipit/Interfaces/DataRepository.php">DataRepository.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">23</span>
 
@@ -339,8 +376,11 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getById</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">getById</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -357,13 +397,17 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
     
 
+    
+
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The record matching the ID</p>
+        <span class="phpdocumentor-signature__response_type">mixed</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The record matching the ID</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -374,9 +418,10 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
     <h4 class="phpdocumentor-element__name" id="method_pagedGet">
         pagedGet()
         <a href="classes/Pipit-Interfaces-PageableDataRepository.html#method_pagedGet" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Interfaces/PageableDataRepository.php"><a href="files/pipit-interfaces-pageabledatarepository.html"><abbr title="Pipit/Interfaces/PageableDataRepository.php">PageableDataRepository.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Interfaces/PageableDataRepository.php"><a href="files/pipit-src-pipit-interfaces-pageabledatarepository.html"><abbr title="Pipit/src/Pipit/Interfaces/PageableDataRepository.php">PageableDataRepository.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">17</span>
 
@@ -386,8 +431,11 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">pagedGet</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Classes-Data-ResultsPage.html"><abbr title="\Pipit\Classes\Data\ResultsPage">ResultsPage</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">pagedGet</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Classes-Data-ResultsPage.html"><abbr title="\Pipit\Classes\Data\ResultsPage">ResultsPage</abbr></a></span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
         <section class="phpdocumentor-description"><p>@param integer $page The page number to return</p>
 </section>
 
@@ -398,20 +446,23 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
+    
+
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Classes-Data-ResultsPage.html"><abbr title="\Pipit\Classes\Data\ResultsPage">ResultsPage</abbr></a></span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The results</p>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Classes-Data-ResultsPage.html"><abbr title="\Pipit\Classes\Data\ResultsPage">ResultsPage</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The results</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -422,9 +473,10 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
     <h4 class="phpdocumentor-element__name" id="method_pagedSearch">
         pagedSearch()
         <a href="classes/Pipit-Interfaces-PageableDataRepository.html#method_pagedSearch" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Interfaces/PageableDataRepository.php"><a href="files/pipit-interfaces-pageabledatarepository.html"><abbr title="Pipit/Interfaces/PageableDataRepository.php">PageableDataRepository.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Interfaces/PageableDataRepository.php"><a href="files/pipit-src-pipit-interfaces-pageabledatarepository.html"><abbr title="Pipit/src/Pipit/Interfaces/PageableDataRepository.php">PageableDataRepository.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">27</span>
 
@@ -434,8 +486,11 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">pagedSearch</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Classes-Data-ResultsPage.html"><abbr title="\Pipit\Classes\Data\ResultsPage">ResultsPage</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">pagedSearch</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Classes-Data-ResultsPage.html"><abbr title="\Pipit\Classes\Data\ResultsPage">ResultsPage</abbr></a></span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -454,20 +509,23 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
+    
+
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Classes-Data-ResultsPage.html"><abbr title="\Pipit\Classes\Data\ResultsPage">ResultsPage</abbr></a></span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The search results</p>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Classes-Data-ResultsPage.html"><abbr title="\Pipit\Classes\Data\ResultsPage">ResultsPage</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The search results</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -478,9 +536,10 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
     <h4 class="phpdocumentor-element__name" id="method_removeById">
         removeById()
         <a href="classes/Pipit-Interfaces-DataRepository.html#method_removeById" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Interfaces/DataRepository.php"><a href="files/pipit-interfaces-datarepository.html"><abbr title="Pipit/Interfaces/DataRepository.php">DataRepository.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Interfaces/DataRepository.php"><a href="files/pipit-src-pipit-interfaces-datarepository.html"><abbr title="Pipit/src/Pipit/Interfaces/DataRepository.php">DataRepository.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">30</span>
 
@@ -490,8 +549,11 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">removeById</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">removeById</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -508,13 +570,17 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
     
 
+    
+
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The success or failure of the update operation</p>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The success or failure of the update operation</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -525,9 +591,10 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
     <h4 class="phpdocumentor-element__name" id="method_search">
         search()
         <a href="classes/Pipit-Interfaces-DataRepository.html#method_search" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Interfaces/DataRepository.php"><a href="files/pipit-interfaces-datarepository.html"><abbr title="Pipit/Interfaces/DataRepository.php">DataRepository.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Interfaces/DataRepository.php"><a href="files/pipit-src-pipit-interfaces-datarepository.html"><abbr title="Pipit/src/Pipit/Interfaces/DataRepository.php">DataRepository.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">39</span>
 
@@ -537,8 +604,11 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">search</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">search</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -555,13 +625,17 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
     
 
+    
+
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The search results</p>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The search results</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -572,9 +646,10 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
     <h4 class="phpdocumentor-element__name" id="method_searchAdvanced">
         searchAdvanced()
         <a href="classes/Pipit-Interfaces-DataRepository.html#method_searchAdvanced" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Interfaces/DataRepository.php"><a href="files/pipit-interfaces-datarepository.html"><abbr title="Pipit/Interfaces/DataRepository.php">DataRepository.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Interfaces/DataRepository.php"><a href="files/pipit-src-pipit-interfaces-datarepository.html"><abbr title="Pipit/src/Pipit/Interfaces/DataRepository.php">DataRepository.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">48</span>
 
@@ -584,8 +659,11 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">searchAdvanced</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string, string&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">searchAdvanced</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string, string&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -602,13 +680,17 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
     
 
+    
+
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The search results</p>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The search results</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -619,9 +701,10 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
     <h4 class="phpdocumentor-element__name" id="method_update">
         update()
         <a href="classes/Pipit-Interfaces-DataRepository.html#method_update" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Interfaces/DataRepository.php"><a href="files/pipit-interfaces-datarepository.html"><abbr title="Pipit/Interfaces/DataRepository.php">DataRepository.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Interfaces/DataRepository.php"><a href="files/pipit-src-pipit-interfaces-datarepository.html"><abbr title="Pipit/src/Pipit/Interfaces/DataRepository.php">DataRepository.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">63</span>
 
@@ -631,8 +714,11 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">update</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">update</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -658,80 +744,148 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
 
     
 
+    
+
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>Success or failure</p>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Success or failure</p>
 </section>
 
-    
+            </section>
+
 </article>
             </section>
 
-        
+        <div class="phpdocumentor-modal" id="source-view">
+    <div class="phpdocumentor-modal-bg" data-exit-button></div>
+    <div class="phpdocumentor-modal-container">
+        <div class="phpdocumentor-modal-content">
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/Pipit/src/Pipit/Interfaces/PageableDataRepository.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+        </div>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
+    </div>
+</div>
+
     <script type="text/javascript">
-        function loadExternalCodeSnippets(line) {
-            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                var src = pre.getAttribute('data-src').replace( /\\/g, '/');
-                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-                var language = 'php';
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
 
-                var code = document.createElement('code');
-                code.className = 'language-' + language;
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
 
-                pre.textContent = '';
+                    var xhr = new XMLHttpRequest();
 
-                pre.setAttribute('data-line', line)
-                code.textContent = 'Loading…';
+                    xhr.open('GET', src, true);
 
-                pre.appendChild(code);
-
-                var xhr = new XMLHttpRequest();
-
-                xhr.open('GET', src, true);
-
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
 
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
-
                             Prism.highlightElement(code);
+                            return;
                         }
-                        else if (xhr.status >= 400) {
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
                             code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
                         }
-                        else {
-                            code.textContent = '✖ Error: File does not exist, is empty or trying to view from localhost';
-                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
                     }
-                };
+                    modal.classList.add("phpdocumentor-modal__open");
 
-                xhr.send(null);
-            });
-        }
-
-        var modals = document.querySelectorAll("[data-modal]");
-
-        modals.forEach(function (trigger) {
-            trigger.addEventListener("click", function (event) {
-                //event.preventDefault();
-                const modal = document.getElementById(trigger.dataset.modal);
-                modal.classList.add("phpdocumentor-modal__open");
-                loadExternalCodeSnippets(trigger.dataset.line)
-                const exits = modal.querySelectorAll("[data-exit-button]");
-                exits.forEach(function (exit) {
-                    exit.addEventListener("click", function (event) {
-                        event.preventDefault();
-                        modal.classList.remove("phpdocumentor-modal__open");
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
                     });
                 });
             });
-        });
+        })();
     </script>
 
     </article>
-                <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                            
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                    <li><a href="classes/Pipit-Interfaces-PageableDataRepository.html#toc-constants">Constants</a></li>
+                    <li><a href="classes/Pipit-Interfaces-PageableDataRepository.html#toc-methods">Methods</a></li>
+                </ul>
+            </li>
+                            <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/Pipit-Interfaces-DataRepository.html#method_add">add()</a></li>
+                                                    <li class=""><a href="classes/Pipit-Interfaces-DataRepository.html#method_get">get()</a></li>
+                                                    <li class=""><a href="classes/Pipit-Interfaces-DataRepository.html#method_getById">getById()</a></li>
+                                                    <li class=""><a href="classes/Pipit-Interfaces-PageableDataRepository.html#method_pagedGet">pagedGet()</a></li>
+                                                    <li class=""><a href="classes/Pipit-Interfaces-PageableDataRepository.html#method_pagedSearch">pagedSearch()</a></li>
+                                                    <li class=""><a href="classes/Pipit-Interfaces-DataRepository.html#method_removeById">removeById()</a></li>
+                                                    <li class=""><a href="classes/Pipit-Interfaces-DataRepository.html#method_search">search()</a></li>
+                                                    <li class=""><a href="classes/Pipit-Interfaces-DataRepository.html#method_searchAdvanced">searchAdvanced()</a></li>
+                                                    <li class=""><a href="classes/Pipit-Interfaces-DataRepository.html#method_update">update()</a></li>
+                                            </ul>
+                </li>
+            
+                    </ul>
+    </section>
+
+                </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
         <header class="phpdocumentor-search-results__header">
             <h2 class="phpdocumentor-search-results__title">Search results</h2>
@@ -742,7 +896,6 @@ DataRepositories are utilized to perform CRUD actions on data stores</p>
         </section>
     </section>
 </section>
-            </div>
         </div>
         <a href="classes/Pipit-Interfaces-PageableDataRepository.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 

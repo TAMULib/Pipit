@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/template.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
                 <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
         <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
         <script src="js/search.js"></script>
         <script defer src="js/searchIndex.js"></script>
     </head>
@@ -52,8 +53,8 @@
 <label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
     Menu
 </label>
-<aside class="phpdocumentor-column -four phpdocumentor-sidebar">
-                    <section class="phpdocumentor-sidebar__category">
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
+                    <section class="phpdocumentor-sidebar__category -namespaces">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="namespaces/pipit.html" class="">Pipit</a>
@@ -82,7 +83,7 @@
             </ul>
 
                         </section>
-                <section class="phpdocumentor-sidebar__category">
+                <section class="phpdocumentor-sidebar__category -packages">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/Application.html" class="">Application</a>
@@ -90,21 +91,22 @@
 
                         </section>
             
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -reports">
         <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
                 <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
     </section>
 
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -indices">
         <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
     </section>
 </aside>
 
-            <div class="phpdocumentor-column -eight phpdocumentor-content">
-                    <ul class="phpdocumentor-breadcrumbs">
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pipit.html">Pipit</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pipit-utilities.html">Utilities</a></li>
     </ul>
@@ -123,19 +125,23 @@
     
     
             <span class="phpdocumentor-element__extends">
-            Uses
+            uses
                             <a href="classes/Pipit-Traits-FileConfiguration.html"><abbr title="\Pipit\Traits\FileConfiguration">FileConfiguration</abbr></a>                    </span>
     </h2>
 
+<div class="phpdocumentor-label-line">
+
+
+</div>
+
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-utilities-ldapconnector.html"><abbr title="Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-src-pipit-utilities-ldapconnector.html"><abbr title="Pipit/src/Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">6</span>
 
     </aside>
 
         
-    <section class="phpdocumentor-description"></section>
 
 
 
@@ -146,123 +152,144 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Pipit-Utilities-LDAPConnector.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+
 </h3>
 
+
+
+
+
+
+
+<h4 id="toc-constants">
+    Constants
+    <a href="classes/Pipit-Utilities-LDAPConnector.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -constant -private">
-    <a href="classes/Pipit-Utilities-LDAPConnector.html#constant_CONFIG_FILE">CONFIG_FILE</a>
+    <a class="" href="classes/Pipit-Utilities-LDAPConnector.html#constant_CONFIG_FILE">CONFIG_FILE</a>
     <span>
         &nbsp;= &quot;ldap.connector&quot;                            </span>
 </dt>
-<dd></dd>
 
-                    <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pipit-Traits-FileConfiguration.html#property_configs">$configs</a>
+    </dl>
+
+
+<h4 id="toc-properties">
+    Properties
+    <a href="classes/Pipit-Utilities-LDAPConnector.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/Pipit-Traits-FileConfiguration.html#property_configs">$configs</a>
     <span>
                         &nbsp;: array&lt;string, array&lt;string|int, mixed&gt;&gt;            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pipit-Utilities-LDAPConnector.html#property_handle">$handle</a>
+    <a class="" href="classes/Pipit-Utilities-LDAPConnector.html#property_handle">$handle</a>
     <span>
                         &nbsp;: resource|false            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pipit-Utilities-LDAPConnector.html#property_password">$password</a>
+    <a class="" href="classes/Pipit-Utilities-LDAPConnector.html#property_password">$password</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pipit-Utilities-LDAPConnector.html#property_port">$port</a>
+    <a class="" href="classes/Pipit-Utilities-LDAPConnector.html#property_port">$port</a>
     <span>
                         &nbsp;: int            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pipit-Utilities-LDAPConnector.html#property_url">$url</a>
+    <a class="" href="classes/Pipit-Utilities-LDAPConnector.html#property_url">$url</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pipit-Utilities-LDAPConnector.html#property_user">$user</a>
+    <a class="" href="classes/Pipit-Utilities-LDAPConnector.html#property_user">$user</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
-<dd></dd>
 
-                <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Utilities-LDAPConnector.html#method___construct">__construct()</a>
+    </dl>
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/Pipit-Utilities-LDAPConnector.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Pipit-Utilities-LDAPConnector.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 <dd>Uses either parameters or global config properties to prep for connecting to an LDAP server</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Utilities-LDAPConnector.html#method_getConnection">getConnection()</a>
+    <a class="" href="classes/Pipit-Utilities-LDAPConnector.html#method_getConnection">getConnection()</a>
     <span>
                                 &nbsp;: resource|false    </span>
 </dt>
 <dd>Returns the value of the property with the given name</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Traits-FileConfiguration.html#method_configurationFileExists">configurationFileExists()</a>
+    <a class="" href="classes/Pipit-Traits-FileConfiguration.html#method_configurationFileExists">configurationFileExists()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Checks for the existence of a file with the given filename</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Traits-FileConfiguration.html#method_getConfigurationFromFileName">getConfigurationFromFileName()</a>
+    <a class="" href="classes/Pipit-Traits-FileConfiguration.html#method_getConfigurationFromFileName">getConfigurationFromFileName()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Retrieves a config array by its corresponding filename</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Utilities-LDAPConnector.html#method_getProperty">getProperty()</a>
+    <a class="" href="classes/Pipit-Utilities-LDAPConnector.html#method_getProperty">getProperty()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 <dd>Returns the value of the property with the given name</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Utilities-LDAPConnector.html#method_setProperty">setProperty()</a>
+    <a class="" href="classes/Pipit-Utilities-LDAPConnector.html#method_setProperty">setProperty()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Assigns a property on the class with the given $name and $value</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Pipit-Utilities-LDAPConnector.html#method_bind">bind()</a>
+    <a class="" href="classes/Pipit-Utilities-LDAPConnector.html#method_bind">bind()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Pipit-Utilities-LDAPConnector.html#method_configIsValid">configIsValid()</a>
+    <a class="" href="classes/Pipit-Utilities-LDAPConnector.html#method_configIsValid">configIsValid()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Checks the given parameters for validity</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Pipit-Traits-FileConfiguration.html#method_loadConfigurationFile">loadConfigurationFile()</a>
+    <a class="" href="classes/Pipit-Traits-FileConfiguration.html#method_loadConfigurationFile">loadConfigurationFile()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Loads and parses a php ini file into an array keyed by ini sections</dd>
 
-        </dl>
+    </dl>
 
 
 
@@ -271,20 +298,23 @@
         <h3 class="phpdocumentor-elements__header" id="constants">
             Constants
             <a href="classes/Pipit-Utilities-LDAPConnector.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article class="phpdocumentor-element -constant -private ">
     <h4 class="phpdocumentor-element__name" id="constant_CONFIG_FILE">
         CONFIG_FILE
         <a href="classes/Pipit-Utilities-LDAPConnector.html#constant_CONFIG_FILE" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-utilities-ldapconnector.html"><abbr title="Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-src-pipit-utilities-ldapconnector.html"><abbr title="Pipit/src/Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -294,9 +324,9 @@
 </code>
 
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
+    
+    
+    
 
     
 
@@ -308,6 +338,7 @@
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
             <a href="classes/Pipit-Utilities-LDAPConnector.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article
         class="
@@ -319,16 +350,18 @@
     <h4 class="phpdocumentor-element__name" id="property_configs">
         $configs
         <a href="classes/Pipit-Traits-FileConfiguration.html#property_configs" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Traits/FileConfiguration.php"><a href="files/pipit-traits-fileconfiguration.html"><abbr title="Pipit/Traits/FileConfiguration.php">FileConfiguration.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Traits/FileConfiguration.php"><a href="files/pipit-src-pipit-traits-fileconfiguration.html"><abbr title="Pipit/src/Pipit/Traits/FileConfiguration.php">FileConfiguration.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">8</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -339,6 +372,8 @@
     
         <section class="phpdocumentor-description"><p>An array of configuration arrays</p>
 </section>
+
+    
 
     
 
@@ -353,16 +388,18 @@
     <h4 class="phpdocumentor-element__name" id="property_handle">
         $handle
         <a href="classes/Pipit-Utilities-LDAPConnector.html#property_handle" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-utilities-ldapconnector.html"><abbr title="Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-src-pipit-utilities-ldapconnector.html"><abbr title="Pipit/src/Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -373,6 +410,8 @@
     
         <section class="phpdocumentor-description"><p>The LDAP Connection</p>
 </section>
+
+    
 
     
 
@@ -387,16 +426,18 @@
     <h4 class="phpdocumentor-element__name" id="property_password">
         $password
         <a href="classes/Pipit-Utilities-LDAPConnector.html#property_password" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-utilities-ldapconnector.html"><abbr title="Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-src-pipit-utilities-ldapconnector.html"><abbr title="Pipit/src/Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -407,6 +448,8 @@
     
         <section class="phpdocumentor-description"><p>The password to connect with</p>
 </section>
+
+    
 
     
 
@@ -421,16 +464,18 @@
     <h4 class="phpdocumentor-element__name" id="property_port">
         $port
         <a href="classes/Pipit-Utilities-LDAPConnector.html#property_port" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-utilities-ldapconnector.html"><abbr title="Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-src-pipit-utilities-ldapconnector.html"><abbr title="Pipit/src/Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">11</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -441,6 +486,8 @@
     
         <section class="phpdocumentor-description"><p>The port to connect to</p>
 </section>
+
+    
 
     
 
@@ -455,16 +502,18 @@
     <h4 class="phpdocumentor-element__name" id="property_url">
         $url
         <a href="classes/Pipit-Utilities-LDAPConnector.html#property_url" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-utilities-ldapconnector.html"><abbr title="Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-src-pipit-utilities-ldapconnector.html"><abbr title="Pipit/src/Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">9</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -475,6 +524,8 @@
     
         <section class="phpdocumentor-description"><p>The url to connect to</p>
 </section>
+
+    
 
     
 
@@ -489,16 +540,18 @@
     <h4 class="phpdocumentor-element__name" id="property_user">
         $user
         <a href="classes/Pipit-Utilities-LDAPConnector.html#property_user" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-utilities-ldapconnector.html"><abbr title="Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-src-pipit-utilities-ldapconnector.html"><abbr title="Pipit/src/Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -512,6 +565,8 @@
 
     
 
+    
+
 </article>
             </section>
 
@@ -519,6 +574,7 @@
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
             <a href="classes/Pipit-Utilities-LDAPConnector.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article
         class="phpdocumentor-element
@@ -529,9 +585,10 @@
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
         <a href="classes/Pipit-Utilities-LDAPConnector.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-utilities-ldapconnector.html"><abbr title="Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-src-pipit-utilities-ldapconnector.html"><abbr title="Pipit/src/Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">30</span>
 
@@ -541,8 +598,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">NULL</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$port</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">NULL</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">NULL</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$password</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">NULL</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">NULL</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$port</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">NULL</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">NULL</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$password</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">NULL</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -586,10 +646,8 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -601,9 +659,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getConnection">
         getConnection()
         <a href="classes/Pipit-Utilities-LDAPConnector.html#method_getConnection" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-utilities-ldapconnector.html"><abbr title="Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-src-pipit-utilities-ldapconnector.html"><abbr title="Pipit/src/Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">84</span>
 
@@ -613,17 +672,22 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getConnection</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">resource|false</span></code>
+                    <span class="phpdocumentor-signature__name">getConnection</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">resource|false</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">resource|false</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">resource|false</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -634,9 +698,10 @@
     <h4 class="phpdocumentor-element__name" id="method_configurationFileExists">
         configurationFileExists()
         <a href="classes/Pipit-Traits-FileConfiguration.html#method_configurationFileExists" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Traits/FileConfiguration.php"><a href="files/pipit-traits-fileconfiguration.html"><abbr title="Pipit/Traits/FileConfiguration.php">FileConfiguration.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Traits/FileConfiguration.php"><a href="files/pipit-src-pipit-traits-fileconfiguration.html"><abbr title="Pipit/src/Pipit/Traits/FileConfiguration.php">FileConfiguration.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">88</span>
 
@@ -646,8 +711,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">configurationFileExists</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$configurationFileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">configurationFileExists</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$configurationFileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -664,11 +732,13 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
-            &mdash;
-        
     
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -679,9 +749,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getConfigurationFromFileName">
         getConfigurationFromFileName()
         <a href="classes/Pipit-Traits-FileConfiguration.html#method_getConfigurationFromFileName" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Traits/FileConfiguration.php"><a href="files/pipit-traits-fileconfiguration.html"><abbr title="Pipit/Traits/FileConfiguration.php">FileConfiguration.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Traits/FileConfiguration.php"><a href="files/pipit-src-pipit-traits-fileconfiguration.html"><abbr title="Pipit/src/Pipit/Traits/FileConfiguration.php">FileConfiguration.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">76</span>
 
@@ -691,8 +762,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">getConfigurationFromFileName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$configurationFileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getConfigurationFromFileName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$configurationFileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -709,11 +783,13 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            &mdash;
-        
     
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -724,9 +800,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getProperty">
         getProperty()
         <a href="classes/Pipit-Utilities-LDAPConnector.html#method_getProperty" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-utilities-ldapconnector.html"><abbr title="Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-src-pipit-utilities-ldapconnector.html"><abbr title="Pipit/src/Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">130</span>
 
@@ -736,8 +813,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">getProperty</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">getProperty</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -754,10 +834,8 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -769,9 +847,10 @@
     <h4 class="phpdocumentor-element__name" id="method_setProperty">
         setProperty()
         <a href="classes/Pipit-Utilities-LDAPConnector.html#method_setProperty" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-utilities-ldapconnector.html"><abbr title="Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-src-pipit-utilities-ldapconnector.html"><abbr title="Pipit/src/Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">121</span>
 
@@ -781,8 +860,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">setProperty</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setProperty</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -808,10 +890,8 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -823,9 +903,10 @@
     <h4 class="phpdocumentor-element__name" id="method_bind">
         bind()
         <a href="classes/Pipit-Utilities-LDAPConnector.html#method_bind" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-utilities-ldapconnector.html"><abbr title="Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-src-pipit-utilities-ldapconnector.html"><abbr title="Pipit/src/Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">108</span>
 
@@ -834,17 +915,22 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">bind</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">bind</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -855,9 +941,10 @@
     <h4 class="phpdocumentor-element__name" id="method_configIsValid">
         configIsValid()
         <a href="classes/Pipit-Utilities-LDAPConnector.html#method_configIsValid" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-utilities-ldapconnector.html"><abbr title="Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Utilities/LDAPConnector.php"><a href="files/pipit-src-pipit-utilities-ldapconnector.html"><abbr title="Pipit/src/Pipit/Utilities/LDAPConnector.php">LDAPConnector.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">76</span>
 
@@ -867,8 +954,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">configIsValid</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$port</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$password</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">configIsValid</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$port</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$password</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -912,11 +1002,13 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
-            &mdash;
-        
     
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -927,9 +1019,10 @@
     <h4 class="phpdocumentor-element__name" id="method_loadConfigurationFile">
         loadConfigurationFile()
         <a href="classes/Pipit-Traits-FileConfiguration.html#method_loadConfigurationFile" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Traits/FileConfiguration.php"><a href="files/pipit-traits-fileconfiguration.html"><abbr title="Pipit/Traits/FileConfiguration.php">FileConfiguration.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Traits/FileConfiguration.php"><a href="files/pipit-src-pipit-traits-fileconfiguration.html"><abbr title="Pipit/src/Pipit/Traits/FileConfiguration.php">FileConfiguration.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">15</span>
 
@@ -939,8 +1032,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">loadConfigurationFile</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$configurationFileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">loadConfigurationFile</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$configurationFileName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -957,78 +1053,159 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
             </section>
 
-        
+        <div class="phpdocumentor-modal" id="source-view">
+    <div class="phpdocumentor-modal-bg" data-exit-button></div>
+    <div class="phpdocumentor-modal-container">
+        <div class="phpdocumentor-modal-content">
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/Pipit/src/Pipit/Utilities/LDAPConnector.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+        </div>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
+    </div>
+</div>
+
     <script type="text/javascript">
-        function loadExternalCodeSnippets(line) {
-            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                var src = pre.getAttribute('data-src').replace( /\\/g, '/');
-                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-                var language = 'php';
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
 
-                var code = document.createElement('code');
-                code.className = 'language-' + language;
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
 
-                pre.textContent = '';
+                    var xhr = new XMLHttpRequest();
 
-                pre.setAttribute('data-line', line)
-                code.textContent = 'Loading…';
+                    xhr.open('GET', src, true);
 
-                pre.appendChild(code);
-
-                var xhr = new XMLHttpRequest();
-
-                xhr.open('GET', src, true);
-
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
 
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
-
                             Prism.highlightElement(code);
+                            return;
                         }
-                        else if (xhr.status >= 400) {
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
                             code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
                         }
-                        else {
-                            code.textContent = '✖ Error: File does not exist, is empty or trying to view from localhost';
-                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
                     }
-                };
+                    modal.classList.add("phpdocumentor-modal__open");
 
-                xhr.send(null);
-            });
-        }
-
-        var modals = document.querySelectorAll("[data-modal]");
-
-        modals.forEach(function (trigger) {
-            trigger.addEventListener("click", function (event) {
-                //event.preventDefault();
-                const modal = document.getElementById(trigger.dataset.modal);
-                modal.classList.add("phpdocumentor-modal__open");
-                loadExternalCodeSnippets(trigger.dataset.line)
-                const exits = modal.querySelectorAll("[data-exit-button]");
-                exits.forEach(function (exit) {
-                    exit.addEventListener("click", function (event) {
-                        event.preventDefault();
-                        modal.classList.remove("phpdocumentor-modal__open");
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
                     });
                 });
             });
-        });
+        })();
     </script>
 
     </article>
-                <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                                
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                        <li><a href="classes/Pipit-Utilities-LDAPConnector.html#toc-constants">Constants</a></li>
+                                                            <li><a href="classes/Pipit-Utilities-LDAPConnector.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Pipit-Utilities-LDAPConnector.html#toc-methods">Methods</a></li>
+                                    </ul>
+            </li>
+                            <li class="phpdocumentor-on-this-page-section__title">Constants</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/Pipit-Utilities-LDAPConnector.html#constant_CONFIG_FILE">CONFIG_FILE</a></li>
+                                            </ul>
+                </li>
+            
+                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/Pipit-Traits-FileConfiguration.html#property_configs">$configs</li>
+                                                    <li class=""><a href="classes/Pipit-Utilities-LDAPConnector.html#property_handle">$handle</li>
+                                                    <li class=""><a href="classes/Pipit-Utilities-LDAPConnector.html#property_password">$password</li>
+                                                    <li class=""><a href="classes/Pipit-Utilities-LDAPConnector.html#property_port">$port</li>
+                                                    <li class=""><a href="classes/Pipit-Utilities-LDAPConnector.html#property_url">$url</li>
+                                                    <li class=""><a href="classes/Pipit-Utilities-LDAPConnector.html#property_user">$user</li>
+                                            </ul>
+                </li>
+            
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/Pipit-Utilities-LDAPConnector.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Pipit-Utilities-LDAPConnector.html#method_getConnection">getConnection()</a></li>
+                                            <li class=""><a href="classes/Pipit-Traits-FileConfiguration.html#method_configurationFileExists">configurationFileExists()</a></li>
+                                            <li class=""><a href="classes/Pipit-Traits-FileConfiguration.html#method_getConfigurationFromFileName">getConfigurationFromFileName()</a></li>
+                                            <li class=""><a href="classes/Pipit-Utilities-LDAPConnector.html#method_getProperty">getProperty()</a></li>
+                                            <li class=""><a href="classes/Pipit-Utilities-LDAPConnector.html#method_setProperty">setProperty()</a></li>
+                                            <li class=""><a href="classes/Pipit-Utilities-LDAPConnector.html#method_bind">bind()</a></li>
+                                            <li class=""><a href="classes/Pipit-Utilities-LDAPConnector.html#method_configIsValid">configIsValid()</a></li>
+                                            <li class=""><a href="classes/Pipit-Traits-FileConfiguration.html#method_loadConfigurationFile">loadConfigurationFile()</a></li>
+                                    </ul>
+            </li>
+                    </ul>
+    </section>
+
+                </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
         <header class="phpdocumentor-search-results__header">
             <h2 class="phpdocumentor-search-results__title">Search results</h2>
@@ -1039,7 +1216,6 @@
         </section>
     </section>
 </section>
-            </div>
         </div>
         <a href="classes/Pipit-Utilities-LDAPConnector.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 

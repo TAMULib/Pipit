@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/template.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
                 <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
         <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
         <script src="js/search.js"></script>
         <script defer src="js/searchIndex.js"></script>
     </head>
@@ -52,8 +53,8 @@
 <label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
     Menu
 </label>
-<aside class="phpdocumentor-column -four phpdocumentor-sidebar">
-                    <section class="phpdocumentor-sidebar__category">
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
+                    <section class="phpdocumentor-sidebar__category -namespaces">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="namespaces/pipit.html" class="">Pipit</a>
@@ -82,7 +83,7 @@
             </ul>
 
                         </section>
-                <section class="phpdocumentor-sidebar__category">
+                <section class="phpdocumentor-sidebar__category -packages">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/Application.html" class="">Application</a>
@@ -90,21 +91,22 @@
 
                         </section>
             
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -reports">
         <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
                 <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
     </section>
 
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -indices">
         <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
     </section>
 </aside>
 
-            <div class="phpdocumentor-column -eight phpdocumentor-content">
-                    <ul class="phpdocumentor-breadcrumbs">
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pipit.html">Pipit</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pipit-classes.html">Classes</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pipit-classes-controllers.html">Controllers</a></li>
@@ -131,8 +133,15 @@
     
     </h2>
 
+<div class="phpdocumentor-label-line">
+
+
+    <div class="phpdocumentor-label phpdocumentor-label--success"><span>Abstract</span><span>Yes</span></div>
+
+</div>
+
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">11</span>
 
@@ -142,9 +151,11 @@
 
 
 
+
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pipit-Classes-Controllers-AbstractController.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
@@ -156,165 +167,175 @@
 </section>
 
                                     </dd>
-                        </dl>
+                                            </dl>
 
 
 
-
-<h3 id="interfaces_class_traits">
-    Interfaces, Classes, Traits and Enums
-    <a href="#interfaces_class_traits" class="headerlink"><i class="fas fa-link"></i></a>
-</h3>
-
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-Controller.html"><abbr title="\Pipit\Interfaces\Controller">Controller</abbr></a></dt>
-        <dd>An interface defining a Controller</dd>
-    
-    
-    
-    </dl>
 
 
 <h3 id="toc">
     Table of Contents
-    <a href="#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+
 </h3>
 
+
+
+    <h4 id="toc-interfaces">
+        Interfaces
+        <a href="classes/Pipit-Classes-Controllers-AbstractController.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pipit-Interfaces-Controller.html"><abbr title="\Pipit\Interfaces\Controller">Controller</abbr></a></dt><dd>An interface defining a Controller</dd>    </dl>
+
+
+
+
+
+
+<h4 id="toc-properties">
+    Properties
+    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
 <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#property_controllerConfig">$controllerConfig</a>
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#property_controllerConfig">$controllerConfig</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#property_page">$page</a>
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#property_page">$page</a>
     <span>
                         &nbsp;: <a href="classes/Pipit-Interfaces-SitePage.html"><abbr title="\Pipit\Interfaces\SitePage">SitePage</abbr></a>            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#property_requireAdmin">$requireAdmin</a>
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#property_requireAdmin">$requireAdmin</a>
     <span>
                         &nbsp;: bool            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#property_site">$site</a>
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#property_site">$site</a>
     <span>
                         &nbsp;: <a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a>            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#property_viewName">$viewName</a>
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#property_viewName">$viewName</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
-<dd></dd>
 
-                <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method___construct">__construct()</a>
+    </dl>
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_evaluate">evaluate()</a>
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#method_evaluate">evaluate()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>This evaluate() implementation looks for $action and $subaction vars from the request input and uses them to build a method name. If that method name exists, it will be invoked. If not, loadDefault() will be called. Any ViewRenderer updates made as a result are then registered with the Site&#039;s ViewRenderer.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-CoreObject.html#method_getAppConfiguration">getAppConfiguration()</a>
+    <a class="" href="classes/Pipit-Classes-CoreObject.html#method_getAppConfiguration">getAppConfiguration()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Provides a single instance of the global app configuration to all extenders of CoreObject</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pipit-Classes-CoreObject.html#method_getLogger">getLogger()</a>
+    <a class="" href="classes/Pipit-Classes-CoreObject.html#method_getLogger">getLogger()</a>
     <span>
                                 &nbsp;: <a href="classes/Pipit-Interfaces-Logger.html"><abbr title="\Pipit\Interfaces\Logger">Logger</abbr></a>    </span>
 </dt>
 <dd>Provides a single instance of a configured Logger to all extenders of CoreObject</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_configure">configure()</a>
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#method_configure">configure()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 <dd>Override to handle any Controller specific configurations, e.g. Page details, DataRepository fetching.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_getControllerConfig">getControllerConfig()</a>
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#method_getControllerConfig">getControllerConfig()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Returns the assigned $controllerConfig</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_getPage">getPage()</a>
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#method_getPage">getPage()</a>
     <span>
                                 &nbsp;: <a href="classes/Pipit-Interfaces-SitePage.html"><abbr title="\Pipit\Interfaces\SitePage">SitePage</abbr></a>    </span>
 </dt>
 <dd>Returns the assigned SitePage</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_getSite">getSite()</a>
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#method_getSite">getSite()</a>
     <span>
                                 &nbsp;: <a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a>    </span>
 </dt>
 <dd>Gets the Site context for Controllers</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_getViewName">getViewName()</a>
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#method_getViewName">getViewName()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>Returns the assigned viewName</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_loadDefault">loadDefault()</a>
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#method_loadDefault">loadDefault()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 <dd>This is a extending Controller&#039;s default endpoint method, executed by ::evaluate(), when no other endpoint methods match the request</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setControllerConfig">setControllerConfig()</a>
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setControllerConfig">setControllerConfig()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Set the $controllerConfig property, which can be used to provide configuration directives to extending Controllers</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setPage">setPage()</a>
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setPage">setPage()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Assigns a SitePage to the controller</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setSite">setSite()</a>
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setSite">setSite()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 <dd>Sets the Site context for Controllers</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setViewName">setViewName()</a>
+    <a class="" href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setViewName">setViewName()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Controller endpoint methods should use this to set the name of the view for their Controller</dd>
 
-        </dl>
+    </dl>
 
 
 
@@ -325,6 +346,7 @@
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
             <a href="classes/Pipit-Classes-Controllers-AbstractController.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article
         class="
@@ -336,16 +358,18 @@
     <h4 class="phpdocumentor-element__name" id="property_controllerConfig">
         $controllerConfig
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#property_controllerConfig" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -356,6 +380,8 @@
     
         <section class="phpdocumentor-description"><p>Optional Configuration directives for a Controller</p>
 </section>
+
+    
 
     
 
@@ -370,16 +396,18 @@
     <h4 class="phpdocumentor-element__name" id="property_page">
         $page
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#property_page" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -390,6 +418,8 @@
     
         <section class="phpdocumentor-description"><p>The specific SitePage, if one exists, that represents the Controller in the UI</p>
 </section>
+
+    
 
     
 
@@ -404,16 +434,18 @@
     <h4 class="phpdocumentor-element__name" id="property_requireAdmin">
         $requireAdmin
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#property_requireAdmin" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -424,6 +456,8 @@
     
         <section class="phpdocumentor-description"><p>A flag identifying a Controller for admin access only</p>
 </section>
+
+    
 
     
 
@@ -438,16 +472,18 @@
     <h4 class="phpdocumentor-element__name" id="property_site">
         $site
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#property_site" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -458,6 +494,8 @@
     
         <section class="phpdocumentor-description"><p>This must be injected on construction</p>
 </section>
+
+    
 
     
 
@@ -472,16 +510,18 @@
     <h4 class="phpdocumentor-element__name" id="property_viewName">
         $viewName
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#property_viewName" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -495,6 +535,8 @@
 
     
 
+    
+
 </article>
             </section>
 
@@ -502,6 +544,7 @@
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
             <a href="classes/Pipit-Classes-Controllers-AbstractController.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article
         class="phpdocumentor-element
@@ -512,9 +555,10 @@
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">28</span>
 
@@ -523,8 +567,11 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$site</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$controllerConfig</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$site</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$controllerConfig</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -554,10 +601,8 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -569,9 +614,10 @@
     <h4 class="phpdocumentor-element__name" id="method_evaluate">
         evaluate()
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_evaluate" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">109</span>
 
@@ -581,16 +627,17 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">evaluate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">evaluate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -602,9 +649,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getAppConfiguration">
         getAppConfiguration()
         <a href="classes/Pipit-Classes-CoreObject.html#method_getAppConfiguration" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/CoreObject.php"><a href="files/pipit-classes-coreobject.html"><abbr title="Pipit/Classes/CoreObject.php">CoreObject.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/CoreObject.php"><a href="files/pipit-src-pipit-classes-coreobject.html"><abbr title="Pipit/src/Pipit/Classes/CoreObject.php">CoreObject.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">24</span>
 
@@ -614,17 +662,22 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getAppConfiguration</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getAppConfiguration</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -635,9 +688,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getLogger">
         getLogger()
         <a href="classes/Pipit-Classes-CoreObject.html#method_getLogger" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/CoreObject.php"><a href="files/pipit-classes-coreobject.html"><abbr title="Pipit/Classes/CoreObject.php">CoreObject.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/CoreObject.php"><a href="files/pipit-src-pipit-classes-coreobject.html"><abbr title="Pipit/src/Pipit/Classes/CoreObject.php">CoreObject.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">16</span>
 
@@ -647,17 +701,22 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getLogger</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Logger.html"><abbr title="\Pipit\Interfaces\Logger">Logger</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getLogger</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Logger.html"><abbr title="\Pipit\Interfaces\Logger">Logger</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Logger.html"><abbr title="\Pipit\Interfaces\Logger">Logger</abbr></a></span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Logger.html"><abbr title="\Pipit\Interfaces\Logger">Logger</abbr></a></span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -668,9 +727,10 @@
     <h4 class="phpdocumentor-element__name" id="method_configure">
         configure()
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_configure" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">132</span>
 
@@ -680,18 +740,19 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">configure</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">configure</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
         <section class="phpdocumentor-description"><p>@return void</p>
 </section>
 
     
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -703,9 +764,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getControllerConfig">
         getControllerConfig()
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_getControllerConfig" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">102</span>
 
@@ -715,19 +777,26 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">getControllerConfig</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getControllerConfig</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>$controllerConfig</p>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>$controllerConfig</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -738,9 +807,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getPage">
         getPage()
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_getPage" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">67</span>
 
@@ -750,17 +820,22 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">getPage</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-SitePage.html"><abbr title="\Pipit\Interfaces\SitePage">SitePage</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getPage</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-SitePage.html"><abbr title="\Pipit\Interfaces\SitePage">SitePage</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-SitePage.html"><abbr title="\Pipit\Interfaces\SitePage">SitePage</abbr></a></span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-SitePage.html"><abbr title="\Pipit\Interfaces\SitePage">SitePage</abbr></a></span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -771,9 +846,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getSite">
         getSite()
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_getSite" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">41</span>
 
@@ -783,19 +859,26 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">getSite</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getSite</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a></span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The active Site implementation</p>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The active Site implementation</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -806,9 +889,10 @@
     <h4 class="phpdocumentor-element__name" id="method_getViewName">
         getViewName()
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_getViewName" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">85</span>
 
@@ -818,19 +902,26 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">getViewName</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getViewName</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
 
     
-    
-    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>$viewName</p>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>$viewName</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -841,9 +932,10 @@
     <h4 class="phpdocumentor-element__name" id="method_loadDefault">
         loadDefault()
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_loadDefault" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">139</span>
 
@@ -853,18 +945,19 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-    <span class="phpdocumentor-signature__abstract">abstract</span>            <span class="phpdocumentor-signature__name">loadDefault</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">loadDefault</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
         <section class="phpdocumentor-description"><p>@return void</p>
 </section>
 
     
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -876,9 +969,10 @@
     <h4 class="phpdocumentor-element__name" id="method_setControllerConfig">
         setControllerConfig()
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setControllerConfig" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">94</span>
 
@@ -888,8 +982,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">setControllerConfig</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$controllerConfig</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setControllerConfig</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$controllerConfig</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -904,10 +1001,8 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -919,9 +1014,10 @@
     <h4 class="phpdocumentor-element__name" id="method_setPage">
         setPage()
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setPage" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">59</span>
 
@@ -931,8 +1027,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">setPage</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-SitePage.html"><abbr title="\Pipit\Interfaces\SitePage">SitePage</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setPage</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-SitePage.html"><abbr title="\Pipit\Interfaces\SitePage">SitePage</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -947,10 +1046,8 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -962,9 +1059,10 @@
     <h4 class="phpdocumentor-element__name" id="method_setSite">
         setSite()
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setSite" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">50</span>
 
@@ -974,8 +1072,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">setSite</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$site</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">setSite</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pipit-Interfaces-Site.html"><abbr title="\Pipit\Interfaces\Site">Site</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$site</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -993,10 +1094,8 @@
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
+    
+
     
 </article>
                     <article
@@ -1008,9 +1107,10 @@
     <h4 class="phpdocumentor-element__name" id="method_setViewName">
         setViewName()
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setViewName" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php"><a href="files/pipit-src-pipit-classes-controllers-abstractcontroller.html"><abbr title="Pipit/src/Pipit/Classes/Controllers/AbstractController.php">AbstractController.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">77</span>
 
@@ -1020,8 +1120,11 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">setViewName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$viewName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setViewName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$viewName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1037,7 +1140,8 @@
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setViewName#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
@@ -1050,80 +1154,158 @@
 </section>
 
                                     </dd>
-                        </dl>
+                                            </dl>
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+
     
 </article>
             </section>
 
-        
+        <div class="phpdocumentor-modal" id="source-view">
+    <div class="phpdocumentor-modal-bg" data-exit-button></div>
+    <div class="phpdocumentor-modal-container">
+        <div class="phpdocumentor-modal-content">
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/Pipit/src/Pipit/Classes/Controllers/AbstractController.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+        </div>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
+    </div>
+</div>
+
     <script type="text/javascript">
-        function loadExternalCodeSnippets(line) {
-            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                var src = pre.getAttribute('data-src').replace( /\\/g, '/');
-                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-                var language = 'php';
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
 
-                var code = document.createElement('code');
-                code.className = 'language-' + language;
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
 
-                pre.textContent = '';
+                    var xhr = new XMLHttpRequest();
 
-                pre.setAttribute('data-line', line)
-                code.textContent = 'Loading…';
+                    xhr.open('GET', src, true);
 
-                pre.appendChild(code);
-
-                var xhr = new XMLHttpRequest();
-
-                xhr.open('GET', src, true);
-
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
 
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
-
                             Prism.highlightElement(code);
+                            return;
                         }
-                        else if (xhr.status >= 400) {
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
                             code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
                         }
-                        else {
-                            code.textContent = '✖ Error: File does not exist, is empty or trying to view from localhost';
-                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
                     }
-                };
+                    modal.classList.add("phpdocumentor-modal__open");
 
-                xhr.send(null);
-            });
-        }
-
-        var modals = document.querySelectorAll("[data-modal]");
-
-        modals.forEach(function (trigger) {
-            trigger.addEventListener("click", function (event) {
-                //event.preventDefault();
-                const modal = document.getElementById(trigger.dataset.modal);
-                modal.classList.add("phpdocumentor-modal__open");
-                loadExternalCodeSnippets(trigger.dataset.line)
-                const exits = modal.querySelectorAll("[data-exit-button]");
-                exits.forEach(function (exit) {
-                    exit.addEventListener("click", function (event) {
-                        event.preventDefault();
-                        modal.classList.remove("phpdocumentor-modal__open");
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
                     });
                 });
             });
-        });
+        })();
     </script>
 
     </article>
-                <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                                
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                                            <li><a href="classes/Pipit-Classes-Controllers-AbstractController.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Pipit-Classes-Controllers-AbstractController.html#toc-methods">Methods</a></li>
+                                    </ul>
+            </li>
+            
+                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#property_controllerConfig">$controllerConfig</li>
+                                                    <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#property_page">$page</li>
+                                                    <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#property_requireAdmin">$requireAdmin</li>
+                                                    <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#property_site">$site</li>
+                                                    <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#property_viewName">$viewName</li>
+                                            </ul>
+                </li>
+            
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_evaluate">evaluate()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-CoreObject.html#method_getAppConfiguration">getAppConfiguration()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-CoreObject.html#method_getLogger">getLogger()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_configure">configure()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_getControllerConfig">getControllerConfig()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_getPage">getPage()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_getSite">getSite()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_getViewName">getViewName()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_loadDefault">loadDefault()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setControllerConfig">setControllerConfig()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setPage">setPage()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setSite">setSite()</a></li>
+                                            <li class=""><a href="classes/Pipit-Classes-Controllers-AbstractController.html#method_setViewName">setViewName()</a></li>
+                                    </ul>
+            </li>
+                    </ul>
+    </section>
+
+                </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
         <header class="phpdocumentor-search-results__header">
             <h2 class="phpdocumentor-search-results__title">Search results</h2>
@@ -1134,7 +1316,6 @@
         </section>
     </section>
 </section>
-            </div>
         </div>
         <a href="classes/Pipit-Classes-Controllers-AbstractController.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
