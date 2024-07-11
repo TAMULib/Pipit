@@ -60,6 +60,33 @@ class CoreSiteTest extends \Codeception\Test\Unit
         $this->assertEquals('Pipit\Classes\Data\UserCAS',get_class($coreSite->getGlobalUser()));
     }
 
+    public function testConfiguredSamlUser()
+    {
+        $this->config['SAML_USER_REPO'] = 'TestDataRepository';
+        $coreSite = $this->getCoreSiteInstance('TestUserSAML');
+        $this->assertEquals('TestFiles\Classes\Data\TestUserSAML',get_class($coreSite->getGlobalUser()));
+    }
+
+    public function testConfiguredSamlUserWithNoRepository()
+    {
+        $this->config['USESAML'] = true;
+        $this->config['SAML_USER_REPO'] = null;
+
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage("UserSAML requires SAML_USER_REPO to be defined with a Pipit\Interfaces\DataRepository");
+
+        $coreSite = $this->getCoreSiteInstance('TestUserSAML');
+    }
+
+    public function testDefaultSamlUser()
+    {
+        $this->config['USE_SAML'] = true;
+        //We will fail to connect to a non-existent database, but we're only testing that the right class is set for the globalUser
+        $this->expectException(\PDOException::class);
+        $coreSite = $this->getDefaultCoreSiteInstance();
+        $this->assertEquals('Pipit\Classes\Data\UserSAML',get_class($coreSite->getGlobalUser()));
+    }
+
     public function testDefaultUser()
     {
         //We will fail to connect to a non-existent database, but we're only testing that the right class is set for the globalUser

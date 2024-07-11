@@ -37,29 +37,61 @@ class CoreSite extends AbstractSite {
     protected function setUser() {
         $config = $this->getSiteConfig();
         $userClass = null;
+        $isCustomUserClass = array_key_exists('USER_CLASS', $config) && is_string($config['USER_CLASS']) && is_string($config['NAMESPACE_APP']);
+        $useSaml = is_bool($config['USESAML']) && $config['USESAML'];
+        $useCas = is_bool($config['USECAS']) && $config['USECAS'];
+
         if (is_array($config)) {
-            if (array_key_exists('USER_CLASS', $config) && is_string($config['USER_CLASS']) && is_string($config['NAMESPACE_APP'])) {
+            if ($isCustomUserClass) {
                 $className = "{$config['NAMESPACE_APP']}Classes\\Data\\{$config['USER_CLASS']}";
                 if (class_exists($className)) {
-                    $userClass = new $className();
-                    if (!($userClass instanceof \Pipit\Interfaces\User)) {
-                        $userClass = null;
+                    $customUserClassImplements = class_implements($className);
+                    if (!in_array('Pipit\Interfaces\User', $customUserClassImplements)) { //!($userClass instanceof \Pipit\Interfaces\User)) {
                         throw new ConfigurationException("Configured User class does not implement: Pipit\Interfaces\User");
+                    }
+                    if (!$useSaml && !$useCas) {
+                        $userClass = new $className();
                     }
                 } else {
                     throw new ConfigurationException("Configured User class not found: {$className}");
                 }
             }
-            if ($userClass && is_bool($config['USECAS']) && $config['USECAS']) {
+            if ($useSaml) {
+                if ($config['SAML_USER_REPO']) {
+                    $userRepo = $this->getDataRepository($config['SAML_USER_REPO']);
+                    if ($userRepo instanceof \Pipit\Interfaces\DataRepository) {
+                        if ($isCustomUserClass) {
+                            if (in_array("Pipit\Classes\Data\UserSAML", $customUserClassImplements)) {
+                                $userClass = new $className($this->getSanitizedInputData(),$userRepo);
+                                unset($userRepo);
+                            } else {
+                                $userClass = null;
+                                throw new ConfigurationException("Configured UserSAML classes must extend Pipit\Classes\Data\UserSAML");
+                            }
+                        } else {
+                            $userClass = new Data\UserSAML($this->getSanitizedInputData(),$userRepo);
+                        }
+                    } else {
+                        throw new ConfigurationException("UserSAML requires a Pipit\Interfaces\DataRepository");
+                    }
+                } else {
+                    throw new ConfigurationException("UserSAML requires SAML_USER_REPO to be defined with a Pipit\Interfaces\DataRepository");
+                }
+            }
+            if ($useCas) {
                 if ($config['CAS_USER_REPO']) {
                     $userRepo = $this->getDataRepository($config['CAS_USER_REPO']);
                     if ($userRepo instanceof \Pipit\Interfaces\DataRepository) {
-                        if ($userClass instanceof \Pipit\Classes\Data\UserCAS) {
-                            $userClass = new Data\UserCAS($this->getSanitizedInputData(),$userRepo);
-                            unset($userRepo);
+                        if ($isCustomUserClass) {
+                            if (in_array("Pipit\Classes\Data\UserCAS", $customUserClassImplements)) {
+                                $userClass = new $userClass($this->getSanitizedInputData(),$userRepo);
+                                unset($userRepo);
+                            } else {
+                                $userClass = null;
+                                throw new ConfigurationException("Configured UserCAS classes must extend Pipit\Classes\Data\UserCAS");
+                            }
                         } else {
-                            $userClass = null;
-                            throw new ConfigurationException("Configured UserCAS classes must extend Pipit\Classes\Data\UserCAS");
+                            $userClass = new Data\UserCAS($this->getSanitizedInputData(),$userRepo);
                         }
                     } else {
                         throw new ConfigurationException("UserCAS requires a Pipit\Interfaces\DataRepository");

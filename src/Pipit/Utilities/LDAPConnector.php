@@ -13,7 +13,7 @@ class LDAPConnector {
     private $user;
     /** @var string $password The password to connect with */
     private $password;
-    /** @var resource|false $handle The LDAP Connection */
+    /** @var \LDAP\Connection|false $handle The LDAP Connection */
     private $handle;
 
     private const CONFIG_FILE = "ldap.connector";
@@ -79,7 +79,7 @@ class LDAPConnector {
 
     /**
      * Returns the value of the property with the given name
-     * @return resource|false  
+     * @return \LDAP\Connection|false
      */
     public function getConnection() {
         if ($this->handle) {

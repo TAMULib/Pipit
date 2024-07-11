@@ -9,16 +9,17 @@ jobs:
     steps:
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: 8.1
       - uses: actions/checkout@v3
-      - uses: php-actions/composer@v5
+      - uses: php-actions/composer@v6
       - name: Run PHPStan Static Analysis
-        uses: php-actions/phpstan@master
+        uses: php-actions/phpstan@v3
         with:
+          php_version: 8.1
           memory_limit: 512M
           path: src/Pipit/
           configuration: phpstan.dist
-          level: 9
+          level: 8
       - name: Run Codeception Tests
         run:  php vendor/bin/codecept run
 
