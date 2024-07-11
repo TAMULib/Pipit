@@ -10,6 +10,7 @@ class UserSAML extends UserDB {
     /** @var \Pipit\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'issaml' fields) */
     private $usersRepo;
 
+    /** @var mixed[] $settings An array of settings for onelogin configuration */
     private $settings;
 
     private const CONFIG_FILE = "user.saml";
@@ -33,7 +34,7 @@ class UserSAML extends UserDB {
         if (!empty($inputData['SAMLResponse'])) {
             $this->usersRepo = $usersRepo;
 
-            if (is_string($inputData['SAMLResponse']) && $this->processLogIn($inputData['SAMLResponse'])) {
+            if (is_string($inputData['SAMLResponse']) && $this->processLogIn()) {
                 header("Location:".$redirectUrl);
             }
         } elseif (!$this->isLoggedIn() && !isset($inputData['action'])) {
@@ -41,6 +42,10 @@ class UserSAML extends UserDB {
         }
     }
 
+    /**
+     * Verifies that all required settings have some value
+     * @return boolean
+     */
     protected function checkSettings() {
         return (is_array($this->settings)
                 && !empty($this->settings['sp']['entityId'])
@@ -53,6 +58,10 @@ class UserSAML extends UserDB {
                 && !empty($this->settings['idp']['x509cert']));
     }
 
+    /**
+     * Loads the settings from Pipit configuration and merges them with the defaults from onelogin
+     * @return void
+     */
     protected function loadSettings() {
         $configurationFileName = self::CONFIG_FILE;
         $config = null;
@@ -61,7 +70,7 @@ class UserSAML extends UserDB {
         } else {
             throw new ConfigurationException("SAML config file does not exist");
         }
-
+        $settings = [];
         $defaultSettingsFile = __DIR__."/../../../../../../onelogin/php-saml/settings_example.php";
         if (is_file($defaultSettingsFile)) {
             require($defaultSettingsFile);
@@ -75,6 +84,10 @@ class UserSAML extends UserDB {
         }
     }
 
+    /**
+     * Processes the SAML response and uses it to login a user
+     * @return boolean Returns true on successful login, false on everything else
+     */
     public function processLogIn() {
         $auth = new Auth($this->settings);
 
@@ -97,7 +110,7 @@ class UserSAML extends UserDB {
             throw new \RuntimeException("SAML error: Not authenticated");
         }
 
-        $userNameField = array_key_exists('username', $this->settings['claims']) ? $this->settings['claims']['username'] : self::DEFAULT_USERNAME_MAPPING;
+        $userNameField = (is_array($this->settings['claims']) && array_key_exists('username', $this->settings['claims'])) ? $this->settings['claims']['username'] : self::DEFAULT_USERNAME_MAPPING;
 
         if (!array_key_exists($userNameField, $auth->getAttributes())) {
             throw new \RuntimeException("SAML error: {$userNameField} claim not present in SAML response");
@@ -110,7 +123,6 @@ class UserSAML extends UserDB {
     /**
     *	Uses the provided username to find/create a matching local user and initiate the session
     *	@param string $userName
-    *	@param \Pipit\Interfaces\DataRepository $usersRepo A DataRepository representing the app's Users (assumes existence of 'username' and 'issaml' fields)
     *   @return boolean Returns true on success, false for anything else
     */
     protected function processUser($userName) {
@@ -136,6 +148,7 @@ class UserSAML extends UserDB {
 
     /**
      * Triggers the SAML login request
+     * @return void
      */
     public function initiatelogIn() {
         $auth = new Auth($this->settings);
