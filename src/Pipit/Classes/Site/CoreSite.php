@@ -38,7 +38,19 @@ class CoreSite extends AbstractSite {
         $config = $this->getSiteConfig();
         $userClass = null;
         if (is_array($config)) {
-            if (is_bool($config['USESAML']) && $config['USESAML']) {
+            if (array_key_exists('USER_CLASS', $config) && is_string($config['USER_CLASS']) && is_string($config['NAMESPACE_APP'])) {
+                $className = "{$config['NAMESPACE_APP']}Classes\\Data\\{$config['USER_CLASS']}";
+                if (class_exists($className)) {
+                    $userClass = new $className();
+                    if (!($userClass instanceof \Pipit\Interfaces\User)) {
+                        $userClass = null;
+                        throw new ConfigurationException("Configured User class does not implement: Pipit\Interfaces\User");
+                    }
+                } else {
+                    throw new ConfigurationException("Configured User class not found: {$className}");
+                }
+            }
+            if (!$userClass && is_bool($config['USESAML']) && $config['USESAML']) {
                 if ($config['SAML_USER_REPO']) {
                     $userRepo = $this->getDataRepository($config['SAML_USER_REPO']);
                     if ($userRepo instanceof \Pipit\Interfaces\DataRepository) {
@@ -72,19 +84,6 @@ class CoreSite extends AbstractSite {
                     }
                 } else {
                     throw new ConfigurationException("UserCAS requires CAS_USER_REPO to be defined with a Pipit\Interfaces\DataRepository");
-                }
-            }
-
-            if (!$userClass && array_key_exists('USER_CLASS', $config) && is_string($config['USER_CLASS']) && is_string($config['NAMESPACE_APP'])) {
-                $className = "{$config['NAMESPACE_APP']}Classes\\Data\\{$config['USER_CLASS']}";
-                if (class_exists($className)) {
-                    $userClass = new $className();
-                    if (!($userClass instanceof \Pipit\Interfaces\User)) {
-                        $userClass = null;
-                        throw new ConfigurationException("Configured User class does not implement: Pipit\Interfaces\User");
-                    }
-                } else {
-                    throw new ConfigurationException("Configured User class not found: {$className}");
                 }
             }
         }
