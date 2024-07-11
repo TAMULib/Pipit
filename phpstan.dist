@@ -1,6 +1,6 @@
 parameters:
     paths:
         - src/Pipit
-    level: 8
+    level: 9
     bootstrapFiles:
         - ./phpstan/constants.php
