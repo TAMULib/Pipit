@@ -1,4 +1,7 @@
 # Pipit
+
+Copyright © 2015-2025 Texas A&M University Libraries under the [MIT](LICENSE).
+
 A basic PHP framework for web app development
 
 ## Seed App Implementation (Start Here)
