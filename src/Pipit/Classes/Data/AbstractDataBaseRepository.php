@@ -10,11 +10,11 @@ use Pipit\Interfaces as Interfaces;
 */
 
 abstract class AbstractDataBaseRepository extends DBObject implements Interfaces\DataRepository, Interfaces\Configurable {
-    /** @var Interfaces\Site $site This provides the Site context to all DatabaseRepositories extending this class */
+    /** @var Interfaces\Site $site This provides the Site context to all DataBaseRepositories extending this class */
     protected $site;
-    /** @var string $primaryTable This is the name of the DB table managed by DatabaseRepositories extending this class */
+    /** @var string $primaryTable This is the name of the DB table managed by DataBaseRepositories extending this class */
     protected $primaryTable;
-    /** @var string $primaryKey This is the name of the Primary Key for the $primaryTable managed by DatabaseRepositories extending this class */
+    /** @var string $primaryKey This is the name of the Primary Key for the $primaryTable managed by DataBaseRepositories extending this class */
     protected $primaryKey = 'id';
     /** @var string|null $defaultOrderBy If provided, AbstractDataBaseRepository::get()) will ORDER BY this property. */
     protected $defaultOrderBy;

@@ -8,7 +8,7 @@ use Pipit\Interfaces as Interfaces;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-abstract class AbstractPageableDatabaseRepository extends AbstractDataBaseRepository implements Interfaces\PageableDataRepository {
+abstract class AbstractPageableDataBaseRepository extends AbstractDataBaseRepository implements Interfaces\PageableDataRepository {
     /** @var int $resultsPerPage The number of results to include per page */
     protected $resultsPerPage;
 
@@ -57,7 +57,7 @@ abstract class AbstractPageableDatabaseRepository extends AbstractDataBaseReposi
     }
 
     /**
-     * Executes a count query using the base query inherited from Pipit\Data\AbstractDatabaseRepository
+     * Executes a count query using the base query inherited from Pipit\Data\AbstractDataBaseRepository
      * @return integer The total result count for the base query
      */
     protected function countGet() {
@@ -70,7 +70,7 @@ abstract class AbstractPageableDatabaseRepository extends AbstractDataBaseReposi
     }
 
     /**
-     * Executes a count query using the base search query inherited from Pipit\Data\AbstractDatabaseRepository
+     * Executes a count query using the base search query inherited from Pipit\Data\AbstractDataBaseRepository
      * @param string $term The search term
      * @return integer The total result count for the base search query
      */

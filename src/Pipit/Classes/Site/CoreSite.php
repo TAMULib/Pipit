@@ -1,7 +1,7 @@
 <?php
 namespace Pipit\Classes\Site;
 use Pipit\Classes\Data as Data;
-use Pipit\Classes\Configuration\DynamicDatabaseRepositoryConfiguration;
+use Pipit\Classes\Configuration\DynamicDataBaseRepositoryConfiguration;
 use Pipit\Classes\Exceptions\ConfigurationException;
 
 /**
@@ -185,7 +185,7 @@ class CoreSite extends AbstractSite {
                 $dynamicRepoConfigData = $this->getConfigurationFromFileName($dynamicConfigFile);
                 if (is_array($dynamicRepoConfigData) && array_key_exists($repositoryName, $dynamicRepoConfigData)) {
                     $config = $dynamicRepoConfigData[$repositoryName];
-                    $dynamicRepoConfig = new DynamicDatabaseRepositoryConfiguration(
+                    $dynamicRepoConfig = new DynamicDataBaseRepositoryConfiguration(
                                         $config['tableName'],
                                         $config['primaryKey'],
                                         $config['defaultOrderBy'],
