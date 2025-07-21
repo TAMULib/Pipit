@@ -1,10 +1,10 @@
 <?php
 namespace Pipit\Classes\Configuration;
 /** 
-*	A Configuration class representing a DynamicDatabaseRepository configuration
+*	A Configuration class representing a DynamicDataBaseRepository configuration
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
-class DynamicDatabaseRepositoryConfiguration extends AbstractConfiguration {
+class DynamicDataBaseRepositoryConfiguration extends AbstractConfiguration {
     /** @var string $tableName The name of the base table */
     protected $tableName;
     /** @var string $primaryKey The name of the primary key for the base table */

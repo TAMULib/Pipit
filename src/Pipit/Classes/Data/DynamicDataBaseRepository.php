@@ -1,6 +1,6 @@
 <?php
 namespace Pipit\Classes\Data;
-use Pipit\Classes\Configuration\DynamicDatabaseRepositoryConfiguration;
+use Pipit\Classes\Configuration\DynamicDataBaseRepositoryConfiguration;
 /** 
 *	A basic DB Repository class providing generic CRUD interaction with the configured database table
 *
@@ -9,11 +9,11 @@ use Pipit\Classes\Configuration\DynamicDatabaseRepositoryConfiguration;
 
 class DynamicDataBaseRepository extends AbstractDataBaseRepository {
     /**
-    * Constructor for DynamicDatabaseRepository
+    * Constructor for DynamicDataBaseRepository
     *
-    * @param \Pipit\Classes\Configuration\DynamicDatabaseRepositoryConfiguration $configuration An instance of DynamicDatabaseRepositoryConfiguration
+    * @param \Pipit\Classes\Configuration\DynamicDataBaseRepositoryConfiguration $configuration An instance of DynamicDataBaseRepositoryConfiguration
     */
-    public function __construct(DynamicDatabaseRepositoryConfiguration $configuration) {
+    public function __construct(DynamicDataBaseRepositoryConfiguration $configuration) {
         parent::__construct($configuration->getTableName(),$configuration->getPrimaryKey(),$configuration->getDefaultOrderBy(),$configuration->getGettableColumns(),$configuration->getSearchableColumns());
     }
 }
