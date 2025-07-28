@@ -90,8 +90,9 @@ class CoreLoader extends CoreObject implements Loader {
     *	@return void
     */
     protected function checkRedirect() {
-        if (is_string($this->getConfig()['forceRedirectUrl'])) {
-            $this->getSite()->setRedirectUrl($this->getConfig()['forceRedirectUrl']);
+        $config = $this->getConfig();
+        if ($this->isString($config, 'forceRedirectUrl')) {
+            $this->getSite()->setRedirectUrl($config['forceRedirectUrl']);
             $this->getSite()->redirect();
         }
     }
@@ -104,7 +105,7 @@ class CoreLoader extends CoreObject implements Loader {
         $site = null;
         $config = $this->getConfig();
 
-        if (is_string($config['NAMESPACE_APP']) && is_string($config['SITE_CLASS'])) {
+        if ($this->isString($config, 'NAMESPACE_APP') && $this->isString($config, 'SITE_CLASS')) {
             $className = "{$config['NAMESPACE_APP']}Classes\\{$config['SITE_CLASS']}";
             $site = new $className($config);
 
@@ -138,7 +139,7 @@ class CoreLoader extends CoreObject implements Loader {
                                             $this->getSite()->getGlobalUser(),
                                             $this->getSite()->getPages(),
                                             $inputData,
-                                            (is_array($config['controllerConfig']) && array_key_exists('name', $config['controllerConfig']) ? $config['controllerConfig']['name']:null)
+                                            ($this->isArray($config, 'controllerConfig') && array_key_exists('name', $config['controllerConfig']) ?? $config['controllerConfig']['name'])
                                         );
             if ($potentialViewRenderer instanceof ViewRenderer) {
                 $this->getSite()->setViewRenderer($potentialViewRenderer);
@@ -165,16 +166,16 @@ class CoreLoader extends CoreObject implements Loader {
         $availableCoreRenderers = array("json","csv","html");
 
         $viewRenderOverride = null;
-        if (is_string($config['NAMESPACE_CORE']) && is_string($config['NAMESPACE_APP'])) {
+        if ($this->isString($config, 'NAMESPACE_CORE') && $this->isString($config, 'NAMESPACE_APP')) {
             //legacy support for original GET request of JSONViewRenderer
             if (!empty($inputData['json'])) {
                 $viewRenderOverride = "JSONViewRenderer";
-            } else if (!empty($inputData['view_renderer']) && in_array($inputData['view_renderer'],$availableCoreRenderers) && is_string($inputData['view_renderer'])) {
+            } else if (!empty($inputData['view_renderer']) && in_array($inputData['view_renderer'],$availableCoreRenderers) && $this->isString($inputData, 'view_renderer')) {
                 $viewRenderOverride = strtoupper($inputData['view_renderer'])."ViewRenderer";
             }
             if ($viewRenderOverride) {
                 $viewRendererName = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$viewRenderOverride}";
-            } else if (is_string($config['VIEW_RENDERER'])) {
+            } else if ($this->isString($config, 'VIEW_RENDERER')) {
                 if (class_exists("{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {
                     $viewRendererName = "{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}";
                 } elseif (class_exists("{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {
@@ -195,7 +196,7 @@ class CoreLoader extends CoreObject implements Loader {
         //try to load the controller
         $config = $this->getConfig();
         $controller = null;
-        if (is_array($config['controllerConfig']) && is_string($config['controllerConfig']['name'])) {
+        if ($this->isArray($config, 'controllerConfig') && $this->isString($config['controllerConfig'], 'name')) {
             $className = $this->getSite()->getControllerClass($config['controllerConfig']['name']);
             if (class_exists($className)) {
                 $site = $this->getSite();
@@ -209,7 +210,7 @@ class CoreLoader extends CoreObject implements Loader {
         }
         if (!$controller) {
             $this->getLogger()->warn("Did not find Controller Class");
-            if (is_string($config['PATH_HTTP'])) {
+            if ($this->isString($config, 'PATH_HTTP')) {
                 $this->getSite()->setRedirectUrl($config['PATH_HTTP']);
             } else {
                 exit;
@@ -230,5 +231,25 @@ class CoreLoader extends CoreObject implements Loader {
 
         //display the content
         $this->getSite()->getViewRenderer()->renderView();
+    }
+
+    /**
+    * Safely checks if array value at key is an array.
+    * @param array The array to check.
+    * @param key The key within $config to check.
+    * @return boolean
+    */
+    protected function isArray($array, $key) {
+        return isset($array[$key]) && is_array($array[$key]);
+    }
+
+    /**
+    * Safely checks if array value at key is a string.
+    * @param array The array to check.
+    * @param key The key within $config to check.
+    * @return boolean
+    */
+    protected function isString($array, $key) {
+        return isset($array[$key]) && is_string($array[$key]);
     }
 }
