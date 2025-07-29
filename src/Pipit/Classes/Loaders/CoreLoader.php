@@ -139,7 +139,7 @@ class CoreLoader extends CoreObject implements Loader {
                                             $this->getSite()->getGlobalUser(),
                                             $this->getSite()->getPages(),
                                             $inputData,
-                                            ($this->isArray($config, 'controllerConfig') && array_key_exists('name', $config['controllerConfig']) ?? $config['controllerConfig']['name'])
+                                            ($this->isArray($config, 'controllerConfig') && array_key_exists('name', $config['controllerConfig']) ? $config['controllerConfig']['name'] : null)
                                         );
             if ($potentialViewRenderer instanceof ViewRenderer) {
                 $this->getSite()->setViewRenderer($potentialViewRenderer);
