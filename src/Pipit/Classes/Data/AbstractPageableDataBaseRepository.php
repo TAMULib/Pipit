@@ -71,9 +71,7 @@ abstract class AbstractPageableDataBaseRepository extends AbstractDataBaseReposi
     protected function countGet() {
         $sql = "SELECT COUNT(*) AS total {$this->getBaseQuery()}";
         $result = $this->executeQuery($sql);
-        $current = $result ? current($result) : [];
-
-        return isset($current[$key]) ? intval($current['total']) : 0;
+        return ($result) ? intval(current($result)['total']) : 0;
     }
 
     /**
