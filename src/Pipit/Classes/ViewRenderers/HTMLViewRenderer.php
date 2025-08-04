@@ -43,11 +43,21 @@ class HTMLViewRenderer extends CoreObject implements ViewRenderer {
         if (!empty($config['ACTIVE_THEME'])) {
             $themeFolder = $config['ACTIVE_THEME'];
             $viewPath = $config['PATH_VIEWS'].$themeFolder;
-             if (is_dir($viewPath)) {
-                $this->setViewPath($viewPath.'/');
+            $fallback = 'html/';
+
+            if (is_dir($viewPath)) {
+                $this->setViewPath("{$viewPath}/");
             } else {
-                $this->getLogger()->warn("Could not find theme folder: ".$themeFolder.", falling back to default");
-                $this->setViewPath('html');
+                $viewPath = "{$config['PATH_VIEWS']}{$fallback}";
+                if (is_dir($viewPath)) {
+                  $this->getLogger()->warn("Could not find theme folder: {$themeFolder}, falling back to theme path default");
+                  $this->setViewPath($viewPath);
+                } else if (is_dir($fallback)) {
+                  $this->getLogger()->warn("Could not find theme folder: {$themeFolder} or fall back theme path {$fallback}, falling back to default {$fallback}");
+                  $this->setViewPath($fallback);
+                } else {
+                  $this->getLogger()->error("Could not find theme folder: {$themeFolder}, fall back theme path {$fallback}, or fall back default {$fallback}");
+                }
             }
         }
     }
