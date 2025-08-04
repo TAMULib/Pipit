@@ -2,10 +2,10 @@
 namespace Pipit\Classes\Data;
 use Pipit\Interfaces as Interfaces;
 /**
-*	A Pageable implementation of the DataBaseRepository interface
-*	Extending this provides Pageable CRUD interaction with the configured database table
+* A Pageable implementation of the DataBaseRepository interface
+* Extending this provides Pageable CRUD interaction with the configured database table
 *
-*	@author Jason Savell <jsavell@library.tamu.edu>
+* @author Jason Savell <jsavell@library.tamu.edu>
 */
 
 abstract class AbstractPageableDataBaseRepository extends AbstractDataBaseRepository implements Interfaces\PageableDataRepository {
@@ -13,13 +13,13 @@ abstract class AbstractPageableDataBaseRepository extends AbstractDataBaseReposi
     protected $resultsPerPage;
 
     /**
-    *	Extending classes configure themselves using this constructor.
+    * Extending classes configure themselves using this constructor.
     *
-    *	@param string $primaryTable Required. This specializes an instance of an extending class to the given DB table name
-    *	@param string $primaryKey Required. Extending classes define the Primary Key of the table they manage
-    *	@param string|null $defaultOrderBy Optional. Explicitly define a column to order query results by
-    *	@param string[]|null $gettableColumns Optional. AbstractDataBaseRepository::get()) will SELECT only these fields, when passed
-    *	@param string[]|null $searchableColumns Optional. AbstractDataBaseRepository::search()) will search these columns
+    * @param string $primaryTable Required. This specializes an instance of an extending class to the given DB table name
+    * @param string $primaryKey Required. Extending classes define the Primary Key of the table they manage
+    * @param string|null $defaultOrderBy Optional. Explicitly define a column to order query results by
+    * @param string[]|null $gettableColumns Optional. AbstractDataBaseRepository::get()) will SELECT only these fields, when passed
+    * @param string[]|null $searchableColumns Optional. AbstractDataBaseRepository::search()) will search these columns
     *   @param integer $resultsPerPage Optional. How many results to include per page. Defaults to 20
     *
     */
@@ -35,7 +35,15 @@ abstract class AbstractPageableDataBaseRepository extends AbstractDataBaseReposi
      * @return string The modified sql query string
      */
     protected function getPagedQuery($query,$resultsPage) {
-        return $query." LIMIT ".(($resultsPage->getPage()-1)*$resultsPage->getResultsPerPage()).",{$resultsPage->getResultsPerPage()}";
+        $limit = $resultsPage->getResultsPerPage();
+        $offset = ($resultsPage->getPage() - 1) * $resultsPage->getResultsPerPage();
+
+        if ($this->db->getType() == 'pgsql') {
+            return "{$query} OFFSET {$offset} LIMIT {$limit}";
+        }
+        else {
+            return "{$query} LIMIT {$limit}, {$offset}";
+        }
     }
 
     /**
@@ -61,12 +69,9 @@ abstract class AbstractPageableDataBaseRepository extends AbstractDataBaseReposi
      * @return integer The total result count for the base query
      */
     protected function countGet() {
-        $sql = "SELECT COUNT(*) {$this->getBaseQuery()}";
+        $sql = "SELECT COUNT(*) AS total {$this->getBaseQuery()}";
         $result = $this->executeQuery($sql);
-        if ($result) {
-            return intval(current($result)['COUNT(*)']);
-        }
-        return 0;
+        return ($result) ? intval(current($result)['total']) : 0;
     }
 
     /**
@@ -77,38 +82,38 @@ abstract class AbstractPageableDataBaseRepository extends AbstractDataBaseReposi
     protected function countSearch($term) {
         if ($this->getSearchableColumns()) {
             $searchQuery = $this->getBaseSearchQuery($term);
-            $searchQuery['sql'] = "SELECT COUNT(*) {$searchQuery['sql']} ";
+            $searchQuery['sql'] = "SELECT COUNT(*) AS total {$searchQuery['sql']} ";
 
             if ($result = $this->executeQuery($searchQuery['sql'],$searchQuery['bindparams'])) {
-                return intval(current($result)['COUNT(*)']);
+                return intval(current($result)['total']);
             }
         }
         return 0;
     }
 
     /**
-    *	Set the number of results per page for the Repository
-    *	@param integer $resultsPerPage
-    *	@return void
+    * Set the number of results per page for the Repository
+    * @param integer $resultsPerPage
+    * @return void
     */
     protected function setResultsPerPage($resultsPerPage) {
         $this->resultsPerPage = $resultsPerPage;
     }
 
     /**
-    *	Get the results of the base query for the given page number
+    * Get the results of the base query for the given page number
     *   @param integer $page Optional. The page of results to retrieve. Defaults to 1
-    *	@return \Pipit\Classes\Data\ResultsPage The ResultsPage of the base query for the given page
+    * @return \Pipit\Classes\Data\ResultsPage The ResultsPage of the base query for the given page
     */
     public function pagedGet($page=1) {
         return $this->getNewResultsPage($page,$this->resultsPerPage,$this->getGetQuery(),$this->countGet());
     }
 
     /**
-    *	Get the results of the base search query for the given search term and page number
+    * Get the results of the base search query for the given search term and page number
     *   @param string $term The search term
     *   @param integer $page Optional. The page of results to retrieve. Defaults to 1
-    *	@return \Pipit\Classes\Data\ResultsPage The ResultsPage of the base search query for the given term and page
+    * @return \Pipit\Classes\Data\ResultsPage The ResultsPage of the base search query for the given term and page
     */
     public function pagedSearch($term,$page=1) {
         $searchQuery = $this->getSearchQuery($term);

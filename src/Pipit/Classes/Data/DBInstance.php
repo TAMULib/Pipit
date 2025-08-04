@@ -45,7 +45,7 @@ class DBInstance {
 
             if (array_key_exists('type', $dbConfig)) {
                 $dbType = strtolower($dbConfig['type']);
-                if (in_array($dbType, ['mysql','mssql'])) {
+                if (in_array($dbType, ['mysql', 'mssql', 'pgsql'])) {
                     $this->type = $dbType;
                 }
             }
