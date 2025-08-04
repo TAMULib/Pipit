@@ -69,12 +69,11 @@ abstract class AbstractPageableDataBaseRepository extends AbstractDataBaseReposi
      * @return integer The total result count for the base query
      */
     protected function countGet() {
-        $sql = "SELECT COUNT(*) {$this->getBaseQuery()}";
+        $sql = "SELECT COUNT(*) AS total {$this->getBaseQuery()}";
         $result = $this->executeQuery($sql);
         $current = $result ? current($result) : [];
-        $key = $this->db->getType() == 'pgsql' ? 'count' : 'COUNT(*)';
 
-        return isset($current[$key]) ? intval($current[$key]) : 0;
+        return isset($current[$key]) ? intval($current['total']) : 0;
     }
 
     /**
@@ -85,10 +84,10 @@ abstract class AbstractPageableDataBaseRepository extends AbstractDataBaseReposi
     protected function countSearch($term) {
         if ($this->getSearchableColumns()) {
             $searchQuery = $this->getBaseSearchQuery($term);
-            $searchQuery['sql'] = "SELECT COUNT(*) {$searchQuery['sql']} ";
+            $searchQuery['sql'] = "SELECT COUNT(*) AS total {$searchQuery['sql']} ";
 
             if ($result = $this->executeQuery($searchQuery['sql'],$searchQuery['bindparams'])) {
-                return intval(current($result)['COUNT(*)']);
+                return intval(current($result)['total']);
             }
         }
         return 0;
