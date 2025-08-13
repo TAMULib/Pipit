@@ -196,6 +196,7 @@ class CoreLoader extends CoreObject implements Loader {
         //try to load the controller
         $config = $this->getConfig();
         $controller = null;
+        $className = null;
         if ($this->isArray($config, 'controllerConfig') && $this->isString($config['controllerConfig'], 'name')) {
             $className = $this->getSite()->getControllerClass($config['controllerConfig']['name']);
             if (class_exists($className)) {
@@ -209,11 +210,15 @@ class CoreLoader extends CoreObject implements Loader {
             }
         }
         if (!$controller) {
-            $this->getLogger()->warn("Did not find Controller Class");
-            if ($this->isString($config, 'PATH_HTTP')) {
+            $message = "Did not find Controller Class {$className}.";
+            $this->getLogger()->warn($message);
+            $site = $this->getSite();
+            $page = isset($site) ? $site->getCurrentPage(): null;
+            $path = isset($page) ? $site->getCurrentPage()->getPath() : '';
+            if (!empty($path) && $this->isString($config, 'PATH_HTTP')) {
                 $this->getSite()->setRedirectUrl($config['PATH_HTTP']);
             } else {
-                exit;
+                throw new \RuntimeException($message);
             }
         }
     }
