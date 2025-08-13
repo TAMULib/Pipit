@@ -214,7 +214,7 @@ class CoreLoader extends CoreObject implements Loader {
             $this->getLogger()->warn($message);
             $site = $this->getSite();
             $page = isset($site) ? $site->getCurrentPage() : null;
-            $path = isset($page) ? $site->getCurrentPage()->getPath() : '';
+            $path = isset($page) ? $page->getPath() : '';
             if (!empty($path) && $this->isString($config, 'PATH_HTTP')) {
                 $this->getSite()->setRedirectUrl($config['PATH_HTTP']);
             } else {
