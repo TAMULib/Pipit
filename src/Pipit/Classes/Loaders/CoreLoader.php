@@ -213,7 +213,7 @@ class CoreLoader extends CoreObject implements Loader {
             $message = "Did not find Controller Class {$className}.";
             $this->getLogger()->warn($message);
             $site = $this->getSite();
-            $page = isset($site) ? $site->getCurrentPage(): null;
+            $page = isset($site) ? $site->getCurrentPage() : null;
             $path = isset($page) ? $site->getCurrentPage()->getPath() : '';
             if (!empty($path) && $this->isString($config, 'PATH_HTTP')) {
                 $this->getSite()->setRedirectUrl($config['PATH_HTTP']);
