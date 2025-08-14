@@ -218,7 +218,7 @@ class CoreLoader extends CoreObject implements Loader {
             if (!empty($path) && $this->isString($config, 'PATH_HTTP')) {
                 $this->getSite()->setRedirectUrl($config['PATH_HTTP']);
             } else {
-                throw new \RuntimeException($message);
+                exit;
             }
         }
     }
