@@ -210,7 +210,9 @@ class CoreLoader extends CoreObject implements Loader {
             }
         }
         if (!$controller) {
-            $message = "Did not find Controller Class {$className}.";
+            $message = $className == NULL
+                ? "Cannot load Controller Class; could not load the class name."
+                : "Did not find Controller Class {$className}.";
             $this->getLogger()->warn($message);
             $site = $this->getSite();
             $page = isset($site) ? $site->getCurrentPage() : null;
