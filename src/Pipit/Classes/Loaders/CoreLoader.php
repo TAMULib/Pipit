@@ -4,20 +4,21 @@ use Pipit\Interfaces\Loader;
 use Pipit\Interfaces\Controller;
 use Pipit\Interfaces\ViewRenderer;
 use Pipit\Interfaces\Site;
+use Pipit\Classes\Enums\ConfigType as CT;
 use Pipit\Classes\CoreObject;
 use Pipit\Classes\Site\CoreSite;
 
 /**
-*	The CoreLoader is the default implementation of the Loader interface.
+* The CoreLoader is the default implementation of the Loader interface.
 *
-*	The CoreLoader is responsible for:
-* 		Starting the session
-*		Preparing global vars for controller use
-*		Managing an implementation of the Site class
-*		Using the Site class to get the logged in User
-*		Using the Site class to load appropriate controllers and render views
+* The CoreLoader is responsible for:
+*     Starting the session
+*   Preparing global vars for controller use
+*   Managing an implementation of the Site class
+*   Using the Site class to get the logged in User
+*   Using the Site class to load appropriate controllers and render views
 *
-*	@author Jason Savell <jsavell@library.tamu.edu>
+* @author Jason Savell <jsavell@library.tamu.edu>
 *
 */
 
@@ -50,28 +51,28 @@ class CoreLoader extends CoreObject implements Loader {
     }
 
     /**
-    *	Gets the Site context
-    *	@return \Pipit\Interfaces\Site The active Site implementation
+    * Gets the Site context
+    * @return \Pipit\Interfaces\Site The active Site implementation
     */
     protected function getSite() {
         return $this->site;
     }
 
     /**
-    *	Sets the Site context
-    *	@param \Pipit\Interfaces\Site $site The active Site implementation
-    *	@return void
+    * Sets the Site context
+    * @param \Pipit\Interfaces\Site $site The active Site implementation
+    * @return void
     */
     protected function setSite(Site $site) {
         $this->site = $site;
     }
 
     /**
-    *	load() is responsible for taking us from the request to the rendered response.
-    *	- Kick off the seesion
-    *	- Honor any $config redirect requests
-    *	- Hand execution over to a Controller
-    *	- Render the view with a ViewRenderer
+    * load() is responsible for taking us from the request to the rendered response.
+    * - Kick off the seesion
+    * - Honor any $config redirect requests
+    * - Hand execution over to a Controller
+    * - Render the view with a ViewRenderer
     */
     public function load() {
         session_start();
@@ -86,26 +87,26 @@ class CoreLoader extends CoreObject implements Loader {
     }
 
     /**
-    *	Check for and execute any $config requested redirects
-    *	@return void
+    * Check for and execute any $config requested redirects
+    * @return void
     */
     protected function checkRedirect() {
         $config = $this->getConfig();
-        if ($this->isString($config, 'forceRedirectUrl')) {
+        if (CT::Str->is('forceRedirectUrl')) {
             $this->getSite()->setRedirectUrl($config['forceRedirectUrl']);
             $this->getSite()->redirect();
         }
     }
 
     /**
-    *	Looks for a configured Site implementation to utilize, falls back to CoreSite if none are found
-    *	@return void
+    * Looks for a configured Site implementation to utilize, falls back to CoreSite if none are found
+    * @return void
     */
     protected function loadSiteClass() {
         $site = null;
         $config = $this->getConfig();
 
-        if ($this->isString($config, 'NAMESPACE_APP') && $this->isString($config, 'SITE_CLASS')) {
+        if (CT::Str->is('NAMESPACE_APP') && CT::Str->is('SITE_CLASS')) {
             $className = "{$config['NAMESPACE_APP']}Classes\\{$config['SITE_CLASS']}";
             $site = new $className($config);
 
@@ -126,8 +127,8 @@ class CoreLoader extends CoreObject implements Loader {
     }
 
     /**
-    *	Finds an appropriate ViewRenderer and sets it up for use
-    *	@return void
+    * Finds an appropriate ViewRenderer and sets it up for use
+    * @return void
     */
     protected function applyViewRenderer() {
         //set the ViewRenderer
@@ -139,7 +140,7 @@ class CoreLoader extends CoreObject implements Loader {
                                             $this->getSite()->getGlobalUser(),
                                             $this->getSite()->getPages(),
                                             $inputData,
-                                            ($this->isArray($config, 'controllerConfig') && array_key_exists('name', $config['controllerConfig']) ? $config['controllerConfig']['name'] : null)
+                                            CT::Str->in('name', 'controllerConfig') ? $config['controllerConfig']['name'] : null
                                         );
             if ($potentialViewRenderer instanceof ViewRenderer) {
                 $this->getSite()->setViewRenderer($potentialViewRenderer);
@@ -154,9 +155,9 @@ class CoreLoader extends CoreObject implements Loader {
     }
 
     /**
-    *	Provides the fully qualified class name of the ViewRenderer that should be used to render the response
-    *	App level extenders of CoreLoader can override this method to use their own criteria to select the ViewRenderer
-    *	@return string|null $viewRendererName - The fully qualified class name of the ViewRenderer to be used to render the response
+    * Provides the fully qualified class name of the ViewRenderer that should be used to render the response
+    * App level extenders of CoreLoader can override this method to use their own criteria to select the ViewRenderer
+    * @return string|null $viewRendererName - The fully qualified class name of the ViewRenderer to be used to render the response
     */
     protected function getViewRendererName() {
         $config = $this->getConfig();
@@ -166,16 +167,16 @@ class CoreLoader extends CoreObject implements Loader {
         $availableCoreRenderers = array("json","csv","html");
 
         $viewRenderOverride = null;
-        if ($this->isString($config, 'NAMESPACE_CORE') && $this->isString($config, 'NAMESPACE_APP')) {
+        if (CT::Str->is('NAMESPACE_CORE') && CT::Str->is('NAMESPACE_APP')) {
             //legacy support for original GET request of JSONViewRenderer
             if (!empty($inputData['json'])) {
                 $viewRenderOverride = "JSONViewRenderer";
-            } else if (!empty($inputData['view_renderer']) && in_array($inputData['view_renderer'],$availableCoreRenderers) && $this->isString($inputData, 'view_renderer')) {
+            } else if (!empty($inputData['view_renderer']) && in_array($inputData['view_renderer'],$availableCoreRenderers) && inputData($array['view_renderer']) && is_string($inputData['view_renderer'])) {
                 $viewRenderOverride = strtoupper($inputData['view_renderer'])."ViewRenderer";
             }
             if ($viewRenderOverride) {
                 $viewRendererName = "{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$viewRenderOverride}";
-            } else if ($this->isString($config, 'VIEW_RENDERER')) {
+            } else if (CT::Str->is('VIEW_RENDERER')) {
                 if (class_exists("{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {
                     $viewRendererName = "{$config['NAMESPACE_APP']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}";
                 } elseif (class_exists("{$config['NAMESPACE_CORE']}Classes\\ViewRenderers\\{$config['VIEW_RENDERER']}")) {
@@ -189,14 +190,14 @@ class CoreLoader extends CoreObject implements Loader {
     }
 
     /**
-    *	Looks for the configured Controller and hands over control by executing its evaluate() method
-    *	@return void
+    * Looks for the configured Controller and hands over control by executing its evaluate() method
+    * @return void
     */
     protected function loadController() {
         //try to load the controller
         $config = $this->getConfig();
         $controller = null;
-        if ($this->isArray($config, 'controllerConfig') && $this->isString($config['controllerConfig'], 'name')) {
+        if (CT::Str->in('name', 'controllerConfig')) {
             $className = $this->getSite()->getControllerClass($config['controllerConfig']['name']);
             if (class_exists($className)) {
                 $site = $this->getSite();
@@ -210,7 +211,7 @@ class CoreLoader extends CoreObject implements Loader {
         }
         if (!$controller) {
             $this->getLogger()->warn("Did not find Controller Class");
-            if ($this->isString($config, 'PATH_HTTP')) {
+            if (CT::Str->is('PATH_HTTP')) {
                 $this->getSite()->setRedirectUrl($config['PATH_HTTP']);
             } else {
                 exit;
@@ -219,8 +220,8 @@ class CoreLoader extends CoreObject implements Loader {
     }
 
     /**
-    *	Asks the ViewRenderer to render the response
-    *	@return void
+    * Asks the ViewRenderer to render the response
+    * @return void
     */
     protected function render() {
         if ($this->getSite()->hasRedirectUrl()) {
@@ -233,23 +234,4 @@ class CoreLoader extends CoreObject implements Loader {
         $this->getSite()->getViewRenderer()->renderView();
     }
 
-    /**
-    * Safely checks if array value at key is an array.
-    * @param array The array to check.
-    * @param key The key within $config to check.
-    * @return boolean
-    */
-    protected function isArray($array, $key) {
-        return isset($array[$key]) && is_array($array[$key]);
-    }
-
-    /**
-    * Safely checks if array value at key is a string.
-    * @param array The array to check.
-    * @param key The key within $config to check.
-    * @return boolean
-    */
-    protected function isString($array, $key) {
-        return isset($array[$key]) && is_string($array[$key]);
-    }
 }
