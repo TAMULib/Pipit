@@ -24,4 +24,15 @@ class CoreObject {
     public function getAppConfiguration() {
         return CoreFunctions::getInstance()->getAppConfiguration();
     }
+
+    /**
+     *  Test that a given value exists as a key in the given array and is optionally of the given type
+     *  @param mixed[] $configArray Some level of the $configuration array
+     *  @param mixed $key A key to check for in $configArray
+     *  @param string (Optional) One of the defined PHP types used for is_* checking (string, integer, boolean, etc)
+     *  @return bool
+     */
+    public function checkArrayValue($checkArray, $key, $type=null) {
+        return CoreFunctions::getInstance()->checkArrayValue($checkArray, $key, $type=null);
+    }
 }
