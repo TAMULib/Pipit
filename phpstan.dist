@@ -1,4 +1,5 @@
 parameters:
+    treatPhpDocTypesAsCertain: false
     paths:
         - src/Pipit
     level: 8

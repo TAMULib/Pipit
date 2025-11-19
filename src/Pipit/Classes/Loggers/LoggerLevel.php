@@ -49,7 +49,7 @@ class LoggerLevel {
      * @return int The max Pipit level
      */
     public static function getMaxInternalLevel() {
-        $maxLevel = max(self::$logLevelMap);
-        return $maxLevel ? $maxLevel:0;
+        $maxLevel = !empty(self::$logLevelMap) ? max(self::$logLevelMap):0;
+        return $maxLevel;
     }
 }

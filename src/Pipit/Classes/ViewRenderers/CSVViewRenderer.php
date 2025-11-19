@@ -25,13 +25,11 @@ class CSVViewRenderer extends JSONViewRenderer {
         $csvRows = reset($viewVars);
         if ($out && is_array($csvRows)) {
             $fields = array_keys(reset($csvRows));
-            if (is_array($fields)) {
-                fputcsv($out, $fields);
-                foreach ($csvRows as $row) {
-                    fputcsv($out, $row);
-                }
-                fclose($out);
+            fputcsv($out, $fields);
+            foreach ($csvRows as $row) {
+                fputcsv($out, $row);
             }
+            fclose($out);
         }
     }
 

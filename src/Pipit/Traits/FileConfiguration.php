@@ -16,7 +16,7 @@ trait FileConfiguration {
         $configFilePath = CoreFunctions::getInstance()->getAppConfiguration()['PATH_CONFIG'].$configurationFileName.".ini";
         if ($this->configurationFileExists($configurationFileName)) {
             $config = parse_ini_file($configFilePath, true);
-            if (!$config || !is_array($config)) {
+            if (!$config) {
                 throw new ConfigurationException("Error parsing configuration file: {$configurationFileName}");
             }
 

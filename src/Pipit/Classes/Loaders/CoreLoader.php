@@ -117,9 +117,7 @@ class CoreLoader extends CoreObject implements Loader {
         }
         if (!($this->getSite() instanceof Site)) {
             $coreSite = new CoreSite($config);
-            if ($coreSite instanceof Site) {
-                $this->setSite($coreSite);
-            }
+            $this->setSite($coreSite);
             $this->getLogger()->debug("Loaded CoreSite Class");
         }
     }
