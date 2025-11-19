@@ -15,7 +15,7 @@ jobs:
         with:
           # Lock composer to working version.
           # See https://github.com/php-actions/composer/issues/120
-          version: 2.8.1
+          version: 2.2.6
       - name: Run PHPStan Static Analysis
         uses: php-actions/phpstan@v3
         with:
