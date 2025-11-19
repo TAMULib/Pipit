@@ -28,13 +28,13 @@ class UserSAML extends UserDB {
         parent::__construct();
 
         $appConfig = $this->getAppConfiguration();
-        $redirectUrl = (array_key_exists('redirect', $this->settings) && is_string($this->settings['redirect'])) ?
+        $redirectUrl = ($this->checkArrayValue($this->settings, 'redirect', 'string')) ?
                             $this->settings['redirect']:$appConfig['PATH_HTTP'];
 
         if (!empty($inputData['SAMLResponse'])) {
             $this->usersRepo = $usersRepo;
 
-            if (is_string($inputData['SAMLResponse']) && $this->processLogIn()) {
+            if ($this->checkArrayValue($inputData, 'SAMLResponse', 'string') && $this->processLogIn()) {
                 header("Location:".$redirectUrl);
             }
         } elseif (!$this->isLoggedIn() && !isset($inputData['action'])) {
@@ -110,7 +110,7 @@ class UserSAML extends UserDB {
             throw new \RuntimeException("SAML error: Not authenticated");
         }
 
-        $userNameField = (is_array($this->settings['claims']) && array_key_exists('username', $this->settings['claims'])) ? $this->settings['claims']['username'] : self::DEFAULT_USERNAME_MAPPING;
+        $userNameField = ($this->checkArrayValue($this->settings, 'claims', 'array') && array_key_exists('username', $this->settings['claims'])) ? $this->settings['claims']['username'] : self::DEFAULT_USERNAME_MAPPING;
 
         if (!array_key_exists($userNameField, $auth->getAttributes())) {
             throw new \RuntimeException("SAML error: {$userNameField} claim not present in SAML response");

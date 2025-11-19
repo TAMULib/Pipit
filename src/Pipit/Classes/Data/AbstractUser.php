@@ -22,7 +22,7 @@ abstract class AbstractUser extends DBObject implements Interfaces\User {
     public function __construct() {
         parent::__construct();
         $appConfig = $this->getAppConfiguration();
-        if (array_key_exists('SESSION_SCOPE', $appConfig) && is_string($appConfig['SESSION_SCOPE'])) {
+        if ($this->checkArrayValue($appConfig, 'SESSION_SCOPE', 'string')) {
             $this->setSessionName($appConfig['SESSION_SCOPE']);
             $this->setSessionUserId();
             if ($this->isLoggedIn()) {

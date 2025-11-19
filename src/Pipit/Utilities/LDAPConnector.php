@@ -38,18 +38,18 @@ class LDAPConnector {
             }
 
             if ($config) {
-                if (!$url && is_string($config['url'])) {
+                if (!$url && CoreFunctions::getInstance()->checkArrayValue($config, 'url', 'string')) {
                     $url = $config['url'];
                 }
-                if (!$port && is_int($config['port'])) {
+                if (!$port && CoreFunctions::getInstance()->checkArrayValue($config, 'port', 'int')) {
                     $port = $config['port'];
                 }
 
-                if (!$user && is_string($config['user'])) {
+                if (!$user && CoreFunctions::getInstance()->checkArrayValue($config, 'user', 'string')) {
                     $user = $config['user'];
                 }
 
-                if (!$password && is_string($config['password'])) {
+                if (!$password && CoreFunctions::getInstance()->checkArrayValue($config, 'password', 'string')) {
                     $password = $config['password'];
                 }
             }

@@ -32,20 +32,20 @@ class UserCAS extends UserDB {
         }
 
         if (is_array($config)
-            && is_string($config['urls']['login'])
-            && is_string($config['urls']['check'])
-            && is_string($config['urls']['logout'])
+            && $this->checkArrayValue($config['urls'], 'login', 'string')
+            && $this->checkArrayValue($config['urls'], 'check', 'string')
+            && $this->checkArrayValue($config['urls'], 'logout', 'string')
         ) {
             parent::__construct();
             $appConfig = $this->getAppConfiguration();
-            $redirectUrl = is_string($config['url']['redirect']) ? $config['url']['redirect']:$appConfig['PATH_HTTP'];
+            $redirectUrl = $this->checkArrayValue($config['url'], 'redirect', 'string') ? $config['url']['redirect']:$appConfig['PATH_HTTP'];
             $this->casPaths['urls']['login'] = $config['urls']['login'];
             $this->casPaths['urls']['check'] = $config['urls']['check'];
             $this->casPaths['urls']['logout'] = $config['urls']['logout'];
             if (!empty($inputData['ticket'])) {
                 $this->usersRepo = $usersRepo;
 
-                if (is_string($inputData['ticket']) && $this->processLogIn($inputData['ticket'])) {
+                if ($this->checkArrayValue($inputData, 'ticket', 'string') && $this->processLogIn($inputData['ticket'])) {
                     header("Location:".$redirectUrl);
                 }
             } elseif (!$this->isLoggedIn() && !isset($inputData['action'])) {

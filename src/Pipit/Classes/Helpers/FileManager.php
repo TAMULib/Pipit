@@ -19,7 +19,7 @@ class FileManager extends AbstractHelper {
     public function configure(Interfaces\Site $site) {
         parent::configure($site);
         $config = $this->getConfigurationFromFileName(self::CONFIG_FILE);
-        if (!is_array($config) || !is_string($config['upload_path'])) {
+        if (!is_array($config) || !$this->checkArrayValue($config, 'upload_path', 'string')) {
             throw new ConfigurationException("The upload path has not been configured!");
         }
         $this->baseFilePath = $config['upload_path'];

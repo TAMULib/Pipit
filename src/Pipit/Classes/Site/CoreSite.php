@@ -37,7 +37,8 @@ class CoreSite extends AbstractSite {
     protected function setUser() {
         $config = $this->getSiteConfig();
         $userClass = null;
-        $isCustomUserClass = array_key_exists('USER_CLASS', $config) && is_string($config['USER_CLASS']) && is_string($config['NAMESPACE_APP']);
+        $isCustomUserClass = $this->checkArrayValue($config, 'USER_CLASS', 'string') && $this->checkArrayValue($config, 'NAMESPACE_APP', 'string');
+
         $useSaml = is_bool($config['USESAML']) && $config['USESAML'];
         $useCas = is_bool($config['USECAS']) && $config['USECAS'];
 
@@ -137,7 +138,7 @@ class CoreSite extends AbstractSite {
     public function getControllerClass($controllerName) {
         $controllerClass = null;
         $config = $this->getSiteConfig();
-        if (is_array($config) && is_string($config['NAMESPACE_APP']) && is_string($config['PATH_HTTP'])) {
+        if (is_array($config) && $this->checkArrayValue($config, 'NAMESPACE_APP', 'string') && $this->checkArrayValue($config, 'PATH_HTTP', 'string')) {
             if (array_key_exists($controllerName,$this->getPages()) || $controllerName == 'user') {
                 if ($controllerName == 'user') {
                     $this->setCurrentPage(new CoreSitePage('user','user',SECURITY_PUBLIC));
@@ -197,7 +198,7 @@ class CoreSite extends AbstractSite {
                 }
             }
             if (!$foundRepository) {
-                if (is_string($this->getSiteConfig()['NAMESPACE_APP'])) {
+                if ($this->checkArrayValue($this->getSiteConfig(), 'NAMESPACE_APP', 'string')) {
                     $className = "{$this->getSiteConfig()['NAMESPACE_APP']}Classes\\Data\\{$repositoryName}";
                     //We found a DataRepository named $repositoryName, so let's instantiate, configure and cache it
                     if (class_exists($className)) {
